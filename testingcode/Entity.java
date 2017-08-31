@@ -2,11 +2,9 @@ public class Entity
 {
 	private int direction;
 	private int desired_direction;
-	public int x;
-	public int y;
-	private String name;
+	public int x, y;
+	
 	//Private Tile Sprite;
-
 	public Entity()
 	{
 		direction = 0;
@@ -19,14 +17,17 @@ public class Entity
 	{
 		return direction;
 	}
+	
 	public void set_dir(int dir)
 	{
 		this.direction = dir;
 	}
+	
 	public int get_ddir()
 	{
 		return desired_direction;
 	}
+	
 	public void set_ddir(int ddir)
 	{
 		this.desired_direction = ddir;
