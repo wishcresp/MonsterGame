@@ -1,1 +1,1 @@
-shared/Player.java
+../shared/Player.java

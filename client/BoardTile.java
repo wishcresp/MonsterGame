@@ -1,1 +1,1 @@
-shared/BoardTile.java
+../shared/BoardTile.java

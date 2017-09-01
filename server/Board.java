@@ -1,1 +1,1 @@
-shared/Board.java
+../shared/Board.java
