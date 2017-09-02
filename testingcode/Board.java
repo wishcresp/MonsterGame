@@ -10,7 +10,7 @@ import org.junit.Test;
 public class Board
 {
 	private static Board board = new Board(); // Create new board object
-	private int dimensions = 9;	// Board dimension set to 9 x 9
+	private int dimensions = 11;	// Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
 	
 	// Define board dimension and instantiate array
