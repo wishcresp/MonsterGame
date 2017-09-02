@@ -3,7 +3,13 @@ import java.io.*;
 
 public class BoardTile
 {
+	/*
+	 * Very basic BoardTile class, just contains an Entity
+	 * which should probably be done away with completely
+	 */
+	
 	Entity contains;
+	Boolean isWall;
 	
 	public BoardTile(Entity ent)
 	{

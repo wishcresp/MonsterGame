@@ -7,24 +7,49 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+/*
+ * Notes on the design of this singleton:
+ * 	What we need from this object:
+ * 		Blaise:
+ * 			I need a toString method to sync this between
+ * 			the server and client
+ * 
+ * 	To get this off the ground I've got some basic BoardTile
+ *  objects to work with, it's just an array of those
+ *  
+ *  Also an empty tile is set to null, there's probably a better
+ *  way of handling that
+ */
+
+
 public class Board
 {
-	private static Board board = new Board(); // Create new board object
+	private static Board board = new Board(); // Make this a singleton
+	private Board() // Private initaliser
+	{
+		return;
+	}
+	
+	
 	private int dimensions = 11;	// Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
 	
 	// Define board dimension and instantiate array
-	//@Before
 	public void create_board()
 	{
-		// Define board with the dimension 9 x 9
+		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 		
 		// Each array position will be instantiated
+		/*
+		 * This is a placeholder, the board will have to be generated some
+		 * other way
+		 */
 		for (int x = 0; x < dimensions; x++)
 			for (int y = 0; y < dimensions; y++)
 				this.BoardTiles[x][y] = new BoardTile(null);
 	}
+	
 	
 	public void set_tile(int x, int y, Entity ent)
 	{
@@ -32,7 +57,7 @@ public class Board
 		BoardTiles[x][y].set_ent(ent);
 	}
 
-	// TODO What is_free? Is it when the tile is free??
+	// Check if a tile on the board is free
 	public boolean is_free(int x, int y)
 	{
 		return BoardTiles[x][y].get_ent() == null;
@@ -45,12 +70,10 @@ public class Board
 		this.dimensions = dimensions;
 		return;
 	}
-
-	//@Test
+	
 	public int get_dimensions()
 	{
 		int dimensions = this.dimensions;
-		assertEquals(11, dimensions);
 		return dimensions;
 	}
 
@@ -63,6 +86,8 @@ public class Board
 
 		// TODO Is it returning the game board?
 		// Yeah it's returning a string copy of the game board
+		// This is needed to synchronise what they look like between the client
+		// and server
 		return out;
 	}
 

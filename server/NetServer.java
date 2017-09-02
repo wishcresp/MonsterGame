@@ -21,7 +21,7 @@ public class NetServer extends Thread
 		}
 		
 
-		Player players = Player.get_player_instance();
+		Players players = Players.get_player_instance();
 		conn_target = players.get_player_target();
 	}
 

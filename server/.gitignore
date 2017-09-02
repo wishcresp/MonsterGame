@@ -7,3 +7,7 @@
 /server.class
 /GameServer.class
 /NetServer.class
+/ServerConnHandlerTest.class
+/TestRunner.class
+/Players.class
+/Monster.class
