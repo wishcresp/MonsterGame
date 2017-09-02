@@ -9,7 +9,7 @@ CFLAGS += -std=c11
 LFLAGS  = -lncurses
 DEPS =
 OBJ = main.o
-OUT_EXE = sock_cli
+OUT_EXE = sock_echo
 
 
 all:$(OUT_EXE)
