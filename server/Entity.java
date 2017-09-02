@@ -19,15 +19,14 @@ public abstract class Entity
 	 * `desired_direction`
 	 */
 	
-	
 	private int direction;
 	private int desired_direction;
 	public int x, y;
 	
 	// private TileSprite
 	/* Sean I imagine you'll be needing something like ^^ */
-	
-	
+		
+	// TODO Why is x and y = 2?? - Michael
 	public Entity()
 	{
 		direction = 0;

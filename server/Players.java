@@ -15,7 +15,7 @@ public class Players
 	private static Players players = new Players();
 	private Players()
 	{
-			return;
+		return;
 	}
 	
 	// Required for Server reasons
@@ -23,9 +23,6 @@ public class Players
 	private int current_players = 0;
 
 	private Entity Players[];
-
-
-
 
 	public int get_player_target()
 	{
@@ -41,7 +38,6 @@ public class Players
 	{
 		return Players[id];
 	}
-
 
 	public void create_players()
 	{

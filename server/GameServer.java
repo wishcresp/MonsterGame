@@ -11,18 +11,38 @@ import java.io.*;
 
 public class GameServer extends Thread
 {
+	/*
+	 *  TODO I'm not sure if static variables are a good idea
+	 *  How do i prevent static methods and variables??
+	 */	
+	static int dim, player_target;
+	static Board board;
+	static Players players;
+	
+	// FUCKING ECLIPSE WHY WONT YOU RUN MAIN????
 	public static void main(String[] args)
 	{
-		// Basic setup and init
+		// Initialize
+		Initialize();
+		
+		// Startup the threads
 		int port = 64646;
-		Board board = Board.get_board_instance();
-		Players players = Players.get_player_instance();
+		Thread listener = new NetServer(port);
+		listener.start();
+
+		// Start the main game loop
+		GameLoop();
+	}
+	
+	public static void Initialize()
+	{		
+		board = Board.get_board_instance();		
+		players = Players.get_player_instance();
 		players.create_players();
 		board.create_board();
-		int player_target = players.get_player_target();
-		int dim = board.get_dimensions();
-
-
+		player_target = players.get_player_target();
+		dim = board.get_dimensions();
+		
 		// Initialise player objects, poorly done,
 		// my rough player and board tracking required
 		// they both contain player positions, 
@@ -31,22 +51,18 @@ public class GameServer extends Thread
 		{
 			Entity p = players.get_player(i);
 			board.set_tile(p.x, p.y, p);
-		}
-
-
-
-		// Startup the threads
-		Thread listener = new NetServer(port);
-		listener.start();
-
+		}		
+	}
+		
+	// TODO Do i need to try to avoid static????
+	public static void GameLoop()
+	{
 		/*
 		 *  Main Game Loop
 		 */
 		boolean running = true;
 		while (running)
-		{
-			
-			
+		{			
 			/*
 			 * Very basic startup code for rough manual testing
 			 * 
@@ -68,6 +84,7 @@ public class GameServer extends Thread
 							p.x--;
 						}
 						break;
+						
 					case 1: // DOWN
 						if (p.x < dim && board.is_free(p.x+1,p.y))
 						{
@@ -78,10 +95,12 @@ public class GameServer extends Thread
 						break;
 				}
 			}
+			
 			try
 			{
 				Thread.sleep(100);
 			}
+			
 			catch (Exception e)
 			{
 				e.printStackTrace();

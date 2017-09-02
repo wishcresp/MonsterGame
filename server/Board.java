@@ -1,11 +1,12 @@
 import java.net.*;
 import java.io.*;
 
+/* Just commenting them out for now, causing me a few problems
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+*/
 
 /*
  * Notes on the design of this singleton:
@@ -19,20 +20,27 @@ import org.junit.Test;
  *  
  *  Also an empty tile is set to null, there's probably a better
  *  way of handling that
+ *  
  */
 
+/**
+ * This class will be responsible for the back end of the game
+ * it does not display any data, instead it will represent 
+ * the game board and objects
+*/
 
 public class Board
 {
+	// Declare class variables
 	private static Board board = new Board(); // Make this a singleton
-	private Board() // Private initaliser
+	private int dimensions = 11;	// Board dimension set to 11 x 11
+	private BoardTile[][] BoardTiles; // Board 2D array	
+	
+	// Instantiate a new board object
+	private Board() 
 	{
 		return;
 	}
-	
-	
-	private int dimensions = 11;	// Board dimension set to 11 x 11
-	private BoardTile[][] BoardTiles; // Board 2D array
 	
 	// Define board dimension and instantiate array
 	public void create_board()
@@ -47,13 +55,16 @@ public class Board
 		 */
 		for (int x = 0; x < dimensions; x++)
 			for (int y = 0; y < dimensions; y++)
-				this.BoardTiles[x][y] = new BoardTile(null);
+				this.BoardTiles[x][y] = new BoardTile(null);	
+		
+		// DEBUG Trying to test something, remove if causing problems!
+		Player testPlayer = new Player();
+		set_tile(2, 3, testPlayer);
+		
 	}
-	
-	
+		
 	public void set_tile(int x, int y, Entity ent)
 	{
-		// TODO What does ent do
 		BoardTiles[x][y].set_ent(ent);
 	}
 
@@ -62,7 +73,6 @@ public class Board
 	{
 		return BoardTiles[x][y].get_ent() == null;
 	}
-
 
 	// Customize the board dimensions
 	public void set_dimensions(int dimensions)
@@ -77,17 +87,21 @@ public class Board
 		return dimensions;
 	}
 
+	// Return a strong copy of the game board, will be a 
+	// representation for the game board in the back end.
 	public String get_layout()
 	{
 		String out = "";
+		
 		for (int x = 0; x < dimensions; x++)
+		{
 			for (int y = 0; y < dimensions; y++)
-				out += ":"+BoardTiles[x][y].toString();
+				out += ":" + BoardTiles[x][y].toString();
+			// New line
+			System.out.println("");
+		}
 
-		// TODO Is it returning the game board?
-		// Yeah it's returning a string copy of the game board
-		// This is needed to synchronise what they look like between the client
-		// and server
+		// Return string game board
 		return out;
 	}
 

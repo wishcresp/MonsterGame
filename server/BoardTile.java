@@ -8,6 +8,8 @@ public class BoardTile
 	 * which should probably be done away with completely
 	 */
 	
+	// TODO If the board cell is NULL, is it possible for the boundary to be NULL
+	
 	Entity contains;
 	Boolean isWall;
 	
@@ -31,6 +33,7 @@ public class BoardTile
 		if (contains == null)
 			return "0";
 		else
+			// Position contains player entity
 			return "1";
 	}
 }
