@@ -62,6 +62,7 @@ public class Board
 				out += ":"+BoardTiles[x][y].toString();
 
 		// TODO Is it returning the game board?
+		// Yeah it's returning a string copy of the game board
 		return out;
 	}
 
