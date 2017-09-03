@@ -32,7 +32,7 @@ public class NetClient extends Thread
 	public void run()
 	{
 		int conn_count = 0; // TODO: Have some way to decrement on drop out
-		Thread[] conns = new ServerConnHandler[this.max_conn_target];
+		Thread[] conns = new ClientConnHandler[this.max_conn_target];
 		Players players = Players.get_player_instance();
 		
 		
@@ -46,7 +46,7 @@ public class NetClient extends Thread
 
 				Socket conn = sock.accept();
 
-				conns[i] = new ServerConnHandler(conn, conn_count);
+				conns[i] = new ClientConnHandler(conn, conn_count);
 				conns[i].start();
 				conn_count++;
 				

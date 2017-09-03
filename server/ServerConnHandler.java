@@ -30,6 +30,10 @@ public class ServerConnHandler extends ConnHandler
 				new_player_target = players.get_max_players(); // Basic validation
 			
 			players.set_player_target(new_player_target); // Let them set the player target
+			
+			// Now that we know how many player's there's going to be, let the player
+			// object init the players
+			players.create_players();
 		}
 		
 		// Create this player's object

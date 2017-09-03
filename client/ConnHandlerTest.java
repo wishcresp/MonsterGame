@@ -14,7 +14,7 @@ public class ConnHandlerTest
 	private ServerSocket sock;
 	private Socket conn;
 	private int port = 3216;
-	private ServerConnHandler test;
+	private ClientConnHandler test;
 	private String test_data = "Shalom";
 	
 	@Before
@@ -28,7 +28,7 @@ public class ConnHandlerTest
 			
 			conn = sock.accept(); // Actually wait till the test client shows up		
 			
-			test = new ServerConnHandler(conn, 0);
+			test = new ClientConnHandler(conn, 0);
 		}
 		catch (IOException e)
 		{

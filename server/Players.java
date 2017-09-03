@@ -65,7 +65,8 @@ public class Players
 		for (i = 0; i < player_target; i++)
 			players[i] = null; // These actual objects will be created by the connection
 			                   // handler threads
-		players[i++] = new Monster();
+		i++;
+		players[i] = new Monster();
 	}
 	
 	public String[] get_avaliable_spots()

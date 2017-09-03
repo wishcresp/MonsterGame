@@ -1,10 +1,10 @@
 import java.io.IOException;
 import java.net.Socket;
 
-public class ServerConnHandler extends ConnHandler
+public class ClientConnHandler extends ConnHandler
 {
 
-	public ServerConnHandler(Socket conn, int id) throws IOException 
+	public ClientConnHandler(Socket conn, int id) throws IOException 
 	{
 		super(conn, id);
 	}

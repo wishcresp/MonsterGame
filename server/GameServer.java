@@ -19,14 +19,15 @@ public class GameServer extends Thread
 	// use the drop down arrow boi
 	public static void main(String[] args) throws InterruptedException
 	{
-		// Initialize
-		Initialize();
-		
 		// Startup the threads
 		int port = 64646;
 		Thread listener = new NetServer(port);
 		listener.start();
 
+		// Initialize
+		Initialize();
+		
+		
 		// Start the main game loop
 		GameLoop();
 	}
@@ -35,7 +36,8 @@ public class GameServer extends Thread
 	{		
 		board = Board.get_board_instance();		
 		players = Players.get_player_instance();
-		players.create_players();
+		//players.create_players(); Let the first player to join
+		// create the players when they know how many they want
 		board.create_board();
 		player_target = players.get_player_target();
 		dim = board.get_dimensions();
