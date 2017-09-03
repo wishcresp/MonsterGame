@@ -60,15 +60,12 @@ public class Board
 		*/
 	}
 		
-
+	// Actually load the tiles
 	public void load_board(String gameboard)
 	{
 		// TODO: Write code to load in the gameboard from string
 		// Index for gameboard
 		int x,y;
-		
-		
-		
 		/*
 		 * I'm so sorry, but i'm going to hard code the map
 		 */

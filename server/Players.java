@@ -21,7 +21,8 @@ public class Players
 	
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
-	private int current_players = 0;
+	                                // 
+	private int current_players = 0; // How many players are currently connected
 	private int max_players = 4; // Soft limited according to spec
 
 	private Entity players[];
@@ -87,7 +88,18 @@ public class Players
 	{
 		// TODO: Return a string representation of the
 		// players positions
-		return "temp";
+		
+		String player_string = "";
+		
+		for (int i = 0; i < this.current_players; i++)
+		{
+			player_string += Integer.toString(players[i].pos_x);
+			player_string += ",";
+			player_string += Integer.toString(players[i].pos_y);
+			player_string += ";";
+		}
+		
+		return player_string;
 	}
 	
 	

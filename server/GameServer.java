@@ -9,7 +9,7 @@ public class GameServer extends Thread
 	public static void main(String[] args) throws InterruptedException
 	{
 		// Startup the threads
-		int port = 64646;
+		int port = 6432;
 		Thread listener = new NetServer(port);
 		listener.start();
 		
@@ -69,11 +69,7 @@ public class GameServer extends Thread
 		{
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
-			
-			
-			
-			
-			
+
 			/*
 			 * Very basic startup code for rough manual testing
 			 * 
@@ -118,20 +114,12 @@ public class GameServer extends Thread
 				}
 			}
 			
+
+			System.out.println(board.toString()); // Cheeky dump of the gameboard for debugging
+			                                      // purposes
 			
 			
-			// TODO I guess this is exception handling as well as idle?
-			try
-			{
-				Thread.sleep(100);
-			} 
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-			
-			
+			Thread.sleep(100);
 		}
 	}
 }
