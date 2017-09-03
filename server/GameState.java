@@ -22,6 +22,5 @@ public class GameState
 	public static GameState get_instance()
 	{
 		return gamestate;
-	}
-	
+	}	
 }

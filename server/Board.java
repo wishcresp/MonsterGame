@@ -48,18 +48,11 @@ public class Board
 				this.BoardTiles[x][y] = new BoardTile(null, true);	
 		this.load_board("");
 		
-		
-		/*
-		// DEBUG Trying to test something, remove if causing problems!
-		Player testPlayer = new Player();
 		// TODO: Instead of storing the player's location
         // on the gameboard, simply store it as x and y
         // coordinates that correspond to positions
-        // on the `BoardTiles` array
-		set_tile(2, 3, testPlayer); 
-		*/
-	}
-		
+        // on the `BoardTiles` array	
+	}		
 
 	public void load_board(String gameboard)
 	{

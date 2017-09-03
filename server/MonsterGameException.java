@@ -6,7 +6,8 @@
  * Comes with a JUnit tester
  */
 
-public class MonsterGameException extends Exception {
+public class MonsterGameException extends Exception 
+{
 	// Constructor that outputs a message when exception thrown
 	public MonsterGameException(String message) 
 	{
