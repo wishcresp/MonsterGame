@@ -15,9 +15,12 @@ public class GameServer extends Thread
 		
 		// Setup the board and players
 		Initialize(); 
-		
+
 		// Start the main game loop
 		GameLoop(); 
+
+		// This is here to see if it ends
+		System.out.println("BYE");
 	}
 	
 	public static void Initialize()
@@ -47,6 +50,13 @@ public class GameServer extends Thread
 			Entity p = players.get_player(i);
 			board.set_tile(p.x, p.y, p);
 		}*/		
+		
+		// Try to print out the string representation of the board
+		System.out.println("\n" + board.get_layout());
+		
+		
+		
+		
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -59,6 +69,11 @@ public class GameServer extends Thread
 		{
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
+			
+			
+			
+			
+			
 			/*
 			 * Very basic startup code for rough manual testing
 			 * 
@@ -103,16 +118,20 @@ public class GameServer extends Thread
 				}
 			}
 			
+			
+			
+			// TODO I guess this is exception handling as well as idle?
 			try
 			{
 				Thread.sleep(100);
-			}
-			
+			} 
 			catch (Exception e)
 			{
 				e.printStackTrace();
 			}
+			
+			
+			
 		}
-
 	}
 }

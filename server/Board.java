@@ -49,10 +49,11 @@ public class Board
 		
 		// DEBUG Trying to test something, remove if causing problems!
 		Player testPlayer = new Player();
-		set_tile(2, 3, testPlayer); // TODO: Instead of storing the player's location
-		                            // on the gameboard, simply store it as x and y
-		                            // coordinates that correspond to positions
-		                            // on the `BoardTiles` array
+		// TODO: Instead of storing the player's location
+        // on the gameboard, simply store it as x and y
+        // coordinates that correspond to positions
+        // on the `BoardTiles` array
+		set_tile(2, 3, testPlayer); 
 		
 	}
 		
@@ -96,11 +97,13 @@ public class Board
 		for (int x = 0; x < dimensions; x++)
 		{
 			for (int y = 0; y < dimensions; y++)
+			{
 				out += ":" + BoardTiles[x][y].toString();
-			// New line
-			System.out.println("");
+			}
+			// Create a new line
+			out += "\n";
 		}
-
+		
 		// Return string game board
 		return out;
 	}
