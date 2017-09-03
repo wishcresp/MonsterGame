@@ -1,13 +1,3 @@
-import java.net.*;
-import java.io.*;
-
-/* Just commenting them out for now, causing me a few problems
-import static org.junit.Assert.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-*/
-
 /*
  * Notes on the design of this singleton:
  * 	What we need from this object:
