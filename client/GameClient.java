@@ -53,7 +53,7 @@ public class GameClient extends Thread
 			 * TODO: EVERYTHING
 			 * Alright Sean you're up, have this draw the game board
 			 * and the players, also you're gonna needa read user input
-			 * and 
+			 * and then player
 			 */
 			
 		}
