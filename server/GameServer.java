@@ -20,7 +20,7 @@ public class GameServer extends Thread
 		GameLoop(); 
 
 		// This is here to see if it ends
-		System.out.println("BYE");
+		System.out.println("Terminating program");
 	}
 	
 	public static void Initialize()
@@ -99,20 +99,20 @@ public class GameServer extends Thread
 				switch (p.get_dir())
 				{
 					case 0: // UP
-						if (p.x > 0 && board.is_free(p.x-1,p.y))
+						if (p.pos_x > 0 && board.is_free(p.pos_x-1,p.pos_y))
 						{
-							board.set_tile(p.x-1, p.y, p);
-							board.set_tile(p.x, p.y, null);
-							p.x--;
+							board.set_tile(p.pos_x - 1, p.pos_y, p);
+							board.set_tile(p.pos_x, p.pos_y, null);
+							p.pos_x--;
 						}
 						break;
 						
 					case 1: // DOWN
-						if (p.x < dim && board.is_free(p.x+1,p.y))
+						if (p.pos_x < dim && board.is_free(p.pos_x+1,p.pos_y))
 						{
-							board.set_tile(p.x+1, p.y, p);
-							board.set_tile(p.x, p.y, null);
-							p.x++;
+							board.set_tile(p.pos_x+1, p.pos_y, p);
+							board.set_tile(p.pos_x, p.pos_y, null);
+							p.pos_x++;
 						}
 						break;
 				}

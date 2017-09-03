@@ -6,17 +6,16 @@ public class BoardTile
 	 * Someone needs to design this class, instead of `Entity`
 	 * it should be some kind of sprite
 	 */
-	
-	// TODO If the board cell is NULL, is it possible for the boundary to be NULL
-	
+		
 	Entity contains;
-	Boolean isWall;
+	Boolean boundary;
 	
-	public BoardTile(Entity ent)
+	public BoardTile(Entity ent, Boolean boundary)
 	{
 		this.contains = ent;
+		this.boundary = boundary;
 	}
-
+	
 	public void set_ent(Entity ent)
 	{
 		this.contains = ent;
@@ -26,12 +25,18 @@ public class BoardTile
 	{
 		return this.contains;
 	}
-
-	public String toString() // PLACEHOLDER
+	
+	// false will set this as a movement tile
+	public void set_wall(Boolean boundary)
 	{
-		if (isWall == null)
+		this.boundary = boundary;
+	}
+
+	public String toString() 
+	{
+		if (this.boundary)
 			return "0";
 		else
-			return "1";
+			return "_";
 	}
 }

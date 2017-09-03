@@ -38,15 +38,54 @@ public class Board
 		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 		
-		// Each array position will be instantiated
-		/*
-		 * This is a placeholder, the board will have to be generated some
-		 * other way
-		 */
-		for (int x = 0; x < dimensions; x++)
-			for (int y = 0; y < dimensions; y++)
-				this.BoardTiles[x][y] = new BoardTile(null);	
+		// Index for gameboard
+		int x,y;
 		
+		// Initialize each array position on the board to NULL
+		for (x = 0; x < dimensions; x++)
+			for (y = 0; y < dimensions; y++)
+				// Ent will be null and wall will be true at this pos
+				this.BoardTiles[x][y] = new BoardTile(null, true);	
+		
+		/*
+		 * I'm so sorry, but i'm going to hard code the map
+		 */
+		Player player = new Player();
+
+		// Draw the game board movement tiles
+		// Starting with the rows
+		// 1,1 -> 1,9
+		x = 1;
+		for (y = 1; y < dimensions - 1; y++)
+			BoardTiles[x][y].set_wall(false);
+		
+		// 5,0 -> 5,10
+		x = 5;
+		for (y = 0; y < dimensions; y++)
+			BoardTiles[x][y].set_wall(false);
+		
+		// 9,1 -> 9,9
+		x = 9;
+		for (y = 1; y < dimensions - 1; y++)
+			BoardTiles[x][y].set_wall(false);
+		
+		// Now for the columns
+		// 1,1 -> 9,1
+		y = 1;
+		for (x = 1; x < dimensions - 1; x++)
+			BoardTiles[x][y].set_wall(false);
+		
+		// 0,5 -> 10,5
+		y = 5;
+		for (x = 0; x < dimensions; x++)
+			BoardTiles[x][y].set_wall(false);
+		
+		// 1,9 -> 9,9
+		y = 9;
+		for (x = 1; x < dimensions - 1; x++)
+			BoardTiles[x][y].set_wall(false);
+		
+		/*
 		// DEBUG Trying to test something, remove if causing problems!
 		Player testPlayer = new Player();
 		// TODO: Instead of storing the player's location
@@ -54,7 +93,7 @@ public class Board
         // coordinates that correspond to positions
         // on the `BoardTiles` array
 		set_tile(2, 3, testPlayer); 
-		
+		*/
 	}
 		
 
@@ -97,9 +136,8 @@ public class Board
 		for (int x = 0; x < dimensions; x++)
 		{
 			for (int y = 0; y < dimensions; y++)
-			{
 				out += ":" + BoardTiles[x][y].toString();
-			}
+			
 			// Create a new line
 			out += "\n";
 		}

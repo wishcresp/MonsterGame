@@ -58,8 +58,9 @@ public class ServerConnHandler extends ConnHandler
 		players.claim_spot(player_pos);
 		
 		String[] xy = spots_arr[player_pos].split(",");
-		player.x = Integer.valueOf(xy[0]); // Set the player's starting position
-		player.y = Integer.valueOf(xy[1]);
+		
+		player.pos_x = Integer.valueOf(xy[0]); // Set the player's starting position
+		player.pos_y = Integer.valueOf(xy[1]);
 			
 		
 		players.add_player(player); // Finally add the player to the object
