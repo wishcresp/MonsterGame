@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * on this network to find the shortest route possible with Dijkstra’s
  * algorithm for the MonsterAI.
  * 
- * network source: 
+ * source: 
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html (steal the JUnit from this bad boy) 
  * also looking at
  * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
@@ -22,37 +22,36 @@ public class GraphVertex
 	private ArrayList<GraphEdge> edge_count = new ArrayList<GraphEdge>();
 	
 	// distance accessor
-	public int getDistance()
+	public int get_distance()
 	{
 		return distance;
-	}
-	
+	}	
 	// distance mutator
-	public void setDistance(int distance)
+	public void set_distance(int distance)
 	{
 		this.distance = distance;
 	}
 	
 	// boolean accessor
-	public boolean isChecked()
+	public boolean is_checked()
 	{
 		return checked;
 	}
 	
 	// boolean mutator
-	public void setChecked(boolean checked) 
+	public void set_checked(boolean checked) 
 	{
 		this.checked = checked;
 	}
 	
 	// arrayList accessor
-	public ArrayList<GraphEdge> getEdges() 
+	public ArrayList<GraphEdge> get_edges() 
 	{
 		return edge_count;
 	}
 	
 	// arrayList mutator
-	public void setEdges(ArrayList<GraphEdge> edge_count) 
+	public void set_edges(ArrayList<GraphEdge> edge_count) 
 	{
 		this.edge_count = edge_count;
 	}	

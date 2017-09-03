@@ -10,9 +10,13 @@
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
  */
 
-public class MonsterAi 
+public class MonsterAI 
 {
-	
+	/*
+	 * Writing everything inside the graph class first,
+	 * will move the algorithm into this class as per the
+	 * lucid chart design
+	 */
 	
 	
 	

@@ -1,10 +1,8 @@
 /*
- * The tutorial i am following is using weighted graphs
- * We are not using weighted graphs, so this may be 
- * redundant, however i still need to figure out what 
- * important bits i need to retract from this class 
- * to make the network work.
- * 
+ * Edges are used to link two nodes in a graph. The tutorial
+ * I am following will be designed for weighted networks. 
+ * But this AI will need to identify the shortest path via
+ * node count instead of length per edge.
  * source material:  
  * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
  * TODO figure out referencing for this stuff
@@ -12,33 +10,33 @@
 
 // Represent the edges in the network
 public class GraphEdge {
-	private int from_node, to_node;
+	private int from_vertex, to_vertex;
 	
-	public GraphEdge(int from_node, int to_node)
+	public GraphEdge(int from_vertex, int to_vertex)
 	{
-		this.from_node = from_node;
-		this.to_node = to_node;
+		this.from_vertex = from_vertex;
+		this.to_vertex = to_vertex;
 	}
 
 	// from_node accessor
-	public int getFromNode()
+	public int get_from_vertex()
 	{
-		return from_node;
+		return from_vertex;
 	}
 	
 	// to_node accessor
-	public int getToNode()
+	public int get_to_vertex()
 	{
-		return to_node;
+		return to_vertex;
 	}
 	
 	// Determine neighbouring node of supplied node, based on
 	// the two nodes connected by this edge
-	public int findNeighbour(int neighbour)
+	public int find_neighbour(int neighbour)
 	{
-		if (this.from_node == neighbour)		
-			return this.to_node;
+		if (this.from_vertex == neighbour)		
+			return this.to_vertex;
 		else
-			return this.from_node;
+			return this.from_vertex;
 	}	
 }
