@@ -92,7 +92,7 @@ public class GameServer extends Thread
 			// are, their position being stored as objects in the board tiles
 			// was a bad idea and needs to be scraped
 			
-			
+			/*
 			for (int i = 0; i < player_target; i++)
 			{
 				Entity p = players.get_player(i);
@@ -110,13 +110,13 @@ public class GameServer extends Thread
 					case 1: // DOWN
 						if (p.pos_x < dim && board.is_free(p.pos_x+1,p.pos_y))
 						{
-							board.set_tile(p.pos_x+1, p.pos_y, p);
-							board.set_tile(p.pos_x, p.pos_y, null);
+							//board.set_tile(p.pos_x+1, p.pos_y, p);
+							//board.set_tile(p.pos_x, p.pos_y, null);
 							p.pos_x++;
 						}
 						break;
 				}
-			}
+			}*/
 			
 			
 			

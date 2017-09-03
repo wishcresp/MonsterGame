@@ -13,3 +13,5 @@
 /Monster.class
 /GameState.class
 /ConnHandlerTest.class
+/MonsterGameException.class
+/MonsterGameExceptionTest.class

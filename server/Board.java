@@ -63,15 +63,10 @@ public class Board
 
 	public void load_board(String gameboard)
 	{
-		// TODO: Write code to load in the gameboard from string
-		// Index for gameboard
+		// TODO: Write code to load in the game board from string
+		
+		// Index for game board
 		int x,y;
-		
-		
-		
-		/*
-		 * I'm so sorry, but i'm going to hard code the map
-		 */
 
 		// Draw the game board movement tiles
 		// Starting with the rows
@@ -106,21 +101,7 @@ public class Board
 		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
 		
-		
-		
-		
 		return;
-	}
-	
-	public void set_tile(int x, int y, Entity ent)
-	{
-		BoardTiles[x][y].set_ent(ent);
-	}
-
-	// Check if a tile on the board is free
-	public boolean is_free(int x, int y)
-	{
-		return BoardTiles[x][y].get_ent() == null;
 	}
 
 	// Customize the board dimensions
@@ -128,8 +109,8 @@ public class Board
 	{
 		this.dimensions = dimensions;
 		return;
-	}
-	
+	}	
+	// Getter for board dimension
 	public int get_dimensions()
 	{
 		int dimensions = this.dimensions;
@@ -155,6 +136,7 @@ public class Board
 		return out;
 	}
 
+	// Returns a boardTile object
 	public BoardTile get_tile(int x, int y)
 	{
 		if (x > 0 && y > 0 && x <= dimensions && y <= dimensions)
@@ -163,6 +145,7 @@ public class Board
 			return null;
 	}
 
+	// Board instance
 	public static Board get_board_instance()
 	{
 		return board;

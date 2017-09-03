@@ -3,11 +3,8 @@ public class Players
 	/*
 	 * Contains the array of players with the monster as the final player
 	 * entity
-	 * 
 	 * As far as direction goes, the direction the monster is moving in
-	 * is 
-	 * 
-	 * Also handles info about player limits and connected players
+	 * is Also handles info about player limits and connected players
 	 */
 	
 	private static Players Players = new Players();
@@ -16,16 +13,17 @@ public class Players
 		return;
 	}
 	
-	// TODO: Have this load from file like the gameboard
+	// TODO: Have this load from file like the game board
 	private String[] avaliable_spots = {"2,2", "2,10", "10,2", "10,10"};
 	
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0;
-	private int max_players = 4; // Soft limited according to spec
+	private int max_players = 4; // Soft limited according to specification
 
 	private Entity players[];
 
+	// Player target
 	public int get_player_target()
 	{
 		return this.player_target;
@@ -34,24 +32,30 @@ public class Players
 	{
 		this.player_target = player_target;
 	}
+	
+	// max players
 	public int get_max_players()
 	{
 		return this.max_players;
 	}
+	
+	// Current amount of players
 	public int get_player_count()
 	{
 		return this.current_players;
-	}
+	}	
 	public void set_player_count(int player_count)
 	{
 		this.current_players = player_count;
 	}
-
+	
+	// Player direction
 	public void set_player_dir(int id, int dir)
 	{
 		players[id].set_dir(dir);
 	}
 
+	// getter for player id
 	public Entity get_player(int id)
 	{
 		return players[id];
@@ -66,6 +70,7 @@ public class Players
 			players[i] = null; // These actual objects will be created by the connection
 			                   // handler threads
 		i++;
+		
 		players[i] = new Monster();
 	}
 	
