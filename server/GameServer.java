@@ -1,45 +1,41 @@
-/*
- * Michael you will need to split this into two classes, one basic init class
- * and then run the actual game loop code in another class called "GameLoop"
- * as per the LucidChart mockup 
- */
-
 
 public class GameServer extends Thread
 {
-	/*
-	 *  TODO I'm not sure if static variables are a good idea
-	 *  How do i prevent static methods and variables??
-	 */	
+	// Declare class variables
 	static int dim, player_target;
 	static Board board;
 	static Players players;
 	
-	// FUCKING ECLIPSE WHY WONT YOU RUN MAIN????
-	// use the drop down arrow boi
 	public static void main(String[] args) throws InterruptedException
 	{
 		// Startup the threads
 		int port = 64646;
 		Thread listener = new NetServer(port);
 		listener.start();
-
-		// Initialize
-		Initialize();
 		
+		// Setup the board and players
+		Initialize(); 
 		
 		// Start the main game loop
-		GameLoop();
+		GameLoop(); 
 	}
 	
 	public static void Initialize()
 	{		
+		// Instantiate Board and players
 		board = Board.get_board_instance();		
 		players = Players.get_player_instance();
+		
 		//players.create_players(); Let the first player to join
 		// create the players when they know how many they want
+		
+		// Generate the game board
 		board.create_board();
+		
+		// Amount of players to join
 		player_target = players.get_player_target();
+		
+		// Return dimensions to dim integer (11 is the dimension)
 		dim = board.get_dimensions();
 		
 		// Initialise player objects, poorly done,
@@ -53,8 +49,6 @@ public class GameServer extends Thread
 		}*/		
 	}
 		
-	// TODO Do i need to try to avoid static????
-	// idk lol, if it works it works...
 	public static void GameLoop() throws InterruptedException
 	{
 		GameState game_state = GameState.get_instance();
