@@ -46,11 +46,32 @@ public class Board
 			for (y = 0; y < dimensions; y++)
 				// Ent will be null and wall will be true at this pos
 				this.BoardTiles[x][y] = new BoardTile(null, true);	
+		this.load_board("");
+		
+		
+		/*
+		// DEBUG Trying to test something, remove if causing problems!
+		Player testPlayer = new Player();
+		// TODO: Instead of storing the player's location
+        // on the gameboard, simply store it as x and y
+        // coordinates that correspond to positions
+        // on the `BoardTiles` array
+		set_tile(2, 3, testPlayer); 
+		*/
+	}
+		
+
+	public void load_board(String gameboard)
+	{
+		// TODO: Write code to load in the gameboard from string
+		// Index for gameboard
+		int x,y;
+		
+		
 		
 		/*
 		 * I'm so sorry, but i'm going to hard code the map
 		 */
-		Player player = new Player();
 
 		// Draw the game board movement tiles
 		// Starting with the rows
@@ -85,21 +106,9 @@ public class Board
 		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
 		
-		/*
-		// DEBUG Trying to test something, remove if causing problems!
-		Player testPlayer = new Player();
-		// TODO: Instead of storing the player's location
-        // on the gameboard, simply store it as x and y
-        // coordinates that correspond to positions
-        // on the `BoardTiles` array
-		set_tile(2, 3, testPlayer); 
-		*/
-	}
 		
-
-	public void load_board(String gameboard)
-	{
-		// TODO: Write code to load in the gameboard
+		
+		
 		return;
 	}
 	
