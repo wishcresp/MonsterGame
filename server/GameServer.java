@@ -1,7 +1,3 @@
-import java.net.*;
-import java.io.*;
-
-
 /*
  * Michael you will need to split this into two classes, one basic init class
  * and then run the actual game loop code in another class called "GameLoop"

@@ -1,12 +1,13 @@
-import java.net.*;
-import java.io.*;
-
 public class BoardTile
 {
 	/*
 	 * Very basic BoardTile class, just contains an Entity
-	 * which should probably be done away with completely
+	 * which needs to be done away with completely
+	 * Someone needs to design this class, instead of `Entity`
+	 * it should be some kind of sprite
 	 */
+	
+	// TODO If the board cell is NULL, is it possible for the boundary to be NULL
 	
 	Entity contains;
 	Boolean isWall;
@@ -26,9 +27,9 @@ public class BoardTile
 		return this.contains;
 	}
 
-	public String toString()
+	public String toString() // PLACEHOLDER
 	{
-		if (contains == null)
+		if (isWall == null)
 			return "0";
 		else
 			return "1";

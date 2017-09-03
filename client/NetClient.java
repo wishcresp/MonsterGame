@@ -1,14 +1,14 @@
 import java.net.*;
 import java.io.*;
 
-public class NetServer extends Thread
+public class NetClient extends Thread
 {
 	private ServerSocket sock;
 	private int conn_target; // Update from the Players Singleton
 	                         // for internal use only
 	private int max_conn_target;
 
-	public NetServer(int port)
+	public NetClient(int port)
 	{
 		try
 		{
