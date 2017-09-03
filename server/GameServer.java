@@ -20,7 +20,8 @@ public class GameServer extends Thread
 	static Players players;
 	
 	// FUCKING ECLIPSE WHY WONT YOU RUN MAIN????
-	public static void main(String[] args)
+	// use the drop down arrow boi
+	public static void main(String[] args) throws InterruptedException
 	{
 		// Initialize
 		Initialize();
@@ -47,22 +48,25 @@ public class GameServer extends Thread
 		// my rough player and board tracking required
 		// they both contain player positions, 
 		// this needs to be overhauled
-		for (int i = 0; i < player_target; i++)
+		/*for (int i = 0; i < player_target; i++)
 		{
 			Entity p = players.get_player(i);
 			board.set_tile(p.x, p.y, p);
-		}		
+		}*/		
 	}
 		
 	// TODO Do i need to try to avoid static????
-	public static void GameLoop()
+	// idk lol, if it works it works...
+	public static void GameLoop() throws InterruptedException
 	{
+		GameState game_state = GameState.get_instance();
 		/*
 		 *  Main Game Loop
 		 */
-		boolean running = true;
-		while (running)
-		{			
+		while (true)
+		{
+			while (game_state.is_running() == false)
+				Thread.sleep(100); // If the game isn't running, wait around
 			/*
 			 * Very basic startup code for rough manual testing
 			 * 
@@ -71,6 +75,17 @@ public class GameServer extends Thread
 			 * 
 			 * Will definately need to be redone, is placeholder
 			 */
+			
+			// TODO: Michael you will need to delte and re-write this
+			// Read up on the player objects and how the direction
+			// and desired direction will work, movement
+			// will be Pacman like
+			// You're gonna need to write that out and then work on an AI
+			// Also remember that player.x and player.y will be where the players
+			// are, their position being stored as objects in the board tiles
+			// was a bad idea and needs to be scraped
+			
+			
 			for (int i = 0; i < player_target; i++)
 			{
 				Entity p = players.get_player(i);

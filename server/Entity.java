@@ -22,11 +22,14 @@ public abstract class Entity
 	private int direction;
 	private int desired_direction;
 	public int x, y;
+	private String name;
 	
-	// private TileSprite
+	
+	// private TileSprite;
 	/* Sean I imagine you'll be needing something like ^^ */
 		
 	// TODO Why is x and y = 2?? - Michael
+	//
 	public Entity()
 	{
 		direction = 0;
@@ -34,6 +37,17 @@ public abstract class Entity
 		x = 2;
 		y = 2;
 	}
+	
+	public String get_name()
+	{
+		return this.name;
+	}
+	public void set_name(String name)
+	{
+		this.name = name;
+	}
+	
+	
 
 	public int get_dir()
 	{

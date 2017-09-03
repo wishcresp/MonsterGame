@@ -11,3 +11,5 @@
 /TestRunner.class
 /Players.class
 /Monster.class
+/GameState.class
+/ConnHandlerTest.class

@@ -23,7 +23,7 @@ import org.junit.Test;
  *  
  */
 
-/**
+/*
  * This class will be responsible for the back end of the game
  * it does not display any data, instead it will represent 
  * the game board and objects
@@ -59,10 +59,20 @@ public class Board
 		
 		// DEBUG Trying to test something, remove if causing problems!
 		Player testPlayer = new Player();
-		set_tile(2, 3, testPlayer);
+		set_tile(2, 3, testPlayer); // TODO: Instead of storing the player's location
+		                            // on the gameboard, simply store it as x and y
+		                            // coordinates that correspond to positions
+		                            // on the `BoardTiles` array
 		
 	}
 		
+
+	public void load_board(String gameboard)
+	{
+		// TODO: Write code to load in the gameboard
+		return;
+	}
+	
 	public void set_tile(int x, int y, Entity ent)
 	{
 		BoardTiles[x][y].set_ent(ent);

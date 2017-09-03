@@ -10,7 +10,7 @@ public class TestRunner
 	{
 		System.out.println("Starting up JUnit tests...");
 		
-		Result result = JUnitCore.runClasses(ServerConnHandlerTest.class);
+		Result result = JUnitCore.runClasses(ConnHandlerTest.class);
 		
 	    for (Failure failure : result.getFailures())
 	         System.out.println(failure.toString());
