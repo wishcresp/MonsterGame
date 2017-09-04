@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * algorithm for the MonsterAI.
  * 
  * source: 
- * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html (steal the JUnit from this bad boy) 
+ * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
  * also looking at
  * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
  */

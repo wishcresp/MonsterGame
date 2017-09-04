@@ -18,7 +18,7 @@ public class Graph
 	private GraphEdge[] edge_array;
 	private int no_of_edges;
 
-	// variable accessors DEBUG
+	// variable accessors 
 	public GraphVertex[] get_vertex_array()
 	{
 		return vertex_array;
@@ -101,14 +101,14 @@ public class Graph
 		this.vertex_array[0].set_distance_from_source(0);
 		int next_vertex = 0;
 		
-		// visit every vertex
+		// visit every vertex in the array
 		for (int i = 0; i < this.vertex_array.length; i++)
 		{
 			// Loop around edges of current vertex
 			// Create arraylist which stores the edge count of the vertex
 			ArrayList<GraphEdge> current_vertex_edges = this.vertex_array[next_vertex].get_edges();
 			
-			// Loop through all avaialable edges
+			// Loop through all avaialable edges on current vertex
 			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++)
 			{
 				// Store the index of the neighbour attached
