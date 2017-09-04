@@ -143,4 +143,24 @@ public class Board
 	{
 		return board;
 	}
+	
+	// Building a network for the board
+	public void build_board_graph()
+	{
+		GraphEdge[] edges = {
+				// SAMPLE GRAPH, JUST DOING A DEBUG
+				// GraphEdge(FROM, TO, Length
+				new GraphEdge(0, 2), new GraphEdge(0, 3), new GraphEdge(0, 4),
+				new GraphEdge(0, 1), new GraphEdge(1, 3), new GraphEdge(1, 4),
+			    new GraphEdge(1, 5), new GraphEdge(2, 4), new GraphEdge(3, 5),
+			    new GraphEdge(4, 5), new GraphEdge(4, 6), new GraphEdge(4, 7),
+			    new GraphEdge(5, 6), new GraphEdge(6, 7)						
+			};
+		
+	    Graph graph = new Graph(edges);
+	    graph.find_shortest_path();
+	    graph.print_result(); 		
+	}
+	
+	
 }

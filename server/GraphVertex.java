@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GraphVertex 
 {
 	// Declare class variables
-	private int distance = Integer.MAX_VALUE;
+	private int distance = 1;
 	private boolean checked;
 	private ArrayList<GraphEdge> edge_count = new ArrayList<GraphEdge>();
 	

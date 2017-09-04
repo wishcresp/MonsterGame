@@ -15,7 +15,7 @@ public class GameServer extends Thread
 		
 		// Setup the board and players
 		Initialize(); 
-
+		
 		// Start the main game loop
 		GameLoop(); 
 
@@ -55,6 +55,8 @@ public class GameServer extends Thread
 		System.out.println("\n" + board.get_layout());
 		
 		
+		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
+		board.build_board_graph();
 		
 		
 	}

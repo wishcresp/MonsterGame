@@ -15,14 +15,10 @@ public class GraphEdge {
 	
 	  private int length;
 
-	public GraphEdge(int from_vertex, int to_vertex, int length)
+	public GraphEdge(int from_vertex, int to_vertex)
 	{
 		this.from_vertex = from_vertex;
 		this.to_vertex = to_vertex;
-		
-		
-	    this.length = length;
-
 	}
 
 	// from_node accessor
@@ -46,11 +42,4 @@ public class GraphEdge {
 		else
 			return this.from_vertex;
 	}	
-	
-	//require this to make some things work DEBUG
-	 public int getLength() {
-		 return length;
-	 }
-	
-	
 }
