@@ -53,6 +53,7 @@ public class Graph
 		// (to and from) TODO figure out 4 connections 
 		this.no_of_vertexes = edge_array.length;
 		
+		// The index 'x' is the amount of edges to add
 		for (int x = 0; x < this.no_of_edges; x++)
 		{
 			this.vertex_array[edge_array[x].get_from_vertex()].get_edges().add(edge_array[x]);
@@ -63,7 +64,7 @@ public class Graph
 	private int calculate_no_of_vertexes(GraphEdge[] edge_array)
 	{
 		// Initialize local quantity variable
-		no_of_vertexes = 0;
+		int no_of_vertexes = 0;
 		
 		// Loop through each object in the array
 		for (GraphEdge edge : edge_array) 
@@ -91,26 +92,29 @@ public class Graph
 	public void find_shortest_path()
 	{
 		// vertex 0 as source
-		this.vertex_array[0].set_distance(0);
+		this.vertex_array[0].set_distance_from_source(0);
 		int next_vertex = 0;
 		
 		// visit every vertex
 		for (int i = 0; i < this.vertex_array.length; i++)
 		{
 			// Loop around edges of current vertex
+			// Create arraylist which stores the edge count of the vertex
 			ArrayList<GraphEdge> current_vertex_edges = this.vertex_array[next_vertex].get_edges();
 			
+			// Loop through all avaialable edges
 			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++)
 			{
+				// Store the index of the neighbour attached
 				int neighbour = current_vertex_edges.get(edge_link).find_neighbour(next_vertex);
 				
-				// Run only when vertex has not been visited/checked
+				// Check when vertex has not been visited/checked
 				if (!this.vertex_array[neighbour].is_checked())
 				{
-					int unchecked = this.vertex_array[next_vertex].get_distance() + 1;// current_vertex_edges.get(edge_link).getLength();
+					int unchecked = this.vertex_array[next_vertex].get_distance_from_source() + current_vertex_edges.get(edge_link).getLength();
 					
-					if (unchecked < vertex_array[neighbour].get_distance())					
-						vertex_array[neighbour].set_distance(unchecked);					
+					if (unchecked < vertex_array[neighbour].get_distance_from_source())					
+						vertex_array[neighbour].set_distance_from_source(unchecked);					
 				}				
 			}
 			
@@ -120,18 +124,18 @@ public class Graph
 			
 			// Next node will be the one with the shortest distance
 			// TODO this bit may be redundant to the program, but we shall see
-			next_vertex = get_shortest_vertex_distance();
+			next_vertex = get_shortest_distance();
 		}		
 	}
 	
-	private int get_shortest_vertex_distance()
+	private int get_shortest_distance()
 	{
 		int temp_vertex = 0;
 		int temp_distance = Integer.MAX_VALUE;
 		
 		for (int i = 0; i < this.vertex_array.length; i++)
 		{
-			int current_distance = this.vertex_array[i].get_distance();
+			int current_distance = this.vertex_array[i].get_distance_from_source();
 			
 			if (!this.vertex_array[i].is_checked() && current_distance < temp_distance)
 			{
@@ -150,7 +154,7 @@ public class Graph
 		output += "\nNumber of edges = " + this.no_of_edges;
 		
 		for (int i = 0; i < this.vertex_array.length; i++)			
-			 output += ("\nThe shortest distance from vertex 0 to vertex " + i + " is " + vertex_array[i].get_distance());
+			 output += ("\nThe shortest distance from vertex 0 to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
 		
 		// Print all the details
 		System.out.println(output);			

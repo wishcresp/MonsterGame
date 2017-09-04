@@ -15,10 +15,12 @@ public class GraphEdge {
 	
 	  private int length;
 
-	public GraphEdge(int from_vertex, int to_vertex)
+	public GraphEdge(int from_vertex, int to_vertex,int length)
 	{
 		this.from_vertex = from_vertex;
 		this.to_vertex = to_vertex;
+		this.length = length;
+
 	}
 
 	// from_node accessor
@@ -32,6 +34,11 @@ public class GraphEdge {
 	{
 		return to_vertex;
 	}
+	
+	public int getLength() {
+		return length;
+	}
+
 	
 	// Determine neighbouring node of supplied node, based on
 	// the two nodes connected by this edge

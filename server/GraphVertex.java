@@ -17,19 +17,20 @@ import java.util.ArrayList;
 public class GraphVertex 
 {
 	// Declare class variables
-	private int distance = 1;
+	private int distance_from_source;
 	private boolean checked;
 	private ArrayList<GraphEdge> edge_count = new ArrayList<GraphEdge>();
 	
 	// distance accessor
-	public int get_distance()
+	public int get_distance_from_source()
 	{
-		return distance;
+		return distance_from_source;
 	}	
+	
 	// distance mutator
-	public void set_distance(int distance)
+	public void set_distance_from_source(int distance_from_source)
 	{
-		this.distance = distance;
+		this.distance_from_source = distance_from_source;
 	}
 	
 	// boolean accessor
