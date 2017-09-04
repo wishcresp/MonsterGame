@@ -9,10 +9,12 @@ import java.util.ArrayList;
 public class Graph 
 {
 	// Vertex array and quantity
+	// Manages the 'checked' boolean and distance from source
 	private GraphVertex[] vertex_array;
 	private int no_of_vertexes;
 	
 	// Edge array and quantity
+	// Manages the connection between each vertex and its length
 	private GraphEdge[] edge_array;
 	private int no_of_edges;
 
@@ -43,21 +45,25 @@ public class Graph
 		// Ready the vertex for edges when they update
 		this.no_of_vertexes = calculate_no_of_vertexes(edge_array);
 		
-		// Create new Vertex object, initialize with number of vertexes
+		// Create new array based on the amount of vertices there are
+		// If there are 8 nodes, create a array of length 8 (0-7)
 		this.vertex_array = new GraphVertex[this.no_of_vertexes];
 		
+		// All the arrays will start off as null from creation,
+		// Loop through each and instantiate the vertex object 
+		// for each array
 		for (int x = 0; x < this.no_of_vertexes; x++)
 			this.vertex_array[x] = new GraphVertex();
+
+		// Sum up all the edges in the network
+		this.no_of_edges = edge_array.length;
 		
-		// Add all edges to the vertices, each edge gets two nodes
-		// (to and from) TODO figure out 4 connections 
-		this.no_of_vertexes = edge_array.length;
-		
-		// The index 'x' is the amount of edges to add
+		// The index 'x' focuses on the current vertex by index
+		// it is for the amount of edges to add
 		for (int x = 0; x < this.no_of_edges; x++)
-		{
+		{ 
 			this.vertex_array[edge_array[x].get_from_vertex()].get_edges().add(edge_array[x]);
-			this.vertex_array[edge_array[x].get_to_vertex()].get_edges().add(edge_array[x]);			
+			this.vertex_array[edge_array[x].get_to_vertex()].get_edges().add(edge_array[x]);
 		}
 	}
 		
@@ -69,7 +75,7 @@ public class Graph
 		// Loop through each object in the array
 		for (GraphEdge edge : edge_array) 
 		{
-			// Update the vertex count by finding the highest to/from vertex index
+			// Find the highest vertex number
 			// This case looks at "to vertex index"
 			if (edge.get_to_vertex() > no_of_vertexes)
 				no_of_vertexes = edge.get_to_vertex();
@@ -79,7 +85,7 @@ public class Graph
 				no_of_vertexes = edge.get_from_vertex();			
 		}
 		
-		// Add an additional node
+		// Add an additional vertex value
 		no_of_vertexes++;
 				
 		// return the amount of vertexes

@@ -150,11 +150,11 @@ public class Board
 		GraphEdge[] edges = {
 				// SAMPLE GRAPH, JUST DOING A DEBUG
 				// GraphEdge(FROM, TO, Length)
-				new GraphEdge(1, 4, 3), new GraphEdge(1, 5, 1), 
-				new GraphEdge(2, 4, 1), new GraphEdge(3, 5, 4), 
-				new GraphEdge(4, 5, 2), new GraphEdge(4, 6, 7), 
-				new GraphEdge(4, 7, 2), new GraphEdge(5, 6, 4), 
-				new GraphEdge(6, 7, 5) 
+				 new GraphEdge(0, 2, 1), new GraphEdge(0, 3, 4), new GraphEdge(0, 4, 2),
+			      new GraphEdge(0, 1, 3), new GraphEdge(1, 3, 2), new GraphEdge(1, 4, 3),
+			      new GraphEdge(1, 5, 1), new GraphEdge(2, 4, 1), new GraphEdge(3, 5, 4),
+			      new GraphEdge(4, 5, 2), new GraphEdge(4, 6, 7), new GraphEdge(4, 7, 2),
+			      new GraphEdge(5, 6, 4), new GraphEdge(6, 7, 5)
 				};	
 		
 	    Graph g = new Graph(edges);

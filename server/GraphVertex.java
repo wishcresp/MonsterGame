@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class GraphVertex 
 {
 	// Declare class variables
-	private int distance_from_source;
+	private int distance_from_source = Integer.MAX_VALUE;
 	private boolean checked;
-	private ArrayList<GraphEdge> edge_count = new ArrayList<GraphEdge>();
+	private ArrayList<GraphEdge> edges = new ArrayList<GraphEdge>();
 	
 	// distance accessor
 	public int get_distance_from_source()
@@ -48,12 +48,12 @@ public class GraphVertex
 	// arrayList accessor
 	public ArrayList<GraphEdge> get_edges() 
 	{
-		return edge_count;
+		return edges;
 	}
 	
 	// arrayList mutator
 	public void set_edges(ArrayList<GraphEdge> edge_count) 
 	{
-		this.edge_count = edge_count;
+		this.edges = edge_count;
 	}	
 }
