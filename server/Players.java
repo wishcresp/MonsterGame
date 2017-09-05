@@ -8,6 +8,7 @@ public class Players
 	 */
 	
 	private static Players Players = new Players();
+	
 	private Players()
 	{
 		return;
@@ -18,10 +19,8 @@ public class Players
 	
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
-
 	private int current_players = 0; // How many players are currently connected
 	private int max_players = 4; // Soft limited according to specification
-
 	private Entity players[];
 
 	// Player target
@@ -29,6 +28,7 @@ public class Players
 	{
 		return this.player_target;
 	}
+	
 	public void set_player_target(int player_target)
 	{
 		this.player_target = player_target;
@@ -45,6 +45,7 @@ public class Players
 	{
 		return this.current_players;
 	}	
+	
 	public void set_player_count(int player_count)
 	{
 		this.current_players = player_count;
@@ -79,6 +80,7 @@ public class Players
 	{
 		return this.avaliable_spots;
 	}
+	
 	public void claim_spot(int spot_id)
 	{
 		this.avaliable_spots[spot_id] = null;
@@ -106,8 +108,7 @@ public class Players
 		
 		return player_string;
 	}
-	
-	
+		
 	public static Players get_player_instance()
 	{
 		return Players;
