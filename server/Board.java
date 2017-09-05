@@ -149,15 +149,6 @@ public class Board
 	public void build_board_graph() 
 	{
 		/*
-		 * SAMPLE GRAPH 2 - Non weighted version new GraphEdge(0, 2),
-		 * new GraphEdge(0, 3), new GraphEdge(0, 4), new GraphEdge(0,
-		 * 1), new GraphEdge(1, 3), new GraphEdge(1, 4), new
-		 * GraphEdge(1, 5), new GraphEdge(2, 4), new GraphEdge(3, 5),
-		 * new GraphEdge(4, 5), new GraphEdge(4, 6), new GraphEdge(4,
-		 * 7), new GraphEdge(5, 6), new GraphEdge(6, 7) };
-		 */
-		
-		/*
 		 * GraphEdge(FROM, TO) To set a connection, specify the 'FROM'
 		 * index and connect it to the 'TO' index.				 
 		 * E.g. (Vertex 1 <--> Vertex 2) == (1, 2)
@@ -201,7 +192,7 @@ public class Board
 				new GraphEdge(0, 48), new GraphEdge(19, 29)
 		};
 
-		Graph g = new Graph(edges);
+		MonsterAi g = new MonsterAi(edges);
 		g.find_shortest_path();
 		g.print_result();
 	}

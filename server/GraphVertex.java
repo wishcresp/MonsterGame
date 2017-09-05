@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 
 /*
-<<<<<<< HEAD
  * The graph consists of vertices in order for the AI to know 
  * where it is moving to. This will represent the many movement
  * tiles on the board, as they will all be connected to each other
  * like grapes on a vine. Player and monster pieces will be placed
  * on this network to find the shortest route possible with Dijkstra's
  * algorithm for the MonsterAI.
-=======
+ * 
  * The graph consists of vertices which are all connected to each 
  * other via edges. This is crucial in order for the AI to work. 
  * 
@@ -19,8 +18,7 @@ import java.util.ArrayList;
  * 
  * The monster pieces will find the shortest route towards any player 
  * possible with Dijkstra’s algorithm within the MonsterAI.
->>>>>>> parent of 13fbdf6... Revert "Merge branch 'master' of https://github.com/RMIT-SEF/Team-Linux"
- * 
+ *  
  * source: 
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
  * also looking at
