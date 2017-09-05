@@ -19,7 +19,7 @@
  * the game board and objects
 */
 
-public class Board
+public class Board 
 {
 	// Declare class variables
 	private static Board board = new Board(); // Make this a singleton
@@ -38,7 +38,7 @@ public class Board
 		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 		
-		// Index for gameboard
+		// Index for game board
 		int x,y;
 		
 		// Initialize each array position on the board to NULL
@@ -46,6 +46,7 @@ public class Board
 			for (y = 0; y < dimensions; y++)
 				// Ent will be null and wall will be true at this pos
 				this.BoardTiles[x][y] = new BoardTile(null, true);	
+		
 		this.load_board("");
 		
 		// TODO: Instead of storing the player's location
@@ -61,8 +62,7 @@ public class Board
 		// Index for game board
 		int x,y;
 
-		// Draw the game board movement tiles
-		// Starting with the rows
+		// Draw the game board movement tiles starting with the rows
 		// 1,1 -> 1,9
 		x = 1;
 		for (y = 1; y < dimensions - 1; y++)

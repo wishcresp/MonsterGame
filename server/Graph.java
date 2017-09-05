@@ -1,24 +1,43 @@
 import java.util.ArrayList;
 
 /*
- * With the combination of edges and nodes, we can
- * represent a really neat graph for the players and 
- * monster to work with.
+ * With the combination of edges and nodes, we can create 
+ * a graph network that will represent the string copy of 
+ * the game board. Each movement tile in the game board will
+ * be represented as a vertex, the direction and movement 
+ * will be limited to the edge connection to other vertices.
+ *
+ * In this class, the Graph will be prepared with GraphEdge
+ * and GraphVertex classes, a set of predefined object
+ * instantiations will build the graph in the board class.
  */
 
 public class Graph 
 {
-	// Vertex array and quantity
-	// Manages the 'checked' boolean and distance from source
-	private GraphVertex[] vertex_array;
+	// GRAPH VARIABLES //
+	/*
+	 *  Vertex array manages the 'settled' boolean 
+	 *  as well as the distance from the source vertex
+	 */
+	private GraphVertex[] vertex_array;	
+	
+	// This will identify the number of vertices in the network
 	private int no_of_vertexes;
 	
-	// Edge array and quantity
-	// Manages the connection between each vertex and its length
-	private GraphEdge[] edge_array;
+	/*
+	 * Manages the connection between each vertex and the length of each edge, 
+	 * the default value will be set to 1 as this is not a weighted network.
+	 */
+	private GraphEdge[] edge_array;		
+	
+	// This will identify the number of edges in the network
 	private int no_of_edges;
 
-	// variable accessors 
+	
+	// ACCESSORS AND MUTATORS //
+	/*
+	 * These are used for printing out 
+	 */
 	public GraphVertex[] get_vertex_array()
 	{
 		return vertex_array;
@@ -115,7 +134,7 @@ public class Graph
 				int neighbour = current_vertex_edges.get(edge_link).find_neighbour(next_vertex);
 				
 				// Check when vertex has not been visited/checked
-				if (!this.vertex_array[neighbour].is_checked())
+				if (!this.vertex_array[neighbour].is_settled())
 				{
 					int unchecked = this.vertex_array[next_vertex].get_distance_from_source() + current_vertex_edges.get(edge_link).getLength();
 					
@@ -126,7 +145,7 @@ public class Graph
 			
 			// All neighbours have been visited
 			// so that means this vertex has been checked
-			vertex_array[next_vertex].set_checked(true);
+			vertex_array[next_vertex].set_settled(true);
 			
 			// Next node will be the one with the shortest distance
 			// TODO this bit may be redundant to the program, but we shall see
@@ -143,7 +162,7 @@ public class Graph
 		{
 			int current_distance = this.vertex_array[i].get_distance_from_source();
 			
-			if (!this.vertex_array[i].is_checked() && current_distance < temp_distance)
+			if (!this.vertex_array[i].is_settled() && current_distance < temp_distance)
 			{
 				temp_distance = current_distance;
 				temp_vertex = i;
