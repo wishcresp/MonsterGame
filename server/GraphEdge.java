@@ -1,37 +1,52 @@
 /*
- * Edges are used to link two nodes in a graph. The tutorial
- * I am following will be designed for weighted networks. 
- * But this AI will need to identify the shortest path via
- * node count instead of length per edge.
- * source material:  
+ * Edges are used to link two vertices in a graph.
+ * 
+ * So far this algorithm will account for weighted graphs, 
+ * however this AI will only need to identify the shortest path 
+ * via the least amount of nodes required in the path.
+ * 
+ * I will be making each edge connection equal to a single length,
+ * although this algorithm can account for weighted networks. 
+ * 
+ * source material:   
  * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
- * TODO figure out referencing for this stuff
  */
 
 // Represent the edges in the network
 public class GraphEdge {
 	private int from_vertex, to_vertex;
-	
+	private int length;
+
+	/*
+	 * Constructor for the Edge, will create a link between two vertex
+	 */
 	public GraphEdge(int from_vertex, int to_vertex)
 	{
 		this.from_vertex = from_vertex;
 		this.to_vertex = to_vertex;
+		
+		// Default length size will be 1
+		this.length = 1;
 	}
 
-	// from_node accessor
+	// get the starting vertex index
 	public int get_from_vertex()
 	{
 		return from_vertex;
 	}
 	
-	// to_node accessor
+	// get the ending vertex index
 	public int get_to_vertex()
 	{
 		return to_vertex;
 	}
 	
-	// Determine neighbouring node of supplied node, based on
-	// the two nodes connected by this edge
+	// get the length of the edge
+	public int getLength() {
+		return length;
+	}
+	
+	// Determine if neighbour is a connected vertex
 	public int find_neighbour(int neighbour)
 	{
 		if (this.from_vertex == neighbour)		
