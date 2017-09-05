@@ -138,38 +138,43 @@ public class Graph
 					// Figure out how far this index is from the source node
 					int unchecked_distance = this.vertex_array[next_vertex].get_distance_from_source() + 1;
 					
-					
-					if (unchecked_distance < vertex_array[neighbour].get_distance_from_source())					
+					// If the unchecked distance is less than the previous distance 
+					if (unchecked_distance < vertex_array[neighbour].get_distance_from_source())	
+						// Update the distance from the source 
 						vertex_array[neighbour].set_distance_from_source(unchecked_distance);					
 				}				
 			}
 			
-			// All neighbours have been visited
-			// so that means this vertex has been checked
+			// All neighbours have been checked so that means this vertex has been settled
 			vertex_array[next_vertex].set_settled(true);
 			
-			// Next node will be the one with the shortest distance
-			// TODO this bit may be redundant to the program, but we shall see
+			// Find the next vertex with the shortest distance
 			next_vertex = get_shortest_distance();
 		}		
 	}
 	
 	private int get_shortest_distance()
 	{
+		// Declare function variables
 		int temp_vertex = 0;
 		int temp_distance = Integer.MAX_VALUE;
 		
+		// Check each vertex
 		for (int i = 0; i < this.vertex_array.length; i++)
 		{
+			// Hold the value of the current vertices distance from the source
 			int current_distance = this.vertex_array[i].get_distance_from_source();
 			
+			// If the current vertex is not settled and its distance is so far the lowest
 			if (!this.vertex_array[i].is_settled() && current_distance < temp_distance)
 			{
+				// Set the new lowest distance value
 				temp_distance = current_distance;
+				// Store this vertex as a reference
 				temp_vertex = i;
 			}			
 		}
-		
+		// Return the vertex with the smallest value
 		return temp_vertex;		
 	}
 	
