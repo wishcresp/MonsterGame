@@ -7,16 +7,16 @@ public class BoardTile
 	 * it should be some kind of sprite
 	 */
 		
-	// TODO We can probably use entity for player and monster representation on a board
+	// TODO Maybe we can get rid of the Entity object (ent)
 	
 	Entity contains;
 	Boolean wall;
 	
 	// Constructor for a single BoardTile
-	public BoardTile(Entity ent, boolean wall)
+	public BoardTile(Entity ent, Boolean boundary)
 	{
 		this.contains = ent;
-		this.wall = wall;
+		this.wall = boundary;
 	}
 	
 	// Setter and getter for Entity object
