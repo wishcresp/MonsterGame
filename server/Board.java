@@ -192,8 +192,8 @@ public class Board
 				new GraphEdge(0, 48), new GraphEdge(19, 29)
 		};
 
-		MonsterAi g = new MonsterAi(edges);
-		g.find_shortest_path();
-		g.print_result();
+		MonsterAi monster = new MonsterAi(edges);
+		monster.find_shortest_path();
+		monster.print_result();
 	}
 }

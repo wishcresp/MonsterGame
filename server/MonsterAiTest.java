@@ -26,8 +26,8 @@ public class MonsterAiTest
 					new GraphEdge(5, 6), new GraphEdge(6, 7) 
 					};
 
-		MonsterAi g = new MonsterAi(edges);
-		g.find_shortest_path();
-		g.print_result();
+		MonsterAi monster = new MonsterAi(edges);
+		monster.find_shortest_path();
+		monster.print_result();
 	}
 }
