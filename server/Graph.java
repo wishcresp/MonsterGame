@@ -10,6 +10,12 @@ import java.util.ArrayList;
  * In this class, the Graph will be prepared with GraphEdge
  * and GraphVertex classes, a set of predefined object
  * instantiations will build the graph in the board class.
+ * 
+ * We take in an array of edges, and build the corresponding
+ * vertices to build the graph.
+ * 
+ * source material:   
+ * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
  */
 
 public class Graph 
@@ -18,39 +24,20 @@ public class Graph
 	/*
 	 *  Vertex array manages the 'settled' boolean 
 	 *  as well as the distance from the source vertex
+	 *  
+	 *  Number of vertexes will identify the quantity of nodes in the network
 	 */
 	private GraphVertex[] vertex_array;	
-	
-	// This will identify the number of vertices in the network
-	private int no_of_vertexes;
+	private int no_of_vertices;
 	
 	/*
 	 * Manages the connection between each vertex and the length of each edge, 
 	 * the default value will be set to 1 as this is not a weighted network.
+	 * 
+	 * Number of edges will identify the quantity of edges in the network
 	 */
 	private GraphEdge[] edge_array;		
-	
-	// This will identify the number of edges in the network
 	private int no_of_edges;
-
-	
-	// ACCESSORS AND MUTATORS //
-	/*
-	 * These are used for printing out 
-	 */
-	public GraphVertex[] get_vertex_array()
-	{
-		return vertex_array;
-	}	
-	public int get_no_of_vertexes() {
-		return no_of_vertexes;
-	}	
-	public GraphEdge[] get_edge_array() {
-		return edge_array;
-	}	
-	public int get_no_of_edges() {
-		return no_of_edges;
-	}
 	
 	/*
 	 * Constructor will take in an array of Edges and
@@ -58,27 +45,32 @@ public class Graph
 	 */
 	public Graph(GraphEdge[] edge_array)
 	{
-		// Pass parameter into edge array
+		// Initialize edge array
 		this.edge_array = edge_array;
 		
-		// Ready the vertex for edges when they update
-		this.no_of_vertexes = calculate_no_of_vertexes(edge_array);
+		// Ready the vertices in anticipation of the edge creation
+		this.no_of_vertices = calculate_no_of_vertices(edge_array);
 		
-		// Create new array based on the amount of vertices there are
-		// If there are 8 nodes, create a array of length 8 (0-7)
-		this.vertex_array = new GraphVertex[this.no_of_vertexes];
+		/*
+		 * Create new array based on the amount of vertices there are.
+		 * If there are 8 nodes, create an array of length 8 (0-7)
+		 */				
+		this.vertex_array = new GraphVertex[this.no_of_vertices];
 		
-		// All the arrays will start off as null from creation,
-		// Loop through each and instantiate the vertex object 
-		// for each array
-		for (int x = 0; x < this.no_of_vertexes; x++)
+		/*
+		 * All the arrays will start off as null from creation,
+		 * loop through each and instantiate each array
+		 */		
+		for (int x = 0; x < this.no_of_vertices; x++)
 			this.vertex_array[x] = new GraphVertex();
 
-		// Sum up all the edges in the network
+		// Set value to quantity of edges in the array
 		this.no_of_edges = edge_array.length;
 		
-		// The index 'x' focuses on the current vertex by index
-		// it is for the amount of edges to add
+		/*
+		 * The index 'x' focuses on the current vertex,
+		 * and represents the amount of edges to add
+		 */
 		for (int x = 0; x < this.no_of_edges; x++)
 		{ 
 			this.vertex_array[edge_array[x].get_from_vertex()].get_edges().add(edge_array[x]);
@@ -86,16 +78,21 @@ public class Graph
 		}
 	}
 		
-	private int calculate_no_of_vertexes(GraphEdge[] edge_array)
+	/*
+	 * Figure out how many vertices there are based on the connections
+	 */
+	private int calculate_no_of_vertices(GraphEdge[] edge_array)
 	{
-		// Initialize local quantity variable
+		// Initialize function variable
 		int no_of_vertexes = 0;
 		
-		// Loop through each object in the array
+		// Loop through each 'edge' in the array
 		for (GraphEdge edge : edge_array) 
 		{
-			// Find the highest vertex number
-			// This case looks at "to vertex index"
+			/*
+			 *  Find the highest vertex index in the network
+			 */
+			// Beginning with the "to vertex index"
 			if (edge.get_to_vertex() > no_of_vertexes)
 				no_of_vertexes = edge.get_to_vertex();
 			
@@ -104,7 +101,7 @@ public class Graph
 				no_of_vertexes = edge.get_from_vertex();			
 		}
 		
-		// Add an additional vertex value
+		// Add an additional value to compensate for the array ([0] start)
 		no_of_vertexes++;
 				
 		// return the amount of vertexes
@@ -116,30 +113,34 @@ public class Graph
 	 */	
 	public void find_shortest_path()
 	{
-		// vertex 0 as source
+		// set vertex 0 as source TODO make this dynamic with monster position
 		this.vertex_array[0].set_distance_from_source(0);
+		
+		// Pointer that focuses on a specific vertex in the array
 		int next_vertex = 0;
 		
-		// visit every vertex in the array
+		// visit every single vertex in the array
 		for (int i = 0; i < this.vertex_array.length; i++)
 		{
 			// Loop around edges of current vertex
-			// Create arraylist which stores the edge count of the vertex
+			// Create array list which stores the amount of edges of the vertex
 			ArrayList<GraphEdge> current_vertex_edges = this.vertex_array[next_vertex].get_edges();
 			
-			// Loop through all avaialable edges on current vertex
+			// Loop through all available edges on the current vertex
 			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++)
 			{
-				// Store the index of the neighbour attached
+				// Store the index of the attached neighbouring vertex
 				int neighbour = current_vertex_edges.get(edge_link).find_neighbour(next_vertex);
 				
-				// Check when vertex has not been visited/checked
+				// If this vertex has been unsettled, begin checking it
 				if (!this.vertex_array[neighbour].is_settled())
 				{
-					int unchecked = this.vertex_array[next_vertex].get_distance_from_source() + current_vertex_edges.get(edge_link).getLength();
+					// Figure out how far this index is from the source node
+					int unchecked_distance = this.vertex_array[next_vertex].get_distance_from_source() + 1;
 					
-					if (unchecked < vertex_array[neighbour].get_distance_from_source())					
-						vertex_array[neighbour].set_distance_from_source(unchecked);					
+					
+					if (unchecked_distance < vertex_array[neighbour].get_distance_from_source())					
+						vertex_array[neighbour].set_distance_from_source(unchecked_distance);					
 				}				
 			}
 			
@@ -175,7 +176,7 @@ public class Graph
 	// Display the result, i need to see if this works
 	public void print_result()
 	{
-		String output = "Number of vertices = " + this.no_of_vertexes;
+		String output = "Number of vertices = " + this.no_of_vertices;
 		output += "\nNumber of edges = " + this.no_of_edges;
 		
 		for (int i = 0; i < this.vertex_array.length; i++)			
@@ -183,5 +184,23 @@ public class Graph
 		
 		// Print all the details
 		System.out.println(output);			
-	}		
+	}	
+	
+	// ACCESSORS AND MUTATORS //
+	public GraphVertex[] get_vertex_array()
+	{
+		return vertex_array;
+	}	
+	public int get_no_of_vertices() 
+	{
+		return no_of_vertices;
+	}	
+	public GraphEdge[] get_edge_array() 
+	{
+		return edge_array;
+	}	
+	public int get_no_of_edges() 
+	{
+		return no_of_edges;
+	}
 }

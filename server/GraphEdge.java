@@ -10,8 +10,6 @@
  * 
  * source material:   
  * https://medium.com/@ssaurel/calculate-shortest-paths-in-java-by-implementing-dijkstras-algorithm-5c1db06b6541
- * TODO figure out referencing for this tutorial
- * 
  */
 
 // Represent the edges in the network
@@ -22,11 +20,13 @@ public class GraphEdge {
 	/*
 	 * Constructor for the Edge, will create a link between two vertex
 	 */
-	public GraphEdge(int from_vertex, int to_vertex,int length)
+	public GraphEdge(int from_vertex, int to_vertex)
 	{
 		this.from_vertex = from_vertex;
 		this.to_vertex = to_vertex;
-		this.length = length;
+		
+		// Default length size will be 1
+		this.length = 1;
 	}
 
 	// get the starting vertex index
