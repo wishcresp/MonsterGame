@@ -10,7 +10,7 @@
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
  */
 
-public class MonsterAI 
+public class MonsterAi 
 {
 	/*
 	 * Writing everything inside the graph class first,

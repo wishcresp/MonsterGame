@@ -45,6 +45,14 @@ public class UIBoard extends Pane
 			}
 		}
 		
+		
+		/*
+		for (int i = 0; i < Players.get_player_count(); i++)
+		{
+			Player player = Players.get_player(i);
+			board.add(new UICell(2), player.x, player.y);
+		}*/
+		
 		/* Adds Players */
 		board.add(new UICell(2), 1, 1);
 		board.add(new UICell(2), 1, 9);
