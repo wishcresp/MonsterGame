@@ -5,7 +5,6 @@ public abstract class Entity
 	 * 
 	 * Monster and Player classes extend this class
 	 * 
-	 * 
 	 * A quick note on desired direction:
 	 * The direction a player is actually going is `direction`,
 	 * and that should be used for calculating where they will be moving
@@ -22,8 +21,7 @@ public abstract class Entity
 	private int direction;
 	private int desired_direction;
 	public int pos_x, pos_y; // I renamed it from x,y.
-	private String name;
-	
+	private String name;	
 	
 	// private TileSprite;
 	/* Sean I imagine you'll be needing something like ^^ */
@@ -40,6 +38,7 @@ public abstract class Entity
 	{
 		return this.name;
 	}
+	
 	public void set_name(String name)
 	{
 		this.name = name;
@@ -64,5 +63,4 @@ public abstract class Entity
 	{
 		this.desired_direction = ddir;
 	}
-
 }

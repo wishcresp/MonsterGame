@@ -13,11 +13,11 @@ public class GameState
 	{
 		return this.is_running;
 	}
+	
 	public void change_run_state(boolean new_state)
 	{
 		this.is_running = new_state; 
 	}
-	
 	
 	public static GameState get_instance()
 	{
