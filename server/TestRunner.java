@@ -4,7 +4,6 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner 
 {
-
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting up JUnit tests...");
@@ -16,8 +15,6 @@ public class TestRunner
 
 		System.out.println(result.wasSuccessful());
 		
-		
-
 		// OH BOY I HOPE THIS WORKS
 		Result result2 = JUnitCore.runClasses(MonsterGameExceptionTest.class);
 
@@ -25,7 +22,5 @@ public class TestRunner
 			System.out.println(failure.toString());
 
 		System.out.println(result.wasSuccessful());
-
 	}
-
 }

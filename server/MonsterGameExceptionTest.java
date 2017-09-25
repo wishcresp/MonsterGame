@@ -6,7 +6,6 @@ import org.junit.Test;
 
 public class MonsterGameExceptionTest 
 {
-
 	// Throw a custom message into an exception, see if it works!
 	@Test(expected = MonsterGameException.class)
 	
