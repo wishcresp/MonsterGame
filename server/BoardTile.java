@@ -24,7 +24,6 @@ public class BoardTile
 	{
 		this.contains = ent;
 	}
-	
 	public Entity get_ent()
 	{
 		return this.contains;

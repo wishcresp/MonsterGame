@@ -52,10 +52,13 @@ public class GameServer extends Thread
 		}*/		
 		
 		// Try to print out the string representation of the board
-		System.out.println("\n" + board.get_layout());		
+		System.out.println("\n" + board.get_layout());
+		
 		
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
-		board.build_board_graph();				
+		board.build_board_graph();
+		
+		
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -68,6 +71,7 @@ public class GameServer extends Thread
 		{
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
+
 			/*
 			 * Very basic startup code for rough manual testing
 			 * 
@@ -111,8 +115,12 @@ public class GameServer extends Thread
 						break;
 				}
 			}*/
+			
+
 			System.out.println(board.toString()); // Cheeky dump of the gameboard for debugging
 			                                      // purposes
+			
+			
 			Thread.sleep(100);
 		}
 	}

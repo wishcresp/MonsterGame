@@ -7,6 +7,8 @@ import java.net.Socket;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
 public class ConnHandlerTest
 {
 	private ServerSocket sock;
@@ -31,7 +33,8 @@ public class ConnHandlerTest
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}		
+		}
+		
 	}
 
 	@Test

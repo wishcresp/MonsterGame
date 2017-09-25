@@ -19,22 +19,19 @@
  * the game board and objects
 */
 
-public class Board 
-{
+public class Board {
 	// Declare class variables
 	private static Board board = new Board(); // Make this a singleton
 	private int dimensions = 11; // Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
 
 	// Instantiate a new board object
-	private Board() 
-	{
+	private Board() {
 		return;
 	}
 
 	// Define board dimension and instantiate array
-	public void create_board() 
-	{
+	public void create_board() {
 		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 
@@ -55,8 +52,7 @@ public class Board
 		// on the `BoardTiles` array
 	}
 
-	public void load_board(String gameboard) 
-	{
+	public void load_board(String gameboard) {
 		// TODO: Write code to load in the game board from string
 
 		// Index for game board
@@ -93,32 +89,28 @@ public class Board
 		y = 9;
 		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
-		
+
 		return;
 	}
 
 	// Customize the board dimensions
-	public void set_dimensions(int dimensions) 
-	{
+	public void set_dimensions(int dimensions) {
 		this.dimensions = dimensions;
 		return;
 	}
 
 	// Getter for board dimension
-	public int get_dimensions() 
-	{
+	public int get_dimensions() {
 		int dimensions = this.dimensions;
 		return dimensions;
 	}
 
 	// Return a strong copy of the game board, will be a
 	// representation for the game board in the back end.
-	public String get_layout() 
-	{
+	public String get_layout() {
 		String out = "";
 
-		for (int x = 0; x < dimensions; x++) 
-		{
+		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions; y++)
 				out += ":" + BoardTiles[x][y].toString();
 
@@ -131,8 +123,7 @@ public class Board
 	}
 
 	// Returns a boardTile object
-	public BoardTile get_tile(int x, int y) 
-	{
+	public BoardTile get_tile(int x, int y) {
 		if (x > 0 && y > 0 && x <= dimensions && y <= dimensions)
 			return BoardTiles[x][y];
 		else
@@ -140,22 +131,38 @@ public class Board
 	}
 
 	// Board instance
-	public static Board get_board_instance() 
-	{
+	public static Board get_board_instance() {
 		return board;
 	}
 
 	// Building a network for the board
-	public void build_board_graph() 
-	{
-		/*
-		 * GraphEdge(FROM, TO) To set a connection, specify the 'FROM'
-		 * index and connect it to the 'TO' index.				 
-		 * E.g. (Vertex 1 <--> Vertex 2) == (1, 2)
-		 */
-		
-		GraphEdge[] edges = 
-			{
+	public void build_board_graph() {
+		GraphEdge[] edges = {
+
+				/*
+				 * SAMPLE GRAPH 1 - weighted version. Does not work new
+				 * GraphEdge(0, 2, 1), new GraphEdge(0, 3, 4), new GraphEdge(0,
+				 * 4, 2), new GraphEdge(0, 1, 3), new GraphEdge(1, 3, 2), new
+				 * GraphEdge(1, 4, 3), new GraphEdge(1, 5, 1), new GraphEdge(2,
+				 * 4, 1), new GraphEdge(3, 5, 4), new GraphEdge(4, 5, 2), new
+				 * GraphEdge(4, 6, 7), new GraphEdge(4, 7, 2), new GraphEdge(5,
+				 * 6, 4), new GraphEdge(6, 7, 5)
+				 * 
+				 * SAMPLE GRAPH 2 - Non weighted version new GraphEdge(0, 2),
+				 * new GraphEdge(0, 3), new GraphEdge(0, 4), new GraphEdge(0,
+				 * 1), new GraphEdge(1, 3), new GraphEdge(1, 4), new
+				 * GraphEdge(1, 5), new GraphEdge(2, 4), new GraphEdge(3, 5),
+				 * new GraphEdge(4, 5), new GraphEdge(4, 6), new GraphEdge(4,
+				 * 7), new GraphEdge(5, 6), new GraphEdge(6, 7) };
+				 */
+
+				/*
+				 * GraphEdge(FROM, TO) To set a connection, specify the 'FROM'
+				 * index and connect it to the 'TO' index.
+				 * 
+				 * E.g. (Vertex 1 <--> Vertex 2) == (1, 2)
+				 */
+
 				/*
 				 * ROWS
 				 */
@@ -190,10 +197,12 @@ public class Board
 
 				// TELEPORTATION LINKS
 				new GraphEdge(0, 48), new GraphEdge(19, 29)
+
 		};
 
-		MonsterAi monster = new MonsterAi(edges);
-		monster.find_shortest_path();
-		monster.print_result();
+		Graph g = new Graph(edges);
+		g.find_shortest_path();
+		g.print_result();
 	}
+
 }
