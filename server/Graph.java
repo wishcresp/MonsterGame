@@ -111,13 +111,13 @@ public class Graph
 	// DJIKSTRA OVER IN THIS SPOT //
 	
 	// Display the result, i need to see if this works
-	public void print_result()
+	public void print_result(int source_node)
 	{
 		String output = "Number of vertices = " + this.no_of_vertices;
 		output += "\nNumber of edges = " + this.no_of_edges;
 		
 		for (int i = 0; i < this.vertex_array.length; i++)			
-			 output += ("\nThe shortest distance from vertex 0 to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
+			output += ("\nThe shortest distance from vertex " + source_node + " to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
 		
 		// Print all the details
 		System.out.println(output);			

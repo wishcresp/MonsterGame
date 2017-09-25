@@ -154,6 +154,10 @@ public class Board
 		 * E.g. (Vertex 1 <--> Vertex 2) == (1, 2)
 		 */
 		
+		// Change this value for the source node position
+		int monster_position = 6;
+
+		
 		GraphEdge[] edges = 
 			{
 				/*
@@ -191,8 +195,8 @@ public class Board
 				new GraphEdge(4, 40), new GraphEdge(18, 26)
 		};
 
-		MonsterAi monster = new MonsterAi(edges);
+		MonsterAi monster = new MonsterAi(edges, monster_position);
 		monster.find_shortest_path();
-		monster.print_result();
+		monster.print_result(monster_position);
 	}
 }
