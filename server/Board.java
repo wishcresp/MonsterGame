@@ -68,9 +68,9 @@ public class Board
 		for (y = 1; y < dimensions - 1; y++)
 			BoardTiles[x][y].set_wall(false);
 
-		// 5,0 -> 5,10
+		// 5,1 -> 5,9
 		x = 5;
-		for (y = 0; y < dimensions; y++)
+		for (y = 1; y < dimensions - 1; y++)
 			BoardTiles[x][y].set_wall(false);
 
 		// 9,1 -> 9,9
@@ -84,9 +84,9 @@ public class Board
 		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
 
-		// 0,5 -> 10,5
+		// 1,5 -> 9,5
 		y = 5;
-		for (x = 0; x < dimensions; x++)
+		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
 
 		// 1,9 -> 9,9
