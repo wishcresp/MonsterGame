@@ -117,7 +117,7 @@ public class Graph
 		output += "\nNumber of edges = " + this.no_of_edges;
 		
 		for (int i = 0; i < this.vertex_array.length; i++)			
-			output += ("\nThe shortest distance from vertex " + source_node + " to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
+			output += ("\nDistance from vertex " + source_node + " to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
 		
 		// Print all the details
 		System.out.println(output);			

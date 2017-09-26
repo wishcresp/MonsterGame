@@ -106,6 +106,9 @@ public class Players
 		
 		for (int i = 0; i < this.current_players; i++) 
 		{
+			/*
+			 * Changed this around a bit, needs a getter
+			 */
 			player_string += Integer.toString(test[i].get_pos_x());
 			player_string += ",";
 			player_string += Integer.toString(test[i].get_pos_y());
