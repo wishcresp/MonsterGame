@@ -20,29 +20,22 @@ public abstract class Entity
 	
 	private int direction;
 	private int desired_direction;
-	public int pos_x, pos_y; // I renamed it from x,y.
-	private String name;	
+	
 	
 	// private TileSprite;
 	/* Sean I imagine you'll be needing something like ^^ */
 		
 	public Entity()
 	{
+	
+		
 		direction = 0;
 		desired_direction = 0;
-		pos_x = 0; // These need to be set elsewhere
-		pos_y = 0;
+		
 	}
 	
-	public String get_name()
-	{
-		return this.name;
-	}
 	
-	public void set_name(String name)
-	{
-		this.name = name;
-	}
+	
 	
 	public int get_dir()
 	{
