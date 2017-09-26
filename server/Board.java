@@ -62,7 +62,7 @@ public class Board
 		// Index for game board
 		int x, y;
 
-		// Draw the game board movement tiles starting with the rows
+		// Draw the game board walls
 		// 1,1 -> 1,9
 		x = 1;
 		for (y = 1; y < dimensions - 1; y++)
