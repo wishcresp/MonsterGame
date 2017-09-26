@@ -28,10 +28,7 @@ public class GameServer extends Thread
 	{		
 		// Instantiate Board and players
 		board = Board.get_board_instance();		
-		players = Players.get_player_instance();
-		
-		players.player_move("blaise", 1, 1);		
-
+		players = Players.get_player_instance();	
 			
 		// Generate the game board
 		board.create_board();
@@ -47,6 +44,10 @@ public class GameServer extends Thread
 		
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
 		board.build_board_graph();	
+		
+		// Testing player movement
+		players.player_move("blaise", 1, 1);		
+
 	}
 		
 	public static void GameLoop() throws InterruptedException

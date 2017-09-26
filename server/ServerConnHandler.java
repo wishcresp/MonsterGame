@@ -39,7 +39,11 @@ public class ServerConnHandler extends ConnHandler
 		}
 
 		// Create this player's object
-		Player player = new Player();
+		/*
+		 * BLAISE, i have changed the Player class around to take in parameters, 
+		 * will put something in for now, feel free to change it back
+		 */
+		Player player = new Player("Michael",1,1);
 
 		// Set their name
 		player.set_name(get_string());

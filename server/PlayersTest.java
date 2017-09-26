@@ -4,11 +4,14 @@ import org.junit.Test;
 
 public class PlayersTest 
 {
+	 Players players;
 
 	@Test
 	public void test() 
 	{
+		players = Players.get_player_instance();	
+
 		// Testing something
-		Players.player_move("blaise", 1, 1);		
+		players.player_move("blaise", 1, 1);		
 	}
 }
