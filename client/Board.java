@@ -45,7 +45,7 @@ public class Board
 		 */
 		for (int x = 0; x < dimensions; x++)
 			for (int y = 0; y < dimensions; y++)
-				this.BoardTiles[x][y] = new BoardTile(null);	
+				this.BoardTiles[x][y] = new BoardTile(null, false);	
 		
 		// DEBUG Trying to test something, remove if causing problems!
 		Player testPlayer = new Player();
