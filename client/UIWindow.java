@@ -67,19 +67,32 @@ public class UIWindow extends Application
 		ip_stage.show();
 		
 		/* Key Listener for arrows */
-		game_window.setOnKeyPressed(e -> {
-			switch (e.getCode()) {
+		game_window.setOnKeyPressed(e ->
+		{
+			switch (e.getCode())
+			{
+				/* Konami code directions.
+				 * UP = 0
+				 * DOWN = 1
+				 * LEFT = 2
+				 * RIGHT = 3*/
+			
+				// Need to specify the player direction to set (x, 0) x=?
 				case UP:
 					System.out.println("UP WAS PRESSED");
+					Players.get_player_instance().set_player_dir(0, 0);
 					break;
 				case DOWN:
 					System.out.println("DOWN WAS PRESSED");
+					Players.get_player_instance().set_player_dir(0, 1);
 					break;
 				case LEFT:
 					System.out.println("LEFT WAS PRESSED");
+					Players.get_player_instance().set_player_dir(0, 2);
 					break;
 				case RIGHT:
 					System.out.println("RIGHT WAS PRESSED");
+					Players.get_player_instance().set_player_dir(0, 3);
 					break;
 				default:
 					System.out.println("INVALID KEY WAS PRESSED");
