@@ -116,69 +116,6 @@ public class Players
 		return player_string;
 	}
 
-	// not sure if it should be static
-	public void player_move(String name, int x, int y) 
-	{
-		// JUST A SAMPLE
-		String direction = "LEFT";
-
-		// THIS IS A TEST FOR PLAYER DIRECTIONING (name, pos_x, pos_y)
-		Player player1 = new Player(name, x, y);
-
-		// DEBUG, find out the current player coordinate
-		System.out.println(player1.get_pos_x() + player1.get_pos_y());
-
-		switch (direction) 
-		{
-		// (x - 1, y)
-		case "UP":
-			if (check_move(player1.get_pos_x() - 1, player1.get_pos_y()))
-				// Update the player position if valid
-				player1.set_pos_x(player1.get_pos_x() - 1);
-			break;
-
-		// (x + 1, y)
-		case "DOWN":
-			if (check_move(player1.get_pos_x() + 1, player1.get_pos_y()))
-				// Update the player position if valid
-				player1.set_pos_x(player1.get_pos_x() + 1);
-			break;
-
-		// (x, y - 1)
-		case "LEFT":
-			if (check_move(player1.get_pos_x(), player1.get_pos_y() - 1))
-				// Update the player position if valid
-				player1.set_pos_y(player1.get_pos_y() - 1);
-			break;
-
-		// (x, y + 1)
-		case "RIGHT":
-			if (check_move(player1.get_pos_x(), player1.get_pos_y() + 1))
-				// Update the player position if valid
-				player1.set_pos_y(player1.get_pos_y() + 1);
-			break;
-
-		default:
-			System.out.println("INVALID KEY WAS PRESSED");
-		}
-
-		// DEBUG, find out the current player coordinate
-		System.out.println(player1.get_pos_x() + player1.get_pos_y());
-
-	}
-
-	// shouldnt be static but oh well, we will need to move this elsewhere
-	public boolean check_move(int x, int y) 
-	{
-		/*
-		 * Maybe we can check to see if this coordinate exists/valid e.g. By moving from
-		 * coordinate point (5,1) -> (5,9) via teleport Check to see if 5,9 exists as a
-		 * coordinate, and if the player can move there. Meaning there is no player
-		 * currently occupying that spot
-		 */
-
-		return true;
-	}
 	
 	
 }
