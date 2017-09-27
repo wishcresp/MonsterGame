@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * both values associated with each other (0 == 1,1).
  * 
  * The monster pieces will find the shortest route towards any player 
- * possible with Dijkstra’s algorithm within the MonsterAI.
+ * possible with Dijkstras algorithm within the MonsterAI.
  *  
  * source: 
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
