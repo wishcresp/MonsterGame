@@ -9,7 +9,7 @@ public class PlayersTest
 	@Test
 	public void test() 
 	{
-		players = Players.get_player_instance();	
+		players = GameState.get_instance().get_players();		
 
 		// Testing something
 		players.player_move("blaise", 1, 1);		

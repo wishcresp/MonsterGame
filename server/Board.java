@@ -22,12 +22,11 @@
 public class Board 
 {
 	// Declare class variables
-	private static Board board = new Board(); // Make this a singleton
 	private int dimensions = 11; // Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
 
 	// Instantiate a new board object
-	private Board() 
+	public Board() 
 	{
 		return;
 	}
@@ -137,12 +136,6 @@ public class Board
 			return BoardTiles[x][y];
 		else
 			return null;
-	}
-
-	// Board instance
-	public static Board get_board_instance() 
-	{
-		return board;
 	}
 
 	// Building a network for the board

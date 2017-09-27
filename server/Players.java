@@ -6,10 +6,8 @@ public class Players
 	 * As far as direction goes, the direction the monster is moving in
 	 * is Also handles info about player limits and connected players
 	 */
-	
-	private static Players Players = new Players();
-	
-	private Players()
+
+	public Players()
 	{
 		return;
 	}
@@ -116,11 +114,6 @@ public class Players
 		}
 
 		return player_string;
-	}
-
-	public static Players get_player_instance() 
-	{
-		return Players;
 	}
 
 	// not sure if it should be static

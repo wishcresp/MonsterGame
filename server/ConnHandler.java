@@ -51,8 +51,8 @@ public abstract class ConnHandler extends Thread
 
 	public void run() 
 	{
-		Board board = Board.get_board_instance();
-		Players players = Players.get_player_instance();
+		Board board = GameState.get_instance().get_board();	
+		Players players = GameState.get_instance().get_players();	
 
 		try 		
 		{

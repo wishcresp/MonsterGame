@@ -17,8 +17,7 @@ public class NetServer extends Thread
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		Players players = Players.get_player_instance();
+		Players players = GameState.get_instance().get_players();	
 
 		conn_target = 1; // Get the initial connection then have them
 							// set the proper value
@@ -30,7 +29,7 @@ public class NetServer extends Thread
 	{
 		int conn_count = 0; // TODO: Have some way to decrement on drop out
 		Thread[] conns = new ServerConnHandler[this.max_conn_target];
-		Players players = Players.get_player_instance();
+		Players players = GameState.get_instance().get_players();
 
 		System.out.println("Started server thread.");
 

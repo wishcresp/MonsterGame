@@ -5,6 +5,8 @@ public class GameServer extends Thread
 	static int dim, player_target;
 	static Board board;
 	static Players players;
+	static GameState gamestate;
+	
 	
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -25,10 +27,11 @@ public class GameServer extends Thread
 	}
 	
 	public static void Initialize()
-	{		
+	{	
 		// Instantiate Board and players
-		board = Board.get_board_instance();		
-		players = Players.get_player_instance();	
+		gamestate = GameState.get_instance();
+		board = gamestate.get_board();		
+		players = gamestate.get_players();	
 			
 		// Generate the game board
 		board.create_board();
