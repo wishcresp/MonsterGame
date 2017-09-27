@@ -1,3 +1,5 @@
+import javafx.application.Application;
+
 /*
  * Michael you will need to split this into two classes, one basic init class
  * and then run the actual game loop code in another class called "GameLoop"
@@ -41,6 +43,7 @@ public class GameClient extends Thread
 	public static void GameLoop() throws InterruptedException
 	{
 		GameState game_state = GameState.get_instance();
+		Application.launch(UIWindow.class);
 		/*
 		 *  Main Game Loop
 		 */
@@ -57,6 +60,5 @@ public class GameClient extends Thread
 			 */
 			
 		}
-
 	}
 }
