@@ -10,8 +10,7 @@ public class Players
 	 * Also handles info about player limits and connected players
 	 */
 	
-	private static Players Players = new Players();
-	private Players()
+	public Players()
 	{
 		return;
 	}
@@ -23,9 +22,22 @@ public class Players
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0;
 	private int max_players = 4; // Soft limited according to spec
+	private int PC_id;
 
+	
 	private Entity players[];
 
+	
+	public int get_pc_id()
+	{
+		return this.PC_id;
+	}
+	
+	public void set_pc_id(int id)
+	{
+		this.PC_id = id;
+	}
+	
 	public int get_player_target()
 	{
 		return this.player_target;
@@ -90,8 +102,4 @@ public class Players
 	}
 	
 	
-	public static Players get_player_instance()
-	{
-		return Players;
-	}
 }

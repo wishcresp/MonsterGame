@@ -27,9 +27,15 @@ public class UIWindow extends Application
 	private String player_name = "";
 	private String ip_address = "";
 	
+	private int PC_id;	
+	private Players players;
+	
 	@Override
 	public void start(Stage game_stage)
 	{
+		players = GameState.get_instance().get_players();
+		PC_id = players.get_pc_id();
+		
 		/* Creates Game Board UI */
 		board = new UIBoard();
 		game_window = new BorderPane(); 
@@ -80,19 +86,19 @@ public class UIWindow extends Application
 				// Need to specify the player direction to set (x, 0) x=?
 				case UP:
 					System.out.println("UP WAS PRESSED");
-					Players.get_player_instance().set_player_dir(0, 0);
+					players.set_player_dir(PC_id, 0);
 					break;
 				case DOWN:
 					System.out.println("DOWN WAS PRESSED");
-					Players.get_player_instance().set_player_dir(0, 1);
+					players.set_player_dir(PC_id, 1);
 					break;
 				case LEFT:
 					System.out.println("LEFT WAS PRESSED");
-					Players.get_player_instance().set_player_dir(0, 2);
+					players.set_player_dir(PC_id, 2);
 					break;
 				case RIGHT:
 					System.out.println("RIGHT WAS PRESSED");
-					Players.get_player_instance().set_player_dir(0, 3);
+					players.set_player_dir(PC_id, 3);
 					break;
 				default:
 					System.out.println("INVALID KEY WAS PRESSED");
