@@ -21,7 +21,6 @@ public class Players
 	private int max_players = 4; // Soft limited according to specification
 	
 	private Entity players[];
-	private Player test[];
 
 	// Player target
 	public int get_player_target()
@@ -93,9 +92,6 @@ public class Players
 
 	public String toString() 
 	{
-		// TODO: Return a string representation of the
-		// players positions
-
 		String player_string = "";
 		
 		for (int i = 0; i < this.current_players; i++) 
@@ -103,9 +99,9 @@ public class Players
 			/*
 			 * Changed this around a bit, needs a getter
 			 */
-			player_string += Integer.toString(test[i].get_pos_x());
+			player_string += Integer.toString(players[i].get_pos_x());
 			player_string += ",";
-			player_string += Integer.toString(test[i].get_pos_y());
+			player_string += Integer.toString(players[i].get_pos_y());
 			player_string += ";";
 		}
 		return player_string;

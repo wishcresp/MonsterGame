@@ -33,8 +33,29 @@ public class UIWindow extends Application
 	@Override
 	public void start(Stage game_stage)
 	{
-		players = GameState.get_instance().get_players();
+		GameState game_state = GameState.get_instance();
+		players = game_state.get_players();
 		PC_id = players.get_pc_id();
+		
+	
+		
+		
+		
+		// DEBUG SHIT
+		game_state.set_server_ip("127.0.0.1");
+		game_state.set_server_port(3216);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		/* Creates Game Board UI */
 		board = new UIBoard();
