@@ -7,14 +7,6 @@ public class NetClient extends Thread
 	Socket conn;
 	public NetClient()
 	{
-		try
-		{
-			conn.setSoTimeout(0); // Wait till we find some[one,thing]
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public void run()
@@ -35,6 +27,7 @@ public class NetClient extends Thread
 			System.out.println("Got IP "+game_state.get_server_ip()+"...");
 
 			 conn = new Socket(game_state.get_server_ip(), game_state.get_server_port());
+			 conn.setSoTimeout(0); // Wait till we find some[one,thing]
 
 			chandle = new ClientConnHandler(conn, 0);
 			chandle.start();

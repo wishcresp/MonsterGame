@@ -3,7 +3,6 @@ public class GameState
 {
 	private static GameState gamestate = new GameState(); // Make this a singleton
 	private boolean is_running = false;
-	private boolean is_ready = false; // Wait for client to send all relevant information
 	private String avaliable_spots = "";
 	private String server_ip = "";
 	private int server_port;
