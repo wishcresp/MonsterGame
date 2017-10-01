@@ -41,6 +41,8 @@ public abstract class Entity
 	{
 		// JUST A SAMPLE
 		String direction = "LEFT";
+		
+		Entity player1 = this;
 
 
 		// DEBUG, find out the current player coordinate

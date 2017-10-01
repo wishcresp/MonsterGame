@@ -99,9 +99,6 @@ public class Players
 
 		String player_string = "";
 		
-		// THIS IS A TEST FOR PLAYER DIRECTIONING (name, pos_x, pos_y)
-		test[1] = new Player("Blaise", 1, 1);
-		
 		for (int i = 0; i < this.current_players; i++) 
 		{
 			/*

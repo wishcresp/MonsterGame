@@ -43,7 +43,7 @@ public class ServerConnHandler extends ConnHandler
 		 * BLAISE, i have changed the Player class around to take in parameters, 
 		 * will put something in for now, feel free to change it back
 		 */
-		Player player = new Player("Michael",1,1);
+		Player player = new Player();
 
 		// Set their name
 		player.set_name(get_string());
@@ -70,9 +70,9 @@ public class ServerConnHandler extends ConnHandler
 
 		String[] xy = spots_arr[player_pos].split(",");
 
-		player.pos_x = Integer.valueOf(xy[0]); // Set the player's starting
+		player.set_pos_x(Integer.valueOf(xy[0])); // Set the player's starting
 												// position
-		player.pos_y = Integer.valueOf(xy[1]);
+		player.set_pos_y(Integer.valueOf(xy[1]));
 
 		players.add_player(player); // Finally add the player to the object
 
