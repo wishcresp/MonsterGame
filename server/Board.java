@@ -31,9 +31,14 @@ public class Board
 		return;
 	}
 
+	static BoardBuilder boardBuilder;
+
+	
 	// Define board dimension and instantiate array
 	public void create_board() 
 	{
+
+		
 		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 

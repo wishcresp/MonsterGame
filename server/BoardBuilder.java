@@ -7,101 +7,108 @@
 public class BoardBuilder 
 {
 	// create a java int array
-	static int[][] intArray = new int[11][11];
+	 int[][] int_array = new int[11][11];
 
+	
 	/*
 	 * This is important for translating coordinates
 	 * to their corresponding node number.
 	 */
-	public static void create_int_array() 
+	public  void create_int_array() 
 	{		
 		// Initialize all spaces to -1 
-		for (int x = 0; x < intArray.length; x++)
-			for (int y = 0; y < intArray.length; y++)
-				intArray[x][y] = -1;
+		for (int x = 0; x < int_array.length; x++)
+			for (int y = 0; y < int_array.length; y++)
+				int_array[x][y] = -1;
 		
 		// Assign elements to the array
 		/*
 		 * Row 1
 		 */
-		intArray[1][1] = 0;
-		intArray[1][2] = 1;
-		intArray[1][3] = 2;
-		intArray[1][4] = 3;
-		intArray[1][5] = 4;
-		intArray[1][6] = 5;
-		intArray[1][7] = 6;
-		intArray[1][8] = 7;
-		intArray[1][9] = 8;
+		int_array[1][1] = 0;
+		int_array[1][2] = 1;
+		int_array[1][3] = 2;
+		int_array[1][4] = 3;
+		int_array[1][5] = 4;
+		int_array[1][6] = 5;
+		int_array[1][7] = 6;
+		int_array[1][8] = 7;
+		int_array[1][9] = 8;
 
 		/*
 		 * Rows 2 - 4
 		 */
-		intArray[2][1] = 9;
-		intArray[2][5] = 10;
-		intArray[2][9] = 11;
+		int_array[2][1] = 9;
+		int_array[2][5] = 10;
+		int_array[2][9] = 11;
 
-		intArray[3][1] = 12;
-		intArray[3][5] = 13;
-		intArray[3][9] = 14;
+		int_array[3][1] = 12;
+		int_array[3][5] = 13;
+		int_array[3][9] = 14;
 
-		intArray[4][1] = 15;
-		intArray[4][5] = 16;
-		intArray[4][9] = 17;
+		int_array[4][1] = 15;
+		int_array[4][5] = 16;
+		int_array[4][9] = 17;
 
 		/*
 		 * Row 5
 		 */
-		intArray[5][1] = 18;
-		intArray[5][2] = 19;
-		intArray[5][3] = 20;
-		intArray[5][4] = 21;
-		intArray[5][5] = 22;
-		intArray[5][6] = 23;
-		intArray[5][7] = 24;
-		intArray[5][8] = 25;
-		intArray[5][9] = 26;
+		int_array[5][1] = 18;
+		int_array[5][2] = 19;
+		int_array[5][3] = 20;
+		int_array[5][4] = 21;
+		int_array[5][5] = 22;
+		int_array[5][6] = 23;
+		int_array[5][7] = 24;
+		int_array[5][8] = 25;
+		int_array[5][9] = 26;
 
 		/*
 		 * Rows 6 - 8
 		 */
-		intArray[6][1] = 27;
-		intArray[6][5] = 28;
-		intArray[6][9] = 29;
+		int_array[6][1] = 27;
+		int_array[6][5] = 28;
+		int_array[6][9] = 29;
 
-		intArray[7][1] = 30;
-		intArray[7][5] = 31;
-		intArray[7][9] = 32;
+		int_array[7][1] = 30;
+		int_array[7][5] = 31;
+		int_array[7][9] = 32;
 
-		intArray[8][1] = 33;
-		intArray[8][5] = 34;
-		intArray[8][9] = 35;
+		int_array[8][1] = 33;
+		int_array[8][5] = 34;
+		int_array[8][9] = 35;
 
 		/*
 		 * Row 9
 		 */
-		intArray[9][1] = 36;
-		intArray[9][2] = 37;
-		intArray[9][3] = 38;
-		intArray[9][4] = 39;
-		intArray[9][5] = 40;
-		intArray[9][6] = 41;
-		intArray[9][7] = 42;
-		intArray[9][8] = 43;
-		intArray[9][9] = 44;
+		int_array[9][1] = 36;
+		int_array[9][2] = 37;
+		int_array[9][3] = 38;
+		int_array[9][4] = 39;
+		int_array[9][5] = 40;
+		int_array[9][6] = 41;
+		int_array[9][7] = 42;
+		int_array[9][8] = 43;
+		int_array[9][9] = 44;
+
+		System.out.println("");
 
 		// print int array DEBUG
-		for (int x = 0; x < intArray.length; x++)
+		for (int x = 0; x < int_array.length; x++)
 		{
-			for (int y = 0; y < intArray.length; y++)
-				System.out.print("[" + intArray[x][y] + "]");
+			for (int y = 0; y < int_array.length; y++)
+				System.out.print("[" + int_array[x][y] + "]");
 			System.out.println("");
 		}
+	}
+	
+	public int[][] get_int_array()
+	{
+		return int_array;
 	}
 
 	public static void load_board(String gameboard, int dimensions, BoardTile[][] BoardTiles) 
 	{
-
 		// Index for game board
 		int x, y;
 
@@ -141,7 +148,7 @@ public class BoardBuilder
 	}
 
 	// Building a network for the board
-	public static void build_board_graph() 
+	public  void build_board_graph() 
 	{
 		/*
 		 * GraphEdge(FROM, TO) To set a connection, specify the 'FROM' index and connect

@@ -19,7 +19,7 @@ public class MonsterAiTest
 	
 	
 	@Test
-	public void test() 
+	public void test_monster() 
 	{
 		GraphEdge[] edges = 
 			{ 

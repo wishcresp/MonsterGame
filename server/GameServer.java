@@ -7,6 +7,7 @@ public class GameServer extends Thread
 	static Players players;
 	static GameState gamestate;
 	static Player player;
+	static BoardBuilder boardBuilder;
 
 	
 	public static void main(String[] args) throws InterruptedException
@@ -33,6 +34,7 @@ public class GameServer extends Thread
 		board = gamestate.get_board();		
 		players = gamestate.get_players();	
 		player = (Player) gamestate.get_player();
+		boardBuilder = gamestate.get_boardBuilder();
 		
 		// Amount of players to join
 		player_target = players.get_player_target();
@@ -41,20 +43,9 @@ public class GameServer extends Thread
 		board.create_board();
 	
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
-		BoardBuilder.build_board_graph();	
-		
-		Player Player1 = new Player();
-		
-		/*
-		 *  Set direction to Right and move, it 
-		 *  should move properly
-		 */
-		Player1.set_dir(2);		
-		Player1.move();	
-		
-		
-		
-		BoardBuilder.create_int_array();
+		boardBuilder.build_board_graph();	
+				
+		boardBuilder.create_int_array();
 	}
 		
 	public static void GameLoop() throws InterruptedException

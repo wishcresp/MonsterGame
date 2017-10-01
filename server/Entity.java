@@ -70,6 +70,7 @@ public abstract class Entity {
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() + 1);
 			break;
+			
 		default:
 			System.out.println("invalid move");
 		}
@@ -89,6 +90,8 @@ public abstract class Entity {
 		 * does not contain a player.
 		 */
 		
+		
+	
 		
 		
 		return true;
