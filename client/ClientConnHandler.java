@@ -40,11 +40,13 @@ public class ClientConnHandler extends ConnHandler
 		
 		
 		
-		// TODO: Validate player's chosen spot is not null
 		// Wait until player above them has picked a spot
 		if (this.id > 0)
 			while (players.get_player(this.id-1) == null)
 				Thread.sleep(100);
+		
+		
+		
 		String[] spots_arr = players.get_avaliable_spots();
 		String avaliable_spots = "";
 		for (int i = 0; i < spots_arr.length; i++)

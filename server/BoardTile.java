@@ -41,8 +41,8 @@ public class BoardTile
 	public String toString() 
 	{
 		if (this.wall)
-			return "0";
-		else
 			return "_";
+		else
+			return "0";
 	}
 }

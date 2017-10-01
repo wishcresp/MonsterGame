@@ -40,8 +40,15 @@ public class BoardTile
 	public String toString() 
 	{
 		if (this.wall)
-			return "0";
-		else
 			return "_";
+		else
+			return "0";
+	}
+	public void fromString(String element) 
+	{
+		if (element == "_")
+			this.wall = true;
+		else
+			this.wall = false;
 	}
 }

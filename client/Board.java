@@ -86,7 +86,7 @@ public class Board
 		return dimensions;
 	}
 
-	// Return a strong copy of the game board, will be a 
+	// Return a string copy of the game board, will be a 
 	// representation for the game board in the back end.
 	public String get_layout()
 	{
@@ -103,6 +103,31 @@ public class Board
 		// Return string game board
 		return out;
 	}
+	public void load_layout(String layout)
+	{
+		int x = 0;
+		for (String row: layout.split("\n"))
+		{
+			
+			int y = 0;
+			for (String element: row.split(":"))
+			{
+				BoardTiles[x][y].fromString(element);
+				y++;
+			}
+			x++;
+		}
+		
+	/*	for (int x = 0; x < dimensions; x++)
+		{
+			for (int y = 0; y < dimensions; y++)
+				out += ":" + BoardTiles[x][y].toString();
+			// New line
+			System.out.println("");
+		}*/
+
+	}
+	
 
 	public BoardTile get_tile(int x, int y)
 	{
