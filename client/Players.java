@@ -15,14 +15,11 @@ public class Players
 		return;
 	}
 	
-	// TODO: Have this load from file like the gameboard
-	private String[] avaliable_spots = {"2,2", "2,10", "10,2", "10,10"};
-	
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0;
 	private int max_players = 4; // Soft limited according to spec
-	private int PC_id;
+	private int PC_id; // Player Character ID
 
 	
 	private Entity players[];
@@ -77,16 +74,7 @@ public class Players
 		for (i = 0; i < player_target; i++)
 			players[i] = null; // These actual objects will be created by the connection
 			                   // handler threads
-		players[i++] = new Monster();
-	}
-	
-	public String[] get_avaliable_spots()
-	{
-		return this.avaliable_spots;
-	}
-	public void claim_spot(int spot_id)
-	{
-		this.avaliable_spots[spot_id] = null;
+		players[i] = new Monster();
 	}
 	
 	public void add_player(Player player)
