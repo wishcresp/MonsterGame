@@ -32,23 +32,20 @@ public class GameServer extends Thread
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
 		players = gamestate.get_players();	
-			
-		// Generate the game board
-		board.create_board();
-		
+	
 		// Amount of players to join
 		player_target = players.get_player_target();
-		
-		// Return dimensions to dim integer (11 is the dimension)
-		dim = board.get_dimensions();
-		
+	
 		// Try to print out the string representation of the board
 		System.out.println("\n" + board.get_layout());		
 		
+		// Generate the game board
+		board.create_board();
+		
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
 		board.build_board_graph();	
-	
-
+		
+		
 	}
 		
 	public static void GameLoop() throws InterruptedException

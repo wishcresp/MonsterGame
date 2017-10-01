@@ -21,6 +21,8 @@
 
 public class Board 
 {
+	
+	
 	// Declare class variables
 	private int dimensions = 11; // Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
@@ -31,6 +33,8 @@ public class Board
 		return;
 	}
 
+
+	
 	// Define board dimension and instantiate array
 	public void create_board() 
 	{
