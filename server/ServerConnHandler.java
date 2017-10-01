@@ -39,10 +39,6 @@ public class ServerConnHandler extends ConnHandler
 		}
 
 		// Create this player's object
-		/*
-		 * BLAISE, i have changed the Player class around to take in parameters, 
-		 * will put something in for now, feel free to change it back
-		 */
 		Player player = new Player();
 
 		// Set their name
@@ -93,6 +89,11 @@ public class ServerConnHandler extends ConnHandler
 			
 			players.set_player_dir(id, direction);
 
+			
+			// TODO: Send players x and ys
+			
+			
+			
 			Thread.sleep(100);
 		}
 	}

@@ -40,28 +40,8 @@ public class ClientConnHandler extends ConnHandler
 		
 		
 		
-		// Wait until player above them has picked a spot
-		if (this.id > 0)
-			while (players.get_player(this.id-1) == null)
-				Thread.sleep(100);
-		
-		
-		
-		String[] spots_arr = players.get_avaliable_spots();
-		String avaliable_spots = "";
-		for (int i = 0; i < spots_arr.length; i++)
-			avaliable_spots += spots_arr[i] + ":";
-		send_string(avaliable_spots); // Send the client the list of avaliable spots
-		int player_pos = Integer.valueOf(get_string()); // Find which spot they want
-		players.claim_spot(player_pos);
-		
-		String[] xy = spots_arr[player_pos].split(",");
-		player.x = Integer.valueOf(xy[0]); // Set the player's starting position
-		player.y = Integer.valueOf(xy[1]);
-			
-		
-		players.add_player(player); // Finally add the player to the object
-		
+		// Wait for list of avaliable spots...
+		get_string();
 		
 		
 		GameState game_state = GameState.get_instance();
@@ -70,15 +50,12 @@ public class ClientConnHandler extends ConnHandler
 		
 		while (game_state.is_running())
 		{
-			// Get desired player.direction from client
-			String dir = get_string();
-			//System.out.println("Setting player dir to "+dir);
-			dir = dir.replaceAll("\\D+","");
-			int direction = Integer.valueOf(dir);
-			players.set_player_dir(id, direction);
+			// Send our direction
+			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
 
+			// TODO: Get player x and ys from server
 			
-
+		
 			Thread.sleep(100);
 
 		}	
