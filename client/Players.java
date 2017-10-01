@@ -19,7 +19,8 @@ public class Players
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0;
 	private int max_players = 4; // Soft limited according to spec
-	private int PC_id; // Player Character ID
+	private int PC_id = -1; // Player Character ID
+	private String starter_spot = "";
 
 	
 	private Entity players[];
@@ -82,11 +83,32 @@ public class Players
 		players[current_players] = player;
 	}
 
-	public String toString()
+	
+	public String fromString() 
 	{
-		// TODO: Return a string representation of the
-		// players positions
-		return "temp";
+		String player_string = "";
+		
+		for (int i = 0; i < this.current_players; i++) 
+		{
+			/*
+			 * Changed this around a bit, needs a getter
+			 */
+			player_string += Integer.toString(players[i].get_pos_x());
+			player_string += ",";
+			player_string += Integer.toString(players[i].get_pos_y());
+			player_string += ";";
+		}
+		return player_string;
+	}
+
+	public String get_starter_spot()
+	{
+		return starter_spot;
+	}
+
+	public void set_starter_spot(String starter_spot)
+	{
+		this.starter_spot = starter_spot;
 	}
 	
 	

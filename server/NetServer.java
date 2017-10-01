@@ -3,7 +3,7 @@ import java.io.*;
 
 public class NetServer extends Thread 
 {
-	private ServerSocket sock;
+	private ServerSocket sock = null;
 	private int conn_target; // Update from the Players Singleton
 								// for internal use only
 	private int max_conn_target;
@@ -12,9 +12,20 @@ public class NetServer extends Thread
 	{
 		try 
 		{
-			sock = new ServerSocket(port);
+			do
+			{
+				try {sock = new ServerSocket(port);}
+				catch ( BindException e )
+				{
+					System.out.println("Erorr: Port already taken, waiting for port to free");
+					Thread.sleep(1000);
+				}
+				
+			} while (sock == null);
+			
+			
 			sock.setSoTimeout(0); // Wait till we find some[one,thing]
-		} catch (IOException e) {
+		} catch (Exception e ) {
 			e.printStackTrace();
 		}
 		Players players = GameState.get_instance().get_players();	

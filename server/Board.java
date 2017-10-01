@@ -202,12 +202,12 @@ public class Board
 		System.out.println("");
 
 		// print int array DEBUG
-		for (int x = 0; x < board_array.length; x++)
+		/*for (int x = 0; x < board_array.length; x++)
 		{
 			for (int y = 0; y < board_array.length; y++)
 				System.out.print("[" + board_array[x][y] + "]");
 			System.out.println("");
-		}
+		}*/
 	}
 	
 	public int[][] get_board_array()
@@ -304,7 +304,7 @@ public class Board
 
 		MonsterAi monster = new MonsterAi(edges, monster_position);
 		monster.find_shortest_path();
-		monster.print_result(monster_position);
+		/*monster.print_result(monster_position);*/
 	}
 	
 }
