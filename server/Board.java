@@ -199,15 +199,17 @@ public class Board
 		board_array[9][8] = 43;
 		board_array[9][9] = 44;
 
-		System.out.println("");
 
+		
 		// print int array DEBUG
-		for (int x = 0; x < board_array.length; x++)
-		{
-			for (int y = 0; y < board_array.length; y++)
-				System.out.print("[" + board_array[x][y] + "]");
-			System.out.println("");
-		}
+		//System.out.println("");
+
+//		for (int x = 0; x < board_array.length; x++)
+//		{
+//			for (int y = 0; y < board_array.length; y++)
+//				System.out.print("[" + board_array[x][y] + "]");
+//			System.out.println("");
+//		}
 	}
 	
 	public  int[][] get_board_array()

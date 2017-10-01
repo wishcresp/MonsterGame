@@ -97,6 +97,8 @@ public abstract class Entity {
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
 		
+		board.create_board_array();
+		
 		int[][] board_array = new int[dimensions][dimensions];
 		
 		board_array = board.get_board_array();
