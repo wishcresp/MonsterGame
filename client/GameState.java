@@ -5,6 +5,8 @@ public class GameState
 	private boolean is_running = false;
 	private boolean is_ready = false; // Wait for client to send all relevant information
 	private String avaliable_spots = "";
+	private String server_ip = "";
+	private int server_port;
 	
 	
 	static Players players = new Players();
@@ -26,9 +28,6 @@ public class GameState
 	{
 		this.avaliable_spots = avaliable_spots;
 	}
-
-
-
 
 
 	public Players get_players()
@@ -54,5 +53,29 @@ public class GameState
 	public static GameState get_instance()
 	{
 		return gamestate;
+	}
+
+
+	public String get_server_ip()
+	{
+		return server_ip;
+	}
+
+
+	public void set_server_ip(String server_ip)
+	{
+		this.server_ip = server_ip;
+	}
+
+
+	public int get_server_port()
+	{
+		return server_port;
+	}
+
+
+	public void set_server_port(int server_port)
+	{
+		this.server_port = server_port;
 	}	
 }

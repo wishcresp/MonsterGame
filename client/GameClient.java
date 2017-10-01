@@ -24,8 +24,7 @@ public class GameClient extends Thread
 		Initialize();
 		
 		// Startup the net thread
-		int port = 64646;
-		Thread listener = new NetClient(port);
+		Thread listener = new NetClient();
 		listener.start();
 
 		// Start the main game loop

@@ -3,14 +3,13 @@ import java.io.*;
 
 public class NetClient extends Thread
 {
-	private ServerSocket sock;
-
-	public NetClient(int port)
+	
+	Socket conn;
+	public NetClient()
 	{
 		try
 		{
-			sock = new ServerSocket(port);
-			sock.setSoTimeout(0); // Wait till we find some[one,thing]
+			conn.setSoTimeout(0); // Wait till we find some[one,thing]
 		}
 		catch (IOException e)
 		{
@@ -20,15 +19,22 @@ public class NetClient extends Thread
 
 	public void run()
 	{
+		GameState game_state = GameState.get_instance();
+		
+		
 		System.out.println("Started client thread.");
 
 		ConnHandler chandle;
 		
 		try
 		{
-			System.out.println("Waiting for a client on "+sock.getLocalPort()+"...");
+			// Wait for user to enter IP
+			while (game_state.get_server_ip() == "");
+			
+			
+			System.out.println("Got IP "+game_state.get_server_ip()+"...");
 
-			Socket conn = sock.accept();
+			 conn = new Socket(game_state.get_server_ip(), game_state.get_server_port());
 
 			chandle = new ClientConnHandler(conn, 0);
 			chandle.start();
