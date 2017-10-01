@@ -13,14 +13,12 @@ public class BoardBuilder
 	 * This is important for translating coordinates
 	 * to their corresponding node number.
 	 */
-	public static void create_coordinate_array() 
-	{
-		
+	public static void create_int_array() 
+	{		
 		// Initialize all spaces to -1 
 		for (int x = 0; x < intArray.length; x++)
 			for (int y = 0; y < intArray.length; y++)
 				intArray[x][y] = -1;
-
 		
 		// Assign elements to the array
 		/*
@@ -93,7 +91,6 @@ public class BoardBuilder
 		intArray[9][9] = 44;
 
 		// print int array DEBUG
-		// Initialize all spaces to -1 
 		for (int x = 0; x < intArray.length; x++)
 		{
 			for (int y = 0; y < intArray.length; y++)

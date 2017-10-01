@@ -18,8 +18,7 @@ public class GameServer extends Thread
 		
 		// Setup the board and players
 		Initialize(); 
-		
-	
+			
 		// Start the main game loop
 		GameLoop(); 
 
@@ -37,24 +36,25 @@ public class GameServer extends Thread
 		
 		// Amount of players to join
 		player_target = players.get_player_target();
-	
-		
 		
 		// Generate the game board
 		board.create_board();
-		
-		// Try to print out the string representation of the board
-		System.out.println("\n" + board.get_layout());		
-		
+	
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
 		BoardBuilder.build_board_graph();	
 		
-		Player testPlayer = new Player();
+		Player Player1 = new Player();
 		
-		player.move(testPlayer);
+		/*
+		 *  Set direction to Right and move, it 
+		 *  should move properly
+		 */
+		Player1.set_dir(2);		
+		Player1.move();	
 		
 		
-		BoardBuilder.create_coordinate_array();
+		
+		BoardBuilder.create_int_array();
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -67,18 +67,15 @@ public class GameServer extends Thread
 		{
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
-			
+
 			// TODO: Michael you will need to delte and re-write this
 			// Read up on the player objects and how the direction
-			// and desired direction will work, movement
-			// will be Pacman like
+			// and desired direction will work, movement will be Pacman like
 			// You're gonna need to write that out and then work on an AI
 			// Also remember that player.x and player.y will be where the players
 			// are, their position being stored as objects in the board tiles
 			// was a bad idea and needs to be scraped
-			
-			
-			
+
 			// Cheeky dump of the gameboard for debugging purposes
 			System.out.println(board.toString());
 			Thread.sleep(100);
