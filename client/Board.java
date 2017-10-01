@@ -97,7 +97,7 @@ public class Board
 			for (int y = 0; y < dimensions; y++)
 				out += ":" + BoardTiles[x][y].toString();
 			// New line
-			System.out.println("");
+			out += "\n";
 		}
 
 		// Return string game board
@@ -108,10 +108,13 @@ public class Board
 		int x = 0;
 		for (String row: layout.split("\n"))
 		{
-			
 			int y = 0;
 			for (String element: row.split(":"))
 			{
+				if (element == null)
+					element = "cooked";
+				if (x > dimensions || y > dimensions)
+					continue;
 				BoardTiles[x][y].fromString(element);
 				y++;
 			}

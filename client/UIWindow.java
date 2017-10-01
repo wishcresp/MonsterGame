@@ -41,24 +41,6 @@ public class UIWindow extends Application
 		
 	
 		
-		
-		
-		// DEBUG SHIT
-		game_state.set_server_ip("127.0.0.1");
-		game_state.set_server_port(3216);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		/* Creates Game Board UI */
 		board = new UIBoard();
 		game_window = new BorderPane(); 

@@ -88,7 +88,7 @@ public class Board
 		for (int x = 0; x < dimensions; x++) 
 		{
 			for (int y = 0; y < dimensions; y++)
-				out += ":" + BoardTiles[x][y].toString();
+				out += BoardTiles[x][y].toString() + ":";
 
 			// Create a new line
 			out += "\n";
@@ -116,7 +116,7 @@ public class Board
 	 */
 	
 	// create a java int array
- int[][] board_array = new int[dimensions][dimensions];
+	int[][] board_array = new int[dimensions][dimensions];
 		
 	/*
 	 * This is important for translating coordinates to their corresponding node

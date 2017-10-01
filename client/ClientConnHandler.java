@@ -12,9 +12,9 @@ public class ClientConnHandler extends ConnHandler
 	@Override
 	public void conn_work(Board board, Players players) throws InterruptedException 
 	{
-		int new_player_target = 0;
 		GameState game_state = GameState.get_instance();
 		
+		System.out.println("Connected. Starting Conn Work");
 		
 		// Send game info to client
 		board.set_dimensions(Integer.valueOf(get_string())); // Board dimensions

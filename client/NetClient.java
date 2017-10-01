@@ -14,7 +14,7 @@ public class NetClient extends Thread
 		GameState game_state = GameState.get_instance();
 		
 		
-		System.out.println("Started client thread.");
+		System.out.println("Started client thread.\nWaiting for user to enter an IP...");
 
 		ConnHandler chandle;
 		

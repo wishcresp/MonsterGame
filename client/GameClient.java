@@ -15,6 +15,7 @@ public class GameClient extends Thread
 	 */	
 	static Board board;
 	static Players players;
+	static Thread listener;
 	
 	// FUCKING ECLIPSE WHY WONT YOU RUN MAIN????
 	// use the drop down arrow boi
@@ -24,7 +25,7 @@ public class GameClient extends Thread
 		Initialize();
 		
 		// Startup the net thread
-		Thread listener = new NetClient();
+		listener = new NetClient();
 		listener.start();
 
 		// Start the main game loop
@@ -33,8 +34,11 @@ public class GameClient extends Thread
 	
 	public static void Initialize()
 	{		
-		board = GameState.get_instance().get_board();		
-		players = GameState.get_instance().get_players();	
+		board = GameState.get_instance().get_board();	
+		board.create_board();
+		players = GameState.get_instance().get_players();
+		
+
 	}
 		
 	// TODO Do i need to try to avoid static????
@@ -42,6 +46,11 @@ public class GameClient extends Thread
 	public static void GameLoop() throws InterruptedException
 	{
 		GameState game_state = GameState.get_instance();
+		
+		// DEBUG SHIT
+		game_state.set_server_ip("127.0.0.1");
+		game_state.set_server_port(3216);
+		game_state.change_run_state(true);
 		Application.launch(UIWindow.class);
 		/*
 		 *  Main Game Loop
