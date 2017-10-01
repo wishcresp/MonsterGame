@@ -24,67 +24,65 @@ public abstract class Entity
 	private int pos_x, pos_y; // I renamed it from x,y.
 	
 	
-	// private TileSprite;
-	/* Sean I imagine you'll be needing something like ^^ */
-		
+
 	public Entity()
-	{
-	
-		
+	{	
+		/*
+		 * 0 = LEFT
+		 * 1 = UP
+		 * 2 = RIGHT
+		 * 3 = DOWN
+		 */
 		direction = 0;
-		desired_direction = 0;
-		
+		desired_direction = 0;		
+		return;
 	}
 	
-	// not sure if it should be static
-	public void move() 
+	public void move(Entity player) 
 	{
 		// JUST A SAMPLE
-		String direction = "LEFT";
+		this.direction = 0; // LEFT
 		
-		Entity player1 = this;
-
-
 		// DEBUG, find out the current player coordinate
-		System.out.println(player1.get_pos_x() + player1.get_pos_y());
+		System.out.println(player.get_pos_x() + player.get_pos_y());
 
 		switch (direction) 
 		{
-		// (x - 1, y)
-		case "UP":
-			if (check_move(player1.get_pos_x() - 1, player1.get_pos_y()))
+		// (x, y - 1) LEFT
+		case 0:
+			if (check_move(player.get_pos_x(), player.get_pos_y() - 1))
 				// Update the player position if valid
-				player1.set_pos_x(player1.get_pos_x() - 1);
+				player.set_pos_y(player.get_pos_y() - 1);
 			break;
 
-		// (x + 1, y)
-		case "DOWN":
-			if (check_move(player1.get_pos_x() + 1, player1.get_pos_y()))
+		// (x - 1, y) UP
+		case 1:
+			if (check_move(player.get_pos_x() - 1, player.get_pos_y()))
 				// Update the player position if valid
-				player1.set_pos_x(player1.get_pos_x() + 1);
+				player.set_pos_x(player.get_pos_x() - 1);
 			break;
 
-		// (x, y - 1)
-		case "LEFT":
-			if (check_move(player1.get_pos_x(), player1.get_pos_y() - 1))
+		// (x, y + 1) RIGHT
+		case 2:
+			if (check_move(player.get_pos_x(), player.get_pos_y() + 1))
 				// Update the player position if valid
-				player1.set_pos_y(player1.get_pos_y() - 1);
+				player.set_pos_y(player.get_pos_y() + 1);
 			break;
 
-		// (x, y + 1)
-		case "RIGHT":
-			if (check_move(player1.get_pos_x(), player1.get_pos_y() + 1))
+		// (x + 1, y) DOWN
+		case 3:
+			if (check_move(player.get_pos_x() + 1, player.get_pos_y()))
 				// Update the player position if valid
-				player1.set_pos_y(player1.get_pos_y() + 1);
+				player.set_pos_x(player.get_pos_x() + 1);
 			break;
+
 
 		default:
 			System.out.println("INVALID KEY WAS PRESSED");
 		}
 
 		// DEBUG, find out the current player coordinate
-		System.out.println(player1.get_pos_x() + player1.get_pos_y());
-
+		System.out.println(player.get_pos_x() + player.get_pos_y());
 	}
 
 	// shouldnt be static but oh well, we will need to move this elsewhere

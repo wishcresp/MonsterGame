@@ -5,6 +5,7 @@ public class GameState
 	private boolean is_running = false;
 	static Players players = new Players();
 	static Board board = new Board();
+	static Player player = new Player();
 
 	
 	private GameState() 
@@ -20,6 +21,11 @@ public class GameState
 	public Board get_board()
 	{
 		return this.board;
+	}
+	
+	public Entity get_player()
+	{
+		return this.player;
 	}
 	
 	public boolean is_running()

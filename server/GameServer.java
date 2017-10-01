@@ -6,7 +6,8 @@ public class GameServer extends Thread
 	static Board board;
 	static Players players;
 	static GameState gamestate;
-	
+	static Player player;
+
 	
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -32,7 +33,8 @@ public class GameServer extends Thread
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
 		players = gamestate.get_players();	
-	
+		player = (Player) gamestate.get_player();
+		
 		// Amount of players to join
 		player_target = players.get_player_target();
 	
@@ -47,7 +49,9 @@ public class GameServer extends Thread
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
 		board.build_board_graph();	
 		
+		Player testPlayer = new Player();
 		
+		player.move(testPlayer);
 	}
 		
 	public static void GameLoop() throws InterruptedException
