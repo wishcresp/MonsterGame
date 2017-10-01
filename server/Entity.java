@@ -23,7 +23,6 @@ public abstract class Entity
 
 	private int pos_x, pos_y; // I renamed it from x,y.
 	
-	
 
 	public Entity()
 	{	
@@ -44,8 +43,9 @@ public abstract class Entity
 		this.direction = 0; // LEFT
 		
 		// DEBUG, find out the current player coordinate
-		System.out.println(player.get_pos_x() + player.get_pos_y());
-
+		System.out.print(player.get_pos_x() + ",");
+		System.out.println(player.get_pos_y()); 
+		
 		switch (direction) 
 		{
 		// (x, y - 1) LEFT
@@ -76,13 +76,14 @@ public abstract class Entity
 				player.set_pos_x(player.get_pos_x() + 1);
 			break;
 
-
 		default:
 			System.out.println("INVALID KEY WAS PRESSED");
 		}
 
 		// DEBUG, find out the current player coordinate
-		System.out.println(player.get_pos_x() + player.get_pos_y());
+		System.out.print(player.get_pos_x() + ",");
+		System.out.println(player.get_pos_y()); 
+
 	}
 
 	// shouldnt be static but oh well, we will need to move this elsewhere
