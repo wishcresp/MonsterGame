@@ -7,8 +7,6 @@ public class BoardTile
 	 * it should be some kind of sprite
 	 */
 		
-	// TODO We can probably use entity for player and monster representation on a board
-	
 	Entity contains;
 	Boolean wall;
 	
@@ -45,6 +43,7 @@ public class BoardTile
 		else
 			return "0";
 	}
+	
 	public void fromString(String element) 
 	{
 		if (element == "_")

@@ -1,9 +1,18 @@
 
+/*
+ * This is the board builder class, it is where i will
+ * initialize and hard code the coordinates of the board
+ * for the players and monsters to move on.
+ */
 public class BoardBuilder 
 {
 	// create a java int array
 	static int[][] intArray = new int[10][10];
 
+	/*
+	 * This is important for translating coordinates
+	 * to their corresponding node number.
+	 */
 	public static void create_coordinate_array() 
 	{
 		// Assign elements to the array
@@ -76,11 +85,11 @@ public class BoardBuilder
 		intArray[9][8] = 43;
 		intArray[9][9] = 44;
 
-		// (3) print our java int array
+		// print int array DEBUG
 		for (int i = 0; i < intArray.length; i++)
 			System.out.println(intArray[i]);
 	}
-	
+
 	public static void load_board(String gameboard, int dimensions, BoardTile[][] BoardTiles) 
 	{
 
@@ -118,10 +127,10 @@ public class BoardBuilder
 		y = 9;
 		for (x = 1; x < dimensions - 1; x++)
 			BoardTiles[x][y].set_wall(false);
-		
+
 		return;
 	}
-	
+
 	// Building a network for the board
 	public static void build_board_graph() 
 	{
@@ -166,7 +175,8 @@ public class BoardBuilder
 				new GraphEdge(26, 29), new GraphEdge(29, 32), new GraphEdge(32, 35), new GraphEdge(35, 44),
 
 				// TELEPORTATION LINKS
-				new GraphEdge(4, 40), new GraphEdge(18, 26) };
+				new GraphEdge(4, 40), new GraphEdge(18, 26) 
+				};
 
 		MonsterAi monster = new MonsterAi(edges, monster_position);
 		monster.find_shortest_path();

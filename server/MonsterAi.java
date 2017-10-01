@@ -11,16 +11,17 @@ import java.util.ArrayList;
  * http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html 
  */
 
-public class MonsterAi extends Graph{
+public class MonsterAi extends Graph
+{
 	/*
 	 * Writing everything inside the graph class first, will move the algorithm
 	 * into this class as per the lucid chart design
 	 */
-
 	
 	int monster_position;
 
-	public MonsterAi(GraphEdge[] edge_array, int monster_position) {
+	public MonsterAi(GraphEdge[] edge_array, int monster_position) 
+	{
 		super(edge_array);
 		this.monster_position = monster_position;
 	}
@@ -28,7 +29,8 @@ public class MonsterAi extends Graph{
 	/*
 	 * **VVVVV** THIS IS WHERE I IMPLEMENT THE ALGORITHM **VVVVV**
 	 */
-	public void find_shortest_path() {
+	public void find_shortest_path() 
+	{
 		// This handles the source node, e.g. setting 0 as monster position
 		this.vertex_array[monster_position].set_distance_from_source(0);
 		int next_vertex = monster_position;
@@ -50,7 +52,8 @@ public class MonsterAi extends Graph{
 		String string_path = Integer.toString(monster_position) + ",";
 		
 		// visit every single vertex in the array
-		for (int i = 0; i < this.vertex_array.length; i++) {
+		for (int i = 0; i < this.vertex_array.length; i++) 
+		{
 			/*
 			 * Loop around edges of current vertex and create array list which stores the
 			 * amount of edges of the vertex
@@ -58,14 +61,16 @@ public class MonsterAi extends Graph{
 			ArrayList<GraphEdge> current_vertex_edges = this.vertex_array[next_vertex].get_edges();
 
 			// Investigate all connected vertex to current vertex
-			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++) {
+			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++) 
+			{
 				/*
 				 *  Pull the index of the neighbour from the (from/to) neighbour node
 				 */
 				int neighbour = current_vertex_edges.get(edge_link).find_neighbour(next_vertex);
 
 				// Check the unsettled node
-				if (!this.vertex_array[neighbour].is_settled()) {
+				if (!this.vertex_array[neighbour].is_settled()) 
+				{
 					/*
 					 *  Figure out how far this index is from the source node
 					 */
@@ -93,19 +98,22 @@ public class MonsterAi extends Graph{
 		}
 	}
 
-	private int get_shortest_distance() {
+	private int get_shortest_distance() 
+	{
 		// Declare function variables
 		int temp_vertex = 0;
 		int temp_distance = Integer.MAX_VALUE;
 
 		// Check each vertex
-		for (int i = 0; i < this.vertex_array.length; i++) {
+		for (int i = 0; i < this.vertex_array.length; i++) 
+		{
 			// Hold the value of the current vertices distance from the source
 			int current_distance = this.vertex_array[i].get_distance_from_source();
 
 			// If the current vertex is not settled and its distance is so far
 			// the lowest
-			if (!this.vertex_array[i].is_settled() && current_distance < temp_distance) {
+			if (!this.vertex_array[i].is_settled() && current_distance < temp_distance) 
+			{
 				// Set the new lowest distance value
 				temp_distance = current_distance;
 				// Store this vertex as a reference
@@ -115,5 +123,4 @@ public class MonsterAi extends Graph{
 		// Return the vertex with the smallest value
 		return temp_vertex;
 	}
-
 }

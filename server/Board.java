@@ -63,11 +63,6 @@ public class Board
 			}
 			x++;
 		}
-		/*
-		 * for (int x = 0; x < dimensions; x++) { for (int y = 0; y < dimensions; y++)
-		 * out += ":" + BoardTiles[x][y].toString(); // New line System.out.println("");
-		 * }
-		 */
 	}
 
 	// Customize the board dimensions

@@ -42,7 +42,8 @@ public class GraphEdge {
 	}
 	
 	// get the length of the edge
-	public int getLength() {
+	public int getLength() 
+	{
 		return length;
 	}
 	

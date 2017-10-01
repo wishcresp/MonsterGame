@@ -14,13 +14,5 @@ public class TestRunner
 			System.out.println(failure.toString());
 
 		System.out.println(result.wasSuccessful());
-		
-		// OH BOY I HOPE THIS WORKS
-		Result result2 = JUnitCore.runClasses(MonsterGameExceptionTest.class);
-
-		for (Failure failure : result.getFailures())
-			System.out.println(failure.toString());
-
-		System.out.println(result.wasSuccessful());
 	}
 }
