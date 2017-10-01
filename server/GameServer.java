@@ -36,11 +36,13 @@ public class GameServer extends Thread
 		// Amount of players to join
 		player_target = players.get_player_target();
 	
-		// Try to print out the string representation of the board
-		System.out.println("\n" + board.get_layout());		
+		
 		
 		// Generate the game board
 		board.create_board();
+		
+		// Try to print out the string representation of the board
+		System.out.println("\n" + board.get_layout());		
 		
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
 		board.build_board_graph();	
