@@ -22,10 +22,10 @@ public abstract class Entity {
 	public Entity() 
 	{
 		/*
-		 * 0 = LEFT 
-		 * 1 = UP 
-		 * 2 = RIGHT 
-		 * 3 = DOWN
+		 * 0 = UP 
+		 * 1 = DOWN 
+		 * 2 = LEFT 
+		 * 3 = RIGHT
 		 */
 		direction = 0;
 		desired_direction = 0;
@@ -46,29 +46,30 @@ public abstract class Entity {
 		 */
 		switch (direction) 
 		{		
-		case 0: // (x, y - 1) LEFT
+		
+		case 0: // (x - 1, y) UP
+			if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
+				// Update the player position if valid
+				this.set_pos_x(this.get_pos_x() - 1);
+			break;
+			
+		case 1: // (x + 1, y) DOWN
+			if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
+				// Update the player position if valid
+				this.set_pos_x(this.get_pos_x() + 1);
+			break;
+			
+		case 2: // (x, y - 1) LEFT
 			if (check_move(this.get_pos_x(), this.get_pos_y() - 1))
 				
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() - 1);
 			break;
-		
-		case 1: // (x - 1, y) UP
-			if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
-				// Update the player position if valid
-				this.set_pos_x(this.get_pos_x() - 1);
-			break;
-
-		case 2: // (x, y + 1) RIGHT
+			
+		case 3: // (x, y + 1) RIGHT
 			if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() + 1);
-			break;
-
-		case 3: // (x + 1, y) DOWN
-			if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
-				// Update the player position if valid
-				this.set_pos_x(this.get_pos_x() + 1);
 			break;
 			
 		default:
@@ -80,7 +81,11 @@ public abstract class Entity {
 		output += this.get_pos_x() + "," + this.get_pos_y() + "\n";
 		System.out.println(output);
 	}
+	
+	static Board board;
+	static GameState gamestate;
 
+	
 	public boolean check_move(int x, int y) 
 	{
 		/*
@@ -90,8 +95,24 @@ public abstract class Entity {
 		 * does not contain a player.
 		 */
 		
+		board = gamestate.get_board();		
 		
-	
+		int[][] board_array = new int[11][11];
+		
+		board_array = board.get_board_array();
+				
+		// If player hits a wall, return false
+		if (board_array[x][y] == -1)
+		{
+			System.out.println("Hitting a wall");
+			return false;
+		}
+		
+		
+		
+		
+		
+		
 		
 		
 		return true;

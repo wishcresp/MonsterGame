@@ -6,8 +6,6 @@ public class GameState
 	static Players players = new Players();
 	static Board board = new Board();
 	static Player player = new Player();
-	static BoardBuilder boardBuilder = new BoardBuilder();
-
 	
 	private GameState() 
 	{
@@ -31,15 +29,6 @@ public class GameState
 	public Entity get_player()
 	{
 		return this.player;
-	}
-	
-	/*
-	 * This too 
-	 * -Michael
-	 */
-	public BoardBuilder get_boardBuilder()
-	{
-		return this.boardBuilder;
 	}
 	
 	public boolean is_running()
