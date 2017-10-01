@@ -2,7 +2,10 @@
  * until I learn how to use sprites instead. - Sean */
 
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UIBoard extends Pane
 {
@@ -45,22 +48,28 @@ public class UIBoard extends Pane
 			}
 		}
 		
+//		/* Test code adding image to index 0,0. */
+//		Image image = new Image("monster.png");
+//		ImageView imageview = new ImageView(image);
+//		board.add(imageview, 0, 0);
 		
-		/*
-		for (int i = 0; i < Players.get_player_count(); i++)
+		Players players;
+		players = GameState.get_instance().get_players();
+		
+		for (int i = 0; i < players.get_player_count(); i++)
 		{
-			Player player = Players.get_player(i);
-			board.add(new UICell(2), player.x, player.y);
-		}*/
-		
-		/* Adds Players */
-		board.add(new UICell(2), 1, 1);
-		board.add(new UICell(2), 1, 9);
-		board.add(new UICell(2), 9, 1);
-		board.add(new UICell(2), 9, 9);
-		
-		/* Adds Monster */
-		board.add(new UICell(3), 5, 5);
+			Entity player = players.get_player(i);
+			board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
+		}
+
+//		/* Adds Players */
+//		board.add(new UICell(2), 1, 1);
+//		board.add(new UICell(2), 1, 9);
+//		board.add(new UICell(2), 9, 1);
+//		board.add(new UICell(2), 9, 9);
+//		
+//		/* Adds Monster */
+//		board.add(new UICell(3), 5, 5);
 		
 		/* Adds Portals*/
 		board.add(new UICell(4), 0, 5);

@@ -21,8 +21,17 @@ public class NetClient extends Thread
 		try
 		{
 			// Wait for user to enter IP
-			while (game_state.get_server_ip() == "");
-			
+			while (game_state.get_server_ip() == "")
+			{
+				try {
+					Thread.sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+					System.out.println("There was an interupt while waiting for IP.");
+					System.out.println(e.getMessage());
+				}
+			}
 			
 			System.out.println("Got IP "+game_state.get_server_ip()+"...");
 
