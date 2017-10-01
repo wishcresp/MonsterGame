@@ -13,7 +13,7 @@ public class Players
 	}
 	
 	// TODO: Have this load from file like the game board
-	private String[] avaliable_spots = {"2,2", "2,10", "10,2", "10,10"};
+	private String[] avaliable_spots = {"1,1", "1,9", "9,1", "9,9"};
 	
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
@@ -22,7 +22,6 @@ public class Players
 	
 	private Entity players[];
 	private Player test[];
-
 
 	// Player target
 	public int get_player_target()
@@ -68,7 +67,7 @@ public class Players
 	{
 		// Create some empty objects
 		int i;
-		players = new Entity[player_target+1]; // One extra for the monster
+		players = new Entity[player_target + 1]; // One extra for the monster
 		for (i = 0; i < player_target; i++)
 			players[i] = null; // These actual objects will be created by the connection
 			                   // handler threads
@@ -109,10 +108,6 @@ public class Players
 			player_string += Integer.toString(test[i].get_pos_y());
 			player_string += ";";
 		}
-
 		return player_string;
-	}
-
-	
-	
+	}	
 }
