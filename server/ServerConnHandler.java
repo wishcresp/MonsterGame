@@ -70,7 +70,7 @@ public class ServerConnHandler extends ConnHandler
 												// position
 		player.set_pos_y(Integer.valueOf(xy[1]));
 
-		players.add_player(player); // Finally add the player to the object
+		players.add_player(player); // Finally add the player to the game state
 
 		GameState game_state = GameState.get_instance();
 		

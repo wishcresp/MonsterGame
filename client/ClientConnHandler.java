@@ -39,15 +39,12 @@ public class ClientConnHandler extends ConnHandler
 		player.set_name(get_string());
 		
 		
-		
-		// Wait for list of avaliable spots...
-		get_string();
-		
-		
 		GameState game_state = GameState.get_instance();
-		while (game_state.is_running() == false)
-			Thread.sleep(100); // Wait for the game to start
 		
+		// Wait for list of avaliable spots then set it in gamestate
+		game_state.set_avaliable_spots(get_string());
+		
+
 		while (game_state.is_running())
 		{
 			// Send our direction

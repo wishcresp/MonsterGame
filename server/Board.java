@@ -54,9 +54,34 @@ public class Board
 		// on the `BoardTiles` array
 	}
 
+	
+	public void load_layout(String layout)
+	{
+		int x = 0;
+		for (String row: layout.split("\n"))
+		{
+			
+			int y = 0;
+			for (String element: row.split(":"))
+			{
+				BoardTiles[x][y].fromString(element);
+				y++;
+			}
+			x++;
+		}
+		
+	/*	for (int x = 0; x < dimensions; x++)
+		{
+			for (int y = 0; y < dimensions; y++)
+				out += ":" + BoardTiles[x][y].toString();
+			// New line
+			System.out.println("");
+		}*/
+
+	}
+	
 	public void load_board(String gameboard) 
 	{
-		// TODO: Write code to load in the game board from string
 
 		// Index for game board
 		int x, y;

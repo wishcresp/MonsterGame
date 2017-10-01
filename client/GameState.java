@@ -4,7 +4,7 @@ public class GameState
 	private static GameState gamestate = new GameState(); // Make this a singleton
 	private boolean is_running = false;
 	private boolean is_ready = false; // Wait for client to send all relevant information
-
+	private String avaliable_spots = "";
 	
 	
 	static Players players = new Players();
@@ -16,6 +16,21 @@ public class GameState
 		return;
 	}
 	
+
+	public String get_avaliable_spots() 
+	{
+		return avaliable_spots;
+	}
+
+	public void set_avaliable_spots(String avaliable_spots)
+	{
+		this.avaliable_spots = avaliable_spots;
+	}
+
+
+
+
+
 	public Players get_players()
 	{
 		return this.players;
