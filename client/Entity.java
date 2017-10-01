@@ -21,7 +21,7 @@ public abstract class Entity
 	
 	private int direction;
 	private int desired_direction;
-	public int x, y;
+	private int pos_x, pos_y;
 	private String name;
 	
 	
@@ -32,8 +32,6 @@ public abstract class Entity
 	{
 		direction = 0;
 		desired_direction = 0;
-		x = -1; // These need to be set elsewhere
-		y = -1;
 	}
 	
 	public String get_name()
@@ -65,6 +63,26 @@ public abstract class Entity
 	public void set_ddir(int ddir)
 	{
 		this.desired_direction = ddir;
+	}
+	
+	public int get_pos_x() 
+	{
+		return this.pos_x;
+	}
+
+	public void set_pos_x(int pos_x) 
+	{
+		this.pos_x = pos_x;
+	}
+
+	public int get_pos_y() 
+	{
+		return this.pos_y;
+	}
+
+	public void set_pos_y(int pos_y) 
+	{
+		this.pos_y = pos_y;
 	}
 
 }
