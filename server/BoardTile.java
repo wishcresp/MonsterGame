@@ -45,4 +45,11 @@ public class BoardTile
 		else
 			return "0";
 	}
+	public void fromString(String element) 
+	{
+		if (element == "_")
+			this.wall = true;
+		else
+			this.wall = false;
+	}
 }
