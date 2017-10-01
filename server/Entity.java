@@ -84,7 +84,7 @@ public abstract class Entity {
 	
 	static Board board;
 	static GameState gamestate;
-
+	int dimensions = 11;
 	
 	public boolean check_move(int x, int y) 
 	{
@@ -94,10 +94,10 @@ public abstract class Entity {
 		 * Check if (5,9) exists as a coordinate (not -1) and 
 		 * does not contain a player.
 		 */
-		
+		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
 		
-		int[][] board_array = new int[11][11];
+		int[][] board_array = new int[dimensions][dimensions];
 		
 		board_array = board.get_board_array();
 				
@@ -106,14 +106,7 @@ public abstract class Entity {
 		{
 			System.out.println("Hitting a wall");
 			return false;
-		}
-		
-		
-		
-		
-		
-		
-		
+		}	
 		
 		return true;
 	}

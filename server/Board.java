@@ -116,7 +116,7 @@ public class Board
 	 */
 	
 	// create a java int array
-	 int[][] board_array = new int[dimensions][dimensions];
+ int[][] board_array = new int[dimensions][dimensions];
 		
 	/*
 	 * This is important for translating coordinates to their corresponding node
@@ -210,7 +210,7 @@ public class Board
 		}
 	}
 	
-	public int[][] get_board_array()
+	public  int[][] get_board_array()
 	{
 		return board_array;
 	}
