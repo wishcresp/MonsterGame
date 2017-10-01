@@ -4,9 +4,6 @@ import java.io.*;
 public class NetClient extends Thread
 {
 	private ServerSocket sock;
-	private int conn_target; // Update from the Players Singleton
-	                         // for internal use only
-	private int max_conn_target;
 
 	public NetClient(int port)
 	{
@@ -19,58 +16,30 @@ public class NetClient extends Thread
 		{
 			e.printStackTrace();
 		}
-		
-
-		Players players = GameState.get_instance().get_players();	
-
-		conn_target = 1; // Get the initial connection then have them
-		                 // set the proper value
-		
-		this.max_conn_target = players.get_max_players();
 	}
 
 	public void run()
 	{
-		int conn_count = 0; // TODO: Have some way to decrement on drop out
-		Thread[] conns = new ClientConnHandler[this.max_conn_target];
-		Players players = GameState.get_instance().get_players();	
-		
-		
-		System.out.println("Started server thread.");
+		System.out.println("Started client thread.");
 
-		for (int i = 0; i < this.conn_target; i++)
+		ConnHandler chandle;
+		
+		try
 		{
-			try
-			{
-				System.out.println("Waiting for a client on "+sock.getLocalPort()+"...");
+			System.out.println("Waiting for a client on "+sock.getLocalPort()+"...");
 
-				Socket conn = sock.accept();
+			Socket conn = sock.accept();
 
-				conns[i] = new ClientConnHandler(conn, conn_count);
-				conns[i].start();
-				conn_count++;
-				
-				if (i == 0) // If this is the first connection
-					        // wait for the player to set the conn_target
-				{
-					while (players.get_player_target() == -1)
-						Thread.sleep(100);
-					this.conn_target = players.get_player_target();									
-				}
-				/*
-				 * Unfortunately the first connecting player has to set the player
-				 * target before other players can connect
-				 */
-				
-
-			}
-			catch (IOException | InterruptedException e)
-			{
-				e.printStackTrace();
-			}
+			chandle = new ClientConnHandler(conn, 0);
+			chandle.start();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 		
-		// Once all the threads are started, start the game and die
+		// Once we're connected, set the game state to running
+		// TODO: Maybe change this to another condition
 		GameState.get_instance().change_run_state(true);
 	}
 

@@ -22,7 +22,7 @@ public class ClientConnHandler extends ConnHandler
 		
 		// TODO: Client interaction and player setup
 		
-		if (this.id == 0) // If this is the first player to connect
+		if (this.id == 0) // If we're the first player to connect
 		{
 			new_player_target = Integer.valueOf(get_string());
 			
