@@ -42,8 +42,6 @@ public class GameServer extends Thread
 	
 		board.create_board_array();
 		board.build_board_graph();	
-		
-		
 	}
 		
 	public static void GameLoop() throws InterruptedException
