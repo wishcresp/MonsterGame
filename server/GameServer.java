@@ -40,10 +40,10 @@ public class GameServer extends Thread
 		// Generate the game board
 		board.create_board();
 	
-		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
-		board.build_board_graph();	
-				
 		board.create_board_array();
+		board.build_board_graph();	
+		
+		
 	}
 		
 	public static void GameLoop() throws InterruptedException
