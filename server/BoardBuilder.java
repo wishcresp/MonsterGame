@@ -15,6 +15,12 @@ public class BoardBuilder
 	 */
 	public static void create_coordinate_array() 
 	{
+		int x,y;
+		for (x = 0; x < intArray.length; x++)
+			for (y = 0; y < intArray.length; y++)
+				intArray[x][y] = -1;
+
+		
 		// Assign elements to the array
 		/*
 		 * Row 1

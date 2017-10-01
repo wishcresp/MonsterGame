@@ -7,8 +7,22 @@ public class TestRunner
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting up JUnit tests...");
+		Result result;
+		
+		/*
+		 * ConnHandlerTest
+		 */
+		result = JUnitCore.runClasses(ConnHandlerTest.class);
 
-		Result result = JUnitCore.runClasses(ConnHandlerTest.class);
+		for (Failure failure : result.getFailures())
+			System.out.println(failure.toString());
+
+		System.out.println(result.wasSuccessful());
+
+		/*
+		 * MonsterAiTest
+		 */
+		result = JUnitCore.runClasses(MonsterAiTest.class);
 
 		for (Failure failure : result.getFailures())
 			System.out.println(failure.toString());
