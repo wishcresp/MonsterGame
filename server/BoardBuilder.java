@@ -7,7 +7,7 @@
 public class BoardBuilder 
 {
 	// create a java int array
-	static int[][] intArray = new int[10][10];
+	static int[][] intArray = new int[11][11];
 
 	/*
 	 * This is important for translating coordinates
@@ -15,9 +15,10 @@ public class BoardBuilder
 	 */
 	public static void create_coordinate_array() 
 	{
-		int x,y;
-		for (x = 0; x < intArray.length; x++)
-			for (y = 0; y < intArray.length; y++)
+		
+		// Initialize all spaces to -1 
+		for (int x = 0; x < intArray.length; x++)
+			for (int y = 0; y < intArray.length; y++)
 				intArray[x][y] = -1;
 
 		
@@ -92,8 +93,13 @@ public class BoardBuilder
 		intArray[9][9] = 44;
 
 		// print int array DEBUG
-		for (int i = 0; i < intArray.length; i++)
-			System.out.println(intArray[i]);
+		// Initialize all spaces to -1 
+		for (int x = 0; x < intArray.length; x++)
+		{
+			for (int y = 0; y < intArray.length; y++)
+				System.out.print("[" + intArray[x][y] + "]");
+			System.out.println("");
+		}
 	}
 
 	public static void load_board(String gameboard, int dimensions, BoardTile[][] BoardTiles) 
