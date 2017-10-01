@@ -10,11 +10,17 @@ public class EntityTest
 	@Test
 	public void test_player_movement() 
 	{
+		/*
+		 * Get instances to prevent static variables
+		 */
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();
 
-		// Test player 1
+		/*
+		 * Set direction to Right and move, it should move normally
+		 */
 		Player Player1 = new Player();
+		
 		// Setup player coordinate
 		Player1.set_pos_x(1);
 		Player1.set_pos_y(1);
@@ -33,7 +39,7 @@ public class EntityTest
 		Player2.set_pos_y(1);
 
 		// Down
-		Player2.set_dir(2);
+		Player2.set_dir(1);
 		Player2.move();
 	}
 }

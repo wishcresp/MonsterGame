@@ -12,7 +12,7 @@ public class GameServer extends Thread
 	public static void main(String[] args) throws InterruptedException
 	{
 		// Startup the threads
-		int port = 6432;
+		int port = 3216;
 		Thread listener = new NetServer(port);
 		listener.start();
 		
@@ -42,8 +42,6 @@ public class GameServer extends Thread
 	
 		board.create_board_array();
 		board.build_board_graph();	
-		
-		
 	}
 		
 	public static void GameLoop() throws InterruptedException
