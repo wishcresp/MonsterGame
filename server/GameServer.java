@@ -47,11 +47,14 @@ public class GameServer extends Thread
 		System.out.println("\n" + board.get_layout());		
 		
 		// THIS IS TESTING OUT MY BRAND NEW NETWORK GRAPH
-		board.build_board_graph();	
+		BoardBuilder.build_board_graph();	
 		
 		Player testPlayer = new Player();
 		
 		player.move(testPlayer);
+		
+		
+		BoardBuilder.create_coordinate_array();
 	}
 		
 	public static void GameLoop() throws InterruptedException
