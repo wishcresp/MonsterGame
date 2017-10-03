@@ -39,29 +39,10 @@ public class UIWindow extends Application
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
-	
-		
-<<<<<<< HEAD
-		
-		
 		// DEBUG SHIT
 //		game_state.set_server_ip("127.0.0.1");
 //		game_state.set_server_port(3216);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-=======
->>>>>>> 6f1809f6aa7a1b50a87e3a12e6c0c2f820420315
+
 		/* Creates Game Board UI */
 		board = new UIBoard();
 		game_window = new BorderPane(); 
