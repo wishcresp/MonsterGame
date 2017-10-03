@@ -29,6 +29,16 @@ public class ClientConnHandler extends ConnHandler
 		{
 			// Wait for the user to set the player target
 			while (players.get_player_target() == -1);
+			{
+				try {
+					Thread.sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+					System.out.println("There was an interupt while waiting for player target.");
+					System.out.println(e.getMessage());
+				}
+			}
 			
 			send_string(String.valueOf(players.get_player_target()));
 		}
@@ -47,6 +57,17 @@ public class ClientConnHandler extends ConnHandler
 		
 		// Send back the selected spot
 		while (players.get_starter_spot() == "");
+		{
+			try {
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				System.out.println("There was an interupt while waiting for starting spot.");
+				System.out.println(e.getMessage());
+			}
+		}
+		
 		send_string(players.get_starter_spot());
 		
 
