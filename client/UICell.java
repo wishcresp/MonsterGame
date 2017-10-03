@@ -20,7 +20,7 @@ public class UICell extends Pane
 	public UICell(int type)
 	{
 		this.setPrefSize(2000, 2000);
-		init_cell(type);
+		initCell(type);
 		
 		/*if (type == 2)
 		{
@@ -31,7 +31,7 @@ public class UICell extends Pane
 		}*/
 	}
 	
-	public void init_cell(int type)
+	public void initCell(int type)
 	{
 		switch (type)
 		{

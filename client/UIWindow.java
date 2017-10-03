@@ -44,8 +44,8 @@ public class UIWindow extends Application
 		
 		
 		// DEBUG SHIT
-		game_state.set_server_ip("127.0.0.1");
-		game_state.set_server_port(3216);
+//		game_state.set_server_ip("127.0.0.1");
+//		game_state.set_server_port(3216);
 		
 		
 		
@@ -65,7 +65,6 @@ public class UIWindow extends Application
 		game_window.setCenter(board.getBoard());
 		Scene game_scene = new Scene(game_window, 500, 500);
 		game_stage.setScene(game_scene);
-		
 		
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();

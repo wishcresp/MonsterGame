@@ -59,7 +59,10 @@ public class UIBoard extends Pane
 		for (int i = 0; i < players.get_player_count(); i++)
 		{
 			Entity player = players.get_player(i);
-			board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
+			if (player instanceof Monster)
+				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
+			else
+				board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
 		}
 
 //		/* Adds Players */
@@ -72,10 +75,10 @@ public class UIBoard extends Pane
 //		board.add(new UICell(3), 5, 5);
 		
 		/* Adds Portals*/
-		board.add(new UICell(4), 0, 5);
-		board.add(new UICell(4), 5, 0);
-		board.add(new UICell(4), 10, 5);
-		board.add(new UICell(4), 5, 10);
+		board.add(new ImageView(new Image("triangle_left.png", 45, 45, false, false)), 0, 5);
+		board.add(new ImageView(new Image("triangle_up.png", 45, 45, false, false)), 5, 0);
+		board.add(new ImageView(new Image("triangle_right.png", 45, 45, false, false)), 10, 5);
+		board.add(new ImageView(new Image("triangle_down.png", 45, 45, false, false)), 5, 10);
 	}
 	
 	public GridPane getBoard()
