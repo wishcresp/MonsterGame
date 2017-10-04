@@ -203,7 +203,7 @@ public class UIWindow extends Application
 		});
 		
 		/* When three players are selected. */
-		btn_num_two.setOnAction(new EventHandler<ActionEvent>()
+		btn_num_three.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
@@ -216,7 +216,7 @@ public class UIWindow extends Application
 		});
 		
 		/* When four players are selected. */
-		btn_num_two.setOnAction(new EventHandler<ActionEvent>()
+		btn_num_four.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
@@ -235,6 +235,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				System.out.println("PC_ID is: " + PC_id);
 				players.get_player(PC_id).set_name(name_entry.getText());
 				reg_stage.hide();
 				sp_stage.show();
