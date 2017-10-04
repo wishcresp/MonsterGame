@@ -45,13 +45,18 @@ public class ClientConnHandler extends ConnHandler
 			
 			send_string(String.valueOf(players.get_player_target()));
 		}
+		// Otherwise get the player target
+		players.set_player_target(Integer.valueOf(get_string()));
+		players.create_players(); 
+	
 		
-		// Create this player's object
+		// Get this player's object
 		Entity player = players.get_player(this.id);
+			
+		while (player.get_name() == "")
+			Thread.sleep(100);
 		
-		// Set their name
-		player.set_name(get_string());
-		
+		send_string(player.get_name());
 		
 
 		// Wait for list of avaliable spots then set it in gamestate
@@ -79,7 +84,15 @@ public class ClientConnHandler extends ConnHandler
 			// Send our direction
 			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
 
-			// TODO: Get player x and ys from server
+
+			String[] coords = get_string().split(":"); // TODO: Get player x and ys from server
+			for (int i = 0; i < players.get_player_count(); i++)
+			{
+				String[] xy = coords[i].split(",");
+				players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
+				players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
+				players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
+			}
 			
 		
 			Thread.sleep(100);

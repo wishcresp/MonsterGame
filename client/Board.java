@@ -112,6 +112,7 @@ public class Board
 				y++;
 			}
 			x++;
+			
 		}
 		
 	/*	for (int x = 0; x < dimensions; x++)
