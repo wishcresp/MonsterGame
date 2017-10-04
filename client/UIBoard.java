@@ -17,10 +17,9 @@ public class UIBoard extends Pane
 	{
 		this.board_width = 11;
 		this.board_height = 11;
-		initialize_board();
 	}
 	
-	public void initialize_board()
+	public void update_board()
 	{
 		board = new GridPane();
 		
@@ -47,11 +46,6 @@ public class UIBoard extends Pane
 				}
 			}
 		}
-		
-//		/* Test code adding image to index 0,0. */
-//		Image image = new Image("monster.png");
-//		ImageView imageview = new ImageView(image);
-//		board.add(imageview, 0, 0);
 		
 		Players players;
 		players = GameState.get_instance().get_players();

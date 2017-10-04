@@ -31,6 +31,7 @@ public class UIWindow extends Application
 	
 	private int PC_id;	
 	private Players players;
+	private String[] poses;
 	
 	@Override
 	public void start(Stage game_stage)
@@ -89,7 +90,6 @@ public class UIWindow extends Application
 		Scene num_scene = new Scene(num_window, 500, 500);
 		num_stage.setScene(num_scene);
 		
-		
 		/* Creates Registration Window */
 		Stage reg_stage = new Stage();
 		Label name_label = new Label("Enter your name:");
@@ -123,7 +123,6 @@ public class UIWindow extends Application
 		sp_window.add(btn_sp_four, 1, 2);
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		sp_stage.setScene(sp_scene);
-		
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
@@ -239,17 +238,52 @@ public class UIWindow extends Application
 			{
 				System.out.println("PC_ID is: " + PC_id);
 				players.get_player(PC_id).set_name(name_entry.getText());
+
+				while (poses != null)
+				{
+					poses = players.get_starter_spot().split(":");
+					System.out.println("Waiting for poses");
+					try { Thread.sleep(100); } catch (Exception ex) { }
+				}
+				
 				reg_stage.hide();
 				sp_stage.show();
 			}
 		});
 		
 		/* When position confirm button is pressed. */
-		btn_sp_two.setOnAction(new EventHandler<ActionEvent>()
+		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
 			{
+				poses = players.get_starter_spot().split(":");	
+				players.set_starter_spot(poses[0]);
+				
+				sp_stage.hide();
+				game_stage.show();
+				game_stage.setTitle("Monster Game - Player: " + 
+						players.get_player(PC_id).get_name());
+				game_window.requestFocus();
+			}
+		});
+		
+		/* When position confirm button is pressed. */
+		btn_sp_two.setOnAction(new EventHandler<ActionEvent>()
+		{			
+			@Override
+			public void handle(ActionEvent e)
+			{
+				poses = players.get_starter_spot().split(":");	
+				players.set_starter_spot(poses[1]);
+				
+				/*for (int i = 0; i < players.get_player_target(); i++)
+				{
+					String[] xy = poses[i].split(",");
+					int x = Integer.valueOf(xy[0]);
+					int y = Integer.valueOf(xy[1]);
+				}*/
+				
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -263,6 +297,9 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				poses = players.get_starter_spot().split(":");	
+				players.set_starter_spot(poses[2]);
+				
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -276,26 +313,25 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				poses = players.get_starter_spot().split(":");	
+				players.set_starter_spot(poses[3]);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
+				start_gameloop();
 			}
 		});
-		
-		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
+	}
+	
+	public void start_gameloop()
+	{
+		while (true)
 		{
-			@Override
-			public void handle(ActionEvent e)
-			{
-				GameState.get_instance().set_server_ip(ip_entry.getText());
-				game_stage.show();
-				game_stage.setTitle("Monster Game - Player: " + 
-						players.get_player(PC_id).get_name());
-				game_window.requestFocus();
-			}
-		});
+			board.update_board();
+			try { Thread.sleep(100); } catch (Exception ex) { }
+		}
 	}
 }
 
