@@ -79,7 +79,5 @@ public class GraphVertex
 	public void set_string_path(String string_path) 
 	{
 		this.string_path = string_path;
-	}
-	
-	
+	}	
 }

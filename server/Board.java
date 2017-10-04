@@ -314,6 +314,6 @@ public class Board
 
 		MonsterAi monster = new MonsterAi(edges, monster_position);
 		monster.find_shortest_path();
-		monster.print_result(monster_position);
-	}	
+		/*monster.print_result(monster_position);
+*/	}	
 }
