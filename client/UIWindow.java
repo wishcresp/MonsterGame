@@ -42,13 +42,15 @@ public class UIWindow extends Application
 		// DEBUG SHIT
 //		game_state.set_server_ip("127.0.0.1");
 //		game_state.set_server_port(3216);
-
+		
+		
 		/* Creates Game Board UI */
 		board = new UIBoard();
 		game_window = new BorderPane(); 
 		game_window.setCenter(board.getBoard());
 		Scene game_scene = new Scene(game_window, 500, 500);
 		game_stage.setScene(game_scene);
+		
 		
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
@@ -68,12 +70,9 @@ public class UIWindow extends Application
 		
 		Scene ip_scene = new Scene(ip_window, 500, 500);
 		ip_stage.setScene(ip_scene);
-
-		
 		
 		/* Creates Number of players input Window */
 		Stage num_stage = new Stage();
-		Label num_label = new Label("Enter IP Address:");
 		ip_entry = new TextField();
 		Button btn_num_two = new Button("Two");
 		Button btn_num_three = new Button("Three");
@@ -123,6 +122,7 @@ public class UIWindow extends Application
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		sp_stage.setScene(sp_scene);
 		
+		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
 		{
@@ -168,11 +168,11 @@ public class UIWindow extends Application
 				GameState.get_instance().set_server_ip(ip_entry.getText());
 				GameState.get_instance().set_server_port(Integer.parseInt(port_entry.getText()));
 				
+				/* Waits for server to allocate player ID*/
 				while (PC_id == -1)
 				{
-					/* It was not worth it */
-					PC_id = players.get_pc_id();
 					System.out.println("PC_id = -1");
+					PC_id = players.get_pc_id();
 					try { Thread.sleep(100); } catch (Exception err) { }
 				}
 				
