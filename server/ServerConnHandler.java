@@ -37,6 +37,11 @@ public class ServerConnHandler extends ConnHandler
 			// object init the players
 			players.create_players();
 		}
+		else
+		{
+				// Otherwise send over the player target
+				send_string(String.valueOf(players.get_player_target()));
+		}
 
 		// Create this player's object
 		Player player = new Player();
@@ -81,16 +86,22 @@ public class ServerConnHandler extends ConnHandler
 		{
 			// Get desired player.direction from client
 			String dir = get_string();
-			
 			// System.out.println("Setting player dir to "+dir);
 			dir = dir.replaceAll("\\D+", "");
-			
 			int direction = Integer.valueOf(dir);
-			
 			players.set_player_dir(id, direction);
 
 			
 			// TODO: Send players x and ys
+			String out = "";
+			for (int i = 0; i < players.get_player_target(); i++)
+			{
+				Entity cur = players.get_player(i);
+				out += String.valueOf(cur.get_pos_x())+","+String.valueOf(cur.get_pos_y());
+				out += ","+String.valueOf(cur.get_ddir());
+				out += ":";
+			}
+			send_string(out);
 			
 			
 			
