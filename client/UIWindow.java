@@ -32,11 +32,12 @@ public class UIWindow extends Application
 	private int PC_id;	
 	private Players players;
 	private String[] poses;
+	private GameState game_state;
 	
 	@Override
 	public void start(Stage game_stage)
 	{
-		GameState game_state = GameState.get_instance();
+		game_state = GameState.get_instance();
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
@@ -257,9 +258,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				poses = players.get_starter_spot().split(":");	
-				players.set_starter_spot(poses[0]);
-				
+				wait_avaliable_spots(0);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -274,16 +273,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				poses = players.get_starter_spot().split(":");	
-				players.set_starter_spot(poses[1]);
-				
-				/*for (int i = 0; i < players.get_player_target(); i++)
-				{
-					String[] xy = poses[i].split(",");
-					int x = Integer.valueOf(xy[0]);
-					int y = Integer.valueOf(xy[1]);
-				}*/
-				
+				wait_avaliable_spots(1);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -297,9 +287,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				poses = players.get_starter_spot().split(":");	
-				players.set_starter_spot(poses[2]);
-				
+				wait_avaliable_spots(2);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -313,8 +301,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				poses = players.get_starter_spot().split(":");	
-				players.set_starter_spot(poses[3]);
+				wait_avaliable_spots(3);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -323,6 +310,18 @@ public class UIWindow extends Application
 				start_gameloop();
 			}
 		});
+	}
+	
+	public void wait_avaliable_spots(int i)
+	{
+		while (game_state.get_avaliable_spots() == "")
+		{
+			System.out.println("Waiting for avaliable spots");
+			try { Thread.sleep(100); } catch (Exception ex) {}
+		}
+		poses = game_state.get_avaliable_spots().split(":");	
+		players.set_starter_spot(poses[i]);
+		
 	}
 	
 	public void start_gameloop()

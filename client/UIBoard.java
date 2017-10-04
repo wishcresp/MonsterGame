@@ -17,6 +17,7 @@ public class UIBoard extends Pane
 	{
 		this.board_width = 11;
 		this.board_height = 11;
+		update_board();
 	}
 	
 	public void update_board()
