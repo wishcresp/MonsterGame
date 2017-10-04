@@ -55,9 +55,10 @@ public class UIWindow extends Application
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
-		ip_entry = new TextField();
+		/* Temporary ip/port*/
+		ip_entry = new TextField("127.0.0.1");
 		Label port_label = new Label("Enter Port:");
-		port_entry = new TextField();
+		port_entry = new TextField("3216");
 		Button btn_ip = new Button("CONFIRM");
 		ip_stage.show();
 		
@@ -92,7 +93,8 @@ public class UIWindow extends Application
 		/* Creates Registration Window */
 		Stage reg_stage = new Stage();
 		Label name_label = new Label("Enter your name:");
-		name_entry = new TextField();
+		/* Temporary name */
+		name_entry = new TextField("A guy");
 		Button btn_name = new Button("CONFIRM");
 		reg_window = new BorderPane();
 		reg_window.setTop(name_label);
