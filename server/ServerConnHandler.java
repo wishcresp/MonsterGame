@@ -17,7 +17,9 @@ public class ServerConnHandler extends ConnHandler
 		send_string(Integer.toString(board.get_dimensions())); // Board
 																// dimensions
 		send_string(board.get_layout()); // Board layout
+		Thread.sleep(10);
 		send_string(Integer.toString(this.id)); // The client's ID
+		System.out.println("Sent the players ID");
 
 		// TODO: Client interaction and player setup
 

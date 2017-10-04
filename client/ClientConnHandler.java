@@ -47,6 +47,7 @@ public class ClientConnHandler extends ConnHandler
 		}
 		// Otherwise get the player target
 		players.set_player_target(Integer.valueOf(get_string()));
+		System.out.println("Got a new player target and set the player target to "+players.get_player_target());
 		players.create_players(); 
 	
 		
