@@ -37,13 +37,13 @@ public class UIBoard extends Pane
 				if (((i == 1 || i == 5 || i == 9) && j > 0 && j < 10) ||
 				((j == 1 || j == 5 || j == 9) && i > 0 && i < 10))
 				{
-					board.add(new UICell(1), i, j);
+					board.add(new ImageView(new Image("dirt.png", 45, 45, false, false)), i, j);
 				}
 				
 				/* Adds path cell*/
 				else
 				{
-					board.add(new UICell(0), i, j);
+					board.add(new ImageView(new Image("cobble.png", 45, 45, false, false)), i, j);
 				}
 			}
 		}

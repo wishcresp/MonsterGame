@@ -57,6 +57,7 @@ public class UIWindow extends Application
 		Label port_label = new Label("Enter Port:");
 		port_entry = new TextField();
 		Button btn_ip = new Button("CONFIRM");
+		ip_stage.show();
 		
 		ip_window = new GridPane();
 		ip_window.add(ip_label, 0, 0);
@@ -67,7 +68,7 @@ public class UIWindow extends Application
 		
 		Scene ip_scene = new Scene(ip_window, 500, 500);
 		ip_stage.setScene(ip_scene);
-		ip_stage.show();
+
 		
 		
 		/* Creates Number of players input Window */
@@ -170,6 +171,8 @@ public class UIWindow extends Application
 				while (PC_id == -1)
 				{
 					/* It was not worth it */
+					PC_id = players.get_pc_id();
+					System.out.println("PC_id = -1");
 					try { Thread.sleep(100); } catch (Exception err) { }
 				}
 				
