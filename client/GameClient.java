@@ -35,6 +35,7 @@ public class GameClient extends Thread
 	{		
 		board = GameState.get_instance().get_board();
 		players = GameState.get_instance().get_players();	
+		players.create_players();
 	}
 		
 	// TODO Do i need to try to avoid static????
