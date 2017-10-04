@@ -18,8 +18,11 @@ public class ClientConnHandler extends ConnHandler
 		
 		// Send game info to client
 		board.set_dimensions(Integer.valueOf(get_string())); // Board dimensions
+		System.out.println("Set board dimensions to "+board.get_dimensions());
 		board.load_layout(get_string()); // Board layout
+		System.out.println("Loaded gameboard");
 		this.id = Integer.valueOf(get_string()); // The client's ID
+		System.out.println("Got client's ID");
 		game_state.players.set_pc_id(this.id);
 
 		

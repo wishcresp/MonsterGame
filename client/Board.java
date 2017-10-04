@@ -22,7 +22,7 @@
 public class Board
 {
 	// Declare class variables
-	private int dimensions = 11;	// Board dimension set to 11 x 11
+	private int dimensions = 32;	// Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array	
 	
 	// Instantiate a new board object
@@ -45,14 +45,6 @@ public class Board
 		for (int x = 0; x < dimensions; x++)
 			for (int y = 0; y < dimensions; y++)
 				this.BoardTiles[x][y] = new BoardTile(null, false);	
-		
-		// DEBUG Trying to test something, remove if causing problems!
-		Player testPlayer = new Player();
-		set_tile(2, 3, testPlayer); // TODO: Instead of storing the player's location
-		                            // on the gameboard, simply store it as x and y
-		                            // coordinates that correspond to positions
-		                            // on the `BoardTiles` array
-		
 	}
 		
 
@@ -105,6 +97,7 @@ public class Board
 	}
 	public void load_layout(String layout)
 	{
+		this.create_board();
 		int x = 0;
 		for (String row: layout.split("\n"))
 		{
@@ -112,6 +105,9 @@ public class Board
 			int y = 0;
 			for (String element: row.split(":"))
 			{
+				if (x >= dimensions || y >= dimensions)
+					continue;
+				System.out.println("Setting cell "+x+","+y);
 				BoardTiles[x][y].fromString(element);
 				y++;
 			}

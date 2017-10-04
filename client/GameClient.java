@@ -33,7 +33,7 @@ public class GameClient extends Thread
 	
 	public static void Initialize()
 	{		
-		board = GameState.get_instance().get_board();		
+		board = GameState.get_instance().get_board();
 		players = GameState.get_instance().get_players();	
 	}
 		
