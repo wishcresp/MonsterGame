@@ -70,8 +70,6 @@ public class Players
 		for (i = 0; i < player_target; i++)
 			players[i] = null; // These actual objects will be created by the connection
 			                   // handler threads
-		i++;
-		
 		players[i] = new Monster();
 	}
 	

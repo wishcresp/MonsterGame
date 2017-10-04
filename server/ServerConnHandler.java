@@ -16,8 +16,9 @@ public class ServerConnHandler extends ConnHandler
 		// Send game info to client
 		send_string(Integer.toString(board.get_dimensions())); // Board
 																// dimensions
+		Thread.sleep(100);
 		send_string(board.get_layout()); // Board layout
-		Thread.sleep(10);
+		Thread.sleep(100);
 		send_string(Integer.toString(this.id)); // The client's ID
 		System.out.println("Sent the players ID");
 
@@ -44,6 +45,7 @@ public class ServerConnHandler extends ConnHandler
 				// Otherwise send over the player target
 				send_string(String.valueOf(players.get_player_target()));
 		}
+		Thread.sleep(100);
 
 		// Create this player's object
 		Player player = new Player();
