@@ -51,12 +51,20 @@ public abstract class Entity {
 			if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() - 1);
+			
+				// teleport to node 40
+				if (this.get_pos_x() == 0)
+					this.set_pos_x(9);
 			break;
 			
 		case 1: // (x + 1, y) DOWN
 			if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() + 1);
+			
+			// teleport to node 4
+			if (this.get_pos_x() ==10)
+					this.set_pos_x(1);
 			break;
 			
 		case 2: // (x, y - 1) LEFT
@@ -64,12 +72,22 @@ public abstract class Entity {
 				
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() - 1);
+
+				// Teleport to node 26
+				if (this.get_pos_y() == 0)
+					this.set_pos_y(9);
 			break;
-			
+
 		case 3: // (x, y + 1) RIGHT
 			if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
+			{	
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() + 1);
+				
+				// Teleport to node 18
+				if (this.get_pos_y() == 10)
+					this.set_pos_y(1);					
+			}	
 			break;
 			
 		default:
@@ -96,7 +114,6 @@ public abstract class Entity {
 		 */
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
-		
 		board.create_board_array();
 		
 		int[][] board_array = new int[dimensions][dimensions];

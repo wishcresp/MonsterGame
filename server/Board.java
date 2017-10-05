@@ -200,6 +200,19 @@ public class Board
 		board_array[9][9] = 44;
 
 
+		/*
+		 * Teleport links
+		 */
+		// from 4 -> 40
+		board_array[0][5] = -40;
+		// from 40 -> 4
+		board_array[10][5] = -4;
+		
+		// from 18 -> 26
+		board_array[5][0] = -26;
+		// from 26 -> 18
+		board_array[5][10] = -18;
+
 		
 		// print int array DEBUG
 
@@ -314,6 +327,6 @@ public class Board
 
 		MonsterAi monster = new MonsterAi(edges, monster_position);
 		monster.find_shortest_path();
-		/*monster.print_result(monster_position);
-*/	}	
+		/*monster.print_result(monster_position);*/
+	}	
 }
