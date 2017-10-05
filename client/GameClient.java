@@ -41,23 +41,23 @@ public class GameClient extends Thread
 	// idk lol, if it works it works...
 	public static void GameLoop() throws InterruptedException
 	{
-		GameState game_state = GameState.get_instance();
+//		GameState game_state = GameState.get_instance();
 		Application.launch(UIWindow.class);
 		/*
 		 *  Main Game Loop
 		 */
-		while (true)
-		{
-			while (game_state.is_running() == false)
-				Thread.sleep(100); // If the game isn't running, wait around
-
-			/*
-			 * TODO: EVERYTHING
-			 * Alright Sean you're up, have this draw the game board
-			 * and the players, also you're gonna needa read user input
-			 * and then player
-			 */
-			
-		}
+//		while (true)
+//		{
+//			while (game_state.is_running() == false)
+//				Thread.sleep(100); // If the game isn't running, wait around
+//
+//			/*
+//			 * TODO: EVERYTHING
+//			 * Alright Sean you're up, have this draw the game board
+//			 * and the players, also you're gonna needa read user input
+//			 * and then player
+//			 */
+//			
+//		}
 	}
 }

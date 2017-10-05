@@ -30,8 +30,9 @@ public class ClientConnHandler extends ConnHandler
 		
 		if (this.id == 0) // If we're the first player to connect
 		{
+			System.out.println("We're the first user");
 			// Wait for the user to set the player target
-			while (players.get_player_target() == -1);
+			while (players.get_player_target() == -1)
 			{
 				try {
 					Thread.sleep(100);
@@ -42,11 +43,16 @@ public class ClientConnHandler extends ConnHandler
 					System.out.println(e.getMessage());
 				}
 			}
+			System.out.println("Sending server player target");
 			
 			send_string(String.valueOf(players.get_player_target()));
 		}
-		// Otherwise get the player target
-		players.set_player_target(Integer.valueOf(get_string()));
+		else
+		{
+			// Otherwise get the player target
+			players.set_player_target(Integer.valueOf(get_string()));
+		}
+		System.out.println("Got a new player target and set the player target to "+players.get_player_target());
 		players.create_players(); 
 	
 		
@@ -56,15 +62,17 @@ public class ClientConnHandler extends ConnHandler
 		while (player.get_name() == "")
 			Thread.sleep(100);
 		
-		send_string(player.get_name());
 		
+		send_string(player.get_name());
+		System.out.println("Just sent name to server");
 
 		// Wait for list of avaliable spots then set it in gamestate
 		game_state.set_avaliable_spots(get_string());
+		System.out.println("Got list of avaliable spots from server");
 		
 		
 		// Send back the selected spot
-		while (players.get_starter_spot() == "");
+		while (players.get_starter_spot() == "")
 		{
 			try {
 				Thread.sleep(100);
@@ -77,13 +85,13 @@ public class ClientConnHandler extends ConnHandler
 		}
 		
 		send_string(players.get_starter_spot());
-		
+		System.out.println("Picked starter spot and sent off selection");
 
 		while (game_state.is_running())
 		{
 			// Send our direction
 			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
-
+			System.out.println("Sent direction");
 
 			String[] coords = get_string().split(":"); // TODO: Get player x and ys from server
 			for (int i = 0; i < players.get_player_count(); i++)
@@ -93,7 +101,7 @@ public class ClientConnHandler extends ConnHandler
 				players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
 				players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
 			}
-			
+			System.out.println("Set player pos and dir");
 		
 			Thread.sleep(100);
 

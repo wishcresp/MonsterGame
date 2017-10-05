@@ -71,9 +71,9 @@ public class Players
 	{
 		// Create some empty objects
 		int i;
-		players = new Entity[player_target]; // One extra for the monster
+		players = new Entity[player_target+1]; // One extra for the monster
 		for (i = 0; i < player_target; i++)
-			players[i] = null; // These actual objects will be created by the connection
+			players[i] = new Player(); // These actual objects will be created by the connection
 			                   // handler threads
 		players[i] = new Monster();
 	}

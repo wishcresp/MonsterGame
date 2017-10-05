@@ -31,11 +31,13 @@ public class UIWindow extends Application
 	
 	private int PC_id;	
 	private Players players;
+	private String[] poses;
+	private GameState game_state;
 	
 	@Override
 	public void start(Stage game_stage)
 	{
-		GameState game_state = GameState.get_instance();
+		game_state = GameState.get_instance();
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
@@ -55,9 +57,10 @@ public class UIWindow extends Application
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
-		ip_entry = new TextField();
+		/* Temporary ip/port*/
+		ip_entry = new TextField("127.0.0.1");
 		Label port_label = new Label("Enter Port:");
-		port_entry = new TextField();
+		port_entry = new TextField("3216");
 		Button btn_ip = new Button("CONFIRM");
 		ip_stage.show();
 		
@@ -88,11 +91,11 @@ public class UIWindow extends Application
 		Scene num_scene = new Scene(num_window, 500, 500);
 		num_stage.setScene(num_scene);
 		
-		
 		/* Creates Registration Window */
 		Stage reg_stage = new Stage();
 		Label name_label = new Label("Enter your name:");
-		name_entry = new TextField();
+		/* Temporary name */
+		name_entry = new TextField("A guy");
 		Button btn_name = new Button("CONFIRM");
 		reg_window = new BorderPane();
 		reg_window.setTop(name_label);
@@ -121,7 +124,6 @@ public class UIWindow extends Application
 		sp_window.add(btn_sp_four, 1, 2);
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		sp_stage.setScene(sp_scene);
-		
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
@@ -237,17 +239,41 @@ public class UIWindow extends Application
 			{
 				System.out.println("PC_ID is: " + PC_id);
 				players.get_player(PC_id).set_name(name_entry.getText());
+
+				while (poses != null)
+				{
+					poses = players.get_starter_spot().split(":");
+					System.out.println("Waiting for poses");
+					try { Thread.sleep(100); } catch (Exception ex) { }
+				}
+				
 				reg_stage.hide();
 				sp_stage.show();
 			}
 		});
 		
 		/* When position confirm button is pressed. */
-		btn_sp_two.setOnAction(new EventHandler<ActionEvent>()
+		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
 			{
+				wait_avaliable_spots(0);
+				sp_stage.hide();
+				game_stage.show();
+				game_stage.setTitle("Monster Game - Player: " + 
+						players.get_player(PC_id).get_name());
+				game_window.requestFocus();
+			}
+		});
+		
+		/* When position confirm button is pressed. */
+		btn_sp_two.setOnAction(new EventHandler<ActionEvent>()
+		{			
+			@Override
+			public void handle(ActionEvent e)
+			{
+				wait_avaliable_spots(1);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -261,6 +287,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				wait_avaliable_spots(2);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
@@ -274,26 +301,36 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				wait_avaliable_spots(3);
 				sp_stage.hide();
 				game_stage.show();
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
+				start_gameloop();
 			}
 		});
-		
-		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
+	}
+	
+	public void wait_avaliable_spots(int i)
+	{
+		while (game_state.get_avaliable_spots() == "")
 		{
-			@Override
-			public void handle(ActionEvent e)
-			{
-				GameState.get_instance().set_server_ip(ip_entry.getText());
-				game_stage.show();
-				game_stage.setTitle("Monster Game - Player: " + 
-						players.get_player(PC_id).get_name());
-				game_window.requestFocus();
-			}
-		});
+			System.out.println("Waiting for avaliable spots");
+			try { Thread.sleep(100); } catch (Exception ex) {}
+		}
+		poses = game_state.get_avaliable_spots().split(":");	
+		players.set_starter_spot(poses[i]);
+		
+	}
+	
+	public void start_gameloop()
+	{
+		while (true)
+		{
+			board.update_board();
+			try { Thread.sleep(100); } catch (Exception ex) { }
+		}
 	}
 }
 
