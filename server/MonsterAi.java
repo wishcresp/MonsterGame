@@ -31,57 +31,60 @@ public class MonsterAi extends Graph
 	 */
 	public void find_shortest_path() 
 	{
-		// This handles the source node, e.g. setting 0 as monster position
-		this.vertex_array[monster_position].set_distance_from_source(0);
+		// Create string path variable
+		int no_path = -1;
+		int monster_path;
+		int temp_path;
+				
+		// Set the source vertex to the monster position 
 		int next_vertex = monster_position;
+		this.vertex_array[monster_position].set_distance_from_source(0);
+		//this.vertex_array[monster_position].set_monster_path(no_path);
 
 		/*
 		 *  TODO for each time the algorithm makes its way towards the target, 
 		 *  build a path for each node as it moves towards it.
 		 *  For example, from source node (0) to target (2)
-		 *  node (0) should have a [0, distance = 0] 
-		 *  node (1) should have a [0-1, distance = 1] 
-		 *  node (2) should have a [0-1-2, distance = 2] 
+		 *  node (0) should have a ["", distance = 0] 
+		 *  node (1) should have a ["1", distance = 1] 
+		 *  node (2) should have a ["1", distance = 2] 
 		 *  
 		 *  When the node is unsettled, the new path will be applied to it.
 		 *  If the node is settled, then you cannot change the path on it
 		 *  I need to investigate the GraphVertex class for this
 		 */
-		
-		// Trying to create a string path
-		String string_path = Integer.toString(monster_position) + ",";
-		
-		// visit every single vertex in the array
+			
+		// visit every single vertex in the array (starting with the source)
 		for (int i = 0; i < this.vertex_array.length; i++) 
 		{
-			/*
-			 * Loop around edges of current vertex and create array list which stores the
-			 * amount of edges of the vertex
-			 */
+			// Loop around edges of current vertex to figure out which edges are connected to the vertex 
 			ArrayList<GraphEdge> current_vertex_edges = this.vertex_array[next_vertex].get_edges();
 
-			// Investigate all connected vertex to current vertex
+			// Investigate all the connected vertices to current vertex
 			for (int edge_link = 0; edge_link < current_vertex_edges.size(); edge_link++) 
 			{
-				/*
-				 *  Pull the index of the neighbour from the (from/to) neighbour node
-				 */
+				//  Figure out whether neighbour index belongs to [from] or [to] variable
 				int neighbour = current_vertex_edges.get(edge_link).find_neighbour(next_vertex);
 
-				// Check the unsettled node
+				// Investigate the unsettled vertex
 				if (!this.vertex_array[neighbour].is_settled()) 
 				{
-					/*
-					 *  Figure out how far this index is from the source node
-					 */
+					// TODO Set the initial direction next to the source
+					if (vertex_array[neighbour].get_monster_path() == -1)
+					{
+						System.out.println("NODE " + neighbour + " is set to -1");
+					}
+					
+					// Find distance of this vertex from the source
 					int unchecked_distance = this.vertex_array[next_vertex].get_distance_from_source() + 1;
-
+					
+					// If the distance is shorter than the existing distance
 					if (unchecked_distance < vertex_array[neighbour].get_distance_from_source())
 					{
+						// TODO This probably doesnt work as it should
+						vertex_array[neighbour].set_monster_path(no_path);
 						
-						vertex_array[neighbour].set_string_path(string_path);
-						
-						// Update the distance from the source if distance is less than previous distance
+						// Update the distance from the source with the shorter path
 						vertex_array[neighbour].set_distance_from_source(unchecked_distance);
 					}
 				}
@@ -90,8 +93,8 @@ public class MonsterAi extends Graph
 			// All neighbours have been checked so that means this vertex has been settled
 			vertex_array[next_vertex].set_settled(true);
 			
-			// Update the shortest string path
-			vertex_array[next_vertex].set_string_path(string_path);
+			// TODO This might not work - Update the shortest string path
+			vertex_array[next_vertex].set_monster_path(no_path);
 
 			// Find the next vertex with the shortest distance
 			next_vertex = get_shortest_distance();

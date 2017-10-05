@@ -17,7 +17,6 @@ public class MonsterAiTest
 {
 	int monster_position = 4;
 	
-	
 	@Test
 	public void test_monster() 
 	{
