@@ -14,9 +14,7 @@ import org.junit.Test;
  */
 
 public class MonsterAiTest 
-{
-	int monster_position = 4;
-	
+{	
 	//@Test
 	public void test_monster() 
 	{
@@ -31,16 +29,25 @@ public class MonsterAiTest
 					//new GraphEdge(5, 6), new GraphEdge(6, 7) 
 					};
 
-		MonsterAi monster = new MonsterAi(edges, monster_position);
-		monster.find_shortest_path();
-		monster.print_result(monster_position);
+		MonsterAi monster = new MonsterAi(edges);
+		
+		monster.set_monster_position(4); 
+
+		monster.calculate_shortest_path();
+		
+		
+		monster.print_result(monster.get_monster_position()); 
 	}
 
+	
+	static Board board;
+	static GameState gamestate;
+	
+	
 	@Test
 	public void test_gameboard() 
 	{
-		// Change this value for the source node position
-		int monster_position = 4;
+		//////////// CREATE GRAPH //////////////
 
 		GraphEdge[] edges = 
 			{
@@ -77,9 +84,43 @@ public class MonsterAiTest
 				// TELEPORTATION LINKS
 				new GraphEdge(4, 40), new GraphEdge(18, 26) 
 				};
+		
+		//////////// CREATE PLAYERS //////////////
+		/*
+		 * Get instances to prevent static variables
+		 */
+		gamestate = GameState.get_instance();
+		board = gamestate.get_board();
 
-		MonsterAi monster = new MonsterAi(edges, monster_position);
-		monster.find_shortest_path();
-		monster.print_result(monster_position); 
+		/*
+		 * Set direction to Right and move, it should move normally
+		 */
+		Player Player1 = new Player();
+		Player1.set_pos_x(1);
+		Player1.set_pos_y(1);
+
+
+		/*
+		 * Set direction to Down and move, it should not move due to a wall
+		 */
+		Player Player2 = new Player();
+		Player2.set_pos_x(9);
+		Player2.set_pos_y(1);
+		
+		//////////// TEST THE AI //////////////
+		
+		MonsterAi monster = new MonsterAi(edges);
+		
+		monster.set_monster_position(6); 
+
+		monster.calculate_shortest_path();
+		
+		/*
+		 * TODO What you need to do is get the player coordinates
+		 * and figure out which one is closest, then get the node
+		 * coordinate for the monster to move to
+		 */
+		
+		//monster.print_result(monster.get_monster_position()); 
 	}
 }

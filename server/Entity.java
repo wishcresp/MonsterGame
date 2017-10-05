@@ -112,9 +112,11 @@ public abstract class Entity {
 		 * Check if (5,9) exists as a coordinate (not -1) and 
 		 * does not contain a player.
 		 */
+		
+		// TODO BETTER OFF WITH GETTERS OR SEOMTHING
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
-		board.create_board_array();
+		board.create_associative_array();
 		
 		int[][] board_array = new int[dimensions][dimensions];
 		

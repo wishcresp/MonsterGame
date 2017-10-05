@@ -13,45 +13,35 @@ import java.util.ArrayList;
 
 public class MonsterAi extends Graph
 {
-	/*
-	 * Writing everything inside the graph class first, will move the algorithm
-	 * into this class as per the lucid chart design
-	 */
-	
+
 	int monster_position;
 
-	public MonsterAi(GraphEdge[] edge_array, int monster_position) 
+	public MonsterAi(GraphEdge[] edge_array) 
 	{
 		super(edge_array);
-		this.monster_position = monster_position;
+		// This is the center of the board, the starting position is 22 (5,5)
+		this.monster_position = 22;
 	}
 
+	// ACCESSORS AND MUTATORS //
+	public int get_monster_position() 
+	{
+		return monster_position;
+	}
+
+	public void set_monster_position(int monster_position) 
+	{
+		this.monster_position = monster_position;
+	}
+	
 	/*
 	 * **VVVVV** THIS IS WHERE I IMPLEMENT THE ALGORITHM **VVVVV**
 	 */
-	public void find_shortest_path() 
+	public void calculate_shortest_path() 
 	{
-		// Create string path variable
-		int no_path = -1;
-		int monster_path;
-		int temp_path;
-				
 		// Set the source vertex to the monster position 
 		int current_vertex = monster_position;
 		this.vertex_array[monster_position].set_distance_from_source(0);
-
-		/*
-		 *  TODO for each time the algorithm makes its way towards the target, 
-		 *  build a path for each node as it moves towards it.
-		 *  For example, from source node (0) to target (2)
-		 *  node (0) should have a ["", distance = 0] 
-		 *  node (1) should have a ["1", distance = 1] 
-		 *  node (2) should have a ["1", distance = 2] 
-		 *  
-		 *  When the node is unsettled, the new path will be applied to it.
-		 *  If the node is settled, then you cannot change the path on it
-		 *  I need to investigate the GraphVertex class for this
-		 */
 			
 		// visit every single vertex in the array (starting with the source)
 		for (int i = 0; i < this.vertex_array.length; i++) 
@@ -67,9 +57,7 @@ public class MonsterAi extends Graph
 
 				// Investigate the unsettled vertex
 				if (!this.vertex_array[neighbour].is_settled()) 
-				{
-					
-					
+				{					
 					// Find distance of this vertex from the source
 					int unchecked_distance = this.vertex_array[current_vertex].get_distance_from_source() + 1;
 					
@@ -78,22 +66,27 @@ public class MonsterAi extends Graph
 					{
 						// TODO Set the initial direction next to the source
 						// If the neighbour is (-1)
+						/*
+						 *  TODO for each time the algorithm makes its way towards the target, 
+						 *  build a path for each node as it moves towards it.
+						 *  For example, from source node (0) to target (2)
+						 *  node (0) should have a ["", distance = 0] 
+						 *  node (1) should have a ["1", distance = 1] 
+						 *  node (2) should have a ["1", distance = 2] 
+						 *  
+						 *  When the node is unsettled, the new path will be applied to it.
+						 *  If the node is settled, then you cannot change the path on it
+						 *  I need to investigate the GraphVertex class for this
+						 */
 						if (vertex_array[neighbour].get_monster_path() == -1)
 						{
 							// If the current vertex matches the source then fix the position
 							if (current_vertex == monster_position)
-							{
 								this.vertex_array[neighbour].set_monster_path(neighbour);
-							}
 							else
-							{
-								// TODO Set the path to the previous node
+								// Set the path to the previous node
 								this.vertex_array[neighbour].set_monster_path(this.vertex_array[current_vertex].get_monster_path());
-							}
-						}
-												
-						System.out.println("NODE " + neighbour + " is set to " + vertex_array[neighbour].get_monster_path());
-						
+						}											
 						// Update the distance from the source with the shorter path
 						vertex_array[neighbour].set_distance_from_source(unchecked_distance);
 					}
@@ -102,10 +95,7 @@ public class MonsterAi extends Graph
 
 			// All neighbours have been checked so that means this vertex has been settled
 			vertex_array[current_vertex].set_settled(true);
-			
-			// TODO This might not work - Update the shortest string path
-			//vertex_array[current_vertex].set_monster_path(no_path);
-
+		
 			// Find the next vertex with the shortest distance
 			current_vertex = get_shortest_distance();
 		}
