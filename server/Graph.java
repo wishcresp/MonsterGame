@@ -127,6 +127,20 @@ public class Graph
 		System.out.println(output);			
 	}	
 	
+	// Display the result, i need to see if this works
+	public void print_player_position(int source_node, int player_node) {
+		String output = "";
+		
+		output += ("\nDistance from vertex " + source_node + " to vertex " + player_node + " is "
+				+ vertex_array[player_node].get_distance_from_source());
+		output += ("\nThe direction set to this node is " + vertex_array[player_node].get_monster_path() + "\n");
+
+		// Print all the details
+		System.out.println(output);
+	}
+	
+	
+	
 	// ACCESSORS AND MUTATORS //
 	public GraphVertex[] get_vertex_array()
 	{

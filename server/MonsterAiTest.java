@@ -23,7 +23,6 @@ public class MonsterAiTest
 					new GraphEdge(0, 1), new GraphEdge(1, 4),
 					new GraphEdge(0, 2), new GraphEdge(2, 3), new GraphEdge(3, 4)
 					
-					
 					//new GraphEdge(1, 3), new GraphEdge(1, 4), new GraphEdge(1, 5), new GraphEdge(2, 4), 
 					//new GraphEdge(3, 5), new GraphEdge(4, 5), new GraphEdge(4, 6), new GraphEdge(4, 7), 
 					//new GraphEdge(5, 6), new GraphEdge(6, 7) 
@@ -44,7 +43,9 @@ public class MonsterAiTest
 	@Test
 	public void test_gameboard() 
 	{
+		
 		//////////// CREATE GRAPH //////////////
+		
 		GraphEdge[] edges = 
 			{
 				/*
@@ -82,50 +83,133 @@ public class MonsterAiTest
 				};
 		
 		//////////// CREATE PLAYERS //////////////
-		/*
+		/* 
 		 * Get instances to prevent static variables
 		 */
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();
 		
 		// Converts the values from the nodes to coordinates
-		int[][] associative_array;
-		associative_array = board.create_associative_array();
+		board.create_associative_array();
 		
-		/*
-		 * Set direction to Right and move, it should move normally
-		 */
+		////////////////// DEMO PLAYERS ////////////////////
+		
+		// PLAYER 1
 		Player Player1 = new Player();
 		Player1.set_pos_x(1);
 		Player1.set_pos_y(1);
 
 		/*
-		 * Set direction to Down and move, it should not move due to a wall
+		 *  PLAYER 2 
+		 *  should be same distance as player 3 only with different direction
 		 */
 		Player Player2 = new Player();
 		Player2.set_pos_x(9);
 		Player2.set_pos_y(4);
 		
+		/*
+		 *  PLAYER 3 
+		 *  should be same distance as player 2 only with different direction
+		 */
+		Player Player3 = new Player();
+		Player3.set_pos_x(4);
+		Player3.set_pos_y(9);
+		
+		// PLAYHER 4
+		Player Player4 = new Player();
+		Player4.set_pos_x(1);
+		Player4.set_pos_y(9);
+		
 		//////////// TEST THE AI //////////////
-		MonsterAi monster = new MonsterAi(edges);
-		
-		monster.set_monster_position(40); 
-
-		monster.calculate_shortest_path();
-		
-
 		
 		/*
-		 * TODO What you need to do is get xthe player coordinates
-		 * and figure out which one is closest, then get the node
-		 * coordinate for the monster to move to
-		 */	
+		 * Setup the monster
+		 */
+		MonsterAi monster = new MonsterAi(edges);
+		monster.set_monster_position(22); 
+		monster.calculate_shortest_path();
 		
-		monster.print_result(monster.get_monster_position()); 
-		
+		// trying to store all the distances
+		int[] distance_array = new int[5];
 
-		System.out.println(board.convert_coordinates(Player1.get_pos_x(), Player1.get_pos_y()));
-		System.out.println(board.convert_coordinates(Player2.get_pos_x(), Player1.get_pos_y()));
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// print coordinates of the players as nodes
+		System.out.print("PLAYER 1");
+		int player1_node = board.convert_to_node(Player1.get_pos_x(), Player1.get_pos_y());		
+		int distance1 = monster.vertex_array[player1_node].get_distance_from_source();	
+		int destination1 = monster.vertex_array[player1_node].get_monster_path();
+				
+		System.out.print("\nSource " + monster.get_monster_position() + " to vertex " + player1_node + " = " + distance1);
+		System.out.println("\nDirection node = " + destination1 + "\n");	
+
+		
+		distance_array[1] = distance1;
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		System.out.print("PLAYER 2");
+		int player2_node = board.convert_to_node(Player2.get_pos_x(), Player2.get_pos_y());
+		int distance2 = monster.vertex_array[player2_node].get_distance_from_source();	
+		int destination2 = monster.vertex_array[player2_node].get_monster_path();
+				
+		System.out.print("\nSource " + monster.get_monster_position() + " to vertex " + player2_node + " = " + distance2);
+		System.out.println("\nDirection node = " + destination2 + "\n");	
+
+		
+		distance_array[2] = distance2;
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		System.out.print("PLAYER 3");
+		int player3_node = board.convert_to_node(Player3.get_pos_x(), Player3.get_pos_y());
+		int distance3 = monster.vertex_array[player3_node].get_distance_from_source();	
+		int destination3 = monster.vertex_array[player3_node].get_monster_path();
+				
+		System.out.print("\nSource " + monster.get_monster_position() + " to vertex " + player3_node + " = " + distance3);
+		System.out.println("\nDirection node = " + destination3 + "\n");	
+
+		
+		distance_array[3] = distance3;
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		System.out.print("PLAYER 4");
+		int player4_node = board.convert_to_node(Player4.get_pos_x(), Player4.get_pos_y());
+		int distance4 = monster.vertex_array[player4_node].get_distance_from_source();	
+		int destination4 = monster.vertex_array[player4_node].get_monster_path();
+		
+		System.out.print("\nSource " + monster.get_monster_position() + " to vertex " + player4_node + " = " + distance4);
+		System.out.println("\nDirection node = " + destination4 + "\n");	
+		
+		//monster.print_player_position(monster.get_monster_position(), player4_node);
+
+		distance_array[4] = distance4;
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        int smallest = Integer.MAX_VALUE;
+        int smallest_player = 0;
+
+		// Try to find the smallest value in the array
+		for (int i = 1; i < distance_array.length; i++) 
+		{
+			if (smallest > distance_array[i]) 
+			{
+				smallest = distance_array[i];
+				smallest_player = i;
+			}
+		}
+
+		System.out.println("Player " + smallest_player + " is the closest with a length of " + smallest);
+		
+		
+		// TRYING TO CONVERT NODE TO COORDINATE
+		// pretend player 2 is closest
+		int[] coordinates = board.convert_to_coordinate(destination2);
+		
+		System.out.println("\nThe monster will move to node " + destination2 + " which has the coordinate " + coordinates[0] + "," + coordinates[1]);
+
 		
 	}
 }

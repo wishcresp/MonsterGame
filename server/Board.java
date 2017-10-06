@@ -229,16 +229,23 @@ public class Board
 		return board_array;
 	}
 	
-	public int convert_coordinates(int x, int y)
+	public int convert_to_node(int x, int y)
 	{
-		int conversion;
-		
-		conversion = board_array[x][y];
-
-		
-		return conversion;
+		int nodes = board_array[x][y];		
+		return nodes;
 	}
-
+	
+	public int[] convert_to_coordinate(int coordinate)
+	{
+		
+		for (int x = 0; x < board_array.length; x++)
+			for (int y = 0; y < board_array.length; y++)
+				if (board_array[x][y] == coordinate)				
+					return new int[]{x,y};
+									
+		return null;
+	}
+	
 	// Building a network for the board
 	public MonsterAi build_monster_graph() 
 	{
