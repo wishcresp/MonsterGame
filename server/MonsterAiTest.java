@@ -27,7 +27,7 @@ public class MonsterAiTest
 					//new GraphEdge(1, 3), new GraphEdge(1, 4), new GraphEdge(1, 5), new GraphEdge(2, 4), 
 					//new GraphEdge(3, 5), new GraphEdge(4, 5), new GraphEdge(4, 6), new GraphEdge(4, 7), 
 					//new GraphEdge(5, 6), new GraphEdge(6, 7) 
-					};
+			};
 
 		MonsterAi monster = new MonsterAi(edges);
 		
@@ -35,20 +35,16 @@ public class MonsterAiTest
 
 		monster.calculate_shortest_path();
 		
-		
 		monster.print_result(monster.get_monster_position()); 
 	}
-
 	
 	static Board board;
 	static GameState gamestate;
-	
 	
 	@Test
 	public void test_gameboard() 
 	{
 		//////////// CREATE GRAPH //////////////
-
 		GraphEdge[] edges = 
 			{
 				/*
@@ -91,7 +87,11 @@ public class MonsterAiTest
 		 */
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();
-
+		
+		// Converts the values from the nodes to coordinates
+		int[][] associative_array;
+		associative_array = board.create_associative_array();
+		
 		/*
 		 * Set direction to Right and move, it should move normally
 		 */
@@ -99,28 +99,33 @@ public class MonsterAiTest
 		Player1.set_pos_x(1);
 		Player1.set_pos_y(1);
 
-
 		/*
 		 * Set direction to Down and move, it should not move due to a wall
 		 */
 		Player Player2 = new Player();
 		Player2.set_pos_x(9);
-		Player2.set_pos_y(1);
+		Player2.set_pos_y(4);
 		
 		//////////// TEST THE AI //////////////
-		
 		MonsterAi monster = new MonsterAi(edges);
 		
-		monster.set_monster_position(6); 
+		monster.set_monster_position(40); 
 
 		monster.calculate_shortest_path();
 		
+
+		
 		/*
-		 * TODO What you need to do is get the player coordinates
+		 * TODO What you need to do is get xthe player coordinates
 		 * and figure out which one is closest, then get the node
 		 * coordinate for the monster to move to
-		 */
+		 */	
 		
-		//monster.print_result(monster.get_monster_position()); 
+		monster.print_result(monster.get_monster_position()); 
+		
+
+		System.out.println(board.convert_coordinates(Player1.get_pos_x(), Player1.get_pos_y()));
+		System.out.println(board.convert_coordinates(Player2.get_pos_x(), Player1.get_pos_y()));
+		
 	}
 }

@@ -113,7 +113,7 @@ public class Graph
 	// Display the result, i need to see if this works
 	public void print_result(int source_node)
 	{
-		String output = null;
+		String output = "";
 		/*output = "\nNumber of vertices = " + this.no_of_vertices;
 		output += "\nNumber of edges = " + this.no_of_edges + "\n";
 		*/

@@ -126,7 +126,7 @@ public class Board
 	 * This is important for translating coordinates to their corresponding node
 	 * number.
 	 */
-	public void create_associative_array() 
+	public int[][] create_associative_array() 
 	{
 		// Initialize all spaces to -1
 		for (int x = 0; x < board_array.length; x++)
@@ -218,11 +218,25 @@ public class Board
 		
 		// from 26 -> 18
 		board_array[5][10] = -18;
+		
+		
+		return board_array;
+		
 	}
 	
 	public int[][] get_board_array()
 	{
 		return board_array;
+	}
+	
+	public int convert_coordinates(int x, int y)
+	{
+		int conversion;
+		
+		conversion = board_array[x][y];
+
+		
+		return conversion;
 	}
 
 	// Building a network for the board
