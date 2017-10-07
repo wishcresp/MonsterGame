@@ -16,20 +16,14 @@ public abstract class ConnHandler extends Thread
 		out = conn.getOutputStream();
 	}
 
-	public String get_string() 
+	public String get_string() throws IOException 
 	{
-		try 
-		{
-			byte[] buf = new byte[1024];
-			while (in.read(buf) == -1)
-				; // Give the client ``some`` time
-			String input = new String(buf, "UTF-8");
-			return input.trim();
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		return "Something happened :(";
+		byte[] buf = new byte[1024];
+		while (in.read(buf) == -1)
+			; // Give the client ``some`` time
+		String input = new String(buf, "UTF-8");
+		return input.trim();
+
 	}
 
 	public boolean send_string(String data) 

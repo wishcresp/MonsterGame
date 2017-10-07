@@ -39,7 +39,8 @@ public class ConnHandlerTest
 	{
 		System.out.println("Sending to client    :" + test_data + ";");
 		test.send_string(test_data);
-		String test_string = test.get_string();
+		String test_string = "";
+		try {test_string = test.get_string();} catch (Exception e) {}
 		/*
 		 * This test requires a client that echos back what is sent to it
 		 * I wrote one and threw it in a folder called "sockecho" on the GitHub 
