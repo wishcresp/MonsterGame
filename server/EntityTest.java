@@ -48,11 +48,11 @@ public class EntityTest
 		Player Player3 = new Player();
 		
 		// Setup player coordinate
-		Player3.set_pos_x(1);
-		Player3.set_pos_y(5);
+		Player3.set_pos_x(9);
+		Player3.set_pos_y(2);
 
-		// UP
-		Player3.set_dir(0);
+		// LEFT
+		Player3.set_dir(2);
 		Player3.move();
 
 		
