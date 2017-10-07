@@ -76,7 +76,6 @@ public class UIWindow extends Application
 		
 		/* Creates Number of players input Window */
 		Stage num_stage = new Stage();
-		ip_entry = new TextField();
 		Button btn_num_one = new Button("One");
 		Button btn_num_two = new Button("Two");
 		Button btn_num_three = new Button("Three");
@@ -364,7 +363,7 @@ public class UIWindow extends Application
 	
 	public boolean hide_button(String s)
 	{
-		if (s.equals(game_state.get_avaliable_spots()))
+		if (s.contains(game_state.get_avaliable_spots()))
 			return true;
 		else
 			return false;
