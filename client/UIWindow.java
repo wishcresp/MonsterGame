@@ -50,10 +50,10 @@ public class UIWindow extends Application
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
-		// DEBUG SHIT
-//		game_state.set_server_ip("127.0.0.1");
-//		game_state.set_server_port(3216);
-	
+		/* Creates game window */
+		Scene game_scene = new Scene(game_window, 500, 500);
+		game_stage.setScene(game_scene);
+		
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
@@ -128,39 +128,39 @@ public class UIWindow extends Application
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		sp_stage.setScene(sp_scene);
 		
-//		/* Key Listener for arrows */
-//		game_window.setOnKeyPressed(e ->
-//		{
-//			switch (e.getCode())
-//			{
-//				/* Konami code directions.
-//				 * UP = 0
-//				 * DOWN = 1
-//				 * LEFT = 2
-//				 * RIGHT = 3*/
-//			
-//				// Need to specify the player direction to set (x, 0) x=?
-//				case UP:
-//					System.out.println("UP WAS PRESSED");
-//					players.get_player(PC_id).set_ddir(0);
-//					break;
-//				case DOWN:
-//					System.out.println("DOWN WAS PRESSED");
-//					players.set_player_dir(PC_id, 1);
-//					players.get_player(PC_id).set_ddir(1);
-//					break;
-//				case LEFT:
-//					System.out.println("LEFT WAS PRESSED");
-//					players.get_player(PC_id).set_ddir(2);
-//					break;
-//				case RIGHT:
-//					System.out.println("RIGHT WAS PRESSED");
-//					players.get_player(PC_id).set_ddir(3);
-//					break;
-//				default:
-//					System.out.println("INVALID KEY WAS PRESSED");
-//			}
-//		});
+		/* Key Listener for arrows */
+		game_window.setOnKeyPressed(e ->
+		{
+			switch (e.getCode())
+			{
+				/* Konami code directions.
+				 * UP = 0
+				 * DOWN = 1
+				 * LEFT = 2
+				 * RIGHT = 3*/
+			
+				// Need to specify the player direction to set (x, 0) x=?
+				case UP:
+					System.out.println("UP WAS PRESSED");
+					players.get_player(PC_id).set_ddir(0);
+					break;
+				case DOWN:
+					System.out.println("DOWN WAS PRESSED");
+					players.set_player_dir(PC_id, 1);
+					players.get_player(PC_id).set_ddir(1);
+					break;
+				case LEFT:
+					System.out.println("LEFT WAS PRESSED");
+					players.get_player(PC_id).set_ddir(2);
+					break;
+				case RIGHT:
+					System.out.println("RIGHT WAS PRESSED");
+					players.get_player(PC_id).set_ddir(3);
+					break;
+				default:
+					System.out.println("INVALID KEY WAS PRESSED");
+			}
+		});
 		
 		/* When IP confirm button is pressed*/
 		btn_ip.setOnAction(new EventHandler<ActionEvent>()
@@ -342,11 +342,8 @@ public class UIWindow extends Application
 		
 	    EventHandler<ActionEvent> eventHandler = e -> {
 			/* Creates Game Board UI */
-	    	game_window = new BorderPane();
 			board.update_board();
 			game_window.setCenter(board.getBoard());
-			Scene game_scene = new Scene(game_window, 500, 500);
-			game_stage.setScene(game_scene);
 	    };
 	    
 	    game_loop = new Timeline(new KeyFrame(Duration.millis(500), eventHandler));
