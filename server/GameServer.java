@@ -83,17 +83,10 @@ public class GameServer extends Thread
 
 				Thread.sleep(100); // If the game isn't running, wait around
 	
-			for (int i = 0; i < players.get_player_count(); i++) 
+			for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
 			{
 				Entity player = players.get_player(i);
 				player.move();
-				
-				// If this is the monster
-				if (player instanceof Monster)
-				{
-					monster_entity = (Monster) player;
-					monster_entity.move();
-				}
 			}			
 			Thread.sleep(500);
 		}
