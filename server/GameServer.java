@@ -58,8 +58,6 @@ public class GameServer extends Thread
 		{
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
-
-			Thread.sleep(10000);
 			
 			for (int i = 0; i < players.get_player_count(); i++)
 			{
@@ -67,6 +65,8 @@ public class GameServer extends Thread
 				
 				player.move();
 			}
+			
+			Thread.sleep(1000);
 			/*System.out.println("debug");
 			
 			// Cheeky dump of the gameboard for debugging purposes

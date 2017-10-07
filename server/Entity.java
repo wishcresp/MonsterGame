@@ -47,7 +47,7 @@ public abstract class Entity {
 		switch (direction) 
 		{		
 		
-		case 0: // (x - 1, y) UP
+		case 2: // (x - 1, y) Left
 			if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() - 1);
@@ -57,7 +57,7 @@ public abstract class Entity {
 					this.set_pos_x(9);
 			break;
 			
-		case 1: // (x + 1, y) DOWN
+		case 3: // (x + 1, y) Right
 			if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() + 1);
@@ -67,7 +67,7 @@ public abstract class Entity {
 					this.set_pos_x(1);
 			break;
 			
-		case 2: // (x, y - 1) LEFT
+		case 1: // (x, y - 1) Down
 			if (check_move(this.get_pos_x(), this.get_pos_y() - 1))
 				
 				// Update the player position if valid
@@ -78,7 +78,7 @@ public abstract class Entity {
 					this.set_pos_y(9);
 			break;
 
-		case 3: // (x, y + 1) RIGHT
+		case 0: // (x, y + 1) Up
 			if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
 			{	
 				// Update the player position if valid
