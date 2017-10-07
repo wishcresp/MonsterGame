@@ -6,7 +6,7 @@ public class Monster extends Entity
 		super();
 	}
 	
-	// ovveride move function from entity
+	// overide move function from entity
 	public void move()
 	{
 		

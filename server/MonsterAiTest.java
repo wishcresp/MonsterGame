@@ -195,7 +195,7 @@ public class MonsterAiTest
 		for (int i = 1; i < distance_array.length; i++) 
 		{
 			if (smallest > distance_array[i]) 
-			{
+			{ // TODO setup a randomizer if two players have the same path
 				smallest = distance_array[i];
 				smallest_player = i;
 			}

@@ -22,10 +22,6 @@ public class GameState
 		return this.board;
 	}
 	
-	/*
-	 * I added this in here because i didnt want to make anything static in the
-	 * Player class - Michael
-	 */
 	public Entity get_player()
 	{
 		return this.player;

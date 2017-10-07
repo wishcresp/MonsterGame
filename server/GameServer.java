@@ -45,8 +45,6 @@ public class GameServer extends Thread
 		board.create_board();
 	
 		board.create_associative_array();
-		
-		
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -56,8 +54,23 @@ public class GameServer extends Thread
 		Board board = game_state.get_board();
 		int start_position = 22;
 		
-		// Set the AI position
+		Entity monster_entity ;
+		
+		// Set the AI position in the GRAPH
 		monster.set_monster_position(start_position);
+		
+		// TODO Get instance of monster in the array of players
+		for (int i = 0; i < players.get_player_count(); i++)
+		{
+			Entity player = players.get_player(i);
+			
+			// If this is the monster
+			if (player instanceof Monster)
+			{
+				monster_entity = player;
+			}
+		}
+		
 		
 		/*
 		 *  Main Game Loop
