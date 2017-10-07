@@ -113,8 +113,8 @@ public class UIWindow extends Application
 		sp_window = new GridPane();
 		sp_window.add(new Label("Select starting position:"), 0, 0);
 		sp_window.add(btn_sp_one, 0, 1);
-		sp_window.add(btn_sp_two, 0, 2);
-		sp_window.add(btn_sp_three, 1, 1);
+		sp_window.add(btn_sp_two, 1, 1);
+		sp_window.add(btn_sp_three, 0, 2);
 		sp_window.add(btn_sp_four, 1, 2);
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		
@@ -325,6 +325,7 @@ public class UIWindow extends Application
 	    game_loop.setCycleCount(Timeline.INDEFINITE);
 	}
 	
+	/* Waits for server to send avaliable spots*/
 	public void wait_avaliable_spots(int i)
 	{
 		while (game_state.get_avaliable_spots() == "")
@@ -337,6 +338,7 @@ public class UIWindow extends Application
 		
 	}
 	
+	/* Checks if a spot is avaliable */
 	public boolean spot_avaliable(String s)
 	{
 		if (game_state.get_avaliable_spots().contains(s))
