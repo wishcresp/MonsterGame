@@ -20,8 +20,32 @@ public class Players
 	private int current_players = 0; // How many players are currently connected
 	private int max_players = 4; // Soft limited according to specification
 	
-	private Entity players[];
+	private Entity players[]; //TODO: MUTEX
 
+	
+	private void swap(int id1, int id2)
+	{
+		Entity tmp;
+		
+		tmp = players[id1];
+		players[id1] = players[id2];
+		players[id2] = tmp;
+		
+	}
+	
+	public void remove_player(int id)
+	{
+		swap(id, players.length-1);
+		Entity tmp[] = new Entity[players.length-1];
+		
+		for (int i = 0; i < players.length-1; i++)
+		{
+			tmp[i] = players[i];
+		}
+		players = tmp;
+	}
+	
+	
 	// Player target
 	public int get_player_target()
 	{

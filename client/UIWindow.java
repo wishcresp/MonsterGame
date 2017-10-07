@@ -182,13 +182,9 @@ public class UIWindow extends Application
 				
 				ip_stage.hide();
 				if (PC_id == 0)
-				{
 					num_stage.show();
-				}
 				else
-				{
 					reg_stage.show();
-				}
 				
 			}
 		});
@@ -264,14 +260,14 @@ public class UIWindow extends Application
 				
 				reg_stage.hide();
 				
-				if (hide_button("1,1"))
-					btn_sp_one.setDisable(true);
-				if (hide_button("9:1"))
-					btn_sp_two.setDisable(true);
-				if (hide_button("1,9"))
-					btn_sp_three.setDisable(true);
-				if (hide_button("9,9"))
-					btn_sp_four.setDisable(true);
+//				if (!spot_avaliable("1,1"))
+//					btn_sp_one.setDisable(true);
+//				if (!spot_avaliable("9,1"))
+//					btn_sp_two.setDisable(true);
+//				if (!spot_avaliable("1,9"))
+//					btn_sp_three.setDisable(true);
+//				if (!spot_avaliable("9,9"))
+//					btn_sp_four.setDisable(true);
 				
 				sp_stage.show();
 			}
@@ -361,9 +357,9 @@ public class UIWindow extends Application
 		
 	}
 	
-	public boolean hide_button(String s)
+	public boolean spot_avaliable(String s)
 	{
-		if (s.contains(game_state.get_avaliable_spots()))
+		if (game_state.get_avaliable_spots().contains(s))
 			return true;
 		else
 			return false;
