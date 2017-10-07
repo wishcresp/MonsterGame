@@ -66,7 +66,7 @@ public class GameServer extends Thread
 				player.move();
 			}
 			
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			/*System.out.println("debug");
 			
 			// Cheeky dump of the gameboard for debugging purposes

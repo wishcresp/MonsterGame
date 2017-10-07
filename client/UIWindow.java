@@ -346,7 +346,7 @@ public class UIWindow extends Application
 			game_window.setCenter(board.getBoard());
 	    };
 	    
-	    game_loop = new Timeline(new KeyFrame(Duration.millis(500), eventHandler));
+	    game_loop = new Timeline(new KeyFrame(Duration.millis(64), eventHandler));
 	    game_loop.setCycleCount(Timeline.INDEFINITE);
 	}
 	

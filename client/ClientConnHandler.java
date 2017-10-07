@@ -114,13 +114,13 @@ public class ClientConnHandler extends ConnHandler
 				String[] xy = coords[i].split(",");
 				players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
 				players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
-				players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
+				//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
 				System.out.println("Set player pos and dir");
 			}
 			
 			game_state.change_run_state(true); // TODO: FIX
 		
-			Thread.sleep(100);
+			Thread.sleep(10);
 
 		}	
 	}

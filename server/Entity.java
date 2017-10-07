@@ -67,7 +67,7 @@ public abstract class Entity {
 					this.set_pos_x(1);
 			break;
 			
-		case 1: // (x, y - 1) Down
+		case 0: // (x, y - 1) Up
 			if (check_move(this.get_pos_x(), this.get_pos_y() - 1))
 				
 				// Update the player position if valid
@@ -78,7 +78,7 @@ public abstract class Entity {
 					this.set_pos_y(9);
 			break;
 
-		case 0: // (x, y + 1) Up
+		case 1: // (x, y + 1) Down
 			if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
 			{	
 				// Update the player position if valid
