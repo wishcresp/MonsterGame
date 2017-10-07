@@ -13,7 +13,6 @@ public class GameServerTest
 	static Player player;
 	static MonsterAi monster;
 
-		
 	@Test
 	public void test_intialize() 
 	{
@@ -37,8 +36,7 @@ public class GameServerTest
 		Players players = game_state.get_players();
 		Board board = game_state.get_board();
 		int start_position = 22;
-		
-		
+			
 		
 		Entity monster_entity;
 		
