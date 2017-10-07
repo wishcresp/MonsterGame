@@ -295,6 +295,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
+				start_gameloop();
 			}
 		});
 		
@@ -310,6 +311,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
+				start_gameloop();
 			}
 		});
 		
@@ -324,6 +326,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
+				start_gameloop();
 			}
 		});
 		
@@ -368,7 +371,10 @@ public class UIWindow extends Application
 		while (true)
 		{
 			board.update_board();
-			try { Thread.sleep(100); } catch (Exception ex) { }
+			try { Thread.sleep(100); } catch (Exception ex) 
+			{
+				ex.printStackTrace();
+			}
 		}
 	}
 }

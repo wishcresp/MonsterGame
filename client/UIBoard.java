@@ -51,6 +51,7 @@ public class UIBoard extends Pane
 		Players players;
 		players = GameState.get_instance().get_players();
 		
+		System.out.println("Drawing Players");
 		for (int i = 0; i < players.get_player_count(); i++)
 		{
 			Entity player = players.get_player(i);
@@ -58,6 +59,9 @@ public class UIBoard extends Pane
 				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
 			else
 				board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
+			
+			System.out.print("Just drew player "+i+" ");
+			System.out.println("at "+player.get_pos_x()+","+player.get_pos_y());
 		}
 
 //		/* Adds Players */

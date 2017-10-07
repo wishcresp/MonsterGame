@@ -97,6 +97,7 @@ public class ClientConnHandler extends ConnHandler
 		
 		
 		
+		
 		while (game_state.is_running())
 		{
 			// Send our direction
@@ -106,6 +107,8 @@ public class ClientConnHandler extends ConnHandler
 			String rawc = get_string();
 			String[] coords = rawc.split(":"); // TODO: Get player x and ys from server
 			System.out.println("Goot coords strang: "+rawc);
+			players.set_player_count(coords.length);
+			System.out.println("Player count: "+coords.length);
 			for (int i = 0; i < coords.length; i++)
 			{
 				String[] xy = coords[i].split(",");
