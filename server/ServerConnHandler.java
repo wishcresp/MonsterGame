@@ -110,7 +110,6 @@ public class ServerConnHandler extends ConnHandler
 
 			
 			// TODO: Send players x and ys
-			System.out.println("Sending data for "+players.get_player_target()+" players");
 			String out = "";
 			for (int i = 0; i < players.get_player_target(); i++)
 			{
@@ -120,6 +119,7 @@ public class ServerConnHandler extends ConnHandler
 				out += ":";
 			}
 			send_string(out);
+			System.out.println("Sent data for "+players.get_player_target()+" players");
 			
 			
 			

@@ -56,11 +56,12 @@ public class GameServer extends Thread
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
 
-			System.out.println("debug");
+			Thread.sleep(16);
+			/*System.out.println("debug");
 			
 			// Cheeky dump of the gameboard for debugging purposes
 			System.out.println(board.toString());
-			Thread.sleep(100);
+			Thread.sleep(100);*/
 		}
 	}		
 }

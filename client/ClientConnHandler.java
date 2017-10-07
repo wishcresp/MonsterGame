@@ -95,21 +95,26 @@ public class ClientConnHandler extends ConnHandler
 		else
 			; // TODO: SOMETHING
 		
+		
+		
 		while (game_state.is_running())
 		{
 			// Send our direction
 			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
 			System.out.println("Sent direction");
-
-			String[] coords = get_string().split(":"); // TODO: Get player x and ys from server
-			for (int i = 0; i < players.get_player_count(); i++)
+			
+			String rawc = get_string();
+			String[] coords = rawc.split(":"); // TODO: Get player x and ys from server
+			System.out.println("Goot coords strang: "+rawc);
+			for (int i = 0; i < coords.length; i++)
 			{
 				String[] xy = coords[i].split(",");
 				players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
 				players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
 				players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
+				System.out.println("Set player pos and dir");
 			}
-			System.out.println("Set player pos and dir");
+			
 			game_state.change_run_state(true); // TODO: FIX
 		
 			Thread.sleep(100);
