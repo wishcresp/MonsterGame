@@ -49,6 +49,7 @@ public class UIBoard extends Pane
 		
 		Players players;
 		players = GameState.get_instance().get_players();
+		int current_player = 0;
 		
 		System.out.println("Drawing Players");
 		for (int i = 0; i < players.get_player_count(); i++)
@@ -56,9 +57,21 @@ public class UIBoard extends Pane
 			Entity player = players.get_player(i);
 			if (player instanceof Monster)
 				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
-			else
-				board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
-			
+			else {
+				switch (current_player) {
+					case 0:
+						board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
+						break;
+					case 1:
+						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
+					case 2:
+						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
+					case 3:
+						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
+				}
+				current_player++;
+			}
+				
 			System.out.print("Just drew player "+i+" ");
 			System.out.println("at "+player.get_pos_x()+","+player.get_pos_y());
 		}
