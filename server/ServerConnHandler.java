@@ -125,6 +125,7 @@ public class ServerConnHandler extends ConnHandler
 					Entity cur = players.get_player(i);
 					out += String.valueOf(cur.get_pos_x())+","+String.valueOf(cur.get_pos_y());
 					out += ","+String.valueOf(cur.get_ddir());
+					out += ","+String.valueOf(i); // Player.id
 					out += ":";
 				}
 				send_string(out);

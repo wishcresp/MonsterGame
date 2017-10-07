@@ -30,6 +30,7 @@ public abstract class ConnHandler extends Thread
 		catch (IOException e)
 		{
 			e.printStackTrace();
+			System.out.println("Server crashed lmao XDDDD");
 		}
 		return "Something happened :(";
 	}

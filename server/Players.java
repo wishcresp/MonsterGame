@@ -23,6 +23,7 @@ public class Players
 	private Entity players[]; //TODO: MUTEX
 
 	
+	// TODO: Preserver IDs
 	private void swap(int id1, int id2)
 	{
 		Entity tmp;
