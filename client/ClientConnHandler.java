@@ -111,10 +111,21 @@ public class ClientConnHandler extends ConnHandler
 			for (int i = 0; i < coords.length; i++)
 			{
 				String[] xy = coords[i].split(",");
-				players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
-				players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
-				//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
-				System.out.println("Set player pos and dir");
+				
+				if (Integer.valueOf(xy[3]) == players.get_player_target()) // We're dealing with the monster
+				{
+					Entity monster = players.get_player(players.get_player_target());
+					monster.set_pos_x(Integer.valueOf(xy[0]));
+					monster.set_pos_y(Integer.valueOf(xy[1]));
+					System.out.println("Set monster position");
+				}
+				else
+				{
+					players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
+					players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
+					//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
+					System.out.println("Set player pos and dir");
+				}
 			}
 			
 			game_state.change_run_state(true); // TODO: FIX

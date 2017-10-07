@@ -83,7 +83,7 @@ public class GameServer extends Thread
 
 				Thread.sleep(100); // If the game isn't running, wait around
 			
-			for (int i = 0; i <= players.get_player_count(); i++) 
+			for (int i = 0; i < players.get_player_count(); i++) 
 			{
 				Entity player = players.get_player(i);
 

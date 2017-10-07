@@ -128,6 +128,13 @@ public class ServerConnHandler extends ConnHandler
 					out += ","+String.valueOf(i); // Player.id
 					out += ":";
 				}
+				// Don't forget to add the monster ;)
+				Entity cur = players.get_player(players.get_player_target());
+				out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
+				out += ","+String.valueOf(cur.get_ddir());
+				out += ","+String.valueOf(players.get_player_target()); // Player.id
+				out += ":";
+				
 				send_string(out);
 				System.out.println("Sent data for "+players.get_player_target()+" players");
 				
