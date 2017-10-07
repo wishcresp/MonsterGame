@@ -19,7 +19,8 @@ public abstract class Entity {
 
 	private int pos_x, pos_y; // I renamed it from x,y.
 
-	public Entity() {
+	public Entity() 
+	{
 		/*
 		 * 0 = UP 1 = DOWN 2 = LEFT 3 = RIGHT
 		 */
@@ -28,7 +29,8 @@ public abstract class Entity {
 		return;
 	}
 
-	public void move() {
+	public void move() 
+	{
 		String output;
 
 		// DEBUG, find out the current player coordinate
@@ -41,9 +43,11 @@ public abstract class Entity {
 		/*
 		 * Get players direction, and apply the move
 		 */
-		switch (desired_direction) {
-		case 0: // UP
-			if (check_move(this.get_pos_x() + 1, this.get_pos_y())) {
+		switch (desired_direction) 
+		{
+		case 3: // RIGHT
+			if (check_move(this.get_pos_x() + 1, this.get_pos_y())) 
+			{
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() + 1);
 
@@ -55,8 +59,9 @@ public abstract class Entity {
 			}
 			break;
 
-		case 1: // DOWN
-			if (check_move(this.get_pos_x() - 1, this.get_pos_y())) {
+		case 2: // LEFT
+			if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
+			{
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() - 1);
 
@@ -68,8 +73,9 @@ public abstract class Entity {
 			}
 			break;
 
-		case 2: // LEFT
-			if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) {
+		case 0: // DOWN
+			if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) 
+			{
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() - 1);
 
@@ -81,8 +87,9 @@ public abstract class Entity {
 			}
 			break;
 
-		case 3: // RIGHT
-			if (check_move(this.get_pos_x(), this.get_pos_y() + 1)) {
+		case 1: // UP
+			if (check_move(this.get_pos_x(), this.get_pos_y() + 1)) 
+			{
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() + 1);
 
@@ -100,11 +107,13 @@ public abstract class Entity {
 
 		if (moved)
 			direction = desired_direction;
-		else {
-			switch (direction) {
-
-			case 0: // UP
-				if (check_move(this.get_pos_x() + 1, this.get_pos_y())) {
+		else 
+		{
+			switch (direction) 
+			{
+			case 3: // RIGHT
+				if (check_move(this.get_pos_x() + 1, this.get_pos_y())) 
+				{
 					// Update the player position if valid
 					this.set_pos_x(this.get_pos_x() + 1);
 
@@ -114,8 +123,9 @@ public abstract class Entity {
 				}
 				break;
 
-			case 1: // DOWN
-				if (check_move(this.get_pos_x() - 1, this.get_pos_y())) {
+			case 2: // LEFT
+				if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
+				{
 					// Update the player position if valid
 					this.set_pos_x(this.get_pos_x() - 1);
 
@@ -125,8 +135,9 @@ public abstract class Entity {
 				}
 				break;
 
-			case 2: // LEFT
-				if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) {
+			case 0: // DOWN
+				if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) 
+				{
 					// Update the player position if valid
 					this.set_pos_y(this.get_pos_y() - 1);
 
@@ -136,8 +147,9 @@ public abstract class Entity {
 				}
 				break;
 
-			case 3: // RIGHT
-				if (check_move(this.get_pos_x(), this.get_pos_y() + 1)) {
+			case 1: // UP
+				if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
+				{
 					// Update the player position if valid
 					this.set_pos_y(this.get_pos_y() + 1);
 
@@ -162,7 +174,8 @@ public abstract class Entity {
 	static GameState game_state;
 	int dimensions = 11;
 
-	public boolean check_move(int x, int y) {
+	public boolean check_move(int x, int y) 
+	{
 		/*
 		 * Check to see if this coordinate is valid e.g. When moving from (5,1) to (5,9)
 		 * via teleport, Check if (5,9) exists as a coordinate (not -1) and does not
@@ -178,7 +191,8 @@ public abstract class Entity {
 		board_array = board.get_board_array();
 
 		// If player hits a wall, return false
-		if (board_array[x][y] == -1) {
+		if (board_array[x][y] == -1) 
+		{
 			System.out.println("Hitting a wall");
 			return false;
 		}
@@ -187,15 +201,16 @@ public abstract class Entity {
 		Players players = game_state.get_players();
 
 		// If player hits a wall, return false
-		for (int i = 0; i < players.get_player_count(); i++) {
+		for (int i = 0; i < players.get_player_count(); i++) 
+		{
 			Entity player = players.get_player(i);
 
-			if (x == player.get_pos_x() && y == player.get_pos_y()) {
+			if (x == player.get_pos_x() && y == player.get_pos_y()) 
+			{
 				System.out.println("There is another player here");
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -210,7 +225,7 @@ public abstract class Entity {
 	public int get_ddir() {
 		return desired_direction;
 	}
-
+	
 	public void set_ddir(int ddir) {
 		this.desired_direction = ddir;
 	}
