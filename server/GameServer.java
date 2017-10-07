@@ -31,10 +31,12 @@ public class GameServer extends Thread
 		// Instantiate Board and players
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
+		
 		players = gamestate.get_players();	
-		// Return monster object
-		// TODO maybe put this in the gameloop
+		
+		// Create monster object
 		monster = board.build_monster_graph();
+		
 		
 		// Amount of players to join
 		player_target = players.get_player_target();
@@ -43,6 +45,8 @@ public class GameServer extends Thread
 		board.create_board();
 	
 		board.create_associative_array();
+		
+		
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -50,6 +54,10 @@ public class GameServer extends Thread
 		GameState game_state = GameState.get_instance();
 		Players players = game_state.get_players();
 		Board board = game_state.get_board();
+		int start_position = 22;
+		
+		// Set the AI position
+		monster.set_monster_position(start_position);
 		
 		/*
 		 *  Main Game Loop
@@ -62,16 +70,10 @@ public class GameServer extends Thread
 			for (int i = 0; i < players.get_player_count(); i++)
 			{
 				Entity player = players.get_player(i);
-				
 				player.move();
 			}
 			
 			Thread.sleep(500);
-			/*System.out.println("debug");
-			
-			// Cheeky dump of the gameboard for debugging purposes
-			System.out.println(board.toString());
-			Thread.sleep(100);*/
 		}
 	}		
 }

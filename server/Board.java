@@ -1,4 +1,5 @@
-/*
+
+/* 
  * Notes on the design of this singleton:
  * 	What we need from this object:
  * 		Blaise:
@@ -10,7 +11,6 @@
  *  
  *  Also an empty tile is set to null, there's probably a better
  *  way of handling that
- *  
  */
 
 /*
@@ -71,6 +71,7 @@ public class Board
 	 * my algorithm lol
 	 * - michael
 	 */
+	
 	public void set_dimensions(int dimensions) 
 	{
 		this.dimensions = dimensions;

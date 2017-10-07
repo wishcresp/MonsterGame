@@ -2,7 +2,8 @@
 public class Player extends Entity
 {	
 	
-	private String name;	
+	private String name;
+	boolean is_dead = false;
 	
 	public Player() 
 	{
@@ -17,6 +18,11 @@ public class Player extends Entity
 	public void set_name(String name)
 	{
 		this.name = name;
+	}
+	
+	public void kill()
+	{
+		this.is_dead = true;
 	}
 		
 }
