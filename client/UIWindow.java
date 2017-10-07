@@ -368,6 +368,9 @@ public class UIWindow extends Application
 	
 	public void start_gameloop()
 	{
+		while (game_state.is_running() == false)
+			try { Thread.sleep(100); } catch (Exception ex) {}
+		
 		while (true)
 		{
 			board.update_board();
