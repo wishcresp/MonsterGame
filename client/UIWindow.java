@@ -25,6 +25,11 @@ public class UIWindow extends Application
 	private GridPane ip_window;
 	private GridPane sp_window;
 	
+	private Button btn_sp_one;
+	private Button btn_sp_two;
+	private Button btn_sp_three;
+	private Button btn_sp_four;
+	
 	protected TextField name_entry;
 	protected TextField ip_entry;
 	protected TextField port_entry;
@@ -111,10 +116,10 @@ public class UIWindow extends Application
 		/* Creates starting position selection window */
 		Stage sp_stage = new Stage();
 		Label sp_label = new Label("Select your starting postion:");
-		Button btn_sp_one = new Button("TOP LEFT");
-		Button btn_sp_two = new Button("TOP RIGHT");
-		Button btn_sp_three = new Button("BOTTOM LEFT");
-		Button btn_sp_four = new Button("BOTTOM RIGHT");
+		btn_sp_one = new Button("TOP LEFT");
+		btn_sp_two = new Button("TOP RIGHT");
+		btn_sp_three = new Button("BOTTOM LEFT");
+		btn_sp_four = new Button("BOTTOM RIGHT");
 		btn_sp_one.setPrefWidth(200);
 		btn_sp_two.setPrefWidth(200);
 		btn_sp_three.setPrefWidth(200);
@@ -264,6 +269,16 @@ public class UIWindow extends Application
 				}
 				
 				reg_stage.hide();
+				
+				if (hide_button("1,1"))
+					btn_sp_one.setDisable(true);
+				if (hide_button("9:1"))
+					btn_sp_two.setDisable(true);
+				if (hide_button("1,9"))
+					btn_sp_three.setDisable(true);
+				if (hide_button("9,9"))
+					btn_sp_four.setDisable(true);
+				
 				sp_stage.show();
 			}
 		});
@@ -338,6 +353,14 @@ public class UIWindow extends Application
 		poses = game_state.get_avaliable_spots().split(":");	
 		players.set_starter_spot(poses[i]);
 		
+	}
+	
+	public boolean hide_button(String s)
+	{
+		if (s.equals(game_state.get_avaliable_spots()))
+			return true;
+		else
+			return false;
 	}
 	
 	public void start_gameloop()
