@@ -118,6 +118,7 @@ public class Players
 	
 	public void add_player(Player player)
 	{
+		// THIS KEEPS OVERWRITING THE MONSTER
 		players[current_players] = player;
 	}
 

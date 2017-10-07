@@ -52,7 +52,7 @@ public class UIBoard extends Pane
 		int current_player = 0;
 		
 		System.out.println("Drawing Players");
-		for (int i = 0; i < players.get_player_count(); i++)
+		for (int i = 0; i <= players.get_player_count(); i++) // IM CHANGING SOME THINGS AROUDN FOR MONSTER - MICHAEL
 		{
 			Entity player = players.get_player(i);
 			if (player instanceof Monster)
