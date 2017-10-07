@@ -6,7 +6,7 @@ public class GameServer extends Thread
 	static Board board;
 	static Players players;
 	static GameState gamestate;
-	static Player player;
+	static MonsterAi monster;
 
 	
 	public static void main(String[] args) throws InterruptedException
@@ -32,7 +32,9 @@ public class GameServer extends Thread
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();		
 		players = gamestate.get_players();	
-		player = (Player) gamestate.get_player();
+		// Return monster object
+		// TODO maybe put this in the gameloop
+		monster = board.build_monster_graph();
 		
 		// Amount of players to join
 		player_target = players.get_player_target();
@@ -40,8 +42,7 @@ public class GameServer extends Thread
 		// Generate the game board
 		board.create_board();
 	
-		board.create_board_array();
-		board.build_board_graph();	
+		board.create_associative_array();
 	}
 		
 	public static void GameLoop() throws InterruptedException
@@ -55,14 +56,8 @@ public class GameServer extends Thread
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
 
-			// TODO: Michael you will need to delte and re-write this
-			// Read up on the player objects and how the direction
-			// and desired direction will work, movement will be Pacman like
-			// You're gonna need to write that out and then work on an AI
-			// Also remember that player.x and player.y will be where the players
-			// are, their position being stored as objects in the board tiles
-			// was a bad idea and needs to be scraped
-
+			System.out.println("debug");
+			
 			// Cheeky dump of the gameboard for debugging purposes
 			System.out.println(board.toString());
 			Thread.sleep(100);

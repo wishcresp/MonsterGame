@@ -113,15 +113,33 @@ public class Graph
 	// Display the result, i need to see if this works
 	public void print_result(int source_node)
 	{
-		String output = "\nNumber of vertices = " + this.no_of_vertices;
-		output += "\nNumber of edges = " + this.no_of_edges;
-		
-		for (int i = 0; i < this.vertex_array.length; i++)			
+		String output = "";
+		/*output = "\nNumber of vertices = " + this.no_of_vertices;
+		output += "\nNumber of edges = " + this.no_of_edges + "\n";
+		*/
+		for (int i = 0; i < this.vertex_array.length; i++)		
+		{
 			output += ("\nDistance from vertex " + source_node + " to vertex " + i + " is " + vertex_array[i].get_distance_from_source());
+			output += ("\nThe direction set to this node is " + vertex_array[i].get_monster_path() + "\n");
+		}
 		
 		// Print all the details
 		System.out.println(output);			
 	}	
+	
+	// Display the result, i need to see if this works
+	public void print_player_position(int source_node, int player_node) {
+		String output = "";
+		
+		output += ("\nDistance from vertex " + source_node + " to vertex " + player_node + " is "
+				+ vertex_array[player_node].get_distance_from_source());
+		output += ("\nThe direction set to this node is " + vertex_array[player_node].get_monster_path() + "\n");
+
+		// Print all the details
+		System.out.println(output);
+	}
+	
+	
 	
 	// ACCESSORS AND MUTATORS //
 	public GraphVertex[] get_vertex_array()

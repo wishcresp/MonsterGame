@@ -41,5 +41,20 @@ public class EntityTest
 		// Down
 		Player2.set_dir(1);
 		Player2.move();
+		
+		/*
+		 * Set direction to Right and move, it should move TELEPORT
+		 */
+		Player Player3 = new Player();
+		
+		// Setup player coordinate
+		Player3.set_pos_x(1);
+		Player3.set_pos_y(5);
+
+		// UP
+		Player3.set_dir(0);
+		Player3.move();
+
+		
 	}
 }

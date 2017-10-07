@@ -1,11 +1,5 @@
 import javafx.application.Application;
 
-/*
- * Michael you will need to split this into two classes, one basic init class
- * and then run the actual game loop code in another class called "GameLoop"
- * as per the LucidChart mockup 
- */
-
 
 public class GameClient extends Thread
 {
@@ -46,18 +40,18 @@ public class GameClient extends Thread
 		/*
 		 *  Main Game Loop
 		 */
-//		while (true)
-//		{
-//			while (game_state.is_running() == false)
-//				Thread.sleep(100); // If the game isn't running, wait around
-//
-//			/*
-//			 * TODO: EVERYTHING
-//			 * Alright Sean you're up, have this draw the game board
-//			 * and the players, also you're gonna needa read user input
-//			 * and then player
-//			 */
-//			
-//		}
+/*		while (true)
+		{
+			while (game_state.is_running() == false)
+				Thread.sleep(100); // If the game isn't running, wait around
+
+			
+			 * TODO: EVERYTHING
+			 * Alright Sean you're up, have this draw the game board
+			 * and the players, also you're gonna needa read user input
+			 * and then player
+			 
+			
+		}*/
 	}
 }

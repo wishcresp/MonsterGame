@@ -73,8 +73,5 @@ public class NetServer extends Thread
 				e.printStackTrace();
 			}
 		}
-
-		// Once all the threads are started, start the game and die
-		GameState.get_instance().change_run_state(true);
 	}
 }

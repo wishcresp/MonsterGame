@@ -31,7 +31,7 @@ public class GraphVertex
 	private ArrayList<GraphEdge> edges = new ArrayList<GraphEdge>();
 	private int distance_from_source = Integer.MAX_VALUE;
 	private boolean settled;
-	private String string_path;
+	private int monster_path = -1;// -1 means that it is unset to any node
 	
 	// get number of edges connected to this vertex
 	public ArrayList<GraphEdge> get_edges() 
@@ -70,14 +70,14 @@ public class GraphVertex
 	}
 	
 	// Check whether vertex has been settled
-	public String is_string_path() 
+	public int get_monster_path() 
 	{
-		return string_path;
+		return monster_path;
 	}
 
 	// Set the boolean to make a vertex settled/unsettled
-	public void set_string_path(String string_path) 
+	public void set_monster_path(int monster_path) 
 	{
-		this.string_path = string_path;
+		this.monster_path = monster_path;
 	}	
 }
