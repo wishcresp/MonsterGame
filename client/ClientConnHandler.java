@@ -12,7 +12,6 @@ public class ClientConnHandler extends ConnHandler
 	@Override
 	public void conn_work(Board board, Players players) throws InterruptedException 
 	{
-		int new_player_target = 0;
 		GameState game_state = GameState.get_instance();
 		
 		
