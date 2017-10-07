@@ -4,6 +4,8 @@
  * method. I'm not very familiar with threading so I might need some help with
  * that. */
 
+import java.util.Random;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -131,7 +133,14 @@ public class UIWindow extends Application
 		game_stage.show();
 		
 
-		banger.play("nigga.mp3");
+		Random rn = new Random();
+		int rand = rn.nextInt();
+		if (rand % 3 == 0)
+			banger.play("nigga.mp3");
+		else if (rand % 3 == 1)
+			banger.play("nigga.mp3");
+		else
+			banger.play("nigga.mp3");
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
