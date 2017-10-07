@@ -69,25 +69,38 @@ public class ServerConnHandler extends ConnHandler
 		send_string(avaliable_spots); // Send the client the list of avaliable
 										// spots
 		
-		int player_pos = Integer.valueOf(get_string()); // Find which spot they
+		String player_pos = get_string(); // Find which spot they
 														// want
-		players.claim_spot(player_pos);
+		/*String
+		
+		players.claim_spot(player_pos);  //TODO: FIX LATER
 
-		String[] xy = spots_arr[player_pos].split(",");
+		String[] xy = spots_arr[player_pos].split(",");*/
+		String[] xy = player_pos.split(",");
 
 		player.set_pos_x(Integer.valueOf(xy[0])); // Set the player's starting
 												// position
 		player.set_pos_y(Integer.valueOf(xy[1]));
 
 		players.add_player(player); // Finally add the player to the game state
+		System.out.println("Added player");
 
 		GameState game_state = GameState.get_instance();
 		
-		while (game_state.is_running() == false)
-			Thread.sleep(100); // Wait for the game to start
-
-		while (game_state.is_running()) 
+		if (players.get_player_target() == this.id+1)
 		{
+			System.out.println("Last player just joined, let's go!");
+			game_state.change_run_state(true);
+		}
+		else
+		{
+			System.out.println("Waiting for other players to join to start the game");
+			while (game_state.is_running() == false)
+				Thread.sleep(100); // Wait for the game to start
+		}
+		while (game_state.is_running())
+		{
+			System.out.println("Sending data for client " + this.id);
 			// Get desired player.direction from client
 			String dir = get_string();
 			// System.out.println("Setting player dir to "+dir);
@@ -97,6 +110,7 @@ public class ServerConnHandler extends ConnHandler
 
 			
 			// TODO: Send players x and ys
+			System.out.println("Sending data for "+players.get_player_target()+" players");
 			String out = "";
 			for (int i = 0; i < players.get_player_target(); i++)
 			{

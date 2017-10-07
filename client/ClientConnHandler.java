@@ -87,6 +87,14 @@ public class ClientConnHandler extends ConnHandler
 		send_string(players.get_starter_spot());
 		System.out.println("Picked starter spot and sent off selection");
 
+		if (players.get_player_target() == this.id+1)
+		{
+			System.out.println("Last player just joined, let's go!");
+			game_state.change_run_state(true);
+		}
+		else
+			; // TODO: SOMETHING
+		
 		while (game_state.is_running())
 		{
 			// Send our direction
@@ -102,6 +110,7 @@ public class ClientConnHandler extends ConnHandler
 				players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
 			}
 			System.out.println("Set player pos and dir");
+			game_state.change_run_state(true); // TODO: FIX
 		
 			Thread.sleep(100);
 

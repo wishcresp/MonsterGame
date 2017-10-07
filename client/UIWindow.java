@@ -77,17 +77,20 @@ public class UIWindow extends Application
 		/* Creates Number of players input Window */
 		Stage num_stage = new Stage();
 		ip_entry = new TextField();
+		Button btn_num_one = new Button("One");
 		Button btn_num_two = new Button("Two");
 		Button btn_num_three = new Button("Three");
 		Button btn_num_four = new Button("Four");
+		btn_num_one.setPrefWidth(200);
 		btn_num_two.setPrefWidth(200);
 		btn_num_three.setPrefWidth(200);
 		btn_num_four.setPrefWidth(200);
 		num_window = new GridPane();
 		num_window.add(new Label("Select number of players"), 0, 0);
-		num_window.add(btn_num_two, 0, 1);
-		num_window.add(btn_num_three, 0, 2);
-		num_window.add(btn_num_four, 0, 3);
+		num_window.add(btn_num_one, 0, 1);
+		num_window.add(btn_num_two, 0, 2);
+		num_window.add(btn_num_three, 0, 3);
+		num_window.add(btn_num_four, 0, 4);
 		Scene num_scene = new Scene(num_window, 500, 500);
 		num_stage.setScene(num_scene);
 		
@@ -188,6 +191,19 @@ public class UIWindow extends Application
 					reg_stage.show();
 				}
 				
+			}
+		});
+		
+		/* When one players are selected. */
+		btn_num_one.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent e)
+			{
+				players.set_player_target(1);
+				num_stage.hide();
+				reg_stage.show();
+
 			}
 		});
 		
