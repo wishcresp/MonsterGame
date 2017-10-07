@@ -20,6 +20,8 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
+	Bangers banger = new Bangers();
+	
 	private UIBoard board = new UIBoard();
 	private BorderPane game_window = new BorderPane();
 	private GridPane num_window;
@@ -127,6 +129,9 @@ public class UIWindow extends Application
 		
 		game_stage.setScene(ip_scene);
 		game_stage.show();
+		
+
+		banger.play("nigga.mp3");
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->

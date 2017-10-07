@@ -20,7 +20,7 @@ public class GameClient extends Thread
 		// Startup the net thread
 		Thread listener = new NetClient();
 		listener.start();
-
+		
 		// Start the main game loop
 		GameLoop();
 	}
