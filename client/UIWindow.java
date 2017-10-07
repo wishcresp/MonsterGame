@@ -26,6 +26,7 @@ public class UIWindow extends Application
 	private BorderPane reg_window;
 	private GridPane ip_window;
 	private GridPane sp_window;
+	private BorderPane wait_window;
 	
 	private Button btn_sp_one;
 	private Button btn_sp_two;
@@ -46,23 +47,21 @@ public class UIWindow extends Application
 	@Override
 	public void start(Stage game_stage)
 	{
+		/* Creates game window */
+		Scene game_scene = new Scene(game_window, 500, 500);
+		
 		game_state = GameState.get_instance();
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
-		/* Creates game window */
-		Scene game_scene = new Scene(game_window, 500, 500);
-		game_stage.setScene(game_scene);
-		
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
-		/* Temporary ip/port*/
+		/* Temporary ip/port */
 		ip_entry = new TextField("127.0.0.1");
 		Label port_label = new Label("Enter Port:");
 		port_entry = new TextField("3216");
 		Button btn_ip = new Button("CONFIRM");
-		ip_stage.show();
 		
 		ip_window = new GridPane();
 		ip_window.add(ip_label, 0, 0);
@@ -75,7 +74,6 @@ public class UIWindow extends Application
 		ip_stage.setScene(ip_scene);
 		
 		/* Creates Number of players input Window */
-		Stage num_stage = new Stage();
 		Button btn_num_one = new Button("One");
 		Button btn_num_two = new Button("Two");
 		Button btn_num_three = new Button("Three");
@@ -91,10 +89,8 @@ public class UIWindow extends Application
 		num_window.add(btn_num_three, 0, 3);
 		num_window.add(btn_num_four, 0, 4);
 		Scene num_scene = new Scene(num_window, 500, 500);
-		num_stage.setScene(num_scene);
 		
 		/* Creates Registration Window */
-		Stage reg_stage = new Stage();
 		Label name_label = new Label("Enter your name:");
 		/* Temporary name */
 		name_entry = new TextField("A guy");
@@ -104,12 +100,8 @@ public class UIWindow extends Application
 		reg_window.setCenter(name_entry);
 		reg_window.setBottom(btn_name);
 		Scene reg_scene = new Scene(reg_window, 500, 500);
-		reg_stage.setScene(reg_scene);
-		
 		
 		/* Creates starting position selection window */
-		Stage sp_stage = new Stage();
-		Label sp_label = new Label("Select your starting postion:");
 		btn_sp_one = new Button("TOP LEFT");
 		btn_sp_two = new Button("TOP RIGHT");
 		btn_sp_three = new Button("BOTTOM LEFT");
@@ -125,7 +117,16 @@ public class UIWindow extends Application
 		sp_window.add(btn_sp_three, 1, 1);
 		sp_window.add(btn_sp_four, 1, 2);
 		Scene sp_scene = new Scene(sp_window, 500, 500);
-		sp_stage.setScene(sp_scene);
+		
+		/* Waiting for players screen */
+		Label wait_label = new Label("Waiting for players...");
+		wait_window = new BorderPane();
+		wait_window.setCenter(wait_label);
+		Scene wait_scene = new Scene(wait_window, 500, 500);
+		
+		
+		game_stage.setScene(ip_scene);
+		game_stage.show();
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
@@ -138,26 +139,20 @@ public class UIWindow extends Application
 				 * LEFT = 2
 				 * RIGHT = 3*/
 			
-				// Need to specify the player direction to set (x, 0) x=?
 				case UP:
-					System.out.println("UP WAS PRESSED");
 					players.get_player(PC_id).set_ddir(0);
 					break;
 				case DOWN:
-					System.out.println("DOWN WAS PRESSED");
-					players.set_player_dir(PC_id, 1);
 					players.get_player(PC_id).set_ddir(1);
 					break;
 				case LEFT:
-					System.out.println("LEFT WAS PRESSED");
 					players.get_player(PC_id).set_ddir(2);
 					break;
 				case RIGHT:
-					System.out.println("RIGHT WAS PRESSED");
 					players.get_player(PC_id).set_ddir(3);
 					break;
 				default:
-					System.out.println("INVALID KEY WAS PRESSED");
+					/* Invalid key was pressed */
 			}
 		});
 		
@@ -180,12 +175,10 @@ public class UIWindow extends Application
 					try { Thread.sleep(100); } catch (Exception err) { }
 				}
 				
-				ip_stage.hide();
 				if (PC_id == 0)
-					num_stage.show();
+					game_stage.setScene(num_scene);
 				else
-					reg_stage.show();
-				
+					game_stage.setScene(reg_scene);	
 			}
 		});
 		
@@ -196,8 +189,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				players.set_player_target(1);
-				num_stage.hide();
-				reg_stage.show();
+				game_stage.setScene(reg_scene);	
 
 			}
 		});
@@ -209,9 +201,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				players.set_player_target(2);
-				num_stage.hide();
-				reg_stage.show();
-
+				game_stage.setScene(reg_scene);	
 			}
 		});
 		
@@ -222,9 +212,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				players.set_player_target(3);
-				num_stage.hide();
-				reg_stage.show();
-
+				game_stage.setScene(reg_scene);	
 			}
 		});
 		
@@ -235,9 +223,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				players.set_player_target(4);
-				num_stage.hide();
-				reg_stage.show();
-
+				game_stage.setScene(reg_scene);	
 			}
 		});
 		
@@ -258,8 +244,6 @@ public class UIWindow extends Application
 					try { Thread.sleep(100); } catch (Exception ex) { }
 				}
 				
-				reg_stage.hide();
-				
 //				if (!spot_avaliable("1,1"))
 //					btn_sp_one.setDisable(true);
 //				if (!spot_avaliable("9,1"))
@@ -269,7 +253,7 @@ public class UIWindow extends Application
 //				if (!spot_avaliable("9,9"))
 //					btn_sp_four.setDisable(true);
 				
-				sp_stage.show();
+				game_stage.setScene(sp_scene);	
 			}
 		});
 		
@@ -280,8 +264,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				wait_avaliable_spots(0);
-				sp_stage.hide();
-				game_stage.show();
+				game_stage.setScene(game_scene);	
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
@@ -296,8 +279,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				wait_avaliable_spots(1);
-				sp_stage.hide();
-				game_stage.show();
+				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
@@ -311,8 +293,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				wait_avaliable_spots(2);
-				sp_stage.hide();
-				game_stage.show();
+				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
@@ -326,8 +307,7 @@ public class UIWindow extends Application
 			public void handle(ActionEvent e)
 			{
 				wait_avaliable_spots(3);
-				sp_stage.hide();
-				game_stage.show();
+				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
