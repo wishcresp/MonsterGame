@@ -137,6 +137,7 @@ public class UIWindow extends Application
 		int rand = rn.nextInt();
 		if (rand % 3 == 0)
 			banger.play("nigga.mp3");
+		// https://www.youtube.com/watch?v=QS0qjldeT9k
 		else if (rand % 3 == 1)
 			banger.play("nigga.mp3");
 		else

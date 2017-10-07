@@ -31,8 +31,7 @@ public class Players
 		
 		tmp = players[id1];
 		players[id1] = players[id2];
-		players[id2] = tmp;
-		
+		players[id2] = tmp;		
 	}
 	
 	public void remove_player(int id)
