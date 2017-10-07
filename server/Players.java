@@ -55,6 +55,11 @@ public class Players
 	{
 		players[id].set_dir(dir);
 	}
+	// Player direction
+	public void set_player_ddir(int id, int dir)
+	{
+		players[id].set_ddir(dir);
+	}
 
 	// getter for player id
 	public Entity get_player(int id)

@@ -41,41 +41,57 @@ public abstract class Entity {
 		output += this.get_pos_x() + "," + this.get_pos_y();
 		System.out.println(output);
 		
+		
+		// Desired direction handling
+		boolean moved = false;
 		/*
 		 * Get players direction, and apply the move
 		 */
-		switch (direction) 
+		switch (desired_direction) 
 		{		
 		
 		case 2: // (x - 1, y) Left
 			if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
+			{
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() - 1);
-			
+				
 				// teleport to node 40
 				if (this.get_pos_x() == 0)
 					this.set_pos_x(9);
+				
+				moved = true;
+			}
 			break;
 			
 		case 3: // (x + 1, y) Right
 			if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
+			{
 				// Update the player position if valid
 				this.set_pos_x(this.get_pos_x() + 1);
 			
-			// teleport to node 4
-			if (this.get_pos_x() ==10)
-					this.set_pos_x(1);
+				
+				// teleport to node 4
+				if (this.get_pos_x() ==10)
+						this.set_pos_x(1);
+				
+				moved = true;
+			}
 			break;
 			
 		case 0: // (x, y - 1) Up
 			if (check_move(this.get_pos_x(), this.get_pos_y() - 1))
-				
+			{
 				// Update the player position if valid
 				this.set_pos_y(this.get_pos_y() - 1);
+			
 
 				// Teleport to node 26
 				if (this.get_pos_y() == 0)
 					this.set_pos_y(9);
+				
+				moved = true;
+			}
 			break;
 
 		case 1: // (x, y + 1) Down
@@ -86,14 +102,86 @@ public abstract class Entity {
 				
 				// Teleport to node 18
 				if (this.get_pos_y() == 10)
-					this.set_pos_y(1);					
+					this.set_pos_y(1);			
+				
+				moved = true;
 			}	
 			break;
 			
 		default:
 			System.out.println("invalid move");
 		}
-
+		
+		if (moved)
+		{
+			direction = desired_direction;
+		}
+		else
+		{
+		
+			switch (direction) 
+			{		
+			
+			case 2: // (x - 1, y) Left
+				if (check_move(this.get_pos_x() - 1, this.get_pos_y()))
+				{
+					// Update the player position if valid
+					this.set_pos_x(this.get_pos_x() - 1);
+					
+					// teleport to node 40
+					if (this.get_pos_x() == 0)
+						this.set_pos_x(9);
+					
+				}
+				break;
+				
+			case 3: // (x + 1, y) Right
+				if (check_move(this.get_pos_x() + 1, this.get_pos_y()))
+				{
+					// Update the player position if valid
+					this.set_pos_x(this.get_pos_x() + 1);
+				
+					
+					// teleport to node 4
+					if (this.get_pos_x() ==10)
+							this.set_pos_x(1);
+					
+				}
+				break;
+				
+			case 0: // (x, y - 1) Up
+				if (check_move(this.get_pos_x(), this.get_pos_y() - 1))
+				{
+					// Update the player position if valid
+					this.set_pos_y(this.get_pos_y() - 1);
+				
+	
+					// Teleport to node 26
+					if (this.get_pos_y() == 0)
+						this.set_pos_y(9);
+					
+				}
+				break;
+	
+			case 1: // (x, y + 1) Down
+				if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
+				{	
+					// Update the player position if valid
+					this.set_pos_y(this.get_pos_y() + 1);
+					
+					// Teleport to node 18
+					if (this.get_pos_y() == 10)
+						this.set_pos_y(1);			
+					
+				}	
+				break;
+				
+			default:
+				System.out.println("invalid move");
+			}
+		}
+		
+			
 		// DEBUG, find out the current player coordinate
 		output = "Player coordinate after move: ";
 		output += this.get_pos_x() + "," + this.get_pos_y() + "\n";

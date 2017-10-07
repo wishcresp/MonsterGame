@@ -33,7 +33,7 @@ public class NetClient extends Thread
 				}
 			}
 			
-			System.out.println("Got IP "+game_state.get_server_ip()+"...");
+			System.out.println("Got IP "+game_state.get_server_ip()+":"+game_state.get_server_port());
 
 			 conn = new Socket(game_state.get_server_ip(), game_state.get_server_port());
 			 conn.setSoTimeout(0); // Wait till we find some[one,thing]

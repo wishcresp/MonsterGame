@@ -107,7 +107,7 @@ public class Board
 			{
 				if (x >= dimensions || y >= dimensions)
 					continue;
-				System.out.println("Setting cell "+x+","+y);
+				//System.out.println("Setting cell "+x+","+y);
 				BoardTiles[x][y].fromString(element);
 				y++;
 			}

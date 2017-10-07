@@ -107,7 +107,7 @@ public class ServerConnHandler extends ConnHandler
 			// System.out.println("Setting player dir to "+dir);
 			dir = dir.replaceAll("\\D+", "");
 			int direction = Integer.valueOf(dir);
-			players.set_player_dir(id, direction);
+			players.set_player_ddir(id, direction);
 
 			
 			// TODO: Send players x and ys
