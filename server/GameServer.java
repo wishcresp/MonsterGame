@@ -36,8 +36,7 @@ public class GameServer extends Thread
 		
 		// Create monster object
 		monster = board.build_monster_graph();
-		
-		
+	
 		// Amount of players to join
 		player_target = players.get_player_target();
 		
@@ -60,21 +59,6 @@ public class GameServer extends Thread
 		monster.set_monster_position(start_position);
 		
 		/*
-		// TODO Get instance of monster in the array of players
-		for (int i = 0; i <= players.get_player_count(); i++) 
-		{
-			Entity player = players.get_player(i);
-
-			// If this is the monster
-			if (player instanceof Monster)
-				monster_entity = player;
-		}
-
-		monster_entity.set_pos_x(5);
-		monster_entity.set_pos_y(5);
-		*/
-		
-		/*
 		 * Main Game Loop
 		 */
 		while (true) 
@@ -86,7 +70,14 @@ public class GameServer extends Thread
 			for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
 			{
 				Entity player = players.get_player(i);
-				player.move();
+				
+				if (player instanceof Monster)
+				{
+					monster_entity = (Monster) player;
+					monster_entity.move(players, monster);
+				}
+				else				
+					player.move();				
 			}			
 			Thread.sleep(500);
 		}

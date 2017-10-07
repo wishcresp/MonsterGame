@@ -37,51 +37,16 @@ public class MonsterAiTest
 		monster.print_result(monster.get_monster_position()); 
 	}
 	
+	
 	static Board board;
 	static GameState gamestate;
+	static Players players;
+	static MonsterAi monster;
+
 	
 	@Test
 	public void test_gameboard() 
 	{
-		
-		//////////// CREATE GRAPH //////////////
-		
-		GraphEdge[] edges = 
-			{
-				/*
-				 * ROWS
-				 */
-				// TOP ROW (1,1 - 1,9)
-				new GraphEdge(0, 1), new GraphEdge(1, 2), new GraphEdge(2, 3), new GraphEdge(3, 4), new GraphEdge(4, 5),
-				new GraphEdge(5, 6), new GraphEdge(6, 7), new GraphEdge(7, 8),
-
-				// MIDDLE ROW (5,0 - 5,10)
-				new GraphEdge(18, 19), new GraphEdge(19, 20), new GraphEdge(20, 21), new GraphEdge(21, 22),
-				new GraphEdge(22, 23), new GraphEdge(23, 24), new GraphEdge(24, 25), new GraphEdge(25, 26),
-
-				// BOTTOM ROW (9,1 - 9,9)
-				new GraphEdge(36, 37), new GraphEdge(37, 38), new GraphEdge(38, 39), new GraphEdge(39, 40),
-				new GraphEdge(40, 41), new GraphEdge(41, 42), new GraphEdge(42, 43), new GraphEdge(43, 44),
-
-				/*
-				 * COLUMNS
-				 */
-				// LEFT COLUMN (1,1 - 9,1)
-				new GraphEdge(0, 9), new GraphEdge(9, 12), new GraphEdge(12, 15), new GraphEdge(15, 18),
-				new GraphEdge(18, 27), new GraphEdge(27, 30), new GraphEdge(30, 33), new GraphEdge(33, 36),
-
-				// MIDDLE COLUMN (0,5 - 10,5)
-				new GraphEdge(4, 10), new GraphEdge(10, 13), new GraphEdge(13, 16), new GraphEdge(16, 22),
-				new GraphEdge(22, 28), new GraphEdge(28, 31), new GraphEdge(31, 34), new GraphEdge(34, 40),
-
-				// RIGHT COLUMN (1,9 - 9,9)
-				new GraphEdge(8, 11), new GraphEdge(11, 14), new GraphEdge(14, 17), new GraphEdge(17, 26),
-				new GraphEdge(26, 29), new GraphEdge(29, 32), new GraphEdge(32, 35), new GraphEdge(35, 44),
-
-				// TELEPORTATION LINKS
-				new GraphEdge(4, 40), new GraphEdge(18, 26) 
-				};
-		
 		//////////// CREATE PLAYERS //////////////
 		/* 
 		 * Get instances to prevent static variables
@@ -112,9 +77,10 @@ public class MonsterAiTest
 		 *  should be same distance as player 2 only with different direction
 		 */
 		Player Player3 = new Player();
-		Player3.set_pos_x(4);
+		Player3.set_pos_x(5);
 		Player3.set_pos_y(9);
 		
+
 		// PLAYHER 4
 		Player Player4 = new Player();
 		Player4.set_pos_x(1);
@@ -125,7 +91,9 @@ public class MonsterAiTest
 		/*
 		 * Setup the monster
 		 */
-		MonsterAi monster = new MonsterAi(edges);
+		//monster = new MonsterAi(edges);
+		monster = board.build_monster_graph();
+
 		monster.set_monster_position(22); 
 		monster.calculate_shortest_path();
 		
@@ -185,7 +153,8 @@ public class MonsterAiTest
 		//monster.print_player_position(monster.get_monster_position(), player4_node);
 
 		distance_array[4] = distance4;
-
+		
+		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         int smallest = Integer.MAX_VALUE;
@@ -210,6 +179,47 @@ public class MonsterAiTest
 		
 		System.out.println("\nThe monster will move to node " + destination2 + " which has the coordinate " + coordinates[0] + "," + coordinates[1]);
 
+
+		////////////////////// USING THE MONSTER CLASS ///////////////////////
+		System.out.println("\n////////////////////// USING THE MONSTER CLASS ///////////////////////\n");
+		/*
+		 * This is the mockup players that i have manually generated
+		 */
+		players = gamestate.get_players();	
+		players.set_player_target(4);
+		players.create_players();
+		
+		players.add_player(Player1);
+		players.set_player_count(players.get_player_count() + 1);
+		
+		players.add_player(Player2);
+		players.set_player_count(players.get_player_count() + 1);
+		
+		players.add_player(Player3);
+		players.set_player_count(players.get_player_count() + 1);
+		
+		players.add_player(Player4);
+		players.set_player_count(players.get_player_count() + 1);
+		
+		Monster monster_entity;
+		
+		
+		
+		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
+		{
+			Entity player = players.get_player(i);
+			
+			if (player instanceof Monster)
+			{
+				monster_entity = (Monster) player;
+				monster_entity.move(players, monster);
+				monster_entity.move(players, monster);
+
+			}
+			else				
+				player.move();			
+		}
+		
 		
 	}
 }

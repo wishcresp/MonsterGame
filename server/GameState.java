@@ -6,6 +6,7 @@ public class GameState
 	static Players players = new Players();
 	static Board board = new Board();
 	static Player player = new Player();
+
 	
 	private GameState() 
 	{
