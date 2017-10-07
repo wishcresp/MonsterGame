@@ -54,7 +54,7 @@ public class GameServer extends Thread
 		Board board = game_state.get_board();
 		int start_position = 22;
 		
-		Entity monster_entity = null ;
+		Monster monster_entity = null ;
 		
 		// Set the AI position in the GRAPH
 		monster.set_monster_position(start_position);
@@ -82,25 +82,19 @@ public class GameServer extends Thread
 			while (game_state.is_running() == false)
 
 				Thread.sleep(100); // If the game isn't running, wait around
-			
+
 			for (int i = 0; i <= players.get_player_count(); i++) 
 			{
 				Entity player = players.get_player(i);
-
+				player.move();
+				
 				// If this is the monster
 				if (player instanceof Monster)
-					monster_entity = player;
-			}
-
-			monster_entity.set_pos_x(5);
-			monster_entity.set_pos_y(5);
-
-			for (int i = 0; i < players.get_player_count(); i++) 
-			{
-				Entity player = players.get_player(i);
-				player.move();
-			}
-
+				{
+					monster_entity = (Monster) player;
+					monster_entity.move();
+				}
+			}			
 			Thread.sleep(500);
 		}
 	}
