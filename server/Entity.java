@@ -45,7 +45,21 @@ public abstract class Entity {
 		 */
 		switch (desired_direction) 
 		{
-		case 3: // RIGHT
+		case 0: // UP
+			if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
+			{
+				// Update the player position if valid
+				this.set_pos_x(this.get_pos_x() - 1);
+
+				// teleport to node 40
+				if (this.get_pos_x() == 0)
+					this.set_pos_x(9);
+
+				moved = true;
+			}
+			break;
+			
+		case 1: //DOWN
 			if (check_move(this.get_pos_x() + 1, this.get_pos_y())) 
 			{
 				// Update the player position if valid
@@ -60,20 +74,6 @@ public abstract class Entity {
 			break;
 
 		case 2: // LEFT
-			if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
-			{
-				// Update the player position if valid
-				this.set_pos_x(this.get_pos_x() - 1);
-
-				// teleport to node 40
-				if (this.get_pos_x() == 0)
-					this.set_pos_x(9);
-
-				moved = true;
-			}
-			break;
-
-		case 0: // DOWN
 			if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) 
 			{
 				// Update the player position if valid
@@ -87,7 +87,7 @@ public abstract class Entity {
 			}
 			break;
 
-		case 1: // UP
+		case 3: // RIGHT
 			if (check_move(this.get_pos_x(), this.get_pos_y() + 1)) 
 			{
 				// Update the player position if valid
@@ -111,7 +111,19 @@ public abstract class Entity {
 		{
 			switch (direction) 
 			{
-			case 3: // RIGHT
+			case 0: // UP
+				if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
+				{
+					// Update the player position if valid
+					this.set_pos_x(this.get_pos_x() - 1);
+
+					// teleport to node 40
+					if (this.get_pos_x() == 0)
+						this.set_pos_x(9);
+				}
+				break;
+				
+			case 1: // DOWN
 				if (check_move(this.get_pos_x() + 1, this.get_pos_y())) 
 				{
 					// Update the player position if valid
@@ -124,18 +136,6 @@ public abstract class Entity {
 				break;
 
 			case 2: // LEFT
-				if (check_move(this.get_pos_x() - 1, this.get_pos_y())) 
-				{
-					// Update the player position if valid
-					this.set_pos_x(this.get_pos_x() - 1);
-
-					// teleport to node 40
-					if (this.get_pos_x() == 0)
-						this.set_pos_x(9);
-				}
-				break;
-
-			case 0: // DOWN
 				if (check_move(this.get_pos_x(), this.get_pos_y() - 1)) 
 				{
 					// Update the player position if valid
@@ -147,7 +147,7 @@ public abstract class Entity {
 				}
 				break;
 
-			case 1: // UP
+			case 3: // RIGHT
 				if (check_move(this.get_pos_x(), this.get_pos_y() + 1))
 				{
 					// Update the player position if valid
