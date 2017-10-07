@@ -48,6 +48,9 @@ public class GameServer extends Thread
 	public static void GameLoop() throws InterruptedException
 	{		
 		GameState game_state = GameState.get_instance();
+		Players players = game_state.get_players();
+		Board board = game_state.get_board();
+		
 		/*
 		 *  Main Game Loop
 		 */
@@ -56,7 +59,14 @@ public class GameServer extends Thread
 			while (game_state.is_running() == false)
 				Thread.sleep(100); // If the game isn't running, wait around
 
-			Thread.sleep(16);
+			Thread.sleep(10000);
+			
+			for (int i = 0; i < players.get_player_count(); i++)
+			{
+				Entity player = players.get_player(i);
+				
+				player.move();
+			}
 			/*System.out.println("debug");
 			
 			// Cheeky dump of the gameboard for debugging purposes

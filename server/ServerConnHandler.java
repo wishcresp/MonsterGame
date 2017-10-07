@@ -83,6 +83,7 @@ public class ServerConnHandler extends ConnHandler
 		player.set_pos_y(Integer.valueOf(xy[1]));
 
 		players.add_player(player); // Finally add the player to the game state
+		players.set_player_count(players.get_player_count()+1);
 		System.out.println("Added player");
 
 		GameState game_state = GameState.get_instance();
