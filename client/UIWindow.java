@@ -4,10 +4,12 @@
  * method. I'm not very familiar with threading so I might need some help with
  * that. */
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
@@ -18,8 +20,8 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
-	private UIBoard board;
-	private BorderPane game_window;
+	private UIBoard board = new UIBoard();
+	private BorderPane game_window = new BorderPane();
 	private GridPane num_window;
 	private BorderPane reg_window;
 	private GridPane ip_window;
@@ -39,6 +41,8 @@ public class UIWindow extends Application
 	private String[] poses;
 	private GameState game_state;
 	
+	private Timeline game_loop;
+	
 	@Override
 	public void start(Stage game_stage)
 	{
@@ -49,16 +53,7 @@ public class UIWindow extends Application
 		// DEBUG SHIT
 //		game_state.set_server_ip("127.0.0.1");
 //		game_state.set_server_port(3216);
-		
-		
-		/* Creates Game Board UI */
-		board = new UIBoard();
-		game_window = new BorderPane(); 
-		game_window.setCenter(board.getBoard());
-		Scene game_scene = new Scene(game_window, 500, 500);
-		game_stage.setScene(game_scene);
-		
-		
+	
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
@@ -133,39 +128,39 @@ public class UIWindow extends Application
 		Scene sp_scene = new Scene(sp_window, 500, 500);
 		sp_stage.setScene(sp_scene);
 		
-		/* Key Listener for arrows */
-		game_window.setOnKeyPressed(e ->
-		{
-			switch (e.getCode())
-			{
-				/* Konami code directions.
-				 * UP = 0
-				 * DOWN = 1
-				 * LEFT = 2
-				 * RIGHT = 3*/
-			
-				// Need to specify the player direction to set (x, 0) x=?
-				case UP:
-					System.out.println("UP WAS PRESSED");
-					players.get_player(PC_id).set_ddir(0);
-					break;
-				case DOWN:
-					System.out.println("DOWN WAS PRESSED");
-					players.set_player_dir(PC_id, 1);
-					players.get_player(PC_id).set_ddir(1);
-					break;
-				case LEFT:
-					System.out.println("LEFT WAS PRESSED");
-					players.get_player(PC_id).set_ddir(2);
-					break;
-				case RIGHT:
-					System.out.println("RIGHT WAS PRESSED");
-					players.get_player(PC_id).set_ddir(3);
-					break;
-				default:
-					System.out.println("INVALID KEY WAS PRESSED");
-			}
-		});
+//		/* Key Listener for arrows */
+//		game_window.setOnKeyPressed(e ->
+//		{
+//			switch (e.getCode())
+//			{
+//				/* Konami code directions.
+//				 * UP = 0
+//				 * DOWN = 1
+//				 * LEFT = 2
+//				 * RIGHT = 3*/
+//			
+//				// Need to specify the player direction to set (x, 0) x=?
+//				case UP:
+//					System.out.println("UP WAS PRESSED");
+//					players.get_player(PC_id).set_ddir(0);
+//					break;
+//				case DOWN:
+//					System.out.println("DOWN WAS PRESSED");
+//					players.set_player_dir(PC_id, 1);
+//					players.get_player(PC_id).set_ddir(1);
+//					break;
+//				case LEFT:
+//					System.out.println("LEFT WAS PRESSED");
+//					players.get_player(PC_id).set_ddir(2);
+//					break;
+//				case RIGHT:
+//					System.out.println("RIGHT WAS PRESSED");
+//					players.get_player(PC_id).set_ddir(3);
+//					break;
+//				default:
+//					System.out.println("INVALID KEY WAS PRESSED");
+//			}
+//		});
 		
 		/* When IP confirm button is pressed*/
 		btn_ip.setOnAction(new EventHandler<ActionEvent>()
@@ -295,7 +290,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
-				start_gameloop();
+				game_loop.play();
 			}
 		});
 		
@@ -311,7 +306,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
-				start_gameloop();
+				game_loop.play();
 			}
 		});
 		
@@ -326,7 +321,7 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
-				start_gameloop();
+				game_loop.play();
 			}
 		});
 		
@@ -341,9 +336,21 @@ public class UIWindow extends Application
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
 				game_window.requestFocus();
-				start_gameloop();
+				game_loop.play();
 			}
 		});
+		
+	    EventHandler<ActionEvent> eventHandler = e -> {
+			/* Creates Game Board UI */
+	    	game_window = new BorderPane();
+			board.update_board();
+			game_window.setCenter(board.getBoard());
+			Scene game_scene = new Scene(game_window, 500, 500);
+			game_stage.setScene(game_scene);
+	    };
+	    
+	    game_loop = new Timeline(new KeyFrame(Duration.millis(500), eventHandler));
+	    game_loop.setCycleCount(Timeline.INDEFINITE);
 	}
 	
 	public void wait_avaliable_spots(int i)
@@ -364,21 +371,6 @@ public class UIWindow extends Application
 			return true;
 		else
 			return false;
-	}
-	
-	public void start_gameloop()
-	{
-		while (game_state.is_running() == false)
-			try { Thread.sleep(100); } catch (Exception ex) {}
-		
-		while (true)
-		{
-			board.update_board();
-			try { Thread.sleep(100); } catch (Exception ex) 
-			{
-				ex.printStackTrace();
-			}
-		}
 	}
 }
 
