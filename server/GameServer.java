@@ -79,7 +79,7 @@ public class GameServer extends Thread
 				else				
 					player.move();				
 			}			
-			Thread.sleep(500);
+			Thread.sleep(250);
 		}
 	}
 }
