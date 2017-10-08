@@ -2,6 +2,9 @@ import java.util.Random;
 
 public class Monster extends Entity 
 {
+	
+	private int cooldown;
+	
 	public Monster() 
 	{
 		super();
@@ -9,10 +12,17 @@ public class Monster extends Entity
 		this.set_pos_y(5);
 	}
 
-	// overide move function from entity
+	// override move function from entity
 	public void move(Players players, MonsterAi monster) 
 	{
 		System.out.println("FIRING UP THE AI");
+		
+		// Check is monster is still cooling down
+		if (!check_cooldown())
+		{
+			return;
+		}
+		
 
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
 
@@ -75,7 +85,6 @@ public class Monster extends Entity
 			}
 		}
 
-		
 		// FOUND THE CLOSEST PLAYER
 		
 		System.out.println("\nPlayer " + (smallest_player + 1) + " is the closest with a length of " + smallest);
@@ -90,14 +99,19 @@ public class Monster extends Entity
 		
 		System.out.println("\nMonster node is " + monster_node_postion);
 
-
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
 		// IF monster node and closest player node is identical, kill the player
 		if (monster_node_postion == closest_player_node)
 		{
 			Player killed_player = (Player) closest_player;
-			killed_player.kill();		
+			killed_player.kill();
+			
+			// Set the cool down
+			set_cool_down(5);
+			
+			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
+			
 		}
 		else
 		{
@@ -107,9 +121,7 @@ public class Monster extends Entity
 			// MAKE THE MOVE
 			this.set_pos_x(coordinates[0]);
 			this.set_pos_y(coordinates[1]);
-
 		}
-		
 		
 		// DEBUG prompt where the monster has ended up
 		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
@@ -117,4 +129,27 @@ public class Monster extends Entity
 		System.out.println("Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 				+ monster.get_monster_position());
 	}
+	
+	
+	public boolean check_cooldown()
+	{
+		if (this.cooldown <= 0)
+		{
+			return true;
+		}
+				
+		this.cooldown--;
+		return false;			
+	}
+
+	
+	public int get_cool_down() {
+		return cooldown;
+	}
+
+	public void set_cool_down(int cooldown) {
+		this.cooldown = cooldown;
+	}
+	
+	
 }
