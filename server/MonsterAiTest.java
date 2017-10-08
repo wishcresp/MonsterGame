@@ -97,7 +97,7 @@ public class MonsterAiTest {
 		{
 			Entity player = players.get_player(i);
 
-			if (player instanceof Monster) {
+			if (player instanceof Monster) {		
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
 			} else
@@ -107,7 +107,8 @@ public class MonsterAiTest {
 
 	// @Test
 	public void test_monster() {
-		GraphEdge[] edges = { new GraphEdge(0, 1), new GraphEdge(1, 4), new GraphEdge(0, 2), new GraphEdge(2, 3),
+		GraphEdge[] edges = { 
+				new GraphEdge(0, 1), new GraphEdge(1, 4), new GraphEdge(0, 2), new GraphEdge(2, 3),
 				new GraphEdge(3, 4)
 
 				// new GraphEdge(1, 3), new GraphEdge(1, 4), new GraphEdge(1, 5), new

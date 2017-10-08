@@ -22,8 +22,7 @@ public class Monster extends Entity
 		{
 			return;
 		}
-		
-
+	
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
 
 		System.out.println("\n//// Coordinates are currently " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
@@ -46,11 +45,13 @@ public class Monster extends Entity
 		// Loop through all the current players except monster
 		for (int i = 0; i < players.get_player_count(); i++) 
 		{
-			Entity player = players.get_player(i);
+			Player player = (Player) players.get_player(i);
 
 			int player_node = board.convert_to_node(player.get_pos_x(), player.get_pos_y());
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
 			int player_destination = monster.vertex_array[player_node].get_monster_path();
+			
+			System.out.println("IS THE PLAYER DEAD? " + player.is_dead());
 
 			System.out.println("|" + player_node + "," + player_distance + "," + player_destination + "|");
 
@@ -63,7 +64,7 @@ public class Monster extends Entity
 		// Try to find the smallest value in the array
 		for (int i = 0; i < distance_array.length; i++) 
 		{
-			if (smallest > distance_array[i]) 
+			if (smallest > distance_array[i] ) 
 			{
 				smallest = distance_array[i];
 				smallest_player = i;
@@ -102,6 +103,7 @@ public class Monster extends Entity
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
 		// IF monster node and closest player node is identical, kill the player
+		// TODO SHOULD BE CHECKING THE PREVIOUS NODE OF THE PLAYER, REALLY MESSSED UP MY CODE HERE
 		if (monster_node_postion == closest_player_node)
 		{
 			Player killed_player = (Player) closest_player;
