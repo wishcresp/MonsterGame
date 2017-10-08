@@ -181,10 +181,10 @@ public abstract class Entity {
 		 * via teleport, Check if (5,9) exists as a coordinate (not -1) and does not
 		 * contain a player.
 		 */
-
 		game_state = GameState.get_instance();
 		board = game_state.get_board();
-		board.create_associative_array();
+		
+		//board.create_associative_array();
 
 		int[][] board_array = new int[dimensions][dimensions];
 

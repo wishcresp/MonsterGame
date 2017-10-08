@@ -14,13 +14,20 @@ public class Monster extends Entity {
 
 		// Figure out the current monster node position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
-		System.out.println(monster_node_postion);
+		
+		System.out.println("\n//// Coordinates are currently " + this.get_pos_x() + "," + this.get_pos_y() + " at node " + monster.get_monster_position()+" ////\n");
 
 		// Update the monster node 
 		monster.set_monster_position(monster_node_postion);
 
 		// RUN THE AI, calculate all the spots on the board
 		monster.calculate_shortest_path();
+		
+		// DEBUG TRY TO FIND OUT WHATS UPDATING
+		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
+		monster.print_result(monster_node_postion);
+		System.out.println("\n//////////////// END OF THE AI PROCESS ////////////////\n");
+
 
 		// New int array to hold all player distances
 		int[] distance_array = new int[players.get_player_count()];
@@ -119,6 +126,6 @@ public class Monster extends Entity {
 		this.set_pos_y(coordinates[1]);
 		
 		// DEBUG prompt where the monster has ended up
-		System.out.println("Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node " + monster.get_monster_position());
+		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node " + monster.get_monster_position()+"////\n");
 	}
 }

@@ -39,10 +39,28 @@ public class MonsterAi extends Graph
 	 */
 	public void calculate_shortest_path() 
 	{
+		
+		
 		// Set the source vertex to the monster position 
 		int current_vertex = monster_position;
+		
+		
+		// RESET ALL THE NODES
+		for (int x = 0; x <= 44; x++)
+		{
+			
+			this.vertex_array[x].set_monster_path(-1);
+			this.vertex_array[x].set_settled(false);
+			this.vertex_array[x].set_distance_from_source(Integer.MAX_VALUE);
+
+		}
+		
+		
 		this.vertex_array[monster_position].set_distance_from_source(0);
 			
+		// TODO STILL -1 before this line
+
+		
 		// visit every single vertex in the array (starting with the source)
 		for (int i = 0; i < this.vertex_array.length; i++) 
 		{
@@ -78,6 +96,8 @@ public class MonsterAi extends Graph
 						 *  If the node is settled, then you cannot change the path on it
 						 *  I need to investigate the GraphVertex class for this
 						 */
+						
+						// TODO THIS IS NOT LETTING SHIT UPDATE, set everything to -1 before it runs
 						if (vertex_array[neighbour].get_monster_path() == -1)
 						{
 							// If the current vertex matches the source then fix the position
@@ -99,6 +119,8 @@ public class MonsterAi extends Graph
 			// Find the next vertex with the shortest distance
 			current_vertex = get_shortest_distance();
 		}
+		
+
 	}
 
 	private int get_shortest_distance() 

@@ -69,6 +69,13 @@ public class GraphVertex
 		this.settled = settled;
 	}
 	
+	// Set the boolean to make a vertex settled/unsettled
+	public void reset_monster_path() 
+	{
+		// TODO RESET ALL VALUES TO -1
+
+	}
+
 	// Check whether vertex has been settled
 	public int get_monster_path() 
 	{
