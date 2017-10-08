@@ -3,7 +3,7 @@ public class Player extends Entity
 {	
 	
 	private String name;
-	boolean is_dead = false;
+	private boolean is_dead = false;
 	
 	public Player() 
 	{

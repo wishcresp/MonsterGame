@@ -222,7 +222,7 @@ public abstract class Entity {
 		{
 			Entity player = players.get_player(i);
 
-			if (x == player.get_pos_x() && y == player.get_pos_y()) 
+			if (x == player.get_pos_x() && y == player.get_pos_y() && ((Player)player).is_dead() == false) 
 			{
 				System.out.println("There is another player here");
 				return false;
