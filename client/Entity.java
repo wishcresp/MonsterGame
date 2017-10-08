@@ -23,6 +23,7 @@ public abstract class Entity
 	private int desired_direction;
 	private int pos_x, pos_y;
 	private String name;
+	private String id = "";
 	
 	
 	// private TileSprite;
@@ -83,6 +84,16 @@ public abstract class Entity
 	public void set_pos_y(int pos_y) 
 	{
 		this.pos_y = pos_y;
+	}
+
+	public String get_id()
+	{
+		return id;
+	}
+
+	public void set_id(String id) 
+	{
+		this.id = id;
 	}
 
 }

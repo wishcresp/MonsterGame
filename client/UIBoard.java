@@ -63,16 +63,25 @@ public class UIBoard extends Pane
 			if (player instanceof Monster)
 				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
 			else {
-				switch (i) {
-					case 0:
-						board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
+				switch (player.get_id()) {
+					case "D":
+						board.add(new UICell(1), player.get_pos_x(), player.get_pos_y());
 						break;
-					case 1:
+					case "0":
 						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
-					case 2:
+						break;
+					case "1":
 						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
-					case 3:
+						break;
+					case "2":
 						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
+						break;
+					case "3":
+						board.add(new UICell(7), player.get_pos_x(), player.get_pos_y());
+						break;
+					default:
+						board.add(new UICell(8), player.get_pos_x(), player.get_pos_y());
+						break;
 				}
 			}
 				

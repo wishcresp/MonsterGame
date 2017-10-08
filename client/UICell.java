@@ -60,11 +60,14 @@ public class UICell extends Pane
 				break;
 			/* PLAYER 3 */
 			case 6:
-				setStyle("-fx-background-color: purple;");
+				setStyle("-fx-background-color: black;");
 				break;
 			/* PLAYER 4 */
 			case 7:
 				setStyle("-fx-background-color: green;");
+				break;
+			case 8:
+				setStyle("-fx-background-color: lime;");
 				break;
 		}
 	}

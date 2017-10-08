@@ -9,7 +9,7 @@ public class ServerConnHandler extends ConnHandler
 	}
 
 	@Override
-	public void conn_work(Board board, Players players) throws InterruptedException 
+	public void conn_work(Board board, Players players) throws InterruptedException, IOException 
 	{
 		boolean player_joined = false;
 		try 
@@ -154,6 +154,8 @@ public class ServerConnHandler extends ConnHandler
 				send_string(out);
 				System.out.println("Sent data for "+players.get_player_target()+" players");
 				
+				if (player.is_dead())
+					break; // Don't waste time sending data to the dead
 				
 				
 				Thread.sleep(100);
@@ -169,5 +171,7 @@ public class ServerConnHandler extends ConnHandler
 			
 			System.out.println("Client disconnected");
 		}
+		
+		this.conn.close();
 	}
 }

@@ -38,6 +38,11 @@ public class Monster extends Entity
 		// get monster source position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
 
+		if (monster_node_postion == -1)
+			return;
+			
+		
+		
 		// DEBUG PROMPT
 		System.out.println("\n//// Coordinates are currently " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 				+ monster_node_postion + " ////\n");
@@ -72,9 +77,8 @@ public class Monster extends Entity
 			System.out.println("IS THE PLAYER DEAD? " + player.is_dead());
 			
 			// Make the player out of reach if dead
-			if (player.is_dead()) {
+			if (player.is_dead())
 				player_distance = Integer.MAX_VALUE;
-			}
 
 			// Print all the above variables
 			System.out.println("|" + player_node + "," + player_distance + "," + player_destination + "|");
@@ -91,7 +95,7 @@ public class Monster extends Entity
 		for (int i = 0; i < distance_array.length; i++) 
 		{
 			// the clear closest player is stored
-			if (smallest > distance_array[i] ) 
+			if (smallest > distance_array[i]) 
 			{
 				smallest = distance_array[i];
 				smallest_player = i;
@@ -126,7 +130,7 @@ public class Monster extends Entity
 		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 
 		Entity closest_player = players.get_player(smallest_player);
-		int closest_player_node = board.convert_to_node(closest_player.get_old_pos_x(), closest_player.get_old_pos_y());
+		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
@@ -152,7 +156,16 @@ public class Monster extends Entity
 			
 		}*/
 		
-		
+
+		if (this.get_pos_x() == closest_player.get_old_pos_x() && this.get_pos_y() == closest_player.get_old_pos_y())
+		{
+			((Player)closest_player).kill(); // Kill 'em if we're touching them
+			System.out.println("\nKILL THIS PLAYER");
+			set_cool_down(20);
+
+		}
+		else // If we ain't killin', move
+		{
 			// monster.set_monster_position(closest_player_destination);
 			monster.set_monster_position(closest_player_destination);
 
@@ -178,14 +191,12 @@ public class Monster extends Entity
 				// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
 			}
 			*/
-			
-		if (this.get_pos_x() == closest_player.get_old_pos_x() && this.get_pos_y() == closest_player.get_old_pos_y())
-		{
-			((Player)closest_player).kill(); // Kill 'em if we're touching them
-			System.out.println("\nKILL THIS PLAYER");
-			set_cool_down(20);
+						
 
 		}
+		
+		
+			
 	}
 	
 	public boolean check_cooldown()

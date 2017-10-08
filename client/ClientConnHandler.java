@@ -96,7 +96,7 @@ public class ClientConnHandler extends ConnHandler
 		
 		
 		
-		
+		int alive;
 		while (game_state.is_running())
 		{
 			// Send our direction
@@ -118,7 +118,7 @@ public class ClientConnHandler extends ConnHandler
 			players.set_player_count(coords.length);
 			System.out.print(":Player count: "+coords.length);
 			
-			int alive = coords.length-1; // minus one for monster
+			alive = coords.length-1; // minus one for monster
 			for (int i = 0; i < coords.length; i++)
 			{
 				String[] xy = coords[i].split(",");
@@ -126,6 +126,13 @@ public class ClientConnHandler extends ConnHandler
 				if (xy[3].contains("D"))
 				{
 					System.out.print(":He dead lol");
+					
+					if (i == this.id)
+					{
+						System.out.println("We dead :(");
+						System.exit(0);
+					}
+					
 					((Player)players.get_player(id)).kill();
 					alive--;
 					continue; // Don't deal with the dead
@@ -137,12 +144,14 @@ public class ClientConnHandler extends ConnHandler
 					Entity monster = players.get_player(players.get_player_target());
 					monster.set_pos_x(Integer.valueOf(xy[0]));
 					monster.set_pos_y(Integer.valueOf(xy[1]));
+					monster.set_id(xy[3]);
 					System.out.print(":Set monster position");
 				}
 				else
 				{
 					players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
 					players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
+					players.get_player(i).set_id(xy[3]);
 					//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
 					System.out.print(":Set player pos and dir");
 				}
