@@ -15,6 +15,16 @@ public class Monster extends Entity
 	// override move function from entity
 	public void move(Players players, MonsterAi monster) 
 	{
+		
+		// Check is monster is still cooling down
+		if (!check_cooldown())
+		{
+			System.out.println("He eating lol");
+			return;
+		}
+		
+		
+		
 		if (monster.get_monster_position() == -1)
 		{
 			monster.set_monster_position(22);
@@ -27,13 +37,7 @@ public class Monster extends Entity
 		// DEBUG Where did the monster end up
 		System.out.println("Monster coordinates BEFORE: " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 				+ monster.get_monster_position());
-					
-		
-		// Check is monster is still cooling down
-		if (!check_cooldown())
-		{
-			return;
-		}
+				
 	
 		// get monster source position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());

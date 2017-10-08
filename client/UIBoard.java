@@ -54,12 +54,7 @@ public class UIBoard extends Pane
 		for (int i = 0; i < players.get_player_count(); i++)
 		{
 			Entity player = players.get_player(i);
-			
-			if (player instanceof Player && ((Player) player).is_dead())
-				continue; // Don't draw dead players
-				// TODO: Draw dead players differntly
-			
-			
+						
 			if (player instanceof Monster)
 				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
 			else {
