@@ -10,7 +10,7 @@ public class ClientConnHandler extends ConnHandler
 	}
 
 	@Override
-	public void conn_work(Board board, Players players) throws InterruptedException 
+	public void conn_work(Board board, Players players) throws InterruptedException, IOException 
 	{
 		GameState game_state = GameState.get_instance();
 		
@@ -104,6 +104,14 @@ public class ClientConnHandler extends ConnHandler
 			System.out.println("Sent direction");
 			
 			String rawc = get_string();
+			
+			if (rawc.contains("WINRAR"))
+			{
+				game_state.win(true);
+				break;
+			}
+			
+			
 			String[] coords = rawc.split(":"); // TODO: Get player x and ys from server
 			System.out.println("Goot coords strang: "+rawc);
 			players.set_player_count(coords.length);
@@ -132,7 +140,8 @@ public class ClientConnHandler extends ConnHandler
 		
 			Thread.sleep(10);
 
-		}	
+		}
+		this.conn.close();
 	}
 
 }

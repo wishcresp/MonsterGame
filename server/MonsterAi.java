@@ -41,7 +41,8 @@ public class MonsterAi extends Graph
 	{
 		// Set the source vertex to the monster position 
 		int current_vertex = monster_position;
-		this.vertex_array[monster_position].set_distance_from_source(0);
+		this.vertex_array[monster_position].set_distance_from_source(0); // This shits itself when the player touches the monster
+		                                                                 // gets an array out of bounds -1
 			
 		// visit every single vertex in the array (starting with the source)
 		for (int i = 0; i < this.vertex_array.length; i++) 

@@ -118,6 +118,17 @@ public class ServerConnHandler extends ConnHandler
 				players.set_player_ddir(id, direction);
 	
 				
+				// Check if player has won
+				//if (players.get_player_count() == 1 && !player.is_dead())
+				if (players.get_player_count() == 0 && !player.is_dead()) // Disabled for debugging
+				{
+					send_string("WINRAR");
+					System.out.println("WINRAR!!!!!!!!!!!!!!!");
+				}
+					
+				
+				
+				
 				// TODO: Send players x and ys
 				String out = "";
 				for (int i = 0; i < players.get_player_target(); i++)
