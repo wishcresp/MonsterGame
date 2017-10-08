@@ -133,7 +133,7 @@ public class ServerConnHandler extends ConnHandler
 				String out = "";
 				for (int i = 0; i < players.get_player_count(); i++)
 				{
-					Player cur = players.get_player(i);
+					Player cur = (Player) players.get_player(i);
 					out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
 					out += ","+String.valueOf(cur.get_ddir());
 					if (cur.is_dead() == true)
