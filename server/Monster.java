@@ -15,6 +15,12 @@ public class Monster extends Entity
 	// override move function from entity
 	public void move(Players players, MonsterAi monster) 
 	{
+		if (monster.get_monster_position() == -1)
+		{
+			monster.set_monster_position(22);
+		}
+			
+		
 		// PROMPT
 		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
 
@@ -145,9 +151,8 @@ public class Monster extends Entity
 			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
 			
 		}*/
-		if (false) {}
-		else
-		{
+		
+		
 			// monster.set_monster_position(closest_player_destination);
 			monster.set_monster_position(closest_player_destination);
 
@@ -159,7 +164,7 @@ public class Monster extends Entity
 			System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 					+ monster.get_monster_position());
 			
-			
+			/*
 			if (monster.get_monster_position() == closest_player_node)
 			{
 				Player killed_player = (Player) closest_player;
@@ -172,20 +177,16 @@ public class Monster extends Entity
 				
 				// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
 			}
+			*/
 			
-		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y())
+		if (this.get_pos_x() == closest_player.get_old_pos_x() && this.get_pos_y() == closest_player.get_old_pos_y())
+		{
 			((Player)closest_player).kill(); // Kill 'em if we're touching them
-		
-		
-		// DEBUG prompt where the monster has ended up
-		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-				+ monster.get_monster_position() + "////\n");
-		}
-		
-		
+			System.out.println("\nKILL THIS PLAYER");
+			set_cool_down(20);
 
+		}
 	}
-	
 	
 	public boolean check_cooldown()
 	{
