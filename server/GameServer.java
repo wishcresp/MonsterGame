@@ -61,24 +61,28 @@ public class GameServer extends Thread
 		/*
 		 * Main Game Loop
 		 */
+		while (game_state.is_running() == false)
+			Thread.sleep(100); // If the game isn't running, wait around
+
+		
+		((Monster)players.get_player(players.get_player_count())).set_cool_down(20);
 		while (true) 
 		{
-			while (game_state.is_running() == false)
-
-				Thread.sleep(100); // If the game isn't running, wait around
 	
-			for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
+			
+			((Monster)players.get_player(players.get_player_count())).move(players, monster);
+			
+			for (int i = 0; i < players.get_player_count(); i++) 
 			{
 				Entity player = players.get_player(i);
 				
 				if (player instanceof Player && ((Player)player).is_dead())
 					continue; // Skip the dead ones
 				
-				
 				if (player instanceof Monster)
 				{
-					monster_entity = (Monster) player;
-					monster_entity.move(players, monster);
+					/*monster_entity = (Monster) player;
+					monster_entity.move(players, monster);*/
 				}
 				else				
 					player.move();				
