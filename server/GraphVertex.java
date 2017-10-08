@@ -32,59 +32,50 @@ public class GraphVertex
 	private int distance_from_source = Integer.MAX_VALUE;
 	private boolean settled;
 	private int monster_path = -1;// -1 means that it is unset to any node
-	
+
 	// get number of edges connected to this vertex
-	public ArrayList<GraphEdge> get_edges() 
-	{
+	public ArrayList<GraphEdge> get_edges() {
 		return edges;
 	}
-	
+
 	// set the amount of edges connected to this vertex
-	public void set_edges(ArrayList<GraphEdge> edge_count) 
-	{
+	public void set_edges(ArrayList<GraphEdge> edge_count) {
 		this.edges = edge_count;
-	}	
-		
+	}
+
 	// get the distance of this vertex from the source vertex
-	public int get_distance_from_source()
-	{
+	public int get_distance_from_source() {
 		return distance_from_source;
-	}	
-	
+	}
+
 	// set the value of the distance of this vertex from the source
-	public void set_distance_from_source(int distance_from_source)
-	{
+	public void set_distance_from_source(int distance_from_source) {
 		this.distance_from_source = distance_from_source;
 	}
-	
+
 	// Check whether vertex has been settled
-	public boolean is_settled()
-	{
+	public boolean is_settled() {
 		return settled;
 	}
-	
-	// Set the boolean to make a vertex settled/unsettled	
-	public void set_settled(boolean settled) 
-	{
+
+	// Set the boolean to make a vertex settled/unsettled
+	public void set_settled(boolean settled) {
 		this.settled = settled;
 	}
-	
+
 	// Set the boolean to make a vertex settled/unsettled
-	public void reset_monster_path() 
-	{
+	public void reset_monster_path() {
 		// TODO RESET ALL VALUES TO -1
 
 	}
 
 	// Check whether vertex has been settled
-	public int get_monster_path() 
-	{
+	public int get_monster_path() {
 		return monster_path;
 	}
 
 	// Set the boolean to make a vertex settled/unsettled
-	public void set_monster_path(int monster_path) 
-	{
+	public void set_monster_path(int monster_path) {
 		this.monster_path = monster_path;
-	}	
+	}
 }

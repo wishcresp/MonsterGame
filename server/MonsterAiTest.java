@@ -13,65 +13,62 @@ import org.junit.Test;
  * nodes in the graph.
  */
 
-public class MonsterAiTest 
-{	
+public class MonsterAiTest {
 	static Board board;
 	static GameState gamestate;
 	static Players players;
 	static MonsterAi monster;
 
 	@Test
-	public void test_gameboard() 
-	{
+	public void test_gameboard() {
 		//////////// CREATE PLAYERS //////////////
-		/* 
+		/*
 		 * Get instances to prevent static variables
 		 */
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();
 		board.create_associative_array();
 
-		
-		////////////////// DEMO PLAYERS ////////////////////		
+		////////////////// DEMO PLAYERS ////////////////////
 		// PLAYER 1
 		Player Player1 = new Player();
 		Player1.set_pos_x(1);
 		Player1.set_pos_y(1);
-		
+
 		// PLAYER 2
 		Player Player2 = new Player();
 		Player2.set_pos_x(9);
-		Player2.set_pos_y(4);		
-		
+		Player2.set_pos_y(4);
+
 		// PLAYER 3
 		Player Player3 = new Player();
 		Player3.set_pos_x(5);
 		Player3.set_pos_y(9);
-		
+
 		// PLAYER 4
 		Player Player4 = new Player();
 		Player4.set_pos_x(1);
 		Player4.set_pos_y(9);
-		
+
 		/*
 		 * Adding the mock up players that i have manually generated
 		 */
-		players = gamestate.get_players();	
+		players = gamestate.get_players();
 		players.set_player_target(4);
 		players.create_players();
-		
+
 		players.add_player(Player1);
 		players.set_player_count(players.get_player_count() + 1);
-		
+
 		players.add_player(Player2);
 		players.set_player_count(players.get_player_count() + 1);
-		
+
 		players.add_player(Player3);
 		players.set_player_count(players.get_player_count() + 1);
-		
+
 		players.add_player(Player4);
 		players.set_player_count(players.get_player_count() + 1);
-		
+
 		//////////// TEST THE AI //////////////
 		/*
 		 * Setup the monster
@@ -79,47 +76,34 @@ public class MonsterAiTest
 		monster = board.build_monster_graph();
 		monster.set_monster_position(22);
 		Monster monster_entity;
-		
+
 		// TODO STILL RETAINS AS -1 before this
-		
+
 		System.out.println("\n////////////////////// RUNNING THE FIRST TIME ///////////////////////\n");
-		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
+		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
 		{
 			Entity player = players.get_player(i);
-			
-			if (player instanceof Monster)
-			{
+
+			if (player instanceof Monster) {
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
-			}
-			else				
-				player.move();			
+			} else
+				player.move();
 		}
-		
+
 		System.out.println("\n////////////////////// RUNNING AGAIN THE SECOND TIME ///////////////////////\n");
-		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
+		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
 		{
 			Entity player = players.get_player(i);
-			
-			if (player instanceof Monster)
-			{
+
+			if (player instanceof Monster) {
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
-			}
-			else				
-				player.move();			
-		}		
+			} else
+				player.move();
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	// @Test
 	public void test_monster() {
 		GraphEdge[] edges = { new GraphEdge(0, 1), new GraphEdge(1, 4), new GraphEdge(0, 2), new GraphEdge(2, 3),

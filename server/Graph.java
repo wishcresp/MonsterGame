@@ -139,23 +139,20 @@ public class Graph
 		System.out.println(output);
 	}
 	
-	
-	
 	// ACCESSORS AND MUTATORS //
-	public GraphVertex[] get_vertex_array()
-	{
+	public GraphVertex[] get_vertex_array() {
 		return vertex_array;
-	}	
-	public int get_no_of_vertices() 
-	{
+	}
+
+	public int get_no_of_vertices() {
 		return no_of_vertices;
-	}	
-	public GraphEdge[] get_edge_array() 
-	{
+	}
+
+	public GraphEdge[] get_edge_array() {
 		return edge_array;
-	}	
-	public int get_no_of_edges() 
-	{
+	}
+
+	public int get_no_of_edges() {
 		return no_of_edges;
 	}
 }

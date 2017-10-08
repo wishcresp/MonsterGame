@@ -33,7 +33,7 @@ public class Board
 
 	// Define board dimension and instantiate array
 	public void create_board() 
-	{		
+	{
 		// Define board with the dimensions `dimensions` x `dimensions`
 		this.BoardTiles = new BoardTile[dimensions][dimensions];
 
@@ -54,7 +54,6 @@ public class Board
 		int x = 0;
 		for (String row : layout.split("\n")) 
 		{
-
 			int y = 0;
 			for (String element : row.split(":")) 
 			{
@@ -67,11 +66,9 @@ public class Board
 
 	// Customize the board dimensions
 	/*
-	 * Well i doubt we will have a expanding board with
-	 * my algorithm lol
-	 * - michael
+	 * Well i doubt we will have a expanding board with my algorithm  - michael
 	 */
-	
+
 	public void set_dimensions(int dimensions) 
 	{
 		this.dimensions = dimensions;
@@ -133,7 +130,7 @@ public class Board
 		for (int x = 0; x < board_array.length; x++)
 			for (int y = 0; y < board_array.length; y++)
 				board_array[x][y] = -1;
-		
+
 		// Assign elements to the array
 		/*
 		 * Row 1
@@ -204,49 +201,45 @@ public class Board
 		board_array[9][8] = 43;
 		board_array[9][9] = 44;
 
-
 		/*
 		 * Teleport links
 		 */
 		// from 4 -> 40
 		board_array[0][5] = -40;
-		
+
 		// from 40 -> 4
 		board_array[10][5] = -4;
-		
+
 		// from 18 -> 26
 		board_array[5][0] = -26;
-		
+
 		// from 26 -> 18
 		board_array[5][10] = -18;
-		
-		
+
 		return board_array;
-		
+
 	}
-	
-	public int[][] get_board_array()
+
+	public int[][] get_board_array() 
 	{
 		return board_array;
 	}
-	
-	public int convert_to_node(int x, int y)
+
+	public int convert_to_node(int x, int y) 
 	{
-		int nodes = board_array[x][y];		
+		int nodes = board_array[x][y];
 		return nodes;
 	}
-	
-	public int[] convert_to_coordinate(int coordinate)
+
+	public int[] convert_to_coordinate(int coordinate) 
 	{
-		
 		for (int x = 0; x < board_array.length; x++)
 			for (int y = 0; y < board_array.length; y++)
-				if (board_array[x][y] == coordinate)				
-					return new int[]{x,y};
-									
+				if (board_array[x][y] == coordinate)
+					return new int[] { x, y };
 		return null;
 	}
-	
+
 	// Building a network for the board
 	public MonsterAi build_monster_graph() 
 	{
@@ -287,16 +280,16 @@ public class Board
 				new GraphEdge(26, 29), new GraphEdge(29, 32), new GraphEdge(32, 35), new GraphEdge(35, 44),
 
 				// TELEPORTATION LINKS
-				new GraphEdge(4, 40), new GraphEdge(18, 26) 
-				};
+				new GraphEdge(4, 40), new GraphEdge(18, 26) };
 
 		MonsterAi monster = new MonsterAi(edges);
-		
+
 		return monster;
-		/*monster.find_shortest_path();
-		monster.print_result(monster_position);*/
-	}	
-	
+		/*
+		 * monster.find_shortest_path(); monster.print_result(monster_position);
+		 */
+	}
+
 	// TODO Do we need this?
 	public static void load_board(String gameboard, int dimensions, BoardTile[][] BoardTiles) 
 	{
