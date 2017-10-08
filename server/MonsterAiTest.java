@@ -76,16 +76,14 @@ public class MonsterAiTest {
 		 */
 		monster = board.build_monster_graph();
 		monster.set_monster_position(22);
-		Monster monster_entity;
-
-		// TODO STILL RETAINS AS -1 before this
-
+		Monster monster_entity;	
+		
 		System.out.println("\n////////////////////// RUNNING THE FIRST TIME ///////////////////////\n");
 		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
 		{
 			Entity player = players.get_player(i);
 
-			if (player instanceof Monster) {
+			if (player instanceof Monster) {		
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
 			} else
@@ -93,6 +91,18 @@ public class MonsterAiTest {
 		}
 
 		System.out.println("\n////////////////////// RUNNING AGAIN THE SECOND TIME ///////////////////////\n");
+		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
+		{
+			Entity player = players.get_player(i);
+
+			if (player instanceof Monster) {		
+				monster_entity = (Monster) player;
+				monster_entity.move(players, monster);
+			} else
+				player.move();
+		}
+		
+		System.out.println("\n////////////////////// RUNNING AGAIN THE THIRD TIME ///////////////////////\n");
 		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
 		{
 			Entity player = players.get_player(i);
