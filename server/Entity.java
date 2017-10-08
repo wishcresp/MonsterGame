@@ -18,6 +18,17 @@ public abstract class Entity {
 	private int desired_direction;
 
 	private int pos_x, pos_y; // I renamed it from x,y.
+	
+	// TODO Trying to see what i can do about 
+	private int old_node_position ;
+	private int old_pos_x;
+	private int old_pos_y;
+
+	
+
+	static Board board;
+	static GameState game_state;
+	int dimensions = 11;
 
 	public Entity() 
 	{
@@ -31,6 +42,9 @@ public abstract class Entity {
 
 	public void move() 
 	{
+		game_state = GameState.get_instance();
+		board = game_state.get_board();
+		
 		String output;
 
 		// DEBUG, find out the current player coordinate
@@ -40,6 +54,12 @@ public abstract class Entity {
 
 		// Desired direction handling
 		boolean moved = false;
+		
+		// STORE THE OLD NODE POSITION and COORDINATES
+		this.old_node_position = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
+		this.set_old_pos_x(this.get_pos_x());
+		this.set_old_pos_y(this.get_pos_y());
+
 		/*
 		 * Get players direction, and apply the move
 		 */
@@ -170,9 +190,6 @@ public abstract class Entity {
 		System.out.println(output);
 	}
 
-	static Board board;
-	static GameState game_state;
-	int dimensions = 11;
 
 	public boolean check_move(int x, int y) 
 	{
@@ -214,35 +231,71 @@ public abstract class Entity {
 		return true;
 	}
 
-	public int get_dir() {
+	public int get_dir()
+	{
 		return direction;
 	}
 
-	public void set_dir(int dir) {
+	public void set_dir(int dir) 
+	{
 		this.direction = dir;
 	}
 
-	public int get_ddir() {
+	public int get_ddir() 
+	{
 		return desired_direction;
 	}
 	
-	public void set_ddir(int ddir) {
+	public void set_ddir(int ddir) 
+	{
 		this.desired_direction = ddir;
 	}
 
-	public int get_pos_x() {
+	public int get_pos_x() 
+	{
 		return this.pos_x;
 	}
 
-	public void set_pos_x(int pos_x) {
+	public void set_pos_x(int pos_x) 
+	{
 		this.pos_x = pos_x;
 	}
 
-	public int get_pos_y() {
+	public int get_pos_y() 
+	{
 		return this.pos_y;
 	}
 
-	public void set_pos_y(int pos_y) {
+	public void set_pos_y(int pos_y) 
+	{
 		this.pos_y = pos_y;
 	}
+
+	public int get_old_node_position() 
+	{
+		return old_node_position;
+	}
+
+	public void set_old_node_position(int old_node_position) 
+	{
+		this.old_node_position = old_node_position;
+	}
+
+	public int get_old_pos_x() {
+		return old_pos_x;
+	}
+
+	public void set_old_pos_x(int old_pos_x) {
+		this.old_pos_x = old_pos_x;
+	}
+
+	public int get_old_pos_y() {
+		return old_pos_y;
+	}
+
+	public void set_old_pos_y(int old_pos_y) {
+		this.old_pos_y = old_pos_y;
+	}
+
+
 }
