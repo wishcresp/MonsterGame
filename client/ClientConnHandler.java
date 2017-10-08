@@ -120,6 +120,14 @@ public class ClientConnHandler extends ConnHandler
 			{
 				String[] xy = coords[i].split(",");
 				
+				if (xy[3].contains("D"))
+				{
+					System.out.println("He dead lol");
+					((Player)players.get_player(id)).kill();
+					continue; // Don't deal with the dead
+				}
+				
+				
 				if (Integer.valueOf(xy[3]) == players.get_player_target()) // We're dealing with the monster
 				{
 					Entity monster = players.get_player(players.get_player_target());

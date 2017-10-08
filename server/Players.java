@@ -23,7 +23,7 @@ public class Players
 	private Entity players[]; //TODO: MUTEX
 
 	
-	// TODO: Preserver IDs
+	/*// TODO: Preserver IDs
 	private void swap(int id1, int id2)
 	{
 		Entity tmp;
@@ -32,18 +32,19 @@ public class Players
 		players[id1] = players[id2];
 		players[id2] = tmp;
 		
-	}
+	}*/
 	
 	public void remove_player(int id)
 	{
-		swap(id, players.length-1);
+		/*swap(id, players.length-1);
 		Entity tmp[] = new Entity[players.length-1];
 		
 		for (int i = 0; i < players.length-1; i++)
 		{
 			tmp[i] = players[i];
 		}
-		players = tmp;
+		players = tmp;*/
+		((Player)players[id]).kill();
 	}
 	
 	
