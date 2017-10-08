@@ -13,17 +13,32 @@ public class Bangers
 	{
 
 	}
-	public void play(String filename)
+	
+	public void loop_on()
 	{
-		track = new Media(new File(filename).toURI().toString());
-		this.media_player = new MediaPlayer(track);
 		media_player.setOnEndOfMedia(new Runnable() {
 		       public void run() {
 		         media_player.seek(Duration.ZERO);
 		       }
 		   });
-		
+	}
+	
+	public void pause()
+	{
+		media_player.pause();
+	}
+	
+	public void play()
+	{
 		media_player.play();
+	}
+	
+	public void load(String filename)
+	{
+		track = new Media(new File(filename).toURI().toString());
+		this.media_player = new MediaPlayer(track);
+
+
 	}
 
 }
