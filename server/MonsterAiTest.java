@@ -45,6 +45,7 @@ public class MonsterAiTest {
 		Player Player3 = new Player();
 		Player3.set_pos_x(5);
 		Player3.set_pos_y(6);
+		Player3.kill(); // KILL THE 3rd player
 
 		// PLAYER 4
 		Player Player4 = new Player();
@@ -83,7 +84,8 @@ public class MonsterAiTest {
 		{
 			Entity player = players.get_player(i);
 
-			if (player instanceof Monster) {		
+			if (player instanceof Monster) 
+			{		
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
 			} else
@@ -115,6 +117,19 @@ public class MonsterAiTest {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// @Test
 	public void test_monster() {
 		GraphEdge[] edges = { 

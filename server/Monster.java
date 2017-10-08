@@ -15,7 +15,8 @@ public class Monster extends Entity
 	// override move function from entity
 	public void move(Players players, MonsterAi monster) 
 	{
-		System.out.println("FIRING UP THE AI");
+		// PROMPT
+		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
 		
 		// Check is monster is still cooling down
 		if (!check_cooldown())
@@ -23,21 +24,22 @@ public class Monster extends Entity
 			return;
 		}
 	
+		// get monster source position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
 
+		// DEBUG PROMPT
 		System.out.println("\n//// Coordinates are currently " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-				+ monster.get_monster_position() + " ////\n");
-
-		System.out.println(monster_node_postion);
-
+				+ monster_node_postion + " ////\n");
+		
+		// Set monster source
 		monster.set_monster_position(monster_node_postion);
 
+		// RUN THE MONSTER AI
 		monster.calculate_shortest_path();
 
 		// DEBUG TRY TO FIND OUT WHATS UPDATING
-		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
-		monster.print_result(monster_node_postion);
-		System.out.println("\n//////////////// END OF THE AI PROCESS ////////////////\n");
+		//monster.print_result(monster_node_postion);
+		//System.out.println("\n//////////////// END OF THE AI PROCESS ////////////////\n");
 
 		// trying to store all the distances
 		int[] distance_array = new int[players.get_player_count()];
@@ -45,41 +47,63 @@ public class Monster extends Entity
 		// Loop through all the current players except monster
 		for (int i = 0; i < players.get_player_count(); i++) 
 		{
+			// Store player object
 			Player player = (Player) players.get_player(i);
 
+			// get player node
 			int player_node = board.convert_to_node(player.get_pos_x(), player.get_pos_y());
+			//get player distance
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
+			//get player destination coordinates
 			int player_destination = monster.vertex_array[player_node].get_monster_path();
 			
+			// Check if the player has died
 			System.out.println("IS THE PLAYER DEAD? " + player.is_dead());
+			
+			// Make the player out of reach if dead
+			if (player.is_dead()) {
+				player_distance = Integer.MAX_VALUE;
+			}
 
+			// Print all the above variables
 			System.out.println("|" + player_node + "," + player_distance + "," + player_destination + "|");
-
+			
+			// Store the distance of each player for checking
 			distance_array[i] = player_distance;
 		}
 
+		// variables for finding smallest player
 		int smallest = Integer.MAX_VALUE;
 		int smallest_player = 0;
 
 		// Try to find the smallest value in the array
 		for (int i = 0; i < distance_array.length; i++) 
 		{
+			// the clear closest player is stored
 			if (smallest > distance_array[i] ) 
 			{
 				smallest = distance_array[i];
 				smallest_player = i;
+				
+				// prompt
 				System.out.println(
 						"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
 			} 
+			
+			// 50% chance to assign as the closest if they are the same
 			else if (smallest == distance_array[i]) 
 			{
+				// seed randomizer
 				Random rn = new Random();
 				int rand = rn.nextInt();
 
+				// 50% probability of assigning the value
 				if (rand % 2 == 0) 
 				{
 					smallest = distance_array[i];
 					smallest_player = i;
+					
+					// prompt
 					System.out.println(
 							"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
 				}
@@ -87,8 +111,7 @@ public class Monster extends Entity
 		}
 
 		// FOUND THE CLOSEST PLAYER
-		
-		System.out.println("\nPlayer " + (smallest_player + 1) + " is the closest with a length of " + smallest);
+		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 
 		Entity closest_player = players.get_player(smallest_player);
 		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
@@ -103,7 +126,9 @@ public class Monster extends Entity
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
 		// IF monster node and closest player node is identical, kill the player
+		
 		// TODO SHOULD BE CHECKING THE PREVIOUS NODE OF THE PLAYER, REALLY MESSSED UP MY CODE HERE
+		
 		if (monster_node_postion == closest_player_node)
 		{
 			Player killed_player = (Player) closest_player;
@@ -130,6 +155,8 @@ public class Monster extends Entity
 				+ monster.get_monster_position() + "////\n");
 		System.out.println("Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 				+ monster.get_monster_position());
+		
+
 	}
 	
 	
@@ -140,6 +167,7 @@ public class Monster extends Entity
 			return true;
 		}
 				
+		System.out.println("ON COOL DOWN WITH REMAINING = " + this.cooldown);
 		this.cooldown--;
 		return false;			
 	}
