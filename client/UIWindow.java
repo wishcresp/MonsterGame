@@ -23,6 +23,7 @@ import javafx.event.EventHandler;
 public class UIWindow extends Application
 {
 	Bangers banger = new Bangers();
+	Bangers winbang = new Bangers();
 	
 	private UIBoard board = new UIBoard();
 	private BorderPane game_window = new BorderPane();
@@ -140,25 +141,27 @@ public class UIWindow extends Application
 		{
 		// https://www.youtube.com/watch?v=QS0qjldeT9k
 		case 0:
-			banger.play("nigga.mp3");
+			banger.load("nigga.mp3");
 			break;
 		case 1:
-			banger.play("jive.mp3");	
+			banger.load("jive.mp3");	
 			break;
 		case 2:
-			banger.play("harsh.mp3");
+			banger.load("harsh.mp3");
 			break;
 		case 3:
-			banger.play("bomb.mp3");
+			banger.load("bomb.mp3");
 			break;
 		default:
 		case 4:
-			banger.play("kong.mp3"); // Would love optional sprites for this
+			banger.load("kong.mp3"); // Would love optional sprites for this
 			// Like if when (rand == 4) you made the monster https://vignette1.wikia.nocookie.net/rare/images/6/69/Funky_Kong_Artwork_2_-_Donkey_Kong_Country.png/revision/latest?cb=20120424224116
 			break;
 			
 			// There's another 3 cases (up to case 5) so add tracks there 
 		}
+		banger.loop_on();
+		banger.play();
 		
 		
 		
@@ -353,6 +356,19 @@ public class UIWindow extends Application
 			/* Creates Game Board UI */
 			board.update_board();
 			game_window.setCenter(board.getBoard());
+			
+			if (game_state.won())
+			{
+				banger.pause();
+				winbang.load("respec.mp3");
+				winbang.play();
+				try {Thread.sleep(50000);} catch (InterruptedException ex)
+				{
+					ex.printStackTrace();
+				}
+				System.exit(0);
+			}
+
 	    };
 	    
 	    game_loop = new Timeline(new KeyFrame(Duration.millis(64), eventHandler));
