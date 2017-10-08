@@ -4,7 +4,7 @@ import java.io.*;
 
 public abstract class ConnHandler extends Thread
 {
-	private Socket conn;
+	protected Socket conn;
 	protected int id;
 	protected OutputStream out;
 	protected InputStream in;
@@ -54,7 +54,7 @@ public abstract class ConnHandler extends Thread
 	}
 
 	
-	public abstract void conn_work(Board board, Players players) throws InterruptedException; 
+	public abstract void conn_work(Board board, Players players) throws InterruptedException, IOException; 
 
 	public void run()
 	{

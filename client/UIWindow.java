@@ -139,7 +139,6 @@ public class UIWindow extends Application
 		switch (rand)
 		{
 		// https://www.youtube.com/watch?v=QS0qjldeT9k
-		default:
 		case 0:
 			banger.play("nigga.mp3");
 			break;
@@ -148,6 +147,14 @@ public class UIWindow extends Application
 			break;
 		case 2:
 			banger.play("harsh.mp3");
+			break;
+		case 3:
+			banger.play("bomb.mp3");
+			break;
+		default:
+		case 4:
+			banger.play("kong.mp3"); // Would love optional sprites for this
+			// Like if when (rand == 4) you made the monster https://vignette1.wikia.nocookie.net/rare/images/6/69/Funky_Kong_Artwork_2_-_Donkey_Kong_Country.png/revision/latest?cb=20120424224116
 			break;
 			
 			// There's another 3 cases (up to case 5) so add tracks there 

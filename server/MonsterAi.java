@@ -56,7 +56,8 @@ public class MonsterAi extends Graph
 		}
 		
 		
-		this.vertex_array[monster_position].set_distance_from_source(0);
+		this.vertex_array[monster_position].set_distance_from_source(0); // This shits itself when the player touches the monster
+		                                                                 // gets an array out of bounds -1
 			
 		// TODO STILL -1 before this line
 

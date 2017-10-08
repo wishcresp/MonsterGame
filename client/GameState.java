@@ -6,6 +6,7 @@ public class GameState
 	private String avaliable_spots = "";
 	private String server_ip = "";
 	private int server_port;
+	private boolean winner = false;
 	
 	
 	static Players players = new Players();
@@ -76,5 +77,15 @@ public class GameState
 	public void set_server_port(int server_port)
 	{
 		this.server_port = server_port;
+	}
+
+
+	public boolean won()
+	{
+		return winner;
+	}
+	public void win(boolean winner) 
+	{
+		this.winner = winner;
 	}	
 }

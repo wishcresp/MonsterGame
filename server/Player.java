@@ -20,6 +20,11 @@ public class Player extends Entity
 		this.name = name;
 	}
 	
+	public boolean is_dead()
+	{
+		return this.is_dead;
+	}
+	
 	public void kill()
 	{
 		this.is_dead = true;
