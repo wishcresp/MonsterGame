@@ -71,6 +71,10 @@ public class GameServer extends Thread
 			{
 				Entity player = players.get_player(i);
 				
+				if (player instanceof Player && ((Player)player).is_dead())
+					continue; // Skip the dead ones
+				
+				
 				if (player instanceof Monster)
 				{
 					monster_entity = (Monster) player;
