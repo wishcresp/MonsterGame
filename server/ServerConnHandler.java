@@ -137,10 +137,9 @@ public class ServerConnHandler extends ConnHandler
 					out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
 					out += ","+String.valueOf(cur.get_ddir());
 					if (cur.is_dead() == true)
-					{
-						
-					}
-					out += ","+String.valueOf(i); // Player.id
+						out += ",D";
+					else
+						out += ","+String.valueOf(i); // Player.id
 					out += ":";
 				}
 				// Don't forget to add the monster ;)

@@ -1,13 +1,15 @@
 
 public class Player extends Entity
-{
-	String name = "";
-
+{	
+	
+	private String name;
+	boolean is_dead = false;
+	
 	public Player() 
 	{
-		super();
-	}
-
+		super();		
+	}	
+	
 	public String get_name()
 	{
 		return this.name;
@@ -18,4 +20,14 @@ public class Player extends Entity
 		this.name = name;
 	}
 	
+	public boolean is_dead()
+	{
+		return this.is_dead;
+	}
+	
+	public void kill()
+	{
+		this.is_dead = true;
+	}
+		
 }

@@ -49,16 +49,21 @@ public class UIBoard extends Pane
 		
 		Players players;
 		players = GameState.get_instance().get_players();
-		int current_player = 0;
 		
 		System.out.println("Drawing Players");
 		for (int i = 0; i < players.get_player_count(); i++) // IM CHANGING SOME THINGS AROUDN FOR MONSTER - MICHAEL
 		{
 			Entity player = players.get_player(i);
+			
+			if (player instanceof Player && ((Player) player).is_dead())
+				continue; // Don't draw dead players
+				// TODO: Draw dead players differntly
+			
+			
 			if (player instanceof Monster)
 				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
 			else {
-				switch (current_player) {
+				switch (i) {
 					case 0:
 						board.add(new UICell(2), player.get_pos_x(), player.get_pos_y());
 						break;
@@ -69,7 +74,6 @@ public class UIBoard extends Pane
 					case 3:
 						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
 				}
-				current_player++;
 			}
 				
 			System.out.print("Just drew player "+i+" ");
