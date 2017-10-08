@@ -134,14 +134,26 @@ public class UIWindow extends Application
 		
 
 		Random rn = new Random();
-		int rand = rn.nextInt();
-		if (rand % 3 == 0)
-			banger.play("nigga.mp3");
+		int rand = rn.nextInt() % 6;
+		
+		switch (rand)
+		{
 		// https://www.youtube.com/watch?v=QS0qjldeT9k
-		else if (rand % 3 == 1)
+		default:
+		case 0:
 			banger.play("nigga.mp3");
-		else
-			banger.play("nigga.mp3");
+			break;
+		case 1:
+			banger.play("jive.mp3");	
+			break;
+		case 2:
+			banger.play("harsh.mp3");
+			break;
+			
+			// There's another 3 cases (up to case 5) so add tracks there 
+		}
+		
+		
 		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
