@@ -17,6 +17,11 @@ public class Monster extends Entity
 	{
 		// PROMPT
 		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
+
+		// DEBUG Where did the monster end up
+		System.out.println("Monster coordinates BEFORE: " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
+				+ monster.get_monster_position());
+					
 		
 		// Check is monster is still cooling down
 		if (!check_cooldown())
@@ -51,7 +56,7 @@ public class Monster extends Entity
 			Player player = (Player) players.get_player(i);
 
 			// get player node
-			int player_node = board.convert_to_node(player.get_pos_x(), player.get_pos_y());
+			int player_node = board.convert_to_node(player.get_old_pos_x(), player.get_old_pos_y());
 			//get player distance
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
 			//get player destination coordinates
@@ -110,51 +115,52 @@ public class Monster extends Entity
 			}
 		}
 
+		
+		
 		// FOUND THE CLOSEST PLAYER
 		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 
 		Entity closest_player = players.get_player(smallest_player);
-		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
+		int closest_player_node = board.convert_to_node(closest_player.get_old_pos_x(), closest_player.get_old_pos_y());
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
 		System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
 				+ closest_player_destination);
 		
-		System.out.println("\nMonster node is " + monster_node_postion);
-
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
 		// IF monster node and closest player node is identical, kill the player
 		
 		// TODO SHOULD BE CHECKING THE PREVIOUS NODE OF THE PLAYER, REALLY MESSSED UP MY CODE HERE
 		
-		if (monster_node_postion == closest_player_node)
-		{
-			Player killed_player = (Player) closest_player;
-			killed_player.kill();
-			
-			// Set the cool down
-			set_cool_down(5);
-			
-			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
-			
-		}
-		else
-		{
+		
+		
 			// monster.set_monster_position(closest_player_destination);
 			monster.set_monster_position(closest_player_destination);
 
 			// MAKE THE MOVE
 			this.set_pos_x(coordinates[0]);
 			this.set_pos_y(coordinates[1]);
-		}
 		
-		// DEBUG prompt where the monster has ended up
-		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-				+ monster.get_monster_position() + "////\n");
-		System.out.println("Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-				+ monster.get_monster_position());
+			// DEBUG Where did the monster end up
+			System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
+					+ monster.get_monster_position());
+			
+			
+			if (monster.get_monster_position() == closest_player_node)
+			{
+				Player killed_player = (Player) closest_player;
+				killed_player.kill();
+				
+				System.out.println("\nKILL THIS PLAYER");
+
+				// Set the cool down
+				set_cool_down(1);
+				
+				// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
+			}
+			
 		
 
 	}

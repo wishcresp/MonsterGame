@@ -45,7 +45,7 @@ public class MonsterAiTest {
 		Player Player3 = new Player();
 		Player3.set_pos_x(5);
 		Player3.set_pos_y(6);
-		Player3.kill(); // KILL THE 3rd player
+		//Player3.kill(); // KILL THE 3rd player
 
 		// PLAYER 4
 		Player Player4 = new Player();
