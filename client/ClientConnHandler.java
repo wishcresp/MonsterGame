@@ -101,7 +101,7 @@ public class ClientConnHandler extends ConnHandler
 		{
 			// Send our direction
 			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
-			System.out.println("Sent direction");
+			System.out.print("Sent direction");
 			
 			String rawc = get_string();
 			
@@ -114,9 +114,9 @@ public class ClientConnHandler extends ConnHandler
 			
 			
 			String[] coords = rawc.split(":"); // TODO: Get player x and ys from server
-			System.out.println("Goot coords strang: "+rawc);
+			System.out.print(":Goot coords strang: "+rawc);
 			players.set_player_count(coords.length);
-			System.out.println("Player count: "+coords.length);
+			System.out.print(":Player count: "+coords.length);
 			
 			int alive = coords.length-1; // minus one for monster
 			for (int i = 0; i < coords.length; i++)
@@ -125,7 +125,7 @@ public class ClientConnHandler extends ConnHandler
 				
 				if (xy[3].contains("D"))
 				{
-					System.out.println("He dead lol");
+					System.out.print(":He dead lol");
 					((Player)players.get_player(id)).kill();
 					alive--;
 					continue; // Don't deal with the dead
@@ -137,22 +137,25 @@ public class ClientConnHandler extends ConnHandler
 					Entity monster = players.get_player(players.get_player_target());
 					monster.set_pos_x(Integer.valueOf(xy[0]));
 					monster.set_pos_y(Integer.valueOf(xy[1]));
-					System.out.println("Set monster position");
+					System.out.print(":Set monster position");
 				}
 				else
 				{
 					players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
 					players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
 					//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
-					System.out.println("Set player pos and dir");
+					System.out.print(":Set player pos and dir");
 				}
 			}
-			System.out.println("Alive players: "+alive);
+			System.out.print(":Alive players: "+alive);
 			players.set_alive_players(alive);
 			
 			game_state.change_run_state(true); // TODO: FIX
 		
 			Thread.sleep(10);
+			System.out.print("\r");
+			
+			//TODO: Handle disconnects
 
 		}
 		this.conn.close();

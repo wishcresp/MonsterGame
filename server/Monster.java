@@ -129,7 +129,7 @@ public class Monster extends Entity
 		
 		// TODO SHOULD BE CHECKING THE PREVIOUS NODE OF THE PLAYER, REALLY MESSSED UP MY CODE HERE
 		
-		if (monster_node_postion == closest_player_node)
+		/*if (monster_node_postion == closest_player_node)
 		{
 			Player killed_player = (Player) closest_player;
 			killed_player.kill();
@@ -139,7 +139,8 @@ public class Monster extends Entity
 			
 			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
 			
-		}
+		}*/
+		if (false) {}
 		else
 		{
 			// monster.set_monster_position(closest_player_destination);
@@ -149,6 +150,10 @@ public class Monster extends Entity
 			this.set_pos_x(coordinates[0]);
 			this.set_pos_y(coordinates[1]);
 		}
+		
+		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y())
+			((Player)closest_player).kill(); // Kill 'em if we're touching them
+		
 		
 		// DEBUG prompt where the monster has ended up
 		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
