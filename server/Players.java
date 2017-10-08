@@ -18,6 +18,7 @@ public class Players
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0; // How many players are currently connected
+	private int alive_players = 0; // How many players are currently alive
 	private int max_players = 4; // Soft limited according to specification
 	
 	private Entity players[]; //TODO: MUTEX
@@ -138,5 +139,17 @@ public class Players
 			player_string += ";";
 		}
 		return player_string;
+	}
+
+
+	public int get_alive_players() 
+	{
+		return alive_players;
+	}
+
+
+	public void set_alive_players(int alive_players) 
+	{
+		this.alive_players = alive_players;
 	}	
 }

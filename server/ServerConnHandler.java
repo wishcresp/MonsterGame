@@ -88,6 +88,7 @@ public class ServerConnHandler extends ConnHandler
 	
 			players.add_player(player); // Finally add the player to the game state
 			players.set_player_count(players.get_player_count()+1);
+			players.set_alive_players(players.get_alive_players()+1);
 			System.out.println("Added player");
 			player_joined = true;
 			
@@ -120,10 +121,11 @@ public class ServerConnHandler extends ConnHandler
 				
 				// Check if player has won
 				//if (players.get_player_count() == 1 && !player.is_dead())
-				if (players.get_player_count() == 0 && !player.is_dead()) // Disabled for debugging
+				if (players.get_alive_players() == 0 && (!player.is_dead() || true)) // Disabled for debugging
 				{
 					send_string("WINRAR");
 					System.out.println("WINRAR!!!!!!!!!!!!!!!");
+					System.exit(0);
 				}
 					
 				

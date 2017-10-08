@@ -51,7 +51,7 @@ public class UIBoard extends Pane
 		players = GameState.get_instance().get_players();
 		
 		System.out.println("Drawing Players");
-		for (int i = 0; i < players.get_player_count(); i++) // IM CHANGING SOME THINGS AROUDN FOR MONSTER - MICHAEL
+		for (int i = 0; i < players.get_player_count(); i++)
 		{
 			Entity player = players.get_player(i);
 			

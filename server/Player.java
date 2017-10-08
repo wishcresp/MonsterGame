@@ -28,6 +28,8 @@ public class Player extends Entity
 	public void kill()
 	{
 		this.is_dead = true;
+		Players players = GameState.get_instance().get_players();
+		players.set_alive_players(players.get_alive_players()-1);
 	}
 		
 }

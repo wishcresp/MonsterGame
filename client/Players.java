@@ -18,6 +18,7 @@ public class Players
 	// Required for Server reasons
 	private int player_target = -1; // Will be set by the first player to join
 	private int current_players = 0;
+	private int alive_players;
 	private int max_players = 4; // Soft limited according to spec
 	private int PC_id = -1; // Player Character ID
 	private String starter_spot = "";
@@ -131,5 +132,14 @@ public class Players
 		this.starter_spot = starter_spot;
 	}
 	
-	
+	public int get_alive_players() 
+	{
+		return alive_players;
+	}
+
+
+	public void set_alive_players(int alive_players) 
+	{
+		this.alive_players = alive_players;
+	}	
 }

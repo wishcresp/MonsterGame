@@ -18,7 +18,7 @@ public class ClientConnHandler extends ConnHandler
 		// Send game info to client
 		board.set_dimensions(Integer.valueOf(get_string())); // Board dimensions
 		System.out.println("Set board dimensions to "+board.get_dimensions());
-		board.load_layout(get_string()); // Board layout
+		board.load_layout(get_string()); // Board layouts
 		System.out.println("Loaded gameboard");
 		this.id = Integer.valueOf(get_string()); // The client's ID
 		System.out.println("Got client's ID");
@@ -107,6 +107,7 @@ public class ClientConnHandler extends ConnHandler
 			
 			if (rawc.contains("WINRAR"))
 			{
+				System.out.println("WE WIN!!!");
 				game_state.win(true);
 				break;
 			}
@@ -116,6 +117,8 @@ public class ClientConnHandler extends ConnHandler
 			System.out.println("Goot coords strang: "+rawc);
 			players.set_player_count(coords.length);
 			System.out.println("Player count: "+coords.length);
+			
+			int alive = coords.length-1; // minus one for monster
 			for (int i = 0; i < coords.length; i++)
 			{
 				String[] xy = coords[i].split(",");
@@ -124,6 +127,7 @@ public class ClientConnHandler extends ConnHandler
 				{
 					System.out.println("He dead lol");
 					((Player)players.get_player(id)).kill();
+					alive--;
 					continue; // Don't deal with the dead
 				}
 				
@@ -143,6 +147,8 @@ public class ClientConnHandler extends ConnHandler
 					System.out.println("Set player pos and dir");
 				}
 			}
+			System.out.println("Alive players: "+alive);
+			players.set_alive_players(alive);
 			
 			game_state.change_run_state(true); // TODO: FIX
 		
