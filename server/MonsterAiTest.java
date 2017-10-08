@@ -20,7 +20,8 @@ public class MonsterAiTest {
 	static MonsterAi monster;
 
 	@Test
-	public void test_gameboard() {
+	public void test_gameboard() 
+	{
 		//////////// CREATE PLAYERS //////////////
 		/*
 		 * Get instances to prevent static variables
@@ -43,7 +44,7 @@ public class MonsterAiTest {
 		// PLAYER 3
 		Player Player3 = new Player();
 		Player3.set_pos_x(5);
-		Player3.set_pos_y(9);
+		Player3.set_pos_y(6);
 
 		// PLAYER 4
 		Player Player4 = new Player();

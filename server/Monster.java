@@ -65,7 +65,8 @@ public class Monster extends Entity
 				Random rn = new Random();
 				int rand = rn.nextInt();
 
-				if (rand % 2 == 0) {
+				if (rand % 2 == 0) 
+				{
 					smallest = distance_array[i];
 					smallest_player = i;
 					System.out.println(
@@ -74,6 +75,9 @@ public class Monster extends Entity
 			}
 		}
 
+		
+		// FOUND THE CLOSEST PLAYER
+		
 		System.out.println("\nPlayer " + (smallest_player + 1) + " is the closest with a length of " + smallest);
 
 		Entity closest_player = players.get_player(smallest_player);
@@ -81,16 +85,32 @@ public class Monster extends Entity
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
-		System.out.println(closest_player_destination);
+		System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
+				+ closest_player_destination);
+		
+		System.out.println("\nMonster node is " + monster_node_postion);
+
 
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
-		// monster.set_monster_position(closest_player_destination);
-		monster.set_monster_position(closest_player_destination);
+		
+		// IF monster node and closest player node is identical, kill the player
+		if (monster_node_postion == closest_player_node)
+		{
+			Player killed_player = (Player) closest_player;
+			killed_player.kill();		
+		}
+		else
+		{
+			// monster.set_monster_position(closest_player_destination);
+			monster.set_monster_position(closest_player_destination);
 
-		// MAKE THE MOVE
-		this.set_pos_x(coordinates[0]);
-		this.set_pos_y(coordinates[1]);
+			// MAKE THE MOVE
+			this.set_pos_x(coordinates[0]);
+			this.set_pos_y(coordinates[1]);
 
+		}
+		
+		
 		// DEBUG prompt where the monster has ended up
 		System.out.println("\n////Coordinates are now " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
 				+ monster.get_monster_position() + "////\n");
