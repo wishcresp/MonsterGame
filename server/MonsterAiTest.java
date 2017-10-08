@@ -79,7 +79,7 @@ public class MonsterAiTest {
 		monster.set_monster_position(22);
 		Monster monster_entity;
 
-		// run it 3 times
+		// LOOP IT
 		for (int x = 1; x < 6; x++) 
 		{
 			System.out.println("\n////////////////////// RUNNING " + x + " ///////////////////////\n");

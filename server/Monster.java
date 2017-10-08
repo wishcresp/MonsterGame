@@ -127,12 +127,19 @@ public class Monster extends Entity
 		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 		
 		
+		
 
 		Entity closest_player = players.get_player(smallest_player);
 		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
-		
+		if (smallest == 0)
+		{
+			System.out.println("\nSmallest if statemet DEBUG");
+
+			monster.vertex_array[closest_player_node].set_monster_path(closest_player_node);
+			closest_player_destination = closest_player_node;
+		}
 		
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
@@ -157,13 +164,16 @@ public class Monster extends Entity
 						+ closest_player_destination);
 		System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
 
+		System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
+		
+		System.out.println("Now to see wether the player dies");
 
+		
 		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y())
 		{
 			((Player)closest_player).kill(); // Kill 'em if we're touching them
 			System.out.println("\nKILL THIS PLAYER");
-			set_cool_down(1);
-
+			set_cool_down(10);
 		}
 		else // If we ain't killin', move
 		{
