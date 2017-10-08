@@ -7,7 +7,8 @@ public class NetServer extends Thread
 	private int conn_target; // Update from the Players Singleton
 								// for internal use only
 	private int max_conn_target;
-
+	Thread[] conns;
+	
 	public NetServer(int port) 
 	{
 		try 
@@ -39,7 +40,7 @@ public class NetServer extends Thread
 	public void run() 
 	{
 		int conn_count = 0; // TODO: Have some way to decrement on drop out
-		Thread[] conns = new ServerConnHandler[this.max_conn_target];
+		conns = new ServerConnHandler[this.max_conn_target];
 		Players players = GameState.get_instance().get_players();
 
 		System.out.println("Started server thread.");
