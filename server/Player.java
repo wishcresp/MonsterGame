@@ -31,5 +31,4 @@ public class Player extends Entity
 		Players players = GameState.get_instance().get_players();
 		players.set_alive_players((players.get_alive_players()-1));
 	}
-		
 }

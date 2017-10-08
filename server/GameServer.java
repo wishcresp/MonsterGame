@@ -2,11 +2,11 @@
 public class GameServer extends Thread
 {
 	// Declare class variables
-	static int dim, player_target;
-	static Board board;
-	static Players players;
-	static GameState gamestate;
-	static MonsterAi monster;
+	private static int dim, player_target;
+	private static Board board;
+	private static Players players;
+	private static GameState gamestate;
+	private static MonsterAi monster;
 
 	
 	public static void main(String[] args) throws InterruptedException

@@ -19,8 +19,7 @@ public class Monster extends Entity
 		{
 			monster.set_monster_position(22);
 		}
-			
-		
+					
 		// PROMPT
 		System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
 
@@ -41,12 +40,6 @@ public class Monster extends Entity
 		if (monster_node_postion == -1)
 			return;
 			
-		
-		
-		// DEBUG PROMPT
-		System.out.println("\n//// Coordinates are currently " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-				+ monster_node_postion + " ////\n");
-		
 		// Set monster source
 		monster.set_monster_position(monster_node_postion);
 
@@ -128,14 +121,14 @@ public class Monster extends Entity
 		
 		// FOUND THE CLOSEST PLAYER
 		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
+		
+		
 
 		Entity closest_player = players.get_player(smallest_player);
 		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
-		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
-		System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
-				+ closest_player_destination);
+		
 		
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
@@ -155,13 +148,17 @@ public class Monster extends Entity
 			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
 			
 		}*/
-		
+		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
+				System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
+						+ closest_player_destination);
+		System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
 
-		if (this.get_pos_x() == closest_player.get_old_pos_x() && this.get_pos_y() == closest_player.get_old_pos_y())
+
+		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y())
 		{
 			((Player)closest_player).kill(); // Kill 'em if we're touching them
 			System.out.println("\nKILL THIS PLAYER");
-			set_cool_down(20);
+			set_cool_down(1);
 
 		}
 		else // If we ain't killin', move

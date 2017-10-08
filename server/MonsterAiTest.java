@@ -77,47 +77,27 @@ public class MonsterAiTest {
 		 */
 		monster = board.build_monster_graph();
 		monster.set_monster_position(22);
-		Monster monster_entity;	
-		
-		System.out.println("\n////////////////////// RUNNING THE FIRST TIME ///////////////////////\n");
-		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
+		Monster monster_entity;
+
+		// run it 3 times
+		for (int x = 1; x < 6; x++) 
 		{
-			Entity player = players.get_player(i);
+			System.out.println("\n////////////////////// RUNNING " + x + " ///////////////////////\n");
+			
+			for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
+			{
+				Entity player = players.get_player(i);
 
-			if (player instanceof Monster) 
-			{		
-				monster_entity = (Monster) player;
-				monster_entity.move(players, monster);
-			} else
-				player.move();
-		}
-
-		System.out.println("\n////////////////////// RUNNING AGAIN THE SECOND TIME ///////////////////////\n");
-		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
-		{
-			Entity player = players.get_player(i);
-
-			if (player instanceof Monster) {		
-				monster_entity = (Monster) player;
-				monster_entity.move(players, monster);
-			} else
-				player.move();
-		}
-		
-		System.out.println("\n////////////////////// RUNNING AGAIN THE THIRD TIME ///////////////////////\n");
-		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster
-		{
-			Entity player = players.get_player(i);
-
-			if (player instanceof Monster) {		
-				monster_entity = (Monster) player;
-				monster_entity.move(players, monster);
-			} else
-				player.move();
+				if (player instanceof Monster) 
+				{
+					monster_entity = (Monster) player;
+					monster_entity.move(players, monster);
+				} 
+				else
+					player.move();
+			}
 		}
 	}
-
-	
 	
 	
 	
