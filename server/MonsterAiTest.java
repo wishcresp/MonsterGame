@@ -204,7 +204,8 @@ public class MonsterAiTest
 		Monster monster_entity;
 		
 		
-		
+		System.out.println("\n////////////////////// RUNNING THE FIRST TIME ///////////////////////\n");
+
 		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
 		{
 			Entity player = players.get_player(i);
@@ -213,8 +214,23 @@ public class MonsterAiTest
 			{
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
-				monster_entity.move(players, monster);
+			}
+			else				
+				player.move();			
+		}
+		
+		
+		// RUNNING AGAIN THE SECOND TIME
+		System.out.println("\n////////////////////// RUNNING AGAIN THE SECOND TIME ///////////////////////\n");
 
+		for (int i = 0; i < players.get_player_count() + 1; i++) // Plus one for the monster 
+		{
+			Entity player = players.get_player(i);
+			
+			if (player instanceof Monster)
+			{
+				monster_entity = (Monster) player;
+				monster_entity.move(players, monster);
 			}
 			else				
 				player.move();			

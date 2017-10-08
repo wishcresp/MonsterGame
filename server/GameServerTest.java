@@ -2,7 +2,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class GameServerTest {
+public class GameServerTest 
+{
 
 	// Declare class variables
 	static int dim, player_target;
@@ -13,22 +14,23 @@ public class GameServerTest {
 	static MonsterAi monster;
 
 	@Test
-	public void test_intialize() {
+	public void test_intialize() 
+	{
 		// Instantiate Board and players
 		gamestate = GameState.get_instance();
 		board = gamestate.get_board();
 		players = gamestate.get_players();
+		
 		// Create monster object
 		monster = board.build_monster_graph();
+		
 		// Amount of players to join
 		player_target = players.get_player_target();
+		
 		// Generate the game board
 		board.create_board();
 		board.create_associative_array();
 
-		
-		
-		
 		GameState game_state = GameState.get_instance();
 		Players players = game_state.get_players();
 		Board board = game_state.get_board();
@@ -55,7 +57,8 @@ public class GameServerTest {
 		{
 			Entity player = players.get_player(i);
 
-			if (player instanceof Monster) {
+			if (player instanceof Monster) 
+			{
 				monster_entity = (Monster) player;
 				monster_entity.move(players, monster);
 			} else
