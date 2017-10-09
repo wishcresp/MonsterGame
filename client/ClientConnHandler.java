@@ -20,7 +20,12 @@ public class ClientConnHandler extends ConnHandler
 		System.out.println("Set board dimensions to "+board.get_dimensions());
 		board.load_layout(get_string()); // Board layouts
 		System.out.println("Loaded gameboard");
-		this.id = Integer.valueOf(get_string()); // The client's ID
+		String[] id_r = get_string().split(":");
+		game_state.set_random_number(Integer.valueOf(id_r[1]));
+		this.id = Integer.valueOf(id_r[0]); // The client's ID
+		
+
+		
 		System.out.println("Got client's ID");
 		game_state.players.set_pc_id(this.id);
 

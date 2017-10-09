@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class GameServer extends Thread
 {
@@ -44,6 +45,10 @@ public class GameServer extends Thread
 		board.create_board();
 	
 		board.create_associative_array();
+		
+		// Generate the random number
+		Random rn = new Random();
+		gamestate.set_random_number(rn.nextInt() % 4);
 	}
 		
 	

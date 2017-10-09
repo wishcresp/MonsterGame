@@ -6,6 +6,8 @@ public class GameState
 	private Players players = new Players();
 	private Board board = new Board();
 	private Player player = new Player();
+	
+	private int random_number;
 
 	private GameState() 
 	{
@@ -40,5 +42,15 @@ public class GameState
 	public static GameState get_instance() 
 	{
 		return gamestate;
+	}
+	
+	public int get_random_number()
+	{
+		return this.random_number;
+	}
+	
+	public void set_random_number(int num)
+	{
+		this.random_number = num;
 	}
 }
