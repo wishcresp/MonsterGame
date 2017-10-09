@@ -21,14 +21,11 @@ public class Monster extends Entity
 			//System.out.println("He eating lol");
 			return;
 		}
-		
-		
+				
 		if (monster.get_monster_position() == -1)
 		{
 			monster.set_monster_position(22);
-		}
-		
-		
+		}		
 	
 		// get monster source position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
@@ -52,13 +49,13 @@ public class Monster extends Entity
 			Player player = (Player) players.get_player(i);
 
 			// get player node
-			int player_node = board.convert_to_node(player.get_old_pos_x(), player.get_old_pos_y());
+			int player_node = board.convert_to_node(player.get_pos_x(), player.get_pos_y());
 			
 			//get player distance
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
 			
 			//get player destination coordinates
-			int player_destination = monster.vertex_array[player_node].get_monster_path();
+			//int player_destination = monster.vertex_array[player_node].get_monster_path();
 				
 			// Make the player out of reach if dead
 			if (player.is_dead())

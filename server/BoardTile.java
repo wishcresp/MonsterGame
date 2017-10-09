@@ -7,8 +7,8 @@ public class BoardTile
 	 * it should be some kind of sprite
 	 */
 		
-	Entity contains;
-	Boolean wall;
+	public Entity contains;
+	public Boolean wall;
 	
 	// Constructor for a single BoardTile
 	public BoardTile(Entity ent, boolean wall)
