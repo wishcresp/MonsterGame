@@ -1,4 +1,5 @@
-public abstract class Entity {
+public abstract class Entity 
+{
 	/*
 	 * Base abstract entity class
 	 * 
@@ -19,16 +20,13 @@ public abstract class Entity {
 
 	private int pos_x, pos_y; // I renamed it from x,y.
 	
-	// TODO Trying to see what i can do about 
-	private int old_node_position ;
-	private int old_pos_x;
-	private int old_pos_y;
+
 
 	
 
-	static Board board;
-	static GameState game_state;
-	int dimensions = 11;
+	public static Board board;
+	public static GameState game_state;
+	private int dimensions = 11;
 
 	public Entity() 
 	{
@@ -45,20 +43,15 @@ public abstract class Entity {
 		game_state = GameState.get_instance();
 		board = game_state.get_board();
 		
-		String output;
+		//String output = "";
 
 		// DEBUG, find out the current player coordinate
-		output = "\nPlayer coordinate before move: ";
-		output += this.get_pos_x() + "," + this.get_pos_y();
+		//output = "\nPlayer coordinate before move: ";
+		//output += this.get_pos_x() + "," + this.get_pos_y();
 		//System.out.println(output);
 
 		// Desired direction handling
 		boolean moved = false;
-		
-		// STORE THE OLD NODE POSITION and COORDINATES
-		this.old_node_position = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
-		this.set_old_pos_x(this.get_pos_x());
-		this.set_old_pos_y(this.get_pos_y());
 
 		/*
 		 * Get players direction, and apply the move
@@ -185,8 +178,8 @@ public abstract class Entity {
 		}
 
 		// DEBUG, find out the current player coordinate
-		output = "Player coordinate after move: ";
-		output += this.get_pos_x() + "," + this.get_pos_y() + "\n";
+		//output = "Player coordinate after move: ";
+		//output += this.get_pos_x() + "," + this.get_pos_y() + "\n";
 		//System.out.println(output);
 	}
 
@@ -270,35 +263,4 @@ public abstract class Entity {
 	{
 		this.pos_y = pos_y;
 	}
-
-	public int get_old_node_position() 
-	{
-		return old_node_position;
-	}
-
-	public void set_old_node_position(int old_node_position) 
-	{
-		this.old_node_position = old_node_position;
-	}
-
-	public int get_old_pos_x() {
-		return old_pos_x;
-	}
-
-	public void set_old_pos_x(int old_pos_x)
-	{
-		this.old_pos_x = old_pos_x;
-	}
-
-	public int get_old_pos_y() 
-	{
-		return old_pos_y;
-	}
-
-	public void set_old_pos_y(int old_pos_y) 
-	{
-		this.old_pos_y = old_pos_y;
-	}
-
-
 }

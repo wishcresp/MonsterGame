@@ -7,11 +7,7 @@ public class Players
 	 * is Also handles info about player limits and connected players
 	 */
 
-	public Players()
-	{
-		return;
-	}
-	
+
 	// TODO: Have this load from file like the game board
 	private String[] avaliable_spots = {"1,1", "1,9", "9,1", "9,9"};
 	
@@ -25,12 +21,16 @@ public class Players
 
 	private boolean locked = false;
 	
+	public Players()
+	{
+		return;
+	}
+	
 	
 	public void remove_player(int id)
 	{
 		((Player)players[id]).kill();
 	}
-	
 	
 	// Player target
 	public int get_player_target()
