@@ -88,6 +88,7 @@ public class GameServer extends Thread
 
 		
 		((Monster)players.get_player(players.get_player_count())).set_cool_down(5); // Give the players a chance to position themselves
+		int tick = 0;
 		while (true) 
 		{
 			players.lock(); // Lock the MUTEX
@@ -107,7 +108,8 @@ public class GameServer extends Thread
 			check_kill();
 		
 			// Lastly, move the monster
-			((Monster)players.get_player(players.get_player_count())).move(players, monster);
+			if (tick == 0)
+				((Monster)players.get_player(players.get_player_count())).move(players, monster);
 			
 			check_kill();
 			
@@ -116,7 +118,12 @@ public class GameServer extends Thread
 			
 			System.out.println(players.toString()); // Debug the state of everything
 			
-			Thread.sleep(250); // Finnaly, sleep
+			if (tick == 1)
+				tick = 0;
+			else
+				tick++;
+			
+			Thread.sleep(256); // Finnaly, sleep
 		}
 	}
 }
