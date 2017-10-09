@@ -156,7 +156,7 @@ public class UIBoard extends Pane
 			Entity player = players.get_player(i);
 						
 			if (player instanceof Monster)
-				board.add(new UISprite(16, 0), player.get_pos_x(), player.get_pos_x());
+				board.add(new UISprite(16, 0), player.get_pos_x(), player.get_pos_y());
 			else {
 				int rotation = 0;
 				switch (player.get_dir())
@@ -177,22 +177,23 @@ public class UIBoard extends Pane
 				switch (player.get_id())
 				{
 					case "0":
-						board.add(new UISprite(12, rotation), player.get_pos_x(), player.get_pos_x());
+						board.add(new UISprite(12, rotation), player.get_pos_x(), player.get_pos_y());
 //						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "1":
-						board.add(new UISprite(13, rotation), player.get_pos_x(), player.get_pos_x());
+						board.add(new UISprite(13, rotation), player.get_pos_x(), player.get_pos_y());
 //						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "2":
-						board.add(new UISprite(14, rotation), player.get_pos_x(), player.get_pos_x());
+						board.add(new UISprite(14, rotation), player.get_pos_x(), player.get_pos_y());
 //						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "3":
-						board.add(new UISprite(15, rotation), player.get_pos_x(), player.get_pos_x());
+						board.add(new UISprite(15, rotation), player.get_pos_x(), player.get_pos_y());
 //						board.add(new UICell(7), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "D": /* When dead */
+						break;
 					default:
 						/* Displays error */
 						board.add(new UISprite(18, 0), player.get_pos_x(), player.get_pos_x());
