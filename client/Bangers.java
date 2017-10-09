@@ -7,8 +7,8 @@ import javafx.util.Duration;
 
 public class Bangers 
 {
-	MediaPlayer media_player;
-	Media track;
+	public MediaPlayer media_player;
+	public Media track;
 	public Bangers() 
 	{
 

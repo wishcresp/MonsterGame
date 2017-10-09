@@ -9,8 +9,8 @@ public class BoardTile
 		
 	// TODO We can probably use entity for player and monster representation on a board
 	
-	Entity contains;
-	Boolean wall;
+	public Entity contains;
+	public Boolean wall;
 	
 	// Constructor for a single BoardTile
 	public BoardTile(Entity ent, boolean wall)

@@ -7,7 +7,7 @@ public class NetServer extends Thread
 	private int conn_target; // Update from the Players Singleton
 								// for internal use only
 	private int max_conn_target;
-	Thread[] conns;
+	private Thread[] conns;
 	
 	public NetServer(int port) 
 	{
