@@ -24,7 +24,7 @@ public class ServerConnHandler extends ConnHandler
 			send_string(board.get_layout()); // Board layout
 			Thread.sleep(100);
 			send_string(Integer.toString(this.id)+":"+Integer.toString(game_state.get_random_number())); // The client's ID
-			System.out.println("Sent the players ID");
+			System.out.println("Sent the players ID "+this.id+" and random number "+String.valueOf(game_state.get_random_number()));
 	
 			// TODO: Client interaction and player setup
 	

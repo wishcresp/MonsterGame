@@ -12,14 +12,16 @@ public class GameServer extends Thread
 	
 	public static void main(String[] args) throws InterruptedException
 	{
+
+		// Setup the board and players
+		Initialize(); 
+			
 		// Startup the threads
 		int port = 3216;
 		Thread listener = new NetServer(port);
 		listener.start();
 		
-		// Setup the board and players
-		Initialize(); 
-			
+		
 		// Start the main game loop
 		GameLoop(); 
 
