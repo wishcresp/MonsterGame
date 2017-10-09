@@ -142,8 +142,8 @@ public class Monster extends Entity
 		 * set_cool_down(10); }
 		 */
 		if (false) 
-		{
-		} else // If we ain't killin', move
+		{} 
+		else // If we ain't killin', move
 		{
 			// monster.set_monster_position(closest_player_destination);
 			monster.set_monster_position(closest_player_destination);
