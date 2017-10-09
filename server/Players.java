@@ -26,6 +26,24 @@ public class Players
 	private boolean locked = false;
 	
 	
+	public void claim_spot(String spot)
+	{
+		String[] tmp_spots = new String[avaliable_spots.length];
+		for (int i = 0; i < avaliable_spots.length; i++)
+			tmp_spots[i] = avaliable_spots[i];
+			
+		
+		for (int i = 0; i < avaliable_spots.length; i++)
+		{
+			if (avaliable_spots[i].contains(spot))
+				avaliable_spots[i] = "";
+			else
+				avaliable_spots[i] = tmp_spots[i];
+		}
+		
+	}
+	
+	
 	public void remove_player(int id)
 	{
 		((Player)players[id]).kill();

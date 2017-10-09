@@ -68,18 +68,18 @@ public class ServerConnHandler extends ConnHandler
 			String avaliable_spots = "";
 			
 			for (int i = 0; i < spots_arr.length; i++)
-				avaliable_spots += spots_arr[i] + ":";
+			{
+				if (spots_arr[i] != "")
+					avaliable_spots += spots_arr[i] + ":";
+			}
 			
 			send_string(avaliable_spots); // Send the client the list of avaliable
 											// spots
 			
 			String player_pos = get_string(); // Find which spot they
-															// want
-			/*String
-			
-			players.claim_spot(player_pos);  //TODO: FIX LATER
+											  // want
+			players.claim_spot(player_pos);
 	
-			String[] xy = spots_arr[player_pos].split(",");*/
 			String[] xy = player_pos.split(",");
 	
 			player.set_pos_x(Integer.valueOf(xy[0])); // Set the player's starting

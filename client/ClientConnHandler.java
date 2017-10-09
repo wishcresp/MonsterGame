@@ -71,8 +71,9 @@ public class ClientConnHandler extends ConnHandler
 		System.out.println("Just sent name to server");
 
 		// Wait for list of avaliable spots then set it in gamestate
-		game_state.set_avaliable_spots(get_string());
-		System.out.println("Got list of avaliable spots from server");
+		String spots = get_string();
+		game_state.set_avaliable_spots(spots);
+		System.out.println("Got list of avaliable spots from server: "+spots);
 		
 		
 		// Send back the selected spot
@@ -97,7 +98,7 @@ public class ClientConnHandler extends ConnHandler
 			game_state.change_run_state(true);
 		}
 		else
-			; // TODO: SOMETHING
+			;
 		
 		
 		
@@ -171,13 +172,11 @@ public class ClientConnHandler extends ConnHandler
 			players.set_alive_players(alive);
 			players.unlock();
 			
-			game_state.change_run_state(true); // TODO: FIX
+			game_state.change_run_state(true); // TODO: Find way to run once
 		
 			Thread.sleep(10);
 			System.out.print("\n");
 			System.out.flush();
-			
-			//TODO: Handle disconnects
 
 		}
 		this.conn.close();

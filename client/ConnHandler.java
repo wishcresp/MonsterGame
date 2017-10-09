@@ -32,7 +32,8 @@ public abstract class ConnHandler extends Thread
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			System.out.println("Server crashed lmao XDDDD");
+			System.out.println("Server crashed... Exiting...");
+			System.exit(1);
 		}
 		return "Something happened :(";
 	}
@@ -69,8 +70,6 @@ public abstract class ConnHandler extends Thread
 
 			System.out.println("Just connected to " +
 			                   this.conn.getRemoteSocketAddress().toString());
-
-
 
 			conn_work(board, players);
 			
