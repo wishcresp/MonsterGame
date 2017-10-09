@@ -108,7 +108,7 @@ public class GameServer extends Thread
 			check_kill();
 		
 			// Lastly, move the monster
-			if (tick == 1)
+			if (tick == 0)
 				((Monster)players.get_player(players.get_player_count())).move(players, monster);
 			
 			check_kill();
@@ -121,9 +121,9 @@ public class GameServer extends Thread
 			if (tick == 1)
 				tick = 0;
 			else
-				tick = 1;
+				tick++;
 			
-			Thread.sleep(250); // Finnaly, sleep
+			Thread.sleep(256); // Finnaly, sleep
 		}
 	}
 }
