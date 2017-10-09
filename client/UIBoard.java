@@ -50,6 +50,9 @@ public class UIBoard extends Pane
 		Players players;
 		players = GameState.get_instance().get_players();
 		
+		
+		while (players.islocked())
+			try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
 		//System.out.println("Drawing Players");
 		for (int i = 0; i < players.get_player_count(); i++)
 		{

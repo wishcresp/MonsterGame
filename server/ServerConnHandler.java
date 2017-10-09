@@ -14,7 +14,6 @@ public class ServerConnHandler extends ConnHandler
 		boolean player_joined = false;
 		try 
 		{
-			
 			int new_player_target = 0;
 		
 			// Send game info to client
@@ -87,8 +86,8 @@ public class ServerConnHandler extends ConnHandler
 			player.set_pos_y(Integer.valueOf(xy[1]));
 	
 			players.add_player(player); // Finally add the player to the game state
-			players.set_player_count(players.get_player_count()+1);
-			players.set_alive_players(players.get_alive_players()+1);
+			players.set_player_count(players.get_player_count() + 1);
+			players.set_alive_players(players.get_alive_players() + 1);
 			System.out.println("Added player");
 			player_joined = true;
 			
@@ -139,11 +138,6 @@ public class ServerConnHandler extends ConnHandler
 					System.out.println("WINRAR!!!!!!!!!!!!!!!");
 					System.exit(0);
 				}
-					
-				
-				
-				
-				
 				
 				send_string(out);
 				//System.out.println("Sent data for "+players.get_player_target()+" players");

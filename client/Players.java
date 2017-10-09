@@ -26,6 +26,9 @@ public class Players
 	
 	private Entity players[];
 
+	
+	private boolean locked = false;
+	
 	private void swap(int id1, int id2)
 	{
 		Entity tmp;
@@ -141,5 +144,19 @@ public class Players
 	public void set_alive_players(int alive_players) 
 	{
 		this.alive_players = alive_players;
-	}	
+	}
+	
+	public void lock()
+	{
+		this.locked = true;
+	}
+	public void unlock()
+	{
+		this.locked = false;
+	}
+	
+	public boolean islocked()
+	{
+		return this.locked;
+	}
 }

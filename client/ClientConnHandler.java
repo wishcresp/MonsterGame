@@ -104,11 +104,15 @@ public class ClientConnHandler extends ConnHandler
 			
 			
 			String rawc = get_string();
+			
+			players.lock();
+			
 			System.out.print("Sent direction");
 			if (rawc.contains("WINRAR"))
 			{
 				System.out.println("WE WIN!!!");
 				game_state.win(true);
+				players.unlock();
 				break;
 			}
 			
@@ -160,6 +164,7 @@ public class ClientConnHandler extends ConnHandler
 			}
 			System.out.print(":Alive players: "+alive);
 			players.set_alive_players(alive);
+			players.unlock();
 			
 			game_state.change_run_state(true); // TODO: FIX
 		
