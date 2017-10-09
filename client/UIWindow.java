@@ -18,14 +18,9 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
-<<<<<<< HEAD
 	/* Music */
-	Bangers banger[] = new Bangers[4];
-	Bangers winbang = new Bangers();
-=======
 	public Bangers banger[] = new Bangers[4];
 	public Bangers winbang = new Bangers();
->>>>>>> c6e2e7677fb5251569648754b4a88cdd3cd0ecdb
 	
 	/* Gameboard and UI elements */
 	private UIBoard board = new UIBoard();
