@@ -22,12 +22,12 @@ public class Monster extends Entity
 			return;
 		}
 		
-		/*
+		
 		if (monster.get_monster_position() == -1)
 		{
 			monster.set_monster_position(22);
 		}
-		*/
+		
 		
 	
 		// get monster source position
