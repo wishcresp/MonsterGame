@@ -159,7 +159,7 @@ public class UIBoard extends Pane
 				board.add(new UISprite(16, 0), player.get_pos_x(), player.get_pos_x());
 			else {
 				int rotation = 0;
-				switch (player.get_ddir())
+				switch (player.get_dir())
 				{
 					case 0:
 						rotation = 0;
