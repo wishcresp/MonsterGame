@@ -1,6 +1,8 @@
 
 public class GameState 
 {
+	// This class contains getters, setters and objects for managing the whole game
+	
 	private static GameState gamestate = new GameState(); // Make this a singleton
 	private boolean is_running = false;
 	private Players players = new Players();

@@ -2,6 +2,8 @@ import java.net.*;
 import java.io.*;
 
 
+//Provide a basic interface for sending and recieving data over the network
+
 public abstract class ConnHandler extends Thread
 {
 	protected Socket conn;

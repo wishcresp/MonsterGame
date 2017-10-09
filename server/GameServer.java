@@ -3,7 +3,6 @@ import java.util.Random;
 public class GameServer extends Thread
 {
 	// Declare class variables
-	private static int dim, player_target;
 	private static Board board;
 	private static Players players;
 	private static GameState gamestate;
@@ -40,9 +39,6 @@ public class GameServer extends Thread
 		// Create monster object
 		monster = board.build_monster_graph();
 	
-		// Amount of players to join
-		player_target = players.get_player_target();
-		
 		// Generate the game board
 		board.create_board();
 	
@@ -50,10 +46,10 @@ public class GameServer extends Thread
 		
 		// Generate the random number
 		Random rn = new Random();
-		gamestate.set_random_number(rn.nextInt() % 4);
+		gamestate.set_random_number(Math.abs(rn.nextInt() % 4));
 	}
 		
-	
+	// Check if there's a player under the monster and kill if there is
 	private static boolean check_kill()
 	{
 		Monster monster_e = ((Monster)players.get_player(players.get_player_count()));
@@ -79,10 +75,7 @@ public class GameServer extends Thread
 	{		
 		GameState game_state = GameState.get_instance();
 		Players players = game_state.get_players();
-		Board board = game_state.get_board();
 		int start_position = 22;
-		
-		Monster monster_entity = null ;
 		
 		// Set the AI position in the GRAPH
 		monster.set_monster_position(start_position);
@@ -94,13 +87,12 @@ public class GameServer extends Thread
 			Thread.sleep(100); // If the game isn't running, wait around
 
 		
-		((Monster)players.get_player(players.get_player_count())).set_cool_down(5);
+		((Monster)players.get_player(players.get_player_count())).set_cool_down(5); // Give the players a chance to position themselves
 		while (true) 
 		{
-			players.lock();
+			players.lock(); // Lock the MUTEX
 			
-			
-			check_kill();
+			check_kill(); // At every stage, check if we can kill the player
 			
 			for (int i = 0; i < players.get_player_count(); i++) 
 			{
@@ -109,30 +101,22 @@ public class GameServer extends Thread
 				if (player instanceof Player && ((Player)player).is_dead())
 					continue; // Skip the dead ones
 				
-				if (player instanceof Monster)
-				{
-					/*monster_entity = (Monster) player;
-					monster_entity.move(players, monster);*/
-				}
-				else				
-					player.move();				
+				player.move();				
 			}
 			
 			check_kill();
 		
-			
 			// Lastly, move the monster
-			Monster monster_e = ((Monster)players.get_player(players.get_player_count()));
-			monster_e.move(players, monster);
+			((Monster)players.get_player(players.get_player_count())).move(players, monster);
 			
 			check_kill();
 			
 			
-			players.unlock();
+			players.unlock(); // Unlock the players
 			
-			System.out.println(players.toString());
+			System.out.println(players.toString()); // Debug the state of everything
 			
-			Thread.sleep(250);
+			Thread.sleep(250); // Finnaly, sleep
 		}
 	}
 }

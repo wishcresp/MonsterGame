@@ -1,5 +1,9 @@
 
-public class GameState {
+
+// This class contains getters, setters and objects for managing the whole game
+
+public class GameState 
+{
 	private static GameState gamestate = new GameState(); // Make this a singleton
 	private boolean is_running = false;
 	private String avaliable_spots = "";
