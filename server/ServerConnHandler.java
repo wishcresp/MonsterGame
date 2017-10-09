@@ -15,6 +15,7 @@ public class ServerConnHandler extends ConnHandler
 		try 
 		{
 			int new_player_target = 0;
+			GameState game_state = GameState.get_instance();
 		
 			// Send game info to client
 			send_string(Integer.toString(board.get_dimensions())); // Board
@@ -22,8 +23,8 @@ public class ServerConnHandler extends ConnHandler
 			Thread.sleep(100);
 			send_string(board.get_layout()); // Board layout
 			Thread.sleep(100);
-			send_string(Integer.toString(this.id)); // The client's ID
-			System.out.println("Sent the players ID");
+			send_string(Integer.toString(this.id)+":"+Integer.toString(game_state.get_random_number())); // The client's ID
+			System.out.println("Sent the players ID "+this.id+" and random number "+String.valueOf(game_state.get_random_number()));
 	
 			// TODO: Client interaction and player setup
 	
@@ -92,7 +93,7 @@ public class ServerConnHandler extends ConnHandler
 			player_joined = true;
 			
 	
-			GameState game_state = GameState.get_instance();
+
 			
 			if (players.get_player_target() == this.id+1)
 			{

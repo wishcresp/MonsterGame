@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class GameServer extends Thread
 {
@@ -11,14 +12,16 @@ public class GameServer extends Thread
 	
 	public static void main(String[] args) throws InterruptedException
 	{
+
+		// Setup the board and players
+		Initialize(); 
+			
 		// Startup the threads
 		int port = 3216;
 		Thread listener = new NetServer(port);
 		listener.start();
 		
-		// Setup the board and players
-		Initialize(); 
-			
+		
 		// Start the main game loop
 		GameLoop(); 
 
@@ -44,6 +47,10 @@ public class GameServer extends Thread
 		board.create_board();
 	
 		board.create_associative_array();
+		
+		// Generate the random number
+		Random rn = new Random();
+		gamestate.set_random_number(rn.nextInt() % 4);
 	}
 		
 	

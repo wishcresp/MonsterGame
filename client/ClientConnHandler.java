@@ -20,7 +20,12 @@ public class ClientConnHandler extends ConnHandler
 		System.out.println("Set board dimensions to "+board.get_dimensions());
 		board.load_layout(get_string()); // Board layouts
 		System.out.println("Loaded gameboard");
-		this.id = Integer.valueOf(get_string()); // The client's ID
+		String[] id_r = get_string().split(":");
+		game_state.set_random_number(Integer.valueOf(id_r[1]));
+		this.id = Integer.valueOf(id_r[0]); // The client's ID
+		
+
+		
 		System.out.println("Got client's ID");
 		game_state.players.set_pc_id(this.id);
 
@@ -158,7 +163,7 @@ public class ClientConnHandler extends ConnHandler
 					players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
 					players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
 					players.get_player(i).set_id(xy[3]);
-					//players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
+					players.get_player(i).set_ddir(Integer.valueOf(xy[2]));
 					System.out.print(":Set player pos and dir");
 				}
 			}

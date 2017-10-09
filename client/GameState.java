@@ -7,6 +7,9 @@ public class GameState {
 	private int server_port;
 	private boolean winner = false;
 
+	private int random_number = -1;
+	
+	
 	public static Players players = new Players();
 	private static Board board = new Board();
 
@@ -79,4 +82,16 @@ public class GameState {
 	{
 		this.winner = winner;
 	}
+	
+	public int get_random_number()
+	{
+		return this.random_number;
+	}
+	
+	public void set_random_number(int num)
+	{
+		this.random_number = num;
+	}
+	
+	
 }

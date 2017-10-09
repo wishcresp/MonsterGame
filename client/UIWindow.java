@@ -4,8 +4,6 @@
  * method. I'm not very familiar with threading so I might need some help with
  * that. */
 
-import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -22,7 +20,7 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
-	Bangers banger = new Bangers();
+	Bangers banger[] = new Bangers[4];
 	Bangers winbang = new Bangers();
 	
 	private UIBoard board = new UIBoard();
@@ -131,34 +129,7 @@ public class UIWindow extends Application
 		
 		game_stage.setScene(ip_scene);
 		game_stage.show();
-		
-		Random rn = new Random();
-		int rand = rn.nextInt() % 4;
-		
-		switch (rand)
-		{
-		// https://www.youtube.com/watch?v=QS0qjldeT9k
-		default:
-		case 0:
-			banger.load("nigga.mp3");
-			break;
-		case 1:
-			banger.load("jive.mp3");	
-			break;
-		case 2:
-			banger.load("bomb.mp3");
-			break;
-		case 3:
-			banger.load("kong.mp3"); // Would love optional sprites for this
-			// Like if when (rand == 4) you made the monster https://vignette1.wikia.nocookie.net/rare/images/6/69/Funky_Kong_Artwork_2_-_Donkey_Kong_Country.png/revision/latest?cb=20120424224116
-			break; 
-		}
-		winbang.load("respec.mp3");
-		banger.loop_on();
-		banger.play();
-		
-		
-		
+
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
 		{
@@ -205,6 +176,10 @@ public class UIWindow extends Application
 					PC_id = players.get_pc_id();
 					try { Thread.sleep(100); } catch (Exception err) { }
 				}
+				
+				// We now have the music
+			    int rand = game_state.get_random_number();
+				banger[rand].play();
 				
 				if (PC_id == 0)
 					game_stage.setScene(num_scene);
@@ -358,7 +333,8 @@ public class UIWindow extends Application
 			{
 				System.out.println("WINNNAR");
 				
-				banger.pause();
+				for (int i = 0; i < 4; i++)
+					banger[i].pause();
 				winbang.play();
 				try {Thread.sleep(5000);} catch (InterruptedException ex)
 				{
@@ -371,6 +347,29 @@ public class UIWindow extends Application
 	    
 	    game_loop = new Timeline(new KeyFrame(Duration.millis(64), eventHandler));
 	    game_loop.setCycleCount(Timeline.INDEFINITE);
+	    
+	    
+	   
+	    // Finna music
+	    for (int i = 0; i < 4; i++)
+	    	banger[i] = new Bangers();
+	    
+	    // https://www.youtube.com/watch?v=QS0qjldeT9k
+		banger[0].load("nigga.mp3");
+		// CYDNEY / GREEN OLIVES - JIVE INTO THE NIGHT
+		// https://www.youtube.com/watch?v=tKqO9gEPmpw
+		banger[1].load("jive.mp3");	
+		// Source: Bomberman - Redial (Old YouTube rip)
+		banger[2].load("bomb.mp3");
+		// Koinu - Kuroneko (Koinu Funky Kong ASMR mashup from MidnightSnacks 11 year anniversary party)
+		banger[3].load("kong.mp3"); // Would love optional sprites for this
+		// Like if when (rand == 4) you made the monster https://vignette1.wikia.nocookie.net/rare/images/6/69/Funky_Kong_Artwork_2_-_Donkey_Kong_Country.png/revision/latest?cb=20120424224116
+		
+		winbang.load("respec.mp3");
+		
+		for (int i = 0; i < 4; i++)
+			banger[i].loop_on();
+
 	}
 	
 	/* Waits for server to send avaliable spots*/
@@ -394,5 +393,9 @@ public class UIWindow extends Application
 		else
 			return false;
 	}
+	
+	
+	
+	
 }
 

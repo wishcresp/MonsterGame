@@ -15,7 +15,6 @@ public class Monster extends Entity
 	// override move function from entity
 	public void move(Players players, MonsterAi monster) 
 	{
-		
 		// Check is monster is still cooling down
 		if (!check_cooldown())
 		{
@@ -24,19 +23,12 @@ public class Monster extends Entity
 		}
 		
 		
-		
 		if (monster.get_monster_position() == -1)
 		{
 			monster.set_monster_position(22);
 		}
-					
-		// PROMPT
-		//System.out.println("\n//////////////// START OF THE AI PROCESS ////////////////\n");
-
-		// DEBUG Where did the monster end up
-		//System.out.println("Monster coordinates BEFORE: " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-		//		+ monster.get_monster_position());
-				
+		
+		
 	
 		// get monster source position
 		int monster_node_postion = board.convert_to_node(this.get_pos_x(), this.get_pos_y());
@@ -50,10 +42,6 @@ public class Monster extends Entity
 		// RUN THE MONSTER AI
 		monster.calculate_shortest_path();
 
-		// DEBUG TRY TO FIND OUT WHATS UPDATING
-		//monster.print_result(monster_node_postion);
-		//System.out.println("\n//////////////// END OF THE AI PROCESS ////////////////\n");
-
 		// trying to store all the distances
 		int[] distance_array = new int[players.get_player_count()];
 
@@ -65,14 +53,13 @@ public class Monster extends Entity
 
 			// get player node
 			int player_node = board.convert_to_node(player.get_old_pos_x(), player.get_old_pos_y());
+			
 			//get player distance
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
+			
 			//get player destination coordinates
 			int player_destination = monster.vertex_array[player_node].get_monster_path();
-			
-			// Check if the player has died
-			//System.out.println("IS THE PLAYER DEAD? " + player.is_dead());
-			
+				
 			// Make the player out of reach if dead
 			if (player.is_dead())
 				player_distance = Integer.MAX_VALUE;
@@ -117,26 +104,20 @@ public class Monster extends Entity
 					
 					// prompt
 					//System.out.println(
-					//		"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
+							//"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
 				}
 			}
 		}
-
 		
 		// FOUND THE CLOSEST PLAYER
 		//System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 		
-		
-		
-
 		Entity closest_player = players.get_player(smallest_player);
 		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
 		int closest_player_destination = monster.vertex_array[closest_player_node].get_monster_path();
 
 		if (smallest == 0)
 		{
-			//System.out.println("\nSmallest if statemet DEBUG");
-
 			monster.vertex_array[closest_player_node].set_monster_path(closest_player_node);
 			closest_player_destination = closest_player_node;
 		}
@@ -145,39 +126,24 @@ public class Monster extends Entity
 		
 		// IF monster node and closest player node is identical, kill the player
 		
-		// TODO SHOULD BE CHECKING THE PREVIOUS NODE OF THE PLAYER, REALLY MESSSED UP MY CODE HERE
-		
-		
-		/*if (monster_node_postion == closest_player_node)
-		{
-			Player killed_player = (Player) closest_player;
-			killed_player.kill();
-			
-			// Set the cool down
-			set_cool_down(5);
-			
-			// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
-			
-		}*/
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
 		//System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
-						//+ closest_player_destination);
+		//				+ closest_player_destination);
 		//System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
 
 		//System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
 		
 		//System.out.println("Now to see wether the player dies");
-
 		
-		/*if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y())
+		/*
+		 * if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() ==
+		 * closest_player.get_pos_y()) { ((Player)closest_player).kill(); // Kill 'em if
+		 * we're touching them //System.out.println("\nKILL THIS PLAYER");
+		 * set_cool_down(10); }
+		 */
+		if (false) 
 		{
-			((Player)closest_player).kill(); // Kill 'em if we're touching them
-			//System.out.println("\nKILL THIS PLAYER");
-			set_cool_down(10);
-		}*/
-		if (false)
-		{}
-		else // If we ain't killin', move
+		} else // If we ain't killin', move
 		{
 			// monster.set_monster_position(closest_player_destination);
 			monster.set_monster_position(closest_player_destination);
@@ -185,31 +151,23 @@ public class Monster extends Entity
 			// MAKE THE MOVE
 			this.set_pos_x(coordinates[0]);
 			this.set_pos_y(coordinates[1]);
-		
+
 			// DEBUG Where did the monster end up
-			//System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + "," + this.get_pos_y() + " at node "
-			//		+ monster.get_monster_position());
-			
+			// System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + ","
+			// + this.get_pos_y() + " at node "
+			// + monster.get_monster_position());
+
 			/*
-			if (monster.get_monster_position() == closest_player_node)
-			{
-				Player killed_player = (Player) closest_player;
-				killed_player.kill();
-				
-				System.out.println("\nKILL THIS PLAYER");
-
-				// Set the cool down
-				set_cool_down(1);
-				
-				// TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it
-			}
-			*/
-						
-
+			 * if (monster.get_monster_position() == closest_player_node) { Player
+			 * killed_player = (Player) closest_player; killed_player.kill();
+			 * 
+			 * System.out.println("\nKILL THIS PLAYER");
+			 * 
+			 * // Set the cool down set_cool_down(1);
+			 * 
+			 * // TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it }
+			 */
 		}
-
-		
-			
 	}
 	
 	public boolean check_cooldown()
@@ -223,15 +181,14 @@ public class Monster extends Entity
 		this.cooldown--;
 		return false;			
 	}
-
 	
-	public int get_cool_down() {
+	public int get_cool_down() 
+	{
 		return cooldown;
 	}
 
-	public void set_cool_down(int cooldown) {
+	public void set_cool_down(int cooldown) 
+	{
 		this.cooldown = cooldown;
 	}
-	
-	
 }
