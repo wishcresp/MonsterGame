@@ -156,26 +156,47 @@ public class UIBoard extends Pane
 			Entity player = players.get_player(i);
 						
 			if (player instanceof Monster)
-				board.add(new UICell(3), player.get_pos_x(), player.get_pos_y());
+				board.add(new UISprite(16, 0), player.get_pos_x(), player.get_pos_x());
 			else {
-				switch (player.get_id()) {
-					case "D":
-						board.add(new UICell(0), player.get_pos_x(), player.get_pos_y());
+				int rotation = 0;
+				switch (player.get_dir())
+				{
+					case 0:
+						rotation = 0;
 						break;
+					case 1:
+						rotation = 2;
+						break;
+					case 2:
+						rotation = 3;
+						break;
+					case 3:
+						rotation = 1;
+				}
+				
+				switch (player.get_id())
+				{
 					case "0":
-						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
+						board.add(new UISprite(12, rotation), player.get_pos_x(), player.get_pos_x());
+//						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "1":
-						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
+						board.add(new UISprite(13, rotation), player.get_pos_x(), player.get_pos_x());
+//						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "2":
-						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
+						board.add(new UISprite(14, rotation), player.get_pos_x(), player.get_pos_x());
+//						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "3":
-						board.add(new UICell(7), player.get_pos_x(), player.get_pos_y());
+						board.add(new UISprite(15, rotation), player.get_pos_x(), player.get_pos_x());
+//						board.add(new UICell(7), player.get_pos_x(), player.get_pos_y());
 						break;
+					case "D": /* When dead */
 					default:
-						board.add(new UICell(8), player.get_pos_x(), player.get_pos_y());
+						/* Displays error */
+						board.add(new UISprite(18, 0), player.get_pos_x(), player.get_pos_x());
+//						board.add(new UICell(8), player.get_pos_x(), player.get_pos_y());
 						break;
 				}
 			}
