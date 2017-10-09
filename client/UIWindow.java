@@ -51,6 +51,7 @@ public class UIWindow extends Application
 	public void start(Stage game_stage)
 	{
 		/* Creates game window */
+		game_stage.setResizable(false);
 		Scene game_scene = new Scene(game_window, 550, 550);
 		
 		game_state = GameState.get_instance();
