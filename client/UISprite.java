@@ -49,6 +49,22 @@ public class UISprite extends ImageView {
 				break;
 			case 11:
 				image = new Image("/resources/placeholder.png");
+				break;
+			case 12:
+				image = new Image("/resources/rp.png");
+				break;
+			case 13:
+				image = new Image("/resources/bp.png");
+				break;
+			case 14:
+				image = new Image("/resources/yp.png");
+				break;
+			case 15:
+				image = new Image("/resources/gp.png");
+				break;
+			case 16:
+				image = new Image("/resources/dk.png");
+				break;
 			default:
 				image = new Image("/resources/error.png");
 		}
