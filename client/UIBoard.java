@@ -1,11 +1,9 @@
-/* For now we will stick with simple coloured cells to display the board
- * until I learn how to use sprites instead. - Sean */
+/* Game board is a grid pane that contains sprites representing players
+ * monsters and wall tiles. The board is generated and added to the game window. */
 
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
@@ -15,19 +13,18 @@ import javafx.scene.layout.BackgroundPosition;
 
 public class UIBoard extends Pane
 {
-	private int board_width;
-	private int board_height;
+	/* Creates the board */
 	private GridPane board = new GridPane();
 	
 	public UIBoard()
 	{
-		this.board_width = 11;
-		this.board_height = 11;
 		set_background();
 	}
 	
-	public void set_background() {
-		/* Renders background */
+	/* Sets the board's background */
+	public void set_background()
+	{
+		/* Creates background */
 		Image image = new Image("/resources/stars.jpg");
 		BackgroundSize bg_size = new BackgroundSize(
 				BackgroundSize.AUTO,
@@ -46,11 +43,9 @@ public class UIBoard extends Pane
 		board.setBackground(background);
 	}
 	
+	/* Generates the gameboard */
 	public void update_board()
 	{
-
-		/* New board generation code*/
-		//(column,row)
 		/* Adds center allignment box */
 		board.add(new UISprite(11, 0), 5, 5);
 		
@@ -178,26 +173,21 @@ public class UIBoard extends Pane
 				{
 					case "0":
 						board.add(new UISprite(12, rotation), player.get_pos_x(), player.get_pos_y());
-//						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "1":
 						board.add(new UISprite(13, rotation), player.get_pos_x(), player.get_pos_y());
-//						board.add(new UICell(5), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "2":
 						board.add(new UISprite(14, rotation), player.get_pos_x(), player.get_pos_y());
-//						board.add(new UICell(6), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "3":
 						board.add(new UISprite(15, rotation), player.get_pos_x(), player.get_pos_y());
-//						board.add(new UICell(7), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "D": /* When dead */
 						break;
 					default:
 						/* Displays error */
 						board.add(new UISprite(18, 0), player.get_pos_x(), player.get_pos_x());
-//						board.add(new UICell(8), player.get_pos_x(), player.get_pos_y());
 						break;
 				}
 			}

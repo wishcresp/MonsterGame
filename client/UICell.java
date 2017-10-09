@@ -1,9 +1,7 @@
-/* For now we will stick with simple coloured cells to display the board
- * until I learn how to use sprites instead. - Sean */
+/* UICell is no longer being utilised and has been replaced by UISprite.
+ * UICell used to render the board with coloured cells. */
 
 import javafx.scene.layout.Pane;
-import javafx.scene.text.*;
-import javafx.scene.control.*;
 
 public class UICell extends Pane
 {

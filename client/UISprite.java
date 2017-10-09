@@ -1,16 +1,21 @@
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class UISprite extends ImageView {
-	public UISprite(int type, int rotation) {
-
+public class UISprite extends ImageView 
+{
+	
+	/* Type is used to specify the desired sprite when a new UISprite is 
+	 * created. Rotation sets the orientation of the sprite. */
+	public UISprite(int type, int rotation)
+	{
 		this.setPreserveRatio(true);
 		this.setImage(choose_image(type));
 		set_rotation(rotation);
 	}
 	
-	/* Sets the sprite */
-	public Image choose_image(int type) {
+	/* Sets the sprite. */
+	public Image choose_image(int type) 
+	{
 		Image image;
 		
 		switch (type) {
@@ -72,8 +77,10 @@ public class UISprite extends ImageView {
 	}
 	
 	/* Sets the sprite rotation */
-	public void set_rotation(int rotation) {
-		switch (rotation) {
+	public void set_rotation(int rotation) 
+	{
+		switch (rotation) 
+		{
 			case 0:
 				this.setRotate(0);
 				break;
