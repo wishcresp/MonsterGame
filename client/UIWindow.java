@@ -53,7 +53,7 @@ public class UIWindow extends Application
 	public void start(Stage game_stage)
 	{
 		/* Creates game window */
-		Scene game_scene = new Scene(game_window, 500, 500);
+		Scene game_scene = new Scene(game_window, 550, 550);
 		
 		game_state = GameState.get_instance();
 		players = game_state.get_players();
@@ -75,7 +75,7 @@ public class UIWindow extends Application
 		ip_window.add(port_entry, 0, 3);
 		ip_window.add(btn_ip, 0, 4);
 		
-		Scene ip_scene = new Scene(ip_window, 500, 500);
+		Scene ip_scene = new Scene(ip_window, 550, 550);
 		ip_stage.setScene(ip_scene);
 		
 		/* Creates Number of players input Window */
@@ -93,7 +93,7 @@ public class UIWindow extends Application
 		num_window.add(btn_num_two, 0, 2);
 		num_window.add(btn_num_three, 0, 3);
 		num_window.add(btn_num_four, 0, 4);
-		Scene num_scene = new Scene(num_window, 500, 500);
+		Scene num_scene = new Scene(num_window, 550, 550);
 		
 		/* Creates Registration Window */
 		Label name_label = new Label("Enter your name:");
@@ -104,7 +104,7 @@ public class UIWindow extends Application
 		reg_window.setTop(name_label);
 		reg_window.setCenter(name_entry);
 		reg_window.setBottom(btn_name);
-		Scene reg_scene = new Scene(reg_window, 500, 500);
+		Scene reg_scene = new Scene(reg_window, 550, 550);
 		
 		/* Creates starting position selection window */
 		btn_sp_one = new Button("TOP LEFT");
@@ -121,19 +121,17 @@ public class UIWindow extends Application
 		sp_window.add(btn_sp_two, 1, 1);
 		sp_window.add(btn_sp_three, 0, 2);
 		sp_window.add(btn_sp_four, 1, 2);
-		Scene sp_scene = new Scene(sp_window, 500, 500);
+		Scene sp_scene = new Scene(sp_window, 550, 550);
 		
 		/* Waiting for players screen */
 		Label wait_label = new Label("Waiting for players...");
 		wait_window = new BorderPane();
 		wait_window.setCenter(wait_label);
-		Scene wait_scene = new Scene(wait_window, 500, 500);
-		
+		Scene wait_scene = new Scene(wait_window, 550, 550);
 		
 		game_stage.setScene(ip_scene);
 		game_stage.show();
 		
-
 		Random rn = new Random();
 		int rand = rn.nextInt() % 4;
 		
@@ -349,7 +347,10 @@ public class UIWindow extends Application
 		});
 		
 	    EventHandler<ActionEvent> eventHandler = e -> {
-			/* Creates Game Board UI */
+			/* Frees the gameboard and Recreates Game Board UI */
+	    	board = null;
+	    	System.gc();
+	    	board = new UIBoard();
 			board.update_board();
 			game_window.setCenter(board.getBoard());
 			
