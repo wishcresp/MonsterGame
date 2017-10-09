@@ -24,6 +24,9 @@ public class Players
 	private Entity players[]; //TODO: MUTEX
 
 	
+	private boolean locked = false;
+	
+	
 	/*// TODO: Preserver IDs
 	private void swap(int id1, int id2)
 	{
@@ -126,19 +129,29 @@ public class Players
 
 	public String toString() 
 	{
-		String player_string = "";
+		String out = "";
 		
-		for (int i = 0; i < this.current_players; i++) 
+		for (int i = 0; i < current_players; i++)
 		{
-			/*
-			 * Changed this around a bit, needs a getter
-			 */
-			player_string += Integer.toString(players[i].get_pos_x());
-			player_string += ",";
-			player_string += Integer.toString(players[i].get_pos_y());
-			player_string += ";";
+			// Wait around before we get into things
+			while (locked)
+				try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
+			Player cur = (Player) players[i];
+			out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
+			out += ","+String.valueOf(cur.get_ddir());
+			if (cur.is_dead() == true)
+				out += ",D";
+			else
+				out += ","+String.valueOf(i); // Player.id
+			out += ":";
 		}
-		return player_string;
+		// Don't forget to add the monster ;)
+		Entity cur = players[player_target];
+		out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
+		out += ","+String.valueOf(cur.get_ddir());
+		out += ","+String.valueOf(player_target); // Player.id
+		out += ":";
+		return out;
 	}
 
 
@@ -152,4 +165,20 @@ public class Players
 	{
 		this.alive_players = alive_players;
 	}	
+	
+	public void lock()
+	{
+		this.locked = true;
+	}
+	public void unlock()
+	{
+		this.locked = false;
+	}
+	
+	public boolean islocked()
+	{
+		return this.locked;
+	}
+	
+	
 }

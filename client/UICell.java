@@ -54,6 +54,7 @@ public class UICell extends Pane
 			/* PORTAL */
 			case 4:
 				setStyle("-fx-background-color: purple;");
+				break;
 			/* PLAYER 2 */
 			case 5:
 				setStyle("-fx-background-color: cyan;");

@@ -101,10 +101,10 @@ public class ClientConnHandler extends ConnHandler
 		{
 			// Send our direction
 			send_string(Integer.toString(players.get_player(players.get_pc_id()).get_ddir()));
-			System.out.print("Sent direction");
+			
 			
 			String rawc = get_string();
-			
+			System.out.print("Sent direction");
 			if (rawc.contains("WINRAR"))
 			{
 				System.out.println("WE WIN!!!");
@@ -135,6 +135,8 @@ public class ClientConnHandler extends ConnHandler
 					
 					((Player)players.get_player(id)).kill();
 					alive--;
+					
+					players.get_player(i).set_id("D");
 					continue; // Don't deal with the dead
 				}
 				
@@ -162,7 +164,8 @@ public class ClientConnHandler extends ConnHandler
 			game_state.change_run_state(true); // TODO: FIX
 		
 			Thread.sleep(10);
-			System.out.print("\r");
+			System.out.print("\n");
+			System.out.flush();
 			
 			//TODO: Handle disconnects
 

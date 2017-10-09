@@ -50,7 +50,7 @@ public abstract class Entity {
 		// DEBUG, find out the current player coordinate
 		output = "\nPlayer coordinate before move: ";
 		output += this.get_pos_x() + "," + this.get_pos_y();
-		System.out.println(output);
+		//System.out.println(output);
 
 		// Desired direction handling
 		boolean moved = false;
@@ -187,7 +187,7 @@ public abstract class Entity {
 		// DEBUG, find out the current player coordinate
 		output = "Player coordinate after move: ";
 		output += this.get_pos_x() + "," + this.get_pos_y() + "\n";
-		System.out.println(output);
+		//System.out.println(output);
 	}
 
 
@@ -210,7 +210,7 @@ public abstract class Entity {
 		// If player hits a wall, return false
 		if (board_array[x][y] == -1) 
 		{
-			System.out.println("Hitting a wall");
+			//System.out.println("Hitting a wall");
 			return false;
 		}
 
@@ -224,7 +224,7 @@ public abstract class Entity {
 
 			if (x == player.get_pos_x() && y == player.get_pos_y() && ((Player)player).is_dead() == false) 
 			{
-				System.out.println("There is another player here");
+				//System.out.println("There is another player here");
 				return false;
 			}
 		}
@@ -285,15 +285,18 @@ public abstract class Entity {
 		return old_pos_x;
 	}
 
-	public void set_old_pos_x(int old_pos_x) {
+	public void set_old_pos_x(int old_pos_x)
+	{
 		this.old_pos_x = old_pos_x;
 	}
 
-	public int get_old_pos_y() {
+	public int get_old_pos_y() 
+	{
 		return old_pos_y;
 	}
 
-	public void set_old_pos_y(int old_pos_y) {
+	public void set_old_pos_y(int old_pos_y) 
+	{
 		this.old_pos_y = old_pos_y;
 	}
 

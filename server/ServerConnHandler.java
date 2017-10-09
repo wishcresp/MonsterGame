@@ -108,19 +108,31 @@ public class ServerConnHandler extends ConnHandler
 			}
 			while (game_state.is_running())
 			{
-				System.out.println("Sending data for client " + this.id);
+				
+				
+				//System.out.println("Sending data for client " + this.id);
 				// Get desired player.direction from client
 				String dir = "";
 				dir = get_string();
+				
+				// Wait around before we get into things
+				while (players.islocked())
+					Thread.sleep(10);
 				
 				// System.out.println("Setting player dir to "+dir);
 				dir = dir.replaceAll("\\D+", "");
 				int direction = Integer.valueOf(dir);
 				players.set_player_ddir(id, direction);
-	
+					
+				// TODO: Send players x and ys
+				String out = "";
+				out = players.toString();
 				
+				// Wait around before we get into things
+				while (players.islocked())
+					Thread.sleep(10);
 				// Check if player has won
-				//if (players.get_player_count() == 1 && !player.is_dead())
+				//if (players.get_alive_players() == 1 && !player.is_dead())
 				if (players.get_alive_players() == 0 && (!player.is_dead() || true)) // Disabled for debugging
 				{
 					send_string("WINRAR");
@@ -131,28 +143,10 @@ public class ServerConnHandler extends ConnHandler
 				
 				
 				
-				// TODO: Send players x and ys
-				String out = "";
-				for (int i = 0; i < players.get_player_count(); i++)
-				{
-					Player cur = (Player) players.get_player(i);
-					out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
-					out += ","+String.valueOf(cur.get_ddir());
-					if (cur.is_dead() == true)
-						out += ",D";
-					else
-						out += ","+String.valueOf(i); // Player.id
-					out += ":";
-				}
-				// Don't forget to add the monster ;)
-				Entity cur = players.get_player(players.get_player_target());
-				out += String.valueOf(cur.get_pos_y())+","+String.valueOf(cur.get_pos_x());
-				out += ","+String.valueOf(cur.get_ddir());
-				out += ","+String.valueOf(players.get_player_target()); // Player.id
-				out += ":";
+				
 				
 				send_string(out);
-				System.out.println("Sent data for "+players.get_player_target()+" players");
+				//System.out.println("Sent data for "+players.get_player_target()+" players");
 				
 				if (player.is_dead())
 					break; // Don't waste time sending data to the dead

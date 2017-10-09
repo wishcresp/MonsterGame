@@ -60,7 +60,7 @@ public class UIBoard extends Pane
 			else {
 				switch (player.get_id()) {
 					case "D":
-						board.add(new UICell(1), player.get_pos_x(), player.get_pos_y());
+						board.add(new UICell(0), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "0":
 						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());
