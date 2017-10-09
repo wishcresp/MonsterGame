@@ -1,8 +1,6 @@
-/* Creates the main game client window. The rest of the client will likely
- * need to run from this class, it's probably possible to start the UI from
- * another class. Basically, treat the void start like the main
- * method. I'm not very familiar with threading so I might need some help with
- * that. */
+/* Contains the game UI. Is called from Gameclient. Generates and displays the 
+ * gameboard UIBoard. Communicates with the GameState to send information
+ * over to the server. */
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,9 +18,11 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
-	Bangers banger[] = new Bangers[4];
-	Bangers winbang = new Bangers();
+	/* Music */
+	public Bangers banger[] = new Bangers[4];
+	public Bangers winbang = new Bangers();
 	
+	/* Gameboard and UI elements */
 	private UIBoard board = new UIBoard();
 	private BorderPane game_window = new BorderPane();
 	private GridPane num_window;
@@ -42,7 +42,6 @@ public class UIWindow extends Application
 	
 	private int PC_id;	
 	private Players players;
-	private String[] poses;
 	private GameState game_state;
 	
 	private Timeline game_loop;
@@ -61,6 +60,7 @@ public class UIWindow extends Application
 		/* Creates IP input Window */
 		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
+		
 		/* Temporary ip/port */
 		ip_entry = new TextField("127.0.0.1");
 		Label port_label = new Label("Enter Port:");
@@ -165,12 +165,10 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				/* Attempt to connect to the server in here, input validation
-				 * server side? */
 				GameState.get_instance().set_server_ip(ip_entry.getText());
 				GameState.get_instance().set_server_port(Integer.parseInt(port_entry.getText()));
 				
-				/* Waits for server to allocate player ID*/
+				/* Waits for server to allocate player ID */
 				while (PC_id == -1)
 				{
 					System.out.println("PC_id = -1");
@@ -241,36 +239,42 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
+				/* Debug */
 				System.out.println("PC_ID is: " + PC_id);
+				
+				/* Sets the player name */
 				players.get_player(PC_id).set_name(name_entry.getText());
-
-				while (poses != null)
+				
+				/* Waiting for server to send avalaible spots */
+				while (game_state.get_avaliable_spots() == "")
 				{
-					poses = players.get_starter_spot().split(":");
-					System.out.println("Waiting for poses");
+					System.out.println("Waiting for avaliable spots");
 					try { Thread.sleep(100); } catch (Exception ex) { }
 				}
 				
-//				if (!spot_avaliable("1,1"))
-//					btn_sp_one.setDisable(true);
-//				if (!spot_avaliable("9,1"))
-//					btn_sp_two.setDisable(true);
-//				if (!spot_avaliable("1,9"))
-//					btn_sp_three.setDisable(true);
-//				if (!spot_avaliable("9,9"))
-//					btn_sp_four.setDisable(true);
+				/* Debug */
+				System.out.println("Avaliable Spots: "+ game_state.get_avaliable_spots());
+				
+				if (!spot_avaliable("1,1"))
+					btn_sp_one.setDisable(true);
+				if (!spot_avaliable("1,9"))
+					btn_sp_two.setDisable(true);
+				if (!spot_avaliable("9,1"))
+					btn_sp_three.setDisable(true);
+				if (!spot_avaliable("9,9"))
+					btn_sp_four.setDisable(true);
 				
 				game_stage.setScene(sp_scene);	
 			}
 		});
 		
-		/* When position confirm button is pressed. */
+		/* When starting position button is pressed. */
 		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
 			{
-				wait_avaliable_spots(0);
+				wait_avaliable_spots("1,1");				
 				game_stage.setScene(game_scene);	
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
@@ -279,13 +283,13 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When position confirm button is pressed. */
+		/* When starting position button is pressed. */
 		btn_sp_two.setOnAction(new EventHandler<ActionEvent>()
 		{			
 			@Override
 			public void handle(ActionEvent e)
 			{
-				wait_avaliable_spots(1);
+				wait_avaliable_spots("1,9");
 				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
@@ -294,12 +298,14 @@ public class UIWindow extends Application
 			}
 		});
 		
+		/* When starting position button is pressed. */
 		btn_sp_three.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
 			{
-				wait_avaliable_spots(2);
+				wait_avaliable_spots("9,1");
+				while (!game_state.is_running())		
 				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
@@ -308,12 +314,13 @@ public class UIWindow extends Application
 			}
 		});
 		
+		/* When starting position button is pressed. */
 		btn_sp_four.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent e)
 			{
-				wait_avaliable_spots(3);
+				wait_avaliable_spots("9,9");			
 				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
@@ -322,14 +329,17 @@ public class UIWindow extends Application
 			}
 		});
 		
+		/* Gameloop, called by timeline */
 	    EventHandler<ActionEvent> eventHandler = e -> {
-			/* Frees the gameboard and Recreates Game Board UI */
+			
+	    	/* Frees the gameboard in memory and recreates game board UI */
 	    	board = null;
 	    	System.gc();
 	    	board = new UIBoard();
 			board.update_board();
 			game_window.setCenter(board.getBoard());
 			
+			/* Quits the game when winner is determined */
 			if (game_state.won())
 			{
 				System.out.println("WINNNAR");
@@ -346,11 +356,11 @@ public class UIWindow extends Application
 
 	    };
 	    
+	    /* Creates a game loop timeline that updates every 64 milliseconds */
 	    game_loop = new Timeline(new KeyFrame(Duration.millis(64), eventHandler));
 	    game_loop.setCycleCount(Timeline.INDEFINITE);
 	    
 	    
-	   
 	    // Finna music
 	    for (int i = 0; i < 4; i++)
 	    	banger[i] = new Bangers();
@@ -374,15 +384,15 @@ public class UIWindow extends Application
 	}
 	
 	/* Waits for server to send avaliable spots*/
-	public void wait_avaliable_spots(int i)
+	public void wait_avaliable_spots(String s)
 	{
 		while (game_state.get_avaliable_spots() == "")
 		{
 			System.out.println("Waiting for avaliable spots");
 			try { Thread.sleep(100); } catch (Exception ex) {}
 		}
-		poses = game_state.get_avaliable_spots().split(":");	
-		players.set_starter_spot(poses[i]);
+		/* hardcoding im sorry */
+		players.set_starter_spot(s);
 		
 	}
 	
@@ -394,9 +404,5 @@ public class UIWindow extends Application
 		else
 			return false;
 	}
-	
-	
-	
-	
 }
 
