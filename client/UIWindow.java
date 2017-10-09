@@ -360,7 +360,7 @@ public class UIWindow extends Application
 				
 				banger.pause();
 				winbang.play();
-				try {Thread.sleep(50000);} catch (InterruptedException ex)
+				try {Thread.sleep(5000);} catch (InterruptedException ex)
 				{
 					ex.printStackTrace();
 				}

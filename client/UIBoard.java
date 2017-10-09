@@ -147,6 +147,9 @@ public class UIBoard extends Pane
 		Players players;
 		players = GameState.get_instance().get_players();
 		
+		
+		while (players.islocked())
+			try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
 		//System.out.println("Drawing Players");
 		for (int i = 0; i < players.get_player_count(); i++)
 		{
@@ -157,7 +160,7 @@ public class UIBoard extends Pane
 			else {
 				switch (player.get_id()) {
 					case "D":
-						board.add(new UICell(1), player.get_pos_x(), player.get_pos_y());
+						board.add(new UICell(0), player.get_pos_x(), player.get_pos_y());
 						break;
 					case "0":
 						board.add(new UICell(4), player.get_pos_x(), player.get_pos_y());

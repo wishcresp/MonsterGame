@@ -46,6 +46,28 @@ public class GameServer extends Thread
 		board.create_associative_array();
 	}
 		
+	
+	private static boolean check_kill()
+	{
+		Monster monster_e = ((Monster)players.get_player(players.get_player_count()));
+
+		// Check to see if the monster's eating anyone
+		for (int i = 0; i < players.get_player_count(); i++)
+		{
+			Player player;
+			player = ((Player)players.get_player(i));
+			if (monster_e.get_pos_x() == player.get_pos_x() && monster_e.get_pos_y() == player.get_pos_y() && player.is_dead() == false)
+			{
+				player.kill(); // Kill 'em if we're touching them
+				//System.out.println("\nKILL THIS PLAYER");
+				monster_e.set_cool_down(10);
+				return true;
+			}
+		}
+
+		return false;	
+	}
+	
 	public static void GameLoop() throws InterruptedException
 	{		
 		GameState game_state = GameState.get_instance();
@@ -65,12 +87,13 @@ public class GameServer extends Thread
 			Thread.sleep(100); // If the game isn't running, wait around
 
 		
-		((Monster)players.get_player(players.get_player_count())).set_cool_down(20);
+		((Monster)players.get_player(players.get_player_count())).set_cool_down(5);
 		while (true) 
 		{
-	
+			players.lock();
 			
-			((Monster)players.get_player(players.get_player_count())).move(players, monster);
+			
+			check_kill();
 			
 			for (int i = 0; i < players.get_player_count(); i++) 
 			{
@@ -86,7 +109,22 @@ public class GameServer extends Thread
 				}
 				else				
 					player.move();				
-			}			
+			}
+			
+			check_kill();
+		
+			
+			// Lastly, move the monster
+			Monster monster_e = ((Monster)players.get_player(players.get_player_count()));
+			monster_e.move(players, monster);
+			
+			check_kill();
+			
+			
+			players.unlock();
+			
+			System.out.println(players.toString());
+			
 			Thread.sleep(250);
 		}
 	}
