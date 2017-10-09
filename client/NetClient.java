@@ -4,7 +4,7 @@ import java.io.*;
 public class NetClient extends Thread
 {
 	
-	Socket conn;
+	protected Socket conn;
 	public NetClient()
 	{
 	}

@@ -20,8 +20,8 @@ import javafx.event.EventHandler;
 
 public class UIWindow extends Application
 {
-	Bangers banger[] = new Bangers[4];
-	Bangers winbang = new Bangers();
+	public Bangers banger[] = new Bangers[4];
+	public Bangers winbang = new Bangers();
 	
 	private UIBoard board = new UIBoard();
 	private BorderPane game_window = new BorderPane();

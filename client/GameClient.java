@@ -3,8 +3,8 @@ import javafx.application.Application;
 
 public class GameClient extends Thread
 {	
-	static Board board;
-	static Players players;
+	public static Board board;
+	public static Players players;
 	
 	public static void main(String[] args) throws InterruptedException
 	{
