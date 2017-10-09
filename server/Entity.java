@@ -33,8 +33,8 @@ public abstract class Entity
 		/*
 		 * 0 = UP 1 = DOWN 2 = LEFT 3 = RIGHT
 		 */
-		direction = 0;
-		desired_direction = 0;
+		direction = -1;
+		desired_direction = -1;
 		return;
 	}
 
