@@ -7,6 +7,8 @@ public class TestRunner
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting up JUnit tests...");
+		System.out.println("Please use the sockecho program and point it at this"
+		         + " device on port 3216 to complete the first test");
 		Result result;
 		
 		/*
