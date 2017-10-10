@@ -62,7 +62,7 @@ public class Monster extends Entity
 				player_distance = Integer.MAX_VALUE;
 
 			// Print all the above variables
-			System.out.println("|" + player_node + "," + player_distance + "," + "|");//player_destination + "|");
+			//System.out.println("|" + player_node + "," + player_distance + "," + "|");//player_destination + "|");
 			
 			// Store the distance of each player for checking
 			distance_array[i] = player_distance;
@@ -131,7 +131,7 @@ public class Monster extends Entity
 
 		System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
 		
-		System.out.println("Now to see wether the player dies");
+		//System.out.println("Now to see wether the player dies");
 				
 //		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y()) {
 //			((Player) closest_player).kill(); // Kill 'em if we're touching them
