@@ -5,16 +5,30 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.geometry.Pos;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class UIWindow extends Application
 {
@@ -25,11 +39,10 @@ public class UIWindow extends Application
 	/* Gameboard and UI elements */
 	private UIBoard board = new UIBoard();
 	private BorderPane game_window = new BorderPane();
-	private GridPane num_window;
+	private BorderPane num_window;
 	private BorderPane reg_window;
-	private GridPane ip_window;
-	private GridPane sp_window;
-	private BorderPane wait_window;
+	private BorderPane ip_window;
+	private BorderPane sp_window;
 	
 	private Button btn_sp_one;
 	private Button btn_sp_two;
@@ -48,64 +61,173 @@ public class UIWindow extends Application
 	
 	@Override
 	public void start(Stage game_stage)
-	{
-		/* Creates game window */
-		game_stage.setResizable(false);
-		Scene game_scene = new Scene(game_window, 550, 550);
-		
+	{	
+		/* Gets data from server */
 		game_state = GameState.get_instance();
 		players = game_state.get_players();
 		PC_id = players.get_pc_id();
 		
+		/* Creates pane for Vertical spacing */
+		Pane spacer = new Pane();
+		spacer.setMinHeight(40);
+		
+		/* Creates game window */
+		game_stage.setResizable(false);
+		Scene game_scene = new Scene(game_window, 550, 550);
+		
+		
 		/* Creates IP input Window */
-		Stage ip_stage = new Stage();
 		Label ip_label = new Label("Enter IP Address:");
-		
+		ip_label.setFont(Font.font(18));
+		ip_window = new BorderPane();
 		/* Temporary ip/port */
-		ip_entry = new TextField("127.0.0.1");
+		ip_entry = new TextField("");
+		ip_entry.setMaxWidth(200);
+		ip_entry.setAlignment(Pos.CENTER);
+		ip_entry.setFont(Font.font(24));
+		
 		Label port_label = new Label("Enter Port:");
+		port_label.setAlignment(Pos.CENTER);
+		port_label.setFont(Font.font(18));
+		
 		port_entry = new TextField("3216");
+		port_entry.setMaxWidth(200);
+		port_entry.setAlignment(Pos.CENTER);
+		port_entry.setFont(Font.font(24));
+		
 		Button btn_ip = new Button("CONFIRM");
+		btn_ip.setAlignment(Pos.CENTER);
+		btn_ip.setMinWidth(100);
+		btn_ip.setMinHeight(50);
+		btn_ip.setFont(Font.font(20));
 		
-		ip_window = new GridPane();
-		ip_window.add(ip_label, 0, 0);
-		ip_window.add(ip_entry, 0, 1);
-		ip_window.add(port_label, 0, 2);
-		ip_window.add(port_entry, 0, 3);
-		ip_window.add(btn_ip, 0, 4);
+		/* https://i.imgur.com/lXOFDVuh.jpg
+		 */
+		Image title = new Image("resources/title.png");
+		ImageView title_view = new ImageView(title);
 		
+		VBox ip_input = new VBox();
+		ip_input.getChildren().addAll(ip_label, ip_entry, port_label, 
+				port_entry, btn_ip);
+		ip_input.setAlignment(Pos.CENTER);
+		ip_window.setCenter(ip_input);
+		
+		ip_window.setTop(title_view);
+		ip_window.setStyle("-fx-background-color: beige");
 		Scene ip_scene = new Scene(ip_window, 550, 550);
-		ip_stage.setScene(ip_scene);
 		
-		/* Creates Number of players input Window */
+		
+		/* Creates number of players input Window */
+		VBox num_label_pane = new VBox();
+		Label num_label = new Label("Select number of players:");
+		num_label.setFont(Font.font("", FontWeight.BOLD, 32));
+		num_label.setStyle("-fx-text-fill: white;");
+		num_label_pane.setAlignment(Pos.CENTER);
+		num_label_pane.getChildren().addAll(spacer, num_label);
+		
 		Button btn_num_one = new Button("One");
 		Button btn_num_two = new Button("Two");
 		Button btn_num_three = new Button("Three");
 		Button btn_num_four = new Button("Four");
-		btn_num_one.setPrefWidth(200);
-		btn_num_two.setPrefWidth(200);
-		btn_num_three.setPrefWidth(200);
-		btn_num_four.setPrefWidth(200);
-		num_window = new GridPane();
-		num_window.add(new Label("Select number of players"), 0, 0);
-		num_window.add(btn_num_one, 0, 1);
-		num_window.add(btn_num_two, 0, 2);
-		num_window.add(btn_num_three, 0, 3);
-		num_window.add(btn_num_four, 0, 4);
+		
+		btn_num_one.setPrefWidth(225);
+		btn_num_one.setPrefHeight(50);
+		btn_num_one.setFont(Font.font(28));
+		
+		btn_num_two.setPrefWidth(225);
+		btn_num_two.setPrefHeight(50);
+		btn_num_two.setFont(Font.font(28));
+		
+		btn_num_three.setPrefWidth(225);
+		btn_num_three.setPrefHeight(50);
+		btn_num_three.setFont(Font.font(28));
+		
+		btn_num_four.setPrefWidth(225);
+		btn_num_four.setPrefHeight(50);
+		btn_num_four.setFont(Font.font(28));
+
+		GridPane num_boxes = new GridPane();
+		num_boxes.add(btn_num_one, 0, 0);
+		num_boxes.add(btn_num_two, 1, 0);
+		num_boxes.add(btn_num_three, 0, 1);
+		num_boxes.add(btn_num_four, 1, 1);
+		num_boxes.setAlignment(Pos.CENTER);
+		
+		num_window = new BorderPane();
+		num_window.setTop(num_label_pane);
+		num_window.setBottom(num_boxes);
+		
 		Scene num_scene = new Scene(num_window, 550, 550);
 		
-		/* Creates Registration Window */
+		/* 
+		 * https://thumbs.dreamstime.com/b/havanese-de-salto-34230736.jpg
+		 */
+		Image leap = new Image("resources/leap.jpg");
+		BackgroundSize bg_size = new BackgroundSize(
+				BackgroundSize.AUTO,
+				BackgroundSize.AUTO,
+				false,
+				false,
+				true,
+				false);
+		
+		Background num_background = new Background(new BackgroundImage(leap,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER,
+				bg_size));
+		num_window.setBackground(num_background);
+		
+		
+		/* Creates Name Registration Window */
+		VBox name_label_pane = new VBox();
 		Label name_label = new Label("Enter your name:");
-		/* Temporary name */
-		name_entry = new TextField("A guy");
+		name_label.setFont(Font.font("", FontWeight.BOLD, 38));
+		name_label.setStyle("-fx-text-fill: black;");
+		name_label_pane.setAlignment(Pos.CENTER);
+		name_label_pane.getChildren().addAll(spacer, name_label);
+		
+		VBox name_entry_pane = new VBox();
+		name_entry = new TextField("");
+		name_entry.setPrefWidth(400); 
+		name_entry.setFont(Font.font(32));
+		name_entry.setAlignment(Pos.BOTTOM_CENTER);
+		name_entry_pane.getChildren().addAll(name_entry, spacer);
+		
+		VBox btn_name_pane = new VBox();
 		Button btn_name = new Button("CONFIRM");
+		btn_name.setPrefHeight(100);
+		btn_name.setPrefWidth(200);
+		btn_name.setFont(Font.font(28));
+		btn_name_pane.setAlignment(Pos.CENTER);
+		btn_name_pane.getChildren().addAll(btn_name, spacer);
+		
 		reg_window = new BorderPane();
-		reg_window.setTop(name_label);
-		reg_window.setCenter(name_entry);
-		reg_window.setBottom(btn_name);
+		reg_window.setTop(name_label_pane);
+		reg_window.setCenter(name_entry_pane);
+		reg_window.setBottom(btn_name_pane);
+		
 		Scene reg_scene = new Scene(reg_window, 550, 550);
 		
+		/* https://i.redd.it/ye08k37ynfqz.jpg 
+		 */
+		Image shocked = new Image("resources/helpme.jpg");		
+		Background reg_background = new Background(new BackgroundImage(shocked,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER,
+				bg_size));
+		reg_window.setBackground(reg_background);
+		
+		
 		/* Creates starting position selection window */
+		VBox sp_window_pane = new VBox();
+		Label sp_label = new Label("Select starting position:");
+		sp_label.setFont(Font.font("", FontWeight.BOLD, 38));
+		sp_label.setStyle("-fx-text-fill: black;");
+		sp_window_pane.setAlignment(Pos.CENTER);
+		sp_window_pane.getChildren().add(sp_label);
+		
 		btn_sp_one = new Button("TOP LEFT");
 		btn_sp_two = new Button("TOP RIGHT");
 		btn_sp_three = new Button("BOTTOM LEFT");
@@ -114,23 +236,43 @@ public class UIWindow extends Application
 		btn_sp_two.setPrefWidth(200);
 		btn_sp_three.setPrefWidth(200);
 		btn_sp_four.setPrefWidth(200);
-		sp_window = new GridPane();
-		sp_window.add(new Label("Select starting position:"), 0, 0);
-		sp_window.add(btn_sp_one, 0, 1);
-		sp_window.add(btn_sp_two, 1, 1);
-		sp_window.add(btn_sp_three, 0, 2);
-		sp_window.add(btn_sp_four, 1, 2);
+		btn_sp_one.setPrefHeight(50);
+		btn_sp_two.setPrefHeight(50);
+		btn_sp_three.setPrefHeight(50);
+		btn_sp_four.setPrefHeight(50);
+		btn_sp_one.setFont(Font.font(20));
+		btn_sp_two.setFont(Font.font(20));
+		btn_sp_three.setFont(Font.font(20));
+		btn_sp_four.setFont(Font.font(20));
+		
+		GridPane sp_grid = new GridPane();
+		sp_grid.add(btn_sp_one, 0, 1);
+		sp_grid.add(btn_sp_two, 1, 1);
+		sp_grid.add(btn_sp_three, 0, 2);
+		sp_grid.add(btn_sp_four, 1, 2);
+		sp_grid.setAlignment(Pos.CENTER);
+		
+		sp_window = new BorderPane();
+		sp_window.setTop(sp_window_pane);
+		sp_window.setBottom(sp_grid);
 		Scene sp_scene = new Scene(sp_window, 550, 550);
 		
-		/* Waiting for players screen */
-		Label wait_label = new Label("Waiting for players...");
-		wait_window = new BorderPane();
-		wait_window.setCenter(wait_label);
-		Scene wait_scene = new Scene(wait_window, 550, 550);
+		
+		/*
+		 * https://i.redd.it/gm94k33xdonz.jpg
+		 */
+		Image sit = new Image("resources/sit.jpg");		
+		Background sp_background = new Background(new BackgroundImage(sit,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER,
+				bg_size));
+		sp_window.setBackground(sp_background);
 		
 		game_stage.setScene(ip_scene);
 		game_stage.show();
-
+		
+		
 		/* Key Listener for arrows */
 		game_window.setOnKeyPressed(e ->
 		{
@@ -356,10 +498,18 @@ public class UIWindow extends Application
 
 	    };
 	    
+	    /* Kills the program when the GUI is closed */
+	    game_stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	        @Override
+	        public void handle(WindowEvent t) {
+	            Platform.exit();
+	            System.exit(0);
+	        }
+	    });
+	    
 	    /* Creates a game loop timeline that updates every 64 milliseconds */
 	    game_loop = new Timeline(new KeyFrame(Duration.millis(64), eventHandler));
 	    game_loop.setCycleCount(Timeline.INDEFINITE);
-	    
 	    
 	    // Finna music
 	    for (int i = 0; i < 4; i++)
