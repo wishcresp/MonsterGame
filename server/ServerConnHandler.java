@@ -20,10 +20,11 @@ public class ServerConnHandler extends ConnHandler
 			// Send game info to client
 			send_string(Integer.toString(board.get_dimensions())); // Board
 																	// dimensions
-			Thread.sleep(100);
-			send_string(board.get_layout()); // Board layout
-			Thread.sleep(100);
-			send_string(Integer.toString(this.id)+":"+Integer.toString(game_state.get_random_number())); // The client's ID
+			Thread.sleep(100); // Give the client some time to recieve so data doesn't get jumbled
+			send_string(board.get_layout()); // Send the board layout
+			Thread.sleep(100); // Give the client some time to recieve so data doesn't get jumbled
+			// Send the clients ID and a random number
+			send_string(Integer.toString(this.id)+":"+Integer.toString(game_state.get_random_number()));
 			System.out.println("Sent the players ID "+this.id+" and random number "+String.valueOf(game_state.get_random_number()));
 	
 			// TODO: Client interaction and player setup
@@ -115,7 +116,7 @@ public class ServerConnHandler extends ConnHandler
 				String dir = "";
 				dir = get_string();
 				
-				// Wait around before we get into things
+				// Wait for controller to perform calculations
 				while (players.islocked())
 					Thread.sleep(10);
 				
@@ -136,7 +137,7 @@ public class ServerConnHandler extends ConnHandler
 				if (players.get_alive_players() == 0 && (!player.is_dead() || true)) // Disabled for debugging
 				{
 					send_string("WINRAR");
-					System.out.println("WINRAR!!!!!!!!!!!!!!!");
+					System.out.println("We have a winner!");
 					System.exit(0);
 				}
 				

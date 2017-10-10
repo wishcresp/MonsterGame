@@ -124,7 +124,7 @@ public class ClientConnHandler extends ConnHandler
 			
 			
 			String[] coords = rawc.split(":"); // TODO: Get player x and ys from server
-			System.out.print(":Goot coords strang: "+rawc);
+			System.out.print(":Got coords string: "+rawc);
 			players.set_player_count(coords.length);
 			System.out.print(":Player count: "+coords.length);
 			
@@ -135,11 +135,11 @@ public class ClientConnHandler extends ConnHandler
 				
 				if (xy[3].contains("D"))
 				{
-					System.out.print(":He dead lol");
+					System.out.print(":Player is dead");
 					
 					if (i == this.id)
 					{
-						System.out.println("We dead :(");
+						System.out.println("This client has died");
 						System.exit(0);
 					}
 					
