@@ -446,8 +446,7 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				wait_avaliable_spots("9,1");
-				while (!game_state.is_running())		
+				wait_avaliable_spots("9,1");		
 				game_stage.setScene(game_scene);
 				game_stage.setTitle("Monster Game - Player: " + 
 						players.get_player(PC_id).get_name());
