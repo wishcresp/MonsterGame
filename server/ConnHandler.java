@@ -26,7 +26,12 @@ public abstract class ConnHandler extends Thread
 		while (in.read(buf) == -1)
 			; // Give the client ``some`` time
 		String input = new String(buf, "UTF-8");
-		return input.trim();
+		input = input.trim();
+		input = input.replaceAll("\n", "").replaceAll("\r", "");
+		input = input.replaceAll("\n", "").replaceAll("\r", "");
+		input = input.replaceAll("\n", "").replaceAll("\r", "");
+		input = input.replaceAll("\n", "").replaceAll("\r", "");
+		return input;
 
 	}
 

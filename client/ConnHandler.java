@@ -19,7 +19,6 @@ public abstract class ConnHandler extends Thread
 		out = conn.getOutputStream();
 	}
 
-
 	public String get_string()
 	{
 		try
@@ -27,7 +26,9 @@ public abstract class ConnHandler extends Thread
 			byte[] buf = new byte[1024];
 			while (in.read(buf) == -1); // Give the client ``some`` time
 			String input = new String(buf, "UTF-8");
-			return input.trim();
+			input = input.trim();
+			input = input.replaceAll("\n", "").replaceAll("\r", "");
+			return input;
 		}
 		catch (IOException e)
 		{
