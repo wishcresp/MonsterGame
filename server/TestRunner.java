@@ -10,6 +10,16 @@ public class TestRunner
 		Result result;
 		
 		/*
+		 * MonsterAiTest
+		 */
+		result = JUnitCore.runClasses(MonsterAiTest.class);
+
+		for (Failure failure : result.getFailures())
+			System.out.println(failure.toString());
+
+		System.out.println(result.wasSuccessful());
+		
+		/*
 		 * ConnHandlerTest
 		 */
 		result = JUnitCore.runClasses(ConnHandlerTest.class);
@@ -19,14 +29,6 @@ public class TestRunner
 
 		System.out.println(result.wasSuccessful());
 
-		/*
-		 * MonsterAiTest
-		 */
-		result = JUnitCore.runClasses(MonsterAiTest.class);
-
-		for (Failure failure : result.getFailures())
-			System.out.println(failure.toString());
-
-		System.out.println(result.wasSuccessful());
+		
 	}
 }
