@@ -83,6 +83,8 @@ public class ServerConnHandler extends ConnHandler
 	
 			String[] xy = player_pos.split(",");
 	
+			System.out.println("Claiming spot x:"+xy[0]+":"+xy[1]+":");
+			System.out.flush();
 			player.set_pos_x(Integer.valueOf(xy[0])); // Set the player's starting
 													// position
 			player.set_pos_y(Integer.valueOf(xy[1]));
