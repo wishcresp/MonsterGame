@@ -7,7 +7,6 @@ public class GameState
 	private boolean is_running = false;
 	private Players players = new Players();
 	private Board board = new Board();
-	private Player player = new Player();
 	
 	private int random_number;
 
@@ -24,11 +23,6 @@ public class GameState
 	public Board get_board() 
 	{
 		return this.board;
-	}
-
-	public Entity get_player() 
-	{
-		return this.player;
 	}
 
 	public boolean is_running() 

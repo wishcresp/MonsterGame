@@ -146,7 +146,7 @@ public class ClientConnHandler extends ConnHandler
 					((Player)players.get_player(id)).kill();
 					alive--;
 					
-					players.get_player(i).set_id("D");
+					players.get_player(i).set_id("D");// TODO: TIDY
 					continue; // Don't deal with the dead
 				}
 				
@@ -161,10 +161,11 @@ public class ClientConnHandler extends ConnHandler
 				}
 				else
 				{
-					players.get_player(i).set_pos_x(Integer.valueOf(xy[0]));
-					players.get_player(i).set_pos_y(Integer.valueOf(xy[1]));
-					players.get_player(i).set_id(xy[3]);
-					players.get_player(i).set_dir(Integer.valueOf(xy[2]));
+					Player cplayer = (Player) players.get_player(i);
+					cplayer.set_pos_x(Integer.valueOf(xy[0]));
+					cplayer.set_pos_y(Integer.valueOf(xy[1]));
+					cplayer.set_id(xy[3]);
+					cplayer.set_dir(Integer.valueOf(xy[2]));
 					System.out.print(":Set player pos and dir");
 				}
 			}
