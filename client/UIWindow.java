@@ -292,7 +292,7 @@ public class UIWindow extends Application
 		
 		
 		
-		/* Key Listener for arrows */
+		/* Key Listener for getting player input */
 		game_window.setOnKeyPressed(e ->
 		{
 			switch (e.getCode())
@@ -320,7 +320,8 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When IP confirm button is pressed*/
+		/* When IP screen confirm button is pressed, sets the IP and port in
+		 * gamestate. */
 		btn_ip.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -341,6 +342,8 @@ public class UIWindow extends Application
 			    int rand = game_state.get_random_number();
 				banger[rand].play();
 				
+				/* Sends the player to number of players selection screen
+				 * if the first player to join, otherwise this screen is skipped */
 				if (PC_id == 0)
 					game_stage.setScene(num_scene);
 				else
@@ -348,7 +351,7 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When one players are selected. */
+		/* When one player is selected. */
 		btn_num_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -394,7 +397,7 @@ public class UIWindow extends Application
 		});
 		
 		
-		/* When Name confirm button is pressed*/
+		/* When Name confirm button is pressed, player name is set. */
 		btn_name.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -416,6 +419,7 @@ public class UIWindow extends Application
 				/* Debug */
 				System.out.println("Avaliable Spots: "+ game_state.get_avaliable_spots());
 				
+				/* Disables the starting position buttons as players pick them */
 				if (!spot_avaliable("1,1"))
 					btn_sp_one.setDisable(true);
 				if (!spot_avaliable("1,9"))
@@ -429,7 +433,7 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When starting position button is pressed. */
+		/* When the starting position button is pressed. */
 		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -489,7 +493,8 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* Gameloop, called by timeline */
+		/* Gameloop, called by timeline every 64 milliseconds to re-render
+		 * the gameboard. */
 	    EventHandler<ActionEvent> eventHandler = e -> {
 			
 	    	/* Frees the gameboard in memory and recreates game board UI */

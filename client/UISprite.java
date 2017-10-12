@@ -18,6 +18,8 @@ public class UISprite extends ImageView
 	{
 		Image image;
 		
+		/* Specific case for each type of sprite. eg. Walls and corners of
+		 * various colours, backgrounds and player/monster sprites */
 		switch (type) {
 			case 0:
 				image = new Image("/resources/oc_p.png");
