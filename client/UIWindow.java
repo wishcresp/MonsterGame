@@ -66,7 +66,7 @@ public class UIWindow extends Application
 		/* Gets data from server */
 		game_state = GameState.get_instance();
 		players = game_state.get_players();
-		PC_id = players.get_pc_id();
+		PC_id = players.get_pc_id();	
 		
 		/* Creates pane for Vertical spacing */
 		Pane spacer = new Pane();
@@ -506,8 +506,8 @@ public class UIWindow extends Application
 					banger[i].pause();
 				game_stage.setScene(win_scene);
 				winbang.play();
+				game_loop.stop();
 			}
-			game_loop.stop();
 	    };
 	    
 	    /* Kills the program when the GUI is closed */
