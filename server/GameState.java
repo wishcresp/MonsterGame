@@ -7,11 +7,6 @@ public class GameState
 	private boolean is_running = false;
 	private Players players = new Players();
 	private Board board = new Board();
-<<<<<<< HEAD
-	
-=======
-	private Player player = new Player();
->>>>>>> 94606798f4163d9c831ce56a9cdc1a19fed536f9
 	private int random_number;
 	private GraphVertex[] graphVertex;
 
