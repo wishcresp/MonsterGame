@@ -54,16 +54,10 @@ public class Monster extends Entity
 			//get player distance
 			int player_distance = monster.vertex_array[player_node].get_distance_from_source();
 			
-			//get player destination coordinates
-			//int player_destination = monster.vertex_array[player_node].get_monster_path();
-				
 			// Make the player out of reach if dead
 			if (player.is_dead())
 				player_distance = Integer.MAX_VALUE;
-
-			// Print all the above variables
-			//System.out.println("|" + player_node + "," + player_distance + "," + "|");//player_destination + "|");
-			
+	
 			// Store the distance of each player for checking
 			distance_array[i] = player_distance;
 		}
@@ -122,22 +116,11 @@ public class Monster extends Entity
 		int[] coordinates = board.convert_to_coordinate(closest_player_destination);
 		
 		// IF monster node and closest player node is identical, kill the player
-		
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
 		System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
 						+ closest_player_destination);
-		
 		System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
-
 		System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
-		
-		//System.out.println("Now to see wether the player dies");
-				
-//		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y()) {
-//			((Player) closest_player).kill(); // Kill 'em if we're touching them
-//			System.out.println("\nKILL THIS PLAYER");
-//			set_cool_down(10);
-//		}
 		 
 		if (false) 
 		{} 
@@ -153,21 +136,13 @@ public class Monster extends Entity
 			// DEBUG Where did the monster end up
 			System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + "," + this.get_pos_y()
 					+ " at node " + monster.get_monster_position());
-
-//			if (monster.get_monster_position() == closest_player_node) {
-//				Player killed_player = (Player) closest_player;
-//				killed_player.kill();
-//			}
-//			System.out.println("\nKILL THIS PLAYER");
 		}
 	}
 	
 	public boolean check_cooldown()
 	{
-		if (this.cooldown <= 0)
-		{
-			return true;
-		}				
+		if (this.cooldown <= 0)		
+			return true;			
 		System.out.println("ON COOL DOWN WITH REMAINING = " + this.cooldown);
 		this.cooldown--;
 		return false;			

@@ -25,6 +25,9 @@ public class Board
 	private int dimensions = 11; // Board dimension set to 11 x 11
 	private BoardTile[][] BoardTiles; // Board 2D array
 
+	// create a java int array
+	public int[][] board_array = new int[dimensions][dimensions];
+	
 	// Instantiate a new board object
 	public Board() 
 	{
@@ -65,10 +68,6 @@ public class Board
 	}
 
 	// Customize the board dimensions
-	/*
-	 * Well i doubt we will have a expanding board with my algorithm  - michael
-	 */
-
 	public void set_dimensions(int dimensions) 
 	{
 		this.dimensions = dimensions;
@@ -116,9 +115,6 @@ public class Board
 	 * This is the board builder, it is where i will initialize and hard code the
 	 * coordinates of the board for the players and monsters to move on.
 	 */
-
-	// create a java int array
-		public int[][] board_array = new int[dimensions][dimensions];
 
 	/*
 	 * This is important for translating coordinates to their corresponding node

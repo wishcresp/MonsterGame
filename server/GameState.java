@@ -8,16 +8,10 @@ public class GameState
 	private Players players = new Players();
 	private Board board = new Board();
 	private int random_number;
-	private GraphVertex[] graphVertex;
 
 	private GameState() 
 	{
 		return;
-	}
-	
-	public GraphVertex[] get_graph_vertex() 
-	{
-		return this.graphVertex;
 	}
 	
 	public Players get_players() 

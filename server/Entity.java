@@ -14,18 +14,12 @@ public abstract class Entity
 	 * `desired_direction` needs to be checked to see if their `direction` can be
 	 * updated so they can start moving in their `desired_direction`
 	 */
-
-	private int direction;
-	private int desired_direction;
-
-	private int pos_x, pos_y; // I renamed it from x,y.
-	
-
-
-	
-
 	public static Board board;
 	public static GameState game_state;
+	
+	private int direction;
+	private int desired_direction;
+	private int pos_x, pos_y; // I renamed it from x,y.
 	private int dimensions = 11;
 
 	public Entity() 
@@ -42,13 +36,6 @@ public abstract class Entity
 	{
 		game_state = GameState.get_instance();
 		board = game_state.get_board();
-		
-		//String output = "";
-
-		// DEBUG, find out the current player coordinate
-		//output = "\nPlayer coordinate before move: ";
-		//output += this.get_pos_x() + "," + this.get_pos_y();
-		//System.out.println(output);
 
 		// Desired direction handling
 		boolean moved = false;
@@ -115,11 +102,11 @@ public abstract class Entity
 			break;
 
 		default:
-			//System.out.println("invalid move");
 		}
 
 		if (moved)
 			direction = desired_direction;
+		
 		else 
 		{
 			switch (direction) 
@@ -173,16 +160,9 @@ public abstract class Entity
 				break;
 
 			default:
-				//System.out.println("invalid move");
 			}
 		}
-
-		// DEBUG, find out the current player coordinate
-		//output = "Player coordinate after move: ";
-		//output += this.get_pos_x() + "," + this.get_pos_y() + "\n";
-		//System.out.println(output);
 	}
-
 
 	public boolean check_move(int x, int y) 
 	{
@@ -193,20 +173,15 @@ public abstract class Entity
 		 */
 		game_state = GameState.get_instance();
 		board = game_state.get_board();
-		
-		//board.create_associative_array();
 
 		int[][] board_array = new int[dimensions][dimensions];
 
 		board_array = board.get_board_array();
 
 		// If player hits a wall, return false
-		if (board_array[x][y] == -1) 
-		{
-			//System.out.println("Hitting a wall");
+		if (board_array[x][y] == -1) 		
 			return false;
-		}
-
+		
 		// get the players
 		Players players = game_state.get_players();
 
@@ -215,11 +190,9 @@ public abstract class Entity
 		{
 			Entity player = players.get_player(i);
 
-			if (x == player.get_pos_x() && y == player.get_pos_y() && ((Player)player).is_dead() == false) 
-			{
-				//System.out.println("There is another player here");
-				return false;
-			}
+			/* Block player from moving if there is another player*/
+			if (x == player.get_pos_x() && y == player.get_pos_y() && ((Player)player).is_dead() == false)			
+				return false;			
 		}
 		return true;
 	}

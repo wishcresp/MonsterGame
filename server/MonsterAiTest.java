@@ -40,6 +40,7 @@ public class MonsterAiTest {
 		Player Player2 = new Player();
 		Player2.set_pos_x(9);
 		Player2.set_pos_y(4);
+		Player2.set_dir(2);
 
 		// PLAYER 3
 		Player Player3 = new Player();

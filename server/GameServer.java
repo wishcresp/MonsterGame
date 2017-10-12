@@ -7,11 +7,9 @@ public class GameServer extends Thread
 	private static Players players;
 	private static GameState gamestate;
 	private static MonsterAi monster;
-	//private static GraphVertex[] graph;
 	
 	public static void main(String[] args) throws InterruptedException
 	{
-
 		// Setup the board and players
 		Initialize(); 
 			
@@ -19,8 +17,7 @@ public class GameServer extends Thread
 		int port = 3216;
 		Thread listener = new NetServer(port);
 		listener.start();
-		
-		
+				
 		// Start the main game loop
 		GameLoop(); 
 
@@ -32,11 +29,9 @@ public class GameServer extends Thread
 	{	
 		// Instantiate Board and players
 		gamestate = GameState.get_instance();
-		board = gamestate.get_board();		
-		
+		board = gamestate.get_board();				
 		players = gamestate.get_players();	
-		
-		
+				
 		// Create monster object
 		monster = new MonsterAi(board.build_monster_graph());
 	
@@ -62,12 +57,10 @@ public class GameServer extends Thread
 			if (monster_e.get_pos_x() == player.get_pos_x() && monster_e.get_pos_y() == player.get_pos_y() && player.is_dead() == false)
 			{
 				player.kill(); // Kill 'em if we're touching them
-				//System.out.println("\nKILL THIS PLAYER");
 				monster_e.set_cool_down(10);
 				return true;
 			}
 		}
-
 		return false;	
 	}
 	
@@ -89,6 +82,7 @@ public class GameServer extends Thread
 		
 		((Monster)players.get_player(players.get_player_count())).set_cool_down(5); // Give the players a chance to position themselves
 		int tick = 0;
+		
 		while (true) 
 		{
 			players.lock(); // Lock the MUTEX
@@ -112,7 +106,6 @@ public class GameServer extends Thread
 				((Monster)players.get_player(players.get_player_count())).move(players, monster);
 			
 			check_kill();
-			
 			
 			players.unlock(); // Unlock the players
 			

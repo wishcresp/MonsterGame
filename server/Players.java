@@ -7,7 +7,6 @@ public class Players
 	 * is Also handles info about player limits and connected players
 	 */
 
-
 	// TODO: Have this load from file like the game board
 	private String[] avaliable_spots = {"1,1", "1,9", "9,1", "9,9"};
 	
@@ -25,14 +24,12 @@ public class Players
 	{
 		return;
 	}
-	
-	
+		
 	public void claim_spot(String spot)
 	{
 		String[] tmp_spots = new String[avaliable_spots.length];
 		for (int i = 0; i < avaliable_spots.length; i++)
 			tmp_spots[i] = avaliable_spots[i];
-			
 		
 		for (int i = 0; i < avaliable_spots.length; i++)
 		{
@@ -40,10 +37,8 @@ public class Players
 				avaliable_spots[i] = "";
 			else
 				avaliable_spots[i] = tmp_spots[i];
-		}
-		
-	}
-	
+		}		
+	}	
 	
 	public void remove_player(int id)
 	{
@@ -153,12 +148,10 @@ public class Players
 		return out;
 	}
 
-
 	public int get_alive_players() 
 	{
 		return alive_players;
 	}
-
 
 	public void set_alive_players(int alive_players) 
 	{
@@ -177,7 +170,5 @@ public class Players
 	public boolean islocked()
 	{
 		return this.locked;
-	}
-	
-	
+	}	
 }

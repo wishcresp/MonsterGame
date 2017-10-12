@@ -7,7 +7,7 @@ public class NetServer extends Thread
 	private int conn_target; // Update from the Players Singleton
 								// for internal use only
 	private int max_conn_target;
-	Thread[] conns;
+	public Thread[] conns;
 	
 	public NetServer(int port) 
 	{
@@ -23,10 +23,10 @@ public class NetServer extends Thread
 				}
 				
 			} while (sock == null);
-			
-			
+						
 			sock.setSoTimeout(0); // Wait till we find some[one,thing]
-		} catch (Exception e ) {
+		} catch (Exception e ) 
+		{
 			e.printStackTrace();
 		}
 		Players players = GameState.get_instance().get_players();	
@@ -69,7 +69,8 @@ public class NetServer extends Thread
 				 * player target before other players can connect
 				 */
 
-			} catch (IOException | InterruptedException e) 
+			} 
+			catch (IOException | InterruptedException e) 
 			{
 				e.printStackTrace();
 			}
