@@ -16,6 +16,7 @@ public class UIBoard extends Pane
 	/* Creates the board */
 	private GridPane board = new GridPane();
 	
+	/* Sets the background image when gameboard is created*/
 	public UIBoard()
 	{
 		set_background();
@@ -46,7 +47,7 @@ public class UIBoard extends Pane
 	/* Generates the gameboard */
 	public void update_board()
 	{
-		/* Adds center allignment box */
+		/* Adds transparent center allignment box */
 		board.add(new UISprite(11, 0), 5, 5);
 		
 		/* Outer Border Corners */
@@ -146,13 +147,23 @@ public class UIBoard extends Pane
 		while (players.islocked())
 			try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
 		//System.out.println("Drawing Players");
+		
+		/* Draws the location of players and the monster */
 		for (int i = 0; i < players.get_player_count(); i++)
 		{
 			Entity player = players.get_player(i);
-						
+			
+			/* Draws monster sprite*/
 			if (player instanceof Monster)
 				board.add(new UISprite(16, 0), player.get_pos_x(), player.get_pos_y());
+			/* Draws player sprites */
 			else {
+				/* Translates rotation from konami kode to my clockwise code for
+				 * easier sprite rotation
+				 * ie. 0 = UP		to	0 = UP
+				 * 	   1 = DOWN		to	2 = DOWN
+				 * 	   2 = LEFT		to	3 = LEFT
+				 *     3 = RIGHT 	to	1 = RIGHT	*/
 				int rotation = 0;
 				switch (player.get_dir())
 				{
@@ -169,6 +180,7 @@ public class UIBoard extends Pane
 						rotation = 1;
 				}
 				
+				/* Adds player sprites with correct rotation to board. */
 				switch (player.get_id())
 				{
 					case "0":
@@ -186,7 +198,7 @@ public class UIBoard extends Pane
 					case "D": /* When dead */
 						break;
 					default:
-						/* Displays error */
+						/* Displays error. This code should never be reached */
 						board.add(new UISprite(18, 0), player.get_pos_x(), player.get_pos_x());
 						break;
 				}
@@ -194,6 +206,7 @@ public class UIBoard extends Pane
 		}
 	}
 	
+	/* Returns the gameboard for adding to UI */
 	public GridPane getBoard()
 	{
 		return board;

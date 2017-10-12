@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 /*
@@ -22,19 +23,27 @@ import java.util.ArrayList;
  * GraphVertex class for this
  */
 
-public class MonsterAi extends Graph 
+public class MonsterAi  
 {
 	// This is where the monster node is located
+	GameState gamestate = GameState.get_instance();
 	int monster_position;
+	GraphEdge[] edge_array;
+	GraphVertex[] vertex_array;
+	Graph graph;
 
 	// constructor for the MonsterAi
 	public MonsterAi(GraphEdge[] edge_array) 
 	{
 		// get the board specifications ready
-		super(edge_array);
-
+		this.edge_array = edge_array;
+		
 		// This is the center of the board, the starting position is 22 (5,5)
 		this.monster_position = 22;
+		
+		this.graph = new Graph(edge_array);
+	
+		this.vertex_array = graph.get_vertex_array();
 	}
 
 	// monster_position accessor

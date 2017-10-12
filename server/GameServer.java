@@ -7,7 +7,7 @@ public class GameServer extends Thread
 	private static Players players;
 	private static GameState gamestate;
 	private static MonsterAi monster;
-
+	//private static GraphVertex[] graph;
 	
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -36,12 +36,12 @@ public class GameServer extends Thread
 		
 		players = gamestate.get_players();	
 		
+		
 		// Create monster object
-		monster = board.build_monster_graph();
+		monster = new MonsterAi(board.build_monster_graph());
 	
 		// Generate the game board
 		board.create_board();
-	
 		board.create_associative_array();
 		
 		// Generate the random number

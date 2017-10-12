@@ -43,6 +43,7 @@ public class UIWindow extends Application
 	private BorderPane reg_window;
 	private BorderPane ip_window;
 	private BorderPane sp_window;
+	private BorderPane win_window;
 	
 	private Button btn_sp_one;
 	private Button btn_sp_two;
@@ -65,7 +66,7 @@ public class UIWindow extends Application
 		/* Gets data from server */
 		game_state = GameState.get_instance();
 		players = game_state.get_players();
-		PC_id = players.get_pc_id();
+		PC_id = players.get_pc_id();	
 		
 		/* Creates pane for Vertical spacing */
 		Pane spacer = new Pane();
@@ -133,6 +134,7 @@ public class UIWindow extends Application
 		btn_num_one.setPrefWidth(225);
 		btn_num_one.setPrefHeight(50);
 		btn_num_one.setFont(Font.font(28));
+		btn_num_one.setDisable(true);
 		
 		btn_num_two.setPrefWidth(225);
 		btn_num_two.setPrefHeight(50);
@@ -219,7 +221,6 @@ public class UIWindow extends Application
 				bg_size));
 		reg_window.setBackground(reg_background);
 		
-		
 		/* Creates starting position selection window */
 		VBox sp_window_pane = new VBox();
 		Label sp_label = new Label("Select starting position:");
@@ -269,11 +270,29 @@ public class UIWindow extends Application
 				bg_size));
 		sp_window.setBackground(sp_background);
 		
+		
+		/* Creates winner window */
+		win_window = new BorderPane();
+		Scene win_scene = new Scene(win_window, 550, 550);
+		
+		/*
+		 * https://i.ytimg.com/vi/J67Pkgtp3so/maxresdefault.jpg
+		 */
+		Image win = new Image("resources/winner.jpg");		
+		Background win_background = new Background(new BackgroundImage(win,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER,
+				bg_size));
+		win_window.setBackground(win_background);
+		
+		
 		game_stage.setScene(ip_scene);
 		game_stage.show();
 		
 		
-		/* Key Listener for arrows */
+		
+		/* Key Listener for getting player input */
 		game_window.setOnKeyPressed(e ->
 		{
 			switch (e.getCode())
@@ -301,7 +320,8 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When IP confirm button is pressed*/
+		/* When IP screen confirm button is pressed, sets the IP and port in
+		 * gamestate. */
 		btn_ip.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -322,6 +342,8 @@ public class UIWindow extends Application
 			    int rand = game_state.get_random_number();
 				banger[rand].play();
 				
+				/* Sends the player to number of players selection screen
+				 * if the first player to join, otherwise this screen is skipped */
 				if (PC_id == 0)
 					game_stage.setScene(num_scene);
 				else
@@ -329,7 +351,7 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When one players are selected. */
+		/* When one player is selected. */
 		btn_num_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -375,7 +397,7 @@ public class UIWindow extends Application
 		});
 		
 		
-		/* When Name confirm button is pressed*/
+		/* When Name confirm button is pressed, player name is set. */
 		btn_name.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -397,6 +419,7 @@ public class UIWindow extends Application
 				/* Debug */
 				System.out.println("Avaliable Spots: "+ game_state.get_avaliable_spots());
 				
+				/* Disables the starting position buttons as players pick them */
 				if (!spot_avaliable("1,1"))
 					btn_sp_one.setDisable(true);
 				if (!spot_avaliable("1,9"))
@@ -410,7 +433,7 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* When starting position button is pressed. */
+		/* When the starting position button is pressed. */
 		btn_sp_one.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -470,7 +493,8 @@ public class UIWindow extends Application
 			}
 		});
 		
-		/* Gameloop, called by timeline */
+		/* Gameloop, called by timeline every 64 milliseconds to re-render
+		 * the gameboard. */
 	    EventHandler<ActionEvent> eventHandler = e -> {
 			
 	    	/* Frees the gameboard in memory and recreates game board UI */
@@ -482,19 +506,13 @@ public class UIWindow extends Application
 			
 			/* Quits the game when winner is determined */
 			if (game_state.won())
-			{
-				System.out.println("WINNNAR");
-				
+			{			
 				for (int i = 0; i < 4; i++)
 					banger[i].pause();
+				game_stage.setScene(win_scene);
 				winbang.play();
-				try {Thread.sleep(5000);} catch (InterruptedException ex)
-				{
-					ex.printStackTrace();
-				}
-				System.exit(0);
+				game_loop.stop();
 			}
-
 	    };
 	    
 	    /* Kills the program when the GUI is closed */

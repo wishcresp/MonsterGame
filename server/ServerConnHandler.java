@@ -135,8 +135,8 @@ public class ServerConnHandler extends ConnHandler
 				while (players.islocked())
 					Thread.sleep(10);
 				// Check if player has won
-				//if (players.get_alive_players() == 1 && !player.is_dead())
-				if (players.get_alive_players() == 0 && (!player.is_dead() || true)) // Disabled for debugging
+				if (players.get_alive_players() == 1 && !player.is_dead())
+				//if (players.get_alive_players() == 0 && (!player.is_dead() || true)) // Disabled for debugging
 				{
 					send_string("WINRAR");
 					System.out.println("We have a winner!");

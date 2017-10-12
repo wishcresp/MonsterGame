@@ -43,8 +43,8 @@ public class MonsterAiTest {
 
 		// PLAYER 3
 		Player Player3 = new Player();
-		Player3.set_pos_x(5);
-		Player3.set_pos_y(6);
+		Player3.set_pos_x(4);
+		Player3.set_pos_y(1);
 		//Player3.kill(); // KILL THE 3rd player
 
 		// PLAYER 4
@@ -75,7 +75,7 @@ public class MonsterAiTest {
 		/*
 		 * Setup the monster
 		 */
-		monster = board.build_monster_graph();
+		monster = new MonsterAi(board.build_monster_graph());
 		monster.set_monster_position(22);
 		Monster monster_entity;
 
@@ -97,38 +97,5 @@ public class MonsterAiTest {
 					player.move();
 			}
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// @Test
-	public void test_monster() {
-		GraphEdge[] edges = { 
-				new GraphEdge(0, 1), new GraphEdge(1, 4), new GraphEdge(0, 2), new GraphEdge(2, 3),
-				new GraphEdge(3, 4)
-
-				// new GraphEdge(1, 3), new GraphEdge(1, 4), new GraphEdge(1, 5), new
-				// GraphEdge(2, 4),
-				// new GraphEdge(3, 5), new GraphEdge(4, 5), new GraphEdge(4, 6), new
-				// GraphEdge(4, 7),
-				// new GraphEdge(5, 6), new GraphEdge(6, 7)
-		};
-
-		MonsterAi monster = new MonsterAi(edges);
-
-		monster.set_monster_position(4);
-
-		monster.calculate_shortest_path();
-
-		monster.print_result(monster.get_monster_position());
 	}
 }

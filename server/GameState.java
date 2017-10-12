@@ -7,14 +7,24 @@ public class GameState
 	private boolean is_running = false;
 	private Players players = new Players();
 	private Board board = new Board();
+<<<<<<< HEAD
 	
+=======
+	private Player player = new Player();
+>>>>>>> 94606798f4163d9c831ce56a9cdc1a19fed536f9
 	private int random_number;
+	private GraphVertex[] graphVertex;
 
 	private GameState() 
 	{
 		return;
 	}
-
+	
+	public GraphVertex[] get_graph_vertex() 
+	{
+		return this.graphVertex;
+	}
+	
 	public Players get_players() 
 	{
 		return this.players;

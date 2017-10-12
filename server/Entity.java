@@ -115,7 +115,7 @@ public abstract class Entity
 			break;
 
 		default:
-			System.out.println("invalid move");
+			//System.out.println("invalid move");
 		}
 
 		if (moved)
@@ -173,7 +173,7 @@ public abstract class Entity
 				break;
 
 			default:
-				System.out.println("invalid move");
+				//System.out.println("invalid move");
 			}
 		}
 

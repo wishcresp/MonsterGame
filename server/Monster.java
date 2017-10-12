@@ -62,7 +62,7 @@ public class Monster extends Entity
 				player_distance = Integer.MAX_VALUE;
 
 			// Print all the above variables
-			//System.out.println("|" + player_node + "," + player_distance + "," + player_destination + "|");
+			//System.out.println("|" + player_node + "," + player_distance + "," + "|");//player_destination + "|");
 			
 			// Store the distance of each player for checking
 			distance_array[i] = player_distance;
@@ -82,8 +82,8 @@ public class Monster extends Entity
 				smallest_player = i;
 				
 				// prompt
-				//System.out.println(
-				//		"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
+				System.out.println(
+						"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
 			} 
 			
 			// 50% chance to assign as the closest if they are the same
@@ -100,14 +100,14 @@ public class Monster extends Entity
 					smallest_player = i;
 					
 					// prompt
-					//System.out.println(
-							//"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
+					System.out.println(
+							"Player " + (smallest_player + 1) + " is now the newest target with length of " + smallest);
 				}
 			}
 		}
 		
 		// FOUND THE CLOSEST PLAYER
-		//System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
+		System.out.println("\nPLAYER " + (smallest_player + 1) + " IS THE TARGET WITH LENGTH " + smallest);
 		
 		Entity closest_player = players.get_player(smallest_player);
 		int closest_player_node = board.convert_to_node(closest_player.get_pos_x(), closest_player.get_pos_y());
@@ -124,20 +124,21 @@ public class Monster extends Entity
 		// IF monster node and closest player node is identical, kill the player
 		
 		// THIS IS THE NODE THAT THE MONSTER SHOULD MOVE TO
-		//System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
-		//				+ closest_player_destination);
-		//System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
+		System.out.println("\nPlayer " + (smallest_player + 1) + " node is " + closest_player_node + " with destination "
+						+ closest_player_destination);
+		
+		System.out.println("With coordinates: " + closest_player.get_pos_x() + "," + closest_player.get_pos_y());
 
-		//System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
+		System.out.println("Monster coordinates: " + this.get_pos_x() + "," + this.get_pos_y());
 		
 		//System.out.println("Now to see wether the player dies");
-		
-		/*
-		 * if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() ==
-		 * closest_player.get_pos_y()) { ((Player)closest_player).kill(); // Kill 'em if
-		 * we're touching them //System.out.println("\nKILL THIS PLAYER");
-		 * set_cool_down(10); }
-		 */
+				
+//		if (this.get_pos_x() == closest_player.get_pos_x() && this.get_pos_y() == closest_player.get_pos_y()) {
+//			((Player) closest_player).kill(); // Kill 'em if we're touching them
+//			System.out.println("\nKILL THIS PLAYER");
+//			set_cool_down(10);
+//		}
+		 
 		if (false) 
 		{} 
 		else // If we ain't killin', move
@@ -150,20 +151,14 @@ public class Monster extends Entity
 			this.set_pos_y(coordinates[1]);
 
 			// DEBUG Where did the monster end up
-			// System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + ","
-			// + this.get_pos_y() + " at node "
-			// + monster.get_monster_position());
+			System.out.println("\nMonster coordinates AFTER = " + this.get_pos_x() + "," + this.get_pos_y()
+					+ " at node " + monster.get_monster_position());
 
-			/*
-			 * if (monster.get_monster_position() == closest_player_node) { Player
-			 * killed_player = (Player) closest_player; killed_player.kill();
-			 * 
-			 * System.out.println("\nKILL THIS PLAYER");
-			 * 
-			 * // Set the cool down set_cool_down(1);
-			 * 
-			 * // TODO CHECK IF THE PLAYER IS DEAD, if its dead don't look for it }
-			 */
+//			if (monster.get_monster_position() == closest_player_node) {
+//				Player killed_player = (Player) closest_player;
+//				killed_player.kill();
+//			}
+//			System.out.println("\nKILL THIS PLAYER");
 		}
 	}
 	
@@ -172,9 +167,8 @@ public class Monster extends Entity
 		if (this.cooldown <= 0)
 		{
 			return true;
-		}
-				
-		//System.out.println("ON COOL DOWN WITH REMAINING = " + this.cooldown);
+		}				
+		System.out.println("ON COOL DOWN WITH REMAINING = " + this.cooldown);
 		this.cooldown--;
 		return false;			
 	}
