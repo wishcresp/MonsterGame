@@ -241,7 +241,7 @@ public class Board
 	}
 
 	// Building a network for the board
-	public MonsterAi build_monster_graph() 
+	public GraphEdge[] build_monster_graph() 
 	{
 		/*
 		 * GraphEdge(FROM, TO) To set a connection, specify the 'FROM' index and connect
@@ -282,9 +282,9 @@ public class Board
 				// TELEPORTATION LINKS
 				new GraphEdge(4, 40), new GraphEdge(18, 26) };
 
-		MonsterAi monster = new MonsterAi(edges);
+		//MonsterAi monster = new MonsterAi(edges);
 
-		return monster;
+		return edges;
 		/*
 		 * monster.find_shortest_path(); monster.print_result(monster_position);
 		 */
