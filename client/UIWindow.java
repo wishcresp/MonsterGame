@@ -333,7 +333,6 @@ public class UIWindow extends Application
 				/* Waits for server to allocate player ID */
 				while (PC_id == -1)
 				{
-					System.out.println("PC_id = -1");
 					PC_id = players.get_pc_id();
 					try { Thread.sleep(100); } catch (Exception err) { }
 				}
@@ -403,8 +402,6 @@ public class UIWindow extends Application
 			@Override
 			public void handle(ActionEvent e)
 			{
-				/* Debug */
-				System.out.println("PC_ID is: " + PC_id);
 				
 				/* Sets the player name */
 				players.get_player(PC_id).set_name(name_entry.getText());
@@ -412,12 +409,8 @@ public class UIWindow extends Application
 				/* Waiting for server to send avalaible spots */
 				while (game_state.get_avaliable_spots() == "")
 				{
-					System.out.println("Waiting for avaliable spots");
 					try { Thread.sleep(100); } catch (Exception ex) { }
 				}
-				
-				/* Debug */
-				System.out.println("Avaliable Spots: "+ game_state.get_avaliable_spots());
 				
 				/* Disables the starting position buttons as players pick them */
 				if (!spot_avaliable("1,1"))
@@ -555,7 +548,6 @@ public class UIWindow extends Application
 	{
 		while (game_state.get_avaliable_spots() == "")
 		{
-			System.out.println("Waiting for avaliable spots");
 			try { Thread.sleep(100); } catch (Exception ex) {}
 		}
 		/* hardcoding im sorry */
