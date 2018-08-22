@@ -1,8 +1,8 @@
 # Team Linux
 
-* Michael Dao (saladsnake) - s3668300@student.rmit.edu.au
-* Sean Martin (wishcresp) - s3645417@student.rmit.edu.au
-* Blaise Saunders (DavidoRotho) - s3561722@student.rmit.edu.au
+* Michael Dao - https://github.com/MichaelDao
+* Sean Martin
+* Blaise Saunders (DavidoRotho) - https://github.com/DavidoRotho
 
 [A link to our trello](https://trello.com/b/FNYVPMXg/assignment-1)
 
